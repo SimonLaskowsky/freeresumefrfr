@@ -174,8 +174,20 @@ export default function Home() {
                   <div className="text-sm text-zinc-300 mb-4 leading-relaxed">
                     &quot;{item.line1} {item.line2}&quot;
                   </div>
-                  <div className="w-full py-2.5 px-3 bg-zinc-800 border border-zinc-700 rounded-xl text-xs text-zinc-500 line-through decoration-red-500/60">
-                    {item.badge}
+                  <div className="relative w-full py-2.5 px-4 bg-zinc-800/60 border border-zinc-700/60 rounded-xl flex items-center justify-center gap-2 overflow-hidden">
+                    {/* locked-out download button */}
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" className="text-zinc-600 flex-shrink-0">
+                      <path d="M8 12L3 7h3V2h4v5h3L8 12z" />
+                      <rect x="2" y="13" width="12" height="1.5" rx="0.75" />
+                    </svg>
+                    <span className="text-xs font-bold text-zinc-500 line-through decoration-red-500/70 decoration-2">
+                      {item.badge}
+                    </span>
+                    <span className="text-zinc-600 text-xs">🔒</span>
+                    {/* red diagonal slash overlay */}
+                    <div className="absolute inset-0 pointer-events-none" style={{
+                      background: 'repeating-linear-gradient(-45deg, transparent, transparent 6px, rgba(239,68,68,0.06) 6px, rgba(239,68,68,0.06) 7px)',
+                    }} />
                   </div>
                   <p className="text-[10px] text-zinc-700 mt-3 text-center font-mono">
                     {t.roast.cardNote}
