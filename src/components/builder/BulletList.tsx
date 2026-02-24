@@ -1,0 +1,72 @@
+'use client';
+
+import { useRef } from 'react';
+
+interface Props {
+  bullets: string[];
+  onChange: (bullets: string[]) => void;
+  placeholder?: string;
+}
+
+export default function BulletList({ bullets, onChange, placeholder = 'Add a bullet point...' }: Props) {
+  const refs = useRef<(HTMLInputElement | null)[]>([]);
+  const list = bullets.length > 0 ? bullets : [''];
+
+  const update = (i: number, val: string) => {
+    const next = [...list];
+    next[i] = val;
+    onChange(next);
+  };
+
+  const addAfter = (i: number) => {
+    const next = [...list];
+    next.splice(i + 1, 0, '');
+    onChange(next);
+    setTimeout(() => refs.current[i + 1]?.focus(), 30);
+  };
+
+  const remove = (i: number) => {
+    if (list.length === 1) { onChange(['']); return; }
+    const next = list.filter((_, idx) => idx !== i);
+    onChange(next);
+    setTimeout(() => refs.current[Math.max(0, i - 1)]?.focus(), 30);
+  };
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, i: number) => {
+    if (e.key === 'Enter') { e.preventDefault(); addAfter(i); }
+    if (e.key === 'Backspace' && list[i] === '') { e.preventDefault(); remove(i); }
+  };
+
+  return (
+    <div className="space-y-1.5">
+      {list.map((bullet, i) => (
+        <div key={i} className="flex items-center gap-2 group">
+          <span className="text-lime-500/60 text-xs w-3 flex-shrink-0 select-none">•</span>
+          <input
+            ref={(el) => { refs.current[i] = el; }}
+            className="form-input flex-1 bg-zinc-900 border border-zinc-700/60 rounded-lg px-3 py-1.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-lime-400/60 transition-colors"
+            value={bullet}
+            onChange={(e) => update(i, e.target.value)}
+            onKeyDown={(e) => onKeyDown(e, i)}
+            placeholder={placeholder}
+          />
+          <button
+            type="button"
+            onClick={() => remove(i)}
+            className="opacity-0 group-hover:opacity-100 text-zinc-700 hover:text-red-400 transition-all w-5 text-sm flex-shrink-0 text-center"
+          >
+            ×
+          </button>
+        </div>
+      ))}
+      <button
+        type="button"
+        onClick={() => addAfter(list.length - 1)}
+        className="flex items-center gap-1.5 text-xs text-zinc-600 hover:text-lime-400 transition-colors pl-5 mt-1"
+      >
+        <span className="text-sm leading-none">+</span> Add bullet
+        <span className="text-zinc-700 ml-1 hidden sm:inline">· Enter to add faster</span>
+      </button>
+    </div>
+  );
+}
