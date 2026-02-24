@@ -59,7 +59,7 @@ export default function Home() {
               {t.nav.coverLetter}
             </Link>
             <a
-              href="https://github.com"
+              href="https://github.com/SimonLaskowsky"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors"
@@ -297,7 +297,7 @@ export default function Home() {
             {t.footer.tagline}
           </p>
           <a
-            href="https://github.com"
+            href="https://github.com/SimonLaskowsky"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs text-zinc-700 hover:text-zinc-400 transition-colors"
