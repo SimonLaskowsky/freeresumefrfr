@@ -61,7 +61,7 @@ export default function BuilderPage() {
   }
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-zinc-950 text-white overflow-hidden">
+    <div className="flex flex-col md:flex-row h-screen bg-zinc-950 text-white">
 
       {/* ── Mobile tab bar ──────────────────────────────────── */}
       <div className="md:hidden flex border-b border-zinc-800 flex-shrink-0">

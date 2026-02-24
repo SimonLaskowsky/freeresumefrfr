@@ -244,7 +244,7 @@ export default function Home() {
             </div>
 
             {/* Templates card */}
-            <div className="col-span-2 bg-zinc-900 border border-lime-400/15 rounded-2xl p-5 flex items-center justify-between gap-4">
+            <div className="col-span-2 bg-zinc-900 border border-lime-400/15 rounded-2xl p-5 flex items-center justify-between gap-4 overflow-hidden">
               <div>
                 <div className="font-black text-base text-white mb-1">{t.features.items[1].title}</div>
                 <div className="text-xs text-zinc-600">{t.features.items[1].desc}</div>
