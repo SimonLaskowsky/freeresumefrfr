@@ -87,15 +87,19 @@ export default function BuilderPage() {
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-2.5 border-b border-zinc-800 flex-shrink-0 gap-3">
-          <Link href="/" className="text-sm font-bold text-lime-400 hover:text-lime-300 transition-colors flex-shrink-0">
-            ← frfr
-          </Link>
-          <Link href="/cover-letter" className="text-[11px] text-zinc-600 hover:text-lime-400 transition-colors font-medium flex-shrink-0">
-            Cover Letter →
-          </Link>
-          <CompletenessScore />
-          <div className="flex items-center gap-2 flex-shrink-0">
+        <div className="flex flex-col border-b border-zinc-800 flex-shrink-0">
+          {/* Row 1: nav */}
+          <div className="flex items-center justify-between px-4 pt-2.5 pb-1.5 gap-3">
+            <Link href="/" className="text-sm font-bold text-lime-400 hover:text-lime-300 transition-colors flex-shrink-0">
+              ← frfr
+            </Link>
+            <CompletenessScore />
+            <Link href="/cover-letter" className="text-[11px] text-zinc-600 hover:text-lime-400 transition-colors font-medium flex-shrink-0 whitespace-nowrap">
+              Cover Letter →
+            </Link>
+          </div>
+          {/* Row 2: actions */}
+          <div className="flex items-center justify-end gap-2 px-4 pb-2">
             <button
               onClick={loadSampleData}
               className="text-[11px] text-zinc-600 hover:text-lime-400 transition-colors font-medium whitespace-nowrap"
