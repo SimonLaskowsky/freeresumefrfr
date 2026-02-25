@@ -7,7 +7,7 @@ import { useI18n } from '@/i18n/I18nContext';
 const ROAST_SITES = [
   'resumebuilder.com',
   'zety.com',
-  'canva.com/resume',
+  'resume.io',
 ];
 
 const TEMPLATE_DOTS = [
