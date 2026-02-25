@@ -91,7 +91,7 @@ const defaultData: ResumeData = {
   pageSize: 'LETTER',
 };
 
-const sampleData: ResumeData = {
+export const sampleData: ResumeData = {
   personal: {
     name: 'Alex Rivera',
     title: 'Senior Software Engineer',

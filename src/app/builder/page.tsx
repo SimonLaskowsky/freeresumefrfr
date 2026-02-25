@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useState } from 'react';
-import { useResumeStore } from '@/store/resumeStore';
+import { useResumeStore, sampleData } from '@/store/resumeStore';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useI18n } from '@/i18n/I18nContext';
 import SummaryForm from '@/components/builder/SummaryForm';
@@ -43,6 +43,16 @@ export default function BuilderPage() {
   const loadSampleData = useResumeStore((state) => state.loadSampleData);
   const resetData = useResumeStore((state) => state.resetData);
   const debouncedData = useDebounce(data, 600);
+
+  const isExampleMode =
+    !debouncedData.personal.name.trim() &&
+    !debouncedData.summary.trim() &&
+    debouncedData.experience.length === 0 &&
+    debouncedData.education.length === 0;
+
+  const previewData = isExampleMode
+    ? { ...sampleData, pageSize: data.pageSize }
+    : debouncedData;
   const { t } = useI18n();
 
   // Mobile tab state
@@ -173,8 +183,16 @@ export default function BuilderPage() {
         </div>
 
         {/* PDF viewer */}
-        <div className="flex-1 min-h-0">
-          <ResumePreviewPanel data={debouncedData} templateId={templateId} />
+        <div className="flex-1 min-h-0 relative">
+          <ResumePreviewPanel data={previewData} templateId={templateId} />
+          {isExampleMode && (
+            <div className="absolute top-3 inset-x-0 flex justify-center z-10 pointer-events-none">
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900/90 border border-zinc-700/50 rounded-full text-[11px] text-zinc-500 font-mono backdrop-blur-sm whitespace-nowrap">
+                <span className="w-1.5 h-1.5 rounded-full bg-zinc-600 inline-block" />
+                example · start typing to replace
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Download */}
