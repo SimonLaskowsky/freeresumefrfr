@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     fontSize: 9,
     color: '#555555',
-    marginBottom: 14,
+    marginBottom: 4,
   },
   contactSep: {
     marginHorizontal: 5,
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     borderBottomWidth: 1,
+    marginTop: 10,
     marginBottom: 6,
   },
   sectionTitle: {
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
     fontWeight: 700,
     letterSpacing: 1.5,
     marginBottom: 7,
-    marginTop: 10,
+    marginTop: 4,
   },
   expItem: {
     marginBottom: 9,

@@ -18,15 +18,15 @@ const s = StyleSheet.create({
     paddingTop: 32, paddingBottom: 32, paddingHorizontal: 44, color: '#1a1a1a',
   },
   name: { fontSize: 20, fontFamily: SANS, fontWeight: 700, marginBottom: 2, letterSpacing: 0.2 },
-  titleAndContact: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 10 },
+  titleAndContact: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 2 },
   title: { fontSize: 10, color: '#4b5563' },
   contactRow: { flexDirection: 'row', flexWrap: 'wrap', fontSize: 8, color: '#6b7280', justifyContent: 'flex-end' },
   contactSep: { marginHorizontal: 4, color: '#d1d5db' },
 
-  divider: { borderBottomWidth: 1, marginBottom: 4 },
+  divider: { borderBottomWidth: 1, marginTop: 8, marginBottom: 4 },
   sectionTitle: {
     fontSize: 8, fontFamily: SANS, fontWeight: 700, letterSpacing: 1.2,
-    textTransform: 'uppercase', marginBottom: 4, marginTop: 9,
+    textTransform: 'uppercase', marginBottom: 4, marginTop: 3,
   },
 
   expItem: { marginBottom: 6 },
