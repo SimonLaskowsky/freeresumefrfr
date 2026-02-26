@@ -1,6 +1,7 @@
 'use client';
 
 import { PDFDownloadLink } from '@react-pdf/renderer';
+import { track } from '@vercel/analytics';
 import { getTemplate } from './templates';
 import type { ResumeData } from '@/store/resumeStore';
 import { useI18n } from '@/i18n/I18nContext';
@@ -8,6 +9,7 @@ import { useI18n } from '@/i18n/I18nContext';
 interface Props {
   data: ResumeData;
   templateId: string;
+  accentColor: string;
 }
 
 function incrementPaywallsDodged() {
@@ -19,7 +21,7 @@ function incrementPaywallsDodged() {
   }
 }
 
-export default function DownloadButton({ data, templateId }: Props) {
+export default function DownloadButton({ data, templateId, accentColor }: Props) {
   const { Component } = getTemplate(templateId);
   const { t } = useI18n();
   const fileName = `${
@@ -38,9 +40,12 @@ export default function DownloadButton({ data, templateId }: Props) {
 
   return (
     <PDFDownloadLink
-      document={<Component data={data} labels={labels} />}
+      document={<Component data={data} labels={labels} accentColor={accentColor} />}
       fileName={fileName}
-      onClick={incrementPaywallsDodged}
+      onClick={() => {
+        incrementPaywallsDodged();
+        track('resume_download', { template: templateId });
+      }}
       className="flex items-center justify-center gap-2 w-full py-3 px-6 bg-lime-400 hover:bg-lime-300 text-zinc-950 font-bold rounded-lg transition-colors text-sm"
     >
       {({ loading }) =>

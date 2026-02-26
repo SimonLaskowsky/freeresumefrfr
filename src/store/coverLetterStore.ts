@@ -29,6 +29,8 @@ interface CoverLetterStore {
   setPageSize: (size: 'LETTER' | 'A4') => void;
   loadSampleData: () => void;
   resetData: () => void;
+  accentColor: string;
+  setAccentColor: (color: string) => void;
 }
 
 const defaultData: CoverLetterData = {
@@ -93,6 +95,8 @@ export const useCoverLetterStore = create<CoverLetterStore>()(
 
       loadSampleData: () => set({ data: sampleData }),
       resetData: () => set({ data: defaultData }),
+      accentColor: '#1a2744',
+      setAccentColor: (accentColor) => set({ accentColor }),
     }),
     {
       name: 'cover-letter-data',

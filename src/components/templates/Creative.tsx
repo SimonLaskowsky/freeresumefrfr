@@ -2,37 +2,26 @@ import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import { SANS } from './fonts';
 import type { ResumeData } from '@/store/resumeStore';
 
-interface Labels {
-  summary: string;
-  experience: string;
-  education: string;
-  skills: string;
-  projects: string;
-  certifications: string;
-  contact: string;
+interface Props {
+  data: ResumeData;
+  labels: { summary: string; experience: string; education: string; skills: string; projects: string; certifications: string; contact: string; };
+  accentColor: string;
 }
 
-const ACCENT = '#60a5fa';
-
 const s = StyleSheet.create({
-  page: { flexDirection: 'row', fontFamily: SANS, fontSize: 9.5 },
-  sidebar: { width: 178, padding: '36 16 36 18' },
-  main: { flex: 1, padding: '36 26 36 22' },
+  page: { flexDirection: 'row', fontFamily: SANS, fontSize: 9.5, color: '#1a1a1a' },
+  left: { width: '38%', paddingTop: 36, paddingBottom: 36, paddingHorizontal: 18 },
+  right: { flex: 1, paddingTop: 36, paddingBottom: 36, paddingHorizontal: 22, backgroundColor: '#ffffff' },
 
-  sName: { fontSize: 17, fontFamily: SANS, fontWeight: 700, color: '#ffffff', marginBottom: 3, lineHeight: 1.2 },
-  sTitle: { fontSize: 9.5, color: '#93c5fd', marginBottom: 18, fontFamily: SANS, fontStyle: 'italic' },
-  sSectionTitle: {
-    fontSize: 7, fontFamily: SANS, fontWeight: 700, letterSpacing: 1.5, color: ACCENT,
-    textTransform: 'uppercase', marginBottom: 6, marginTop: 16,
-    borderBottomWidth: 0.5, borderBottomColor: '#1e3a5f', paddingBottom: 3,
-  },
-  sItem: { color: '#cbd5e1', fontSize: 8.5, marginBottom: 3.5, lineHeight: 1.4 },
+  lName: { fontSize: 20, fontFamily: SANS, fontWeight: 700, color: '#ffffff', marginBottom: 4, lineHeight: 1.2 },
+  lTitle: { fontSize: 9.5, color: '#ffffff', opacity: 0.8, marginBottom: 18, fontFamily: SANS, fontStyle: 'italic' },
+  lSectionTitle: { fontSize: 7, fontFamily: SANS, fontWeight: 700, letterSpacing: 1.5, color: '#ffffff', opacity: 0.7, textTransform: 'uppercase', marginTop: 16, marginBottom: 6 },
+  lRule: { borderBottomWidth: 0.5, borderBottomColor: '#ffffff', opacity: 0.25, marginBottom: 8 },
+  lItem: { fontSize: 8.5, color: '#ffffff', marginBottom: 4, lineHeight: 1.4 },
+  lSkillChip: { fontSize: 8, color: '#ffffff', marginBottom: 3, paddingVertical: 2, paddingHorizontal: 4, borderWidth: 0.5, borderColor: '#ffffff', borderRadius: 3 },
 
-  mSectionTitle: {
-    fontSize: 8.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 1,
-    textTransform: 'uppercase', marginBottom: 2, marginTop: 14,
-  },
-  mDivider: { borderBottomWidth: 1, marginBottom: 7 },
+  rSectionTitle: { fontSize: 8.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', marginBottom: 2, marginTop: 14 },
+  rDivider: { borderBottomWidth: 1, marginBottom: 7 },
 
   expItem: { marginBottom: 8 },
   expRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
@@ -51,46 +40,52 @@ const s = StyleSheet.create({
   eduNotes: { fontSize: 8.5, color: '#6b7280', marginTop: 1 },
 });
 
-export function ModernTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
+export function CreativeTemplate({ data, labels, accentColor }: Props) {
   const { personal, experience, education, skills } = data;
   const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website].filter(Boolean);
-  const skillList = skills.split(',').map((sk) => sk.trim()).filter(Boolean);
+  const skillList = skills.split(',').map((s) => s.trim()).filter(Boolean);
 
   return (
     <Document>
       <Page size={data.pageSize || 'LETTER'} style={s.page}>
-        {/* Sidebar */}
-        <View style={[s.sidebar, { backgroundColor: accentColor }]}>
-          {personal.name && <Text style={s.sName}>{personal.name}</Text>}
-          {personal.title && <Text style={s.sTitle}>{personal.title}</Text>}
+        {/* Left accent panel */}
+        <View style={[s.left, { backgroundColor: accentColor }]}>
+          {personal.name && <Text style={s.lName}>{personal.name}</Text>}
+          {personal.title && <Text style={s.lTitle}>{personal.title}</Text>}
           {contact.length > 0 && (
             <View>
-              <Text style={s.sSectionTitle}>{labels.contact}</Text>
-              {contact.map((item, i) => <Text key={i} style={s.sItem}>{item}</Text>)}
+              <Text style={s.lSectionTitle}>{labels.contact}</Text>
+              <View style={s.lRule} />
+              {contact.map((item, i) => <Text key={i} style={s.lItem}>{item}</Text>)}
             </View>
           )}
           {skillList.length > 0 && (
             <View>
-              <Text style={s.sSectionTitle}>{labels.skills}</Text>
-              {skillList.map((skill, i) => <Text key={i} style={s.sItem}>{skill}</Text>)}
+              <Text style={s.lSectionTitle}>{labels.skills}</Text>
+              <View style={s.lRule} />
+              {skillList.map((skill, i) => (
+                <View key={i} style={{ marginBottom: 3 }}>
+                  <Text style={s.lItem}>{skill}</Text>
+                </View>
+              ))}
             </View>
           )}
         </View>
 
-        {/* Main */}
-        <View style={s.main}>
+        {/* Right content panel */}
+        <View style={s.right}>
           {data.summary && (
             <View>
-              <Text style={[s.mSectionTitle, { color: accentColor }]}>{labels.summary}</Text>
-              <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
+              <Text style={[s.rSectionTitle, { color: accentColor, marginTop: 0 }]}>{labels.summary}</Text>
+              <View style={[s.rDivider, { borderBottomColor: accentColor }]} />
               <Text style={{ fontSize: 9, color: '#374151', lineHeight: 1.5, marginBottom: 8 }}>{data.summary}</Text>
             </View>
           )}
 
           {experience.length > 0 && (
             <View>
-              <Text style={[s.mSectionTitle, { color: accentColor }]}>{labels.experience}</Text>
-              <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
+              <Text style={[s.rSectionTitle, { color: accentColor }]}>{labels.experience}</Text>
+              <View style={[s.rDivider, { borderBottomColor: accentColor }]} />
               {experience.map((exp) => {
                 const bullets = (exp.bullets || []).filter((b) => b.trim());
                 const dateRange = exp.current
@@ -115,20 +110,19 @@ export function ModernTemplate({ data, labels, accentColor }: { data: ResumeData
             </View>
           )}
 
-          {/* Projects */}
           {data.projects && data.projects.length > 0 && (
             <View>
-              <Text style={[s.mSectionTitle, { marginTop: 14, color: accentColor }]}>{labels.projects}</Text>
-              <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
+              <Text style={[s.rSectionTitle, { color: accentColor }]}>{labels.projects}</Text>
+              <View style={[s.rDivider, { borderBottomColor: accentColor }]} />
               {data.projects.map((proj) => {
                 const bullets = (proj.bullets || []).filter((b) => b.trim());
                 return (
                   <View key={proj.id} style={s.expItem}>
                     <View style={s.expRow}>
                       <Text style={s.expTitle}>{proj.name}</Text>
-                      {proj.url ? <Text style={{ fontSize: 8, color: '#60a5fa' }}>{proj.url}</Text> : null}
+                      {proj.url && <Text style={{ fontSize: 8, color: accentColor }}>{proj.url}</Text>}
                     </View>
-                    {proj.description ? <Text style={s.expCompany}>{proj.description}</Text> : null}
+                    {proj.description && <Text style={s.expCompany}>{proj.description}</Text>}
                     {bullets.map((b, i) => (
                       <View key={i} style={s.bullet}>
                         <Text style={s.bulletDot}>•</Text>
@@ -143,8 +137,8 @@ export function ModernTemplate({ data, labels, accentColor }: { data: ResumeData
 
           {education.length > 0 && (
             <View>
-              <Text style={[s.mSectionTitle, { marginTop: experience.length > 0 ? 14 : 0, color: accentColor }]}>{labels.education}</Text>
-              <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
+              <Text style={[s.rSectionTitle, { color: accentColor }]}>{labels.education}</Text>
+              <View style={[s.rDivider, { borderBottomColor: accentColor }]} />
               {education.map((edu) => {
                 const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
                 return (
@@ -160,15 +154,14 @@ export function ModernTemplate({ data, labels, accentColor }: { data: ResumeData
             </View>
           )}
 
-          {/* Certifications */}
           {data.certifications && data.certifications.length > 0 && (
             <View>
-              <Text style={[s.mSectionTitle, { marginTop: 14, color: accentColor }]}>{labels.certifications}</Text>
-              <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
+              <Text style={[s.rSectionTitle, { color: accentColor }]}>{labels.certifications}</Text>
+              <View style={[s.rDivider, { borderBottomColor: accentColor }]} />
               {data.certifications.map((cert) => (
-                <View key={cert.id} style={{ marginBottom: 5, flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Text style={{ fontSize: 9, fontFamily: SANS, fontWeight: 700, color: accentColor }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
-                  {cert.date ? <Text style={{ fontSize: 8.5, color: '#6b7280' }}>{cert.date}</Text> : null}
+                <View key={cert.id} style={{ marginBottom: 4, flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <Text style={{ fontSize: 9, fontFamily: SANS, fontWeight: 700 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
+                  {cert.date && <Text style={{ fontSize: 8.5, color: '#6b7280' }}>{cert.date}</Text>}
                 </View>
               ))}
             </View>

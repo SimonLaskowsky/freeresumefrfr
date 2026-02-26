@@ -2,6 +2,8 @@ import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import { SANS } from '../templates/fonts';
 import type { CoverLetterTemplateProps } from './index';
 
+const HEADER_BG = '#18181b';
+
 const styles = StyleSheet.create({
   page: {
     fontFamily: SANS,
@@ -11,21 +13,21 @@ const styles = StyleSheet.create({
     lineHeight: 1.5,
   },
   header: {
-    paddingTop: 36,
-    paddingBottom: 28,
+    backgroundColor: HEADER_BG,
+    paddingTop: 32,
+    paddingBottom: 26,
     paddingHorizontal: 52,
     marginBottom: 28,
   },
   senderName: {
-    fontSize: 18,
+    fontSize: 20,
     fontFamily: SANS,
     fontWeight: 700,
-    color: '#ffffff',
     marginBottom: 4,
   },
   contactLine: {
     fontSize: 9.5,
-    color: '#a0aec0',
+    color: '#a1a1aa',
   },
   body: {
     paddingHorizontal: 52,
@@ -81,32 +83,27 @@ const styles = StyleSheet.create({
   },
 });
 
-export function ModernCoverLetter({ data, labels, accentColor }: CoverLetterTemplateProps) {
+export function BoldCoverLetter({ data, labels, accentColor }: CoverLetterTemplateProps) {
   const contactParts = [data.senderEmail, data.senderPhone, data.senderLocation].filter(Boolean);
   const contactLine = contactParts.join('  ·  ');
-
   const recipientLine1 = data.recipientName || labels.hiringManager;
   const recipientDetails = [data.recipientTitle, data.companyName].filter(Boolean);
 
   return (
     <Document>
       <Page size={data.pageSize || 'LETTER'} style={styles.page}>
-        {/* Dark navy header */}
-        <View style={[styles.header, { backgroundColor: accentColor }]}>
-          {data.senderName && <Text style={styles.senderName}>{data.senderName}</Text>}
+        <View style={styles.header}>
+          {data.senderName && <Text style={[styles.senderName, { color: accentColor }]}>{data.senderName}</Text>}
           {contactLine ? <Text style={styles.contactLine}>{contactLine}</Text> : null}
         </View>
 
-        {/* Letter body */}
         <View style={styles.body}>
-          {/* Date */}
           {data.date && (
             <View style={styles.dateRow}>
               <Text style={styles.dateText}>{data.date}</Text>
             </View>
           )}
 
-          {/* Recipient block */}
           <View style={styles.recipientBlock}>
             <Text style={styles.recipientName}>{recipientLine1}</Text>
             {recipientDetails.map((d, i) => (
@@ -114,20 +111,17 @@ export function ModernCoverLetter({ data, labels, accentColor }: CoverLetterTemp
             ))}
           </View>
 
-          {/* Job title reference */}
           {data.jobTitle && (
-            <Text style={[styles.jobTitleRef, { color: accentColor }]}>{labels.reSubject}: {data.jobTitle}</Text>
+            <Text style={[styles.jobTitleRef, { color: accentColor }]}>
+              {labels.reSubject}: {data.jobTitle}
+            </Text>
           )}
 
-          {/* Salutation */}
           {data.salutation && <Text style={styles.salutation}>{data.salutation}</Text>}
-
-          {/* Body paragraphs */}
           {data.opening && <Text style={styles.paragraph}>{data.opening}</Text>}
           {data.body && <Text style={styles.paragraph}>{data.body}</Text>}
           {data.closing && <Text style={styles.paragraph}>{data.closing}</Text>}
 
-          {/* Sign-off */}
           <View style={styles.signOffBlock}>
             <Text style={styles.signOffText}>{data.signOff || 'Sincerely,'}</Text>
             {data.senderName && <Text style={[styles.senderSignature, { color: accentColor }]}>{data.senderName}</Text>}

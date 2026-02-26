@@ -8,9 +8,10 @@ import { useI18n } from '@/i18n/I18nContext';
 interface Props {
   data: CoverLetterData;
   templateId: string;
+  accentColor: string;
 }
 
-export default function DownloadCoverLetterButton({ data, templateId }: Props) {
+export default function DownloadCoverLetterButton({ data, templateId, accentColor }: Props) {
   const { Component } = getCoverLetterTemplate(templateId);
   const { t } = useI18n();
 
@@ -21,7 +22,7 @@ export default function DownloadCoverLetterButton({ data, templateId }: Props) {
 
   return (
     <PDFDownloadLink
-      document={<Component data={data} labels={labels} />}
+      document={<Component data={data} labels={labels} accentColor={accentColor} />}
       fileName="cover-letter.pdf"
       className="flex items-center justify-center gap-2 w-full py-3.5 px-6 bg-lime-400 hover:bg-lime-300 text-zinc-950 font-black rounded-xl transition-all text-sm active:scale-[0.98]"
       style={{ boxShadow: '0 0 28px rgba(163,230,53,0.35), 0 0 60px rgba(163,230,53,0.1)' }}

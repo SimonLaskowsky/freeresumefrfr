@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useCoverLetterStore } from '@/store/coverLetterStore';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useI18n } from '@/i18n/I18nContext';
-import { COVER_LETTER_TEMPLATES } from '@/components/cover-letter-templates';
+import { COVER_LETTER_TEMPLATES, getCoverLetterTemplate } from '@/components/cover-letter-templates';
 import CoverLetterForm from '@/components/cover-letter/CoverLetterForm';
 
 const CoverLetterPreviewPanel = dynamic(() => import('@/components/CoverLetterPreviewPanel'), {
@@ -34,6 +34,8 @@ export default function CoverLetterPage() {
   const setPageSize = useCoverLetterStore((s) => s.setPageSize);
   const loadSampleData = useCoverLetterStore((s) => s.loadSampleData);
   const resetData = useCoverLetterStore((s) => s.resetData);
+  const accentColor = useCoverLetterStore((s) => s.accentColor);
+  const setAccentColor = useCoverLetterStore((s) => s.setAccentColor);
   const debouncedData = useDebounce(data, 600);
   const { t } = useI18n();
 
@@ -133,23 +135,44 @@ export default function CoverLetterPage() {
       >
         {/* Template picker + page size toggle */}
         <div className="px-4 py-3 border-b border-zinc-800 flex-shrink-0 flex items-center justify-between gap-3">
-          <div className="flex gap-1.5 overflow-x-auto py-0.5 flex-1 min-w-0">
-            {COVER_LETTER_TEMPLATES.map((tmpl) => {
-              const active = templateId === tmpl.id;
-              return (
-                <button
-                  key={tmpl.id}
-                  onClick={() => setTemplate(tmpl.id)}
-                  className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
-                    active
-                      ? 'bg-lime-400 text-zinc-950'
-                      : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-700'
-                  }`}
-                >
-                  {tmpl.name}
-                </button>
-              );
-            })}
+          <div className="flex flex-col gap-2 flex-1 min-w-0">
+            <div className="flex gap-1.5 overflow-x-auto py-0.5">
+              {COVER_LETTER_TEMPLATES.map((tmpl) => {
+                const active = templateId === tmpl.id;
+                return (
+                  <button
+                    key={tmpl.id}
+                    onClick={() => {
+                      setTemplate(tmpl.id);
+                      setAccentColor(tmpl.defaultColors[0]);
+                    }}
+                    className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                      active
+                        ? 'bg-lime-400 text-zinc-950'
+                        : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-700'
+                    }`}
+                  >
+                    {tmpl.name}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="flex gap-2 px-0.5">
+              {getCoverLetterTemplate(templateId).defaultColors.map((color) => {
+                const isActive = accentColor === color;
+                return (
+                  <button
+                    key={color}
+                    onClick={() => setAccentColor(color)}
+                    title={color}
+                    style={{ backgroundColor: color }}
+                    className={`w-[18px] h-[18px] rounded-full flex-shrink-0 transition-all ${
+                      isActive ? 'ring-2 ring-white ring-offset-1 ring-offset-zinc-900' : 'opacity-70 hover:opacity-100'
+                    }`}
+                  />
+                );
+              })}
+            </div>
           </div>
           {/* Page size toggle */}
           <div className="flex items-center gap-1 bg-zinc-800/60 rounded-lg p-0.5 flex-shrink-0">
@@ -171,12 +194,12 @@ export default function CoverLetterPage() {
 
         {/* PDF viewer */}
         <div className="flex-1 min-h-0">
-          <CoverLetterPreviewPanel data={debouncedData} templateId={templateId} />
+          <CoverLetterPreviewPanel data={debouncedData} templateId={templateId} accentColor={accentColor} />
         </div>
 
         {/* Download */}
         <div className="px-5 py-4 border-t border-zinc-800 flex-shrink-0">
-          <DownloadCoverLetterButton data={debouncedData} templateId={templateId} />
+          <DownloadCoverLetterButton data={debouncedData} templateId={templateId} accentColor={accentColor} />
           <p className="text-center text-[11px] text-zinc-700 mt-2">
             {t.builder.noAccountWatermark}
           </p>

@@ -2,71 +2,63 @@ import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import { SANS } from './fonts';
 import type { ResumeData } from '@/store/resumeStore';
 
-interface Labels {
-  summary: string;
-  experience: string;
-  education: string;
-  skills: string;
-  projects: string;
-  certifications: string;
-  contact: string;
+interface Props {
+  data: ResumeData;
+  labels: { summary: string; experience: string; education: string; skills: string; projects: string; certifications: string; contact: string; };
+  accentColor: string;
 }
-
-const HEADER_BG = '#0f172a';
 
 const s = StyleSheet.create({
   page: { fontFamily: SANS, fontSize: 10, color: '#1a1a1a', paddingBottom: 40 },
-
-  header: { backgroundColor: HEADER_BG, paddingTop: 30, paddingBottom: 26, paddingHorizontal: 48 },
+  header: { paddingTop: 28, paddingBottom: 24, paddingHorizontal: 48 },
   name: { fontSize: 26, fontFamily: SANS, fontWeight: 700, color: '#ffffff', marginBottom: 4, letterSpacing: 0.2 },
-  titleLine: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
-  accentBar: { width: 3, height: 14, marginRight: 8 },
-  titleText: { fontSize: 11, fontFamily: SANS, fontWeight: 700 },
-  contactRow: { flexDirection: 'row', flexWrap: 'wrap', fontSize: 8.5, color: '#94a3b8' },
-  contactSep: { marginHorizontal: 6, color: '#334155' },
-
-  body: { paddingHorizontal: 48, paddingTop: 6 },
-
-  sectionTitle: {
-    fontSize: 9, fontFamily: SANS, fontWeight: 700, letterSpacing: 1.2,
-    color: '#0f172a', textTransform: 'uppercase', marginTop: 18, marginBottom: 4,
-    paddingBottom: 4, borderBottomWidth: 2,
-  },
-
+  titleLine: { fontSize: 11, color: '#ffffff', opacity: 0.85, marginBottom: 10 },
+  contactRow: { flexDirection: 'row', flexWrap: 'wrap', fontSize: 8.5, color: '#ffffff', opacity: 0.75 },
+  contactSep: { marginHorizontal: 6, color: '#ffffff', opacity: 0.4 },
+  body: { paddingHorizontal: 48, paddingTop: 8 },
+  sectionBlock: { marginTop: 14, flexDirection: 'row' },
+  sectionBar: { width: 4, marginRight: 12, borderRadius: 2 },
+  sectionContent: { flex: 1 },
+  sectionTitle: { fontSize: 9, fontFamily: SANS, fontWeight: 700, letterSpacing: 1.2, textTransform: 'uppercase', marginBottom: 8 },
   expItem: { marginBottom: 9 },
   expRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
   expTitle: { fontFamily: SANS, fontWeight: 700, fontSize: 10.5 },
   expDates: { fontSize: 8.5, color: '#6b7280' },
   expCompany: { fontSize: 9.5, color: '#4b5563', marginBottom: 2 },
   bullet: { flexDirection: 'row', marginTop: 2, paddingLeft: 6 },
-  bulletDot: { width: 10, fontFamily: SANS, fontWeight: 700 },
+  bulletDot: { width: 10, color: '#9ca3af' },
   bulletText: { flex: 1, fontSize: 9.5, color: '#374151', lineHeight: 1.4 },
-
   eduItem: { marginBottom: 7 },
   eduRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
   eduDegree: { fontFamily: SANS, fontWeight: 700, fontSize: 10.5 },
   eduDates: { fontSize: 8.5, color: '#6b7280' },
   eduSchool: { fontSize: 9.5, color: '#4b5563' },
   eduNotes: { fontSize: 9, color: '#6b7280', marginTop: 1 },
-
   skills: { fontSize: 9.5, color: '#374151', lineHeight: 1.5 },
 });
 
-export function BoldTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
+export function SharpTemplate({ data, labels, accentColor }: Props) {
   const { personal, experience, education, skills } = data;
   const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website].filter(Boolean);
+
+  function Section({ title, children }: { title: string; children: React.ReactNode }) {
+    return (
+      <View style={s.sectionBlock}>
+        <View style={[s.sectionBar, { backgroundColor: accentColor }]} />
+        <View style={s.sectionContent}>
+          <Text style={[s.sectionTitle, { color: accentColor }]}>{title.toUpperCase()}</Text>
+          {children}
+        </View>
+      </View>
+    );
+  }
 
   return (
     <Document>
       <Page size={data.pageSize || 'LETTER'} style={s.page}>
-        <View style={s.header}>
+        <View style={[s.header, { backgroundColor: accentColor }]}>
           {personal.name && <Text style={s.name}>{personal.name}</Text>}
-          {personal.title && (
-            <View style={s.titleLine}>
-              <View style={[s.accentBar, { backgroundColor: accentColor }]} />
-              <Text style={[s.titleText, { color: accentColor }]}>{personal.title}</Text>
-            </View>
-          )}
+          {personal.title && <Text style={s.titleLine}>{personal.title}</Text>}
           {contact.length > 0 && (
             <View style={s.contactRow}>
               {contact.map((item, i) => (
@@ -80,17 +72,14 @@ export function BoldTemplate({ data, labels, accentColor }: { data: ResumeData; 
         </View>
 
         <View style={s.body}>
-          {/* Summary */}
           {data.summary && (
-            <View>
-              <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.summary}</Text>
+            <Section title={labels.summary}>
               <Text style={{ fontSize: 9.5, color: '#374151', lineHeight: 1.5 }}>{data.summary}</Text>
-            </View>
+            </Section>
           )}
 
           {experience.length > 0 && (
-            <View>
-              <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.experience}</Text>
+            <Section title={labels.experience}>
               {experience.map((exp) => {
                 const bullets = (exp.bullets || []).filter((b) => b.trim());
                 const dateRange = exp.current
@@ -99,49 +88,47 @@ export function BoldTemplate({ data, labels, accentColor }: { data: ResumeData; 
                 return (
                   <View key={exp.id} style={s.expItem}>
                     <View style={s.expRow}>
-                      <Text style={s.expTitle}>{[exp.title, exp.company].filter(Boolean).join(' · ')}</Text>
+                      <Text style={s.expTitle}>{exp.title}</Text>
                       {dateRange && <Text style={s.expDates}>{dateRange}</Text>}
                     </View>
+                    {exp.company && <Text style={s.expCompany}>{exp.company}</Text>}
                     {bullets.map((b, i) => (
                       <View key={i} style={s.bullet}>
-                        <Text style={[s.bulletDot, { color: accentColor }]}>▸</Text>
+                        <Text style={s.bulletDot}>•</Text>
                         <Text style={s.bulletText}>{b.trim()}</Text>
                       </View>
                     ))}
                   </View>
                 );
               })}
-            </View>
+            </Section>
           )}
 
-          {/* Projects */}
           {data.projects && data.projects.length > 0 && (
-            <View>
-              <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.projects}</Text>
+            <Section title={labels.projects}>
               {data.projects.map((proj) => {
                 const bullets = (proj.bullets || []).filter((b) => b.trim());
                 return (
                   <View key={proj.id} style={s.expItem}>
                     <View style={s.expRow}>
                       <Text style={s.expTitle}>{proj.name}</Text>
-                      {proj.url ? <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text> : null}
+                      {proj.url && <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text>}
                     </View>
-                    {proj.description ? <Text style={s.expCompany}>{proj.description}</Text> : null}
+                    {proj.description && <Text style={s.expCompany}>{proj.description}</Text>}
                     {bullets.map((b, i) => (
                       <View key={i} style={s.bullet}>
-                        <Text style={[s.bulletDot, { color: accentColor }]}>▸</Text>
+                        <Text style={s.bulletDot}>•</Text>
                         <Text style={s.bulletText}>{b.trim()}</Text>
                       </View>
                     ))}
                   </View>
                 );
               })}
-            </View>
+            </Section>
           )}
 
           {education.length > 0 && (
-            <View>
-              <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.education}</Text>
+            <Section title={labels.education}>
               {education.map((edu) => {
                 const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
                 return (
@@ -154,27 +141,24 @@ export function BoldTemplate({ data, labels, accentColor }: { data: ResumeData; 
                   </View>
                 );
               })}
-            </View>
+            </Section>
           )}
 
-          {/* Certifications */}
           {data.certifications && data.certifications.length > 0 && (
-            <View>
-              <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.certifications}</Text>
+            <Section title={labels.certifications}>
               {data.certifications.map((cert) => (
                 <View key={cert.id} style={{ marginBottom: 5, flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700, color: '#0f172a' }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
-                  {cert.date ? <Text style={{ fontSize: 8.5, color: '#6b7280' }}>{cert.date}</Text> : null}
+                  <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
+                  {cert.date && <Text style={{ fontSize: 8.5, color: '#6b7280' }}>{cert.date}</Text>}
                 </View>
               ))}
-            </View>
+            </Section>
           )}
 
           {skills && (
-            <View>
-              <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.skills}</Text>
+            <Section title={labels.skills}>
               <Text style={s.skills}>{skills}</Text>
-            </View>
+            </Section>
           )}
         </View>
       </Page>

@@ -2,72 +2,54 @@ import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import { SANS } from './fonts';
 import type { ResumeData } from '@/store/resumeStore';
 
-interface Labels {
-  summary: string;
-  experience: string;
-  education: string;
-  skills: string;
-  projects: string;
-  certifications: string;
-  contact: string;
+interface Props {
+  data: ResumeData;
+  labels: { summary: string; experience: string; education: string; skills: string; projects: string; certifications: string; contact: string; };
+  accentColor: string;
 }
 
 const s = StyleSheet.create({
-  page: {
-    fontFamily: SANS, fontSize: 10,
-    paddingTop: 48, paddingBottom: 48, paddingHorizontal: 72, color: '#1a1a1a',
-  },
-
-  header: { alignItems: 'center', marginBottom: 16 },
-  name: { fontSize: 20, fontFamily: SANS, fontWeight: 700, letterSpacing: 3, textTransform: 'uppercase', marginBottom: 5 },
-  title: { fontSize: 10.5, color: '#555555', letterSpacing: 0.5, marginBottom: 10 },
-  contactRow: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', fontSize: 8.5, color: '#666666' },
-  contactSep: { marginHorizontal: 6, color: '#cccccc' },
-
-  headerRule: { borderBottomWidth: 1, borderBottomColor: '#1a1a1a', marginBottom: 0 },
-  headerRuleThin: { borderBottomWidth: 0.25, borderBottomColor: '#888888', marginTop: 2, marginBottom: 14 },
-
-  sectionRow: { flexDirection: 'row', marginTop: 12 },
-  sectionLabelCol: { width: 110 },
-  sectionLabel: {
-    fontSize: 8, fontFamily: SANS, fontWeight: 700, letterSpacing: 1.2,
-    textTransform: 'uppercase', paddingTop: 1,
-  },
-  sectionContent: { flex: 1 },
-
-  expItem: { marginBottom: 8 },
+  page: { fontFamily: SANS, fontSize: 10, paddingTop: 46, paddingBottom: 46, paddingHorizontal: 56, color: '#1a1a1a' },
+  header: { alignItems: 'flex-end', marginBottom: 4 },
+  name: { fontSize: 26, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, textAlign: 'right', marginBottom: 3 },
+  title: { fontSize: 11, color: '#555555', textAlign: 'right', marginBottom: 6 },
+  contactRow: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-end', fontSize: 8.5, color: '#777777' },
+  contactSep: { marginHorizontal: 5, color: '#dddddd' },
+  headerRule: { borderBottomWidth: 0.5, marginBottom: 4, marginTop: 12 },
+  headerRule2: { borderBottomWidth: 0.25, borderBottomColor: '#e5e7eb', marginBottom: 16 },
+  sectionBlock: { marginTop: 16 },
+  sectionTitle: { fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 2.5, textTransform: 'uppercase', marginBottom: 8 },
+  sectionRule: { borderBottomWidth: 0.5, borderBottomColor: '#e5e7eb', marginBottom: 8 },
+  expItem: { marginBottom: 9 },
   expRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
   expTitle: { fontFamily: SANS, fontWeight: 700, fontSize: 10 },
-  expDates: { fontSize: 8.5, color: '#666666' },
-  expCompany: { fontSize: 9.5, color: '#4b5563', marginBottom: 2 },
-  bullet: { flexDirection: 'row', marginTop: 1.5, paddingLeft: 4 },
-  bulletDot: { width: 10, color: '#555555' },
-  bulletText: { flex: 1, fontSize: 9.5, color: '#333333', lineHeight: 1.45 },
-
-  eduItem: { marginBottom: 6 },
+  expDates: { fontSize: 8.5, color: '#9ca3af' },
+  expCompany: { fontSize: 9.5, color: '#4b5563', marginBottom: 3, fontFamily: SANS, fontStyle: 'italic' },
+  bullet: { flexDirection: 'row', marginTop: 1.5, paddingLeft: 6 },
+  bulletDash: { width: 10, color: '#d1d5db' },
+  bulletText: { flex: 1, fontSize: 9.5, color: '#374151', lineHeight: 1.45 },
+  eduItem: { marginBottom: 7 },
   eduRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
   eduDegree: { fontFamily: SANS, fontWeight: 700, fontSize: 10 },
-  eduDates: { fontSize: 8.5, color: '#666666' },
-  eduSchool: { fontSize: 9.5, color: '#4b5563' },
-  eduNotes: { fontSize: 8.5, color: '#6b7280', marginTop: 1 },
-
-  skills: { fontSize: 9.5, color: '#333333', lineHeight: 1.5 },
+  eduDates: { fontSize: 8.5, color: '#9ca3af' },
+  eduSchool: { fontSize: 9.5, color: '#4b5563', fontFamily: SANS, fontStyle: 'italic' },
+  eduNotes: { fontSize: 8.5, color: '#9ca3af', marginTop: 1 },
+  skills: { fontSize: 9.5, color: '#374151', lineHeight: 1.6 },
 });
 
-function LabeledSection({ label, children, accentColor }: { label: string; children: React.ReactNode; accentColor: string }) {
-  return (
-    <View style={s.sectionRow}>
-      <View style={s.sectionLabelCol}>
-        <Text style={[s.sectionLabel, { color: accentColor }]}>{label}</Text>
-      </View>
-      <View style={s.sectionContent}>{children}</View>
-    </View>
-  );
-}
-
-export function ExecutiveTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
+export function SleekTemplate({ data, labels, accentColor }: Props) {
   const { personal, experience, education, skills } = data;
   const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website].filter(Boolean);
+
+  function Section({ title, children }: { title: string; children: React.ReactNode }) {
+    return (
+      <View style={s.sectionBlock}>
+        <Text style={[s.sectionTitle, { color: accentColor }]}>{title.toUpperCase()}</Text>
+        <View style={s.sectionRule} />
+        {children}
+      </View>
+    );
+  }
 
   return (
     <Document>
@@ -86,18 +68,17 @@ export function ExecutiveTemplate({ data, labels, accentColor }: { data: ResumeD
             </View>
           )}
         </View>
-
-        <View style={s.headerRule} />
-        <View style={s.headerRuleThin} />
+        <View style={[s.headerRule, { borderBottomColor: accentColor }]} />
+        <View style={s.headerRule2} />
 
         {data.summary && (
-          <LabeledSection label={labels.summary} accentColor={accentColor}>
-            <Text style={s.skills}>{data.summary}</Text>
-          </LabeledSection>
+          <Section title={labels.summary}>
+            <Text style={{ fontSize: 9.5, color: '#374151', lineHeight: 1.55 }}>{data.summary}</Text>
+          </Section>
         )}
 
         {experience.length > 0 && (
-          <LabeledSection label={labels.experience} accentColor={accentColor}>
+          <Section title={labels.experience}>
             {experience.map((exp) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
               const dateRange = exp.current
@@ -106,78 +87,78 @@ export function ExecutiveTemplate({ data, labels, accentColor }: { data: ResumeD
               return (
                 <View key={exp.id} style={s.expItem}>
                   <View style={s.expRow}>
-                    <Text style={s.expTitle}>{[exp.title, exp.company].filter(Boolean).join(', ')}</Text>
+                    <Text style={s.expTitle}>{exp.title}</Text>
                     {dateRange && <Text style={s.expDates}>{dateRange}</Text>}
                   </View>
+                  {exp.company && <Text style={s.expCompany}>{exp.company}</Text>}
                   {bullets.map((b, i) => (
                     <View key={i} style={s.bullet}>
-                      <Text style={s.bulletDot}>•</Text>
+                      <Text style={s.bulletDash}>–</Text>
                       <Text style={s.bulletText}>{b.trim()}</Text>
                     </View>
                   ))}
                 </View>
               );
             })}
-          </LabeledSection>
+          </Section>
         )}
 
-        {/* Projects */}
         {data.projects && data.projects.length > 0 && (
-          <LabeledSection label={labels.projects} accentColor={accentColor}>
+          <Section title={labels.projects}>
             {data.projects.map((proj) => {
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
                 <View key={proj.id} style={s.expItem}>
                   <View style={s.expRow}>
                     <Text style={s.expTitle}>{proj.name}</Text>
-                    {proj.url ? <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text> : null}
+                    {proj.url && <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text>}
                   </View>
-                  {proj.description ? <Text style={s.expCompany}>{proj.description}</Text> : null}
+                  {proj.description && <Text style={s.expCompany}>{proj.description}</Text>}
                   {bullets.map((b, i) => (
                     <View key={i} style={s.bullet}>
-                      <Text style={s.bulletDot}>•</Text>
+                      <Text style={s.bulletDash}>–</Text>
                       <Text style={s.bulletText}>{b.trim()}</Text>
                     </View>
                   ))}
                 </View>
               );
             })}
-          </LabeledSection>
+          </Section>
         )}
 
         {education.length > 0 && (
-          <LabeledSection label={labels.education} accentColor={accentColor}>
+          <Section title={labels.education}>
             {education.map((edu) => {
               const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
               return (
                 <View key={edu.id} style={s.eduItem}>
                   <View style={s.eduRow}>
-                    <Text style={s.eduDegree}>{[edu.degree, edu.school].filter(Boolean).join(', ')}</Text>
+                    <Text style={s.eduDegree}>{edu.degree}</Text>
                     {dateRange && <Text style={s.eduDates}>{dateRange}</Text>}
                   </View>
+                  {edu.school && <Text style={s.eduSchool}>{edu.school}</Text>}
                   {edu.notes && <Text style={s.eduNotes}>{edu.notes}</Text>}
                 </View>
               );
             })}
-          </LabeledSection>
+          </Section>
         )}
 
-        {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
-          <LabeledSection label={labels.certifications} accentColor={accentColor}>
+          <Section title={labels.certifications}>
             {data.certifications.map((cert) => (
               <View key={cert.id} style={{ marginBottom: 5, flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
-                {cert.date ? <Text style={{ fontSize: 8.5, color: '#666666' }}>{cert.date}</Text> : null}
+                {cert.date && <Text style={{ fontSize: 8.5, color: '#9ca3af' }}>{cert.date}</Text>}
               </View>
             ))}
-          </LabeledSection>
+          </Section>
         )}
 
         {skills && (
-          <LabeledSection label={labels.skills} accentColor={accentColor}>
+          <Section title={labels.skills}>
             <Text style={s.skills}>{skills}</Text>
-          </LabeledSection>
+          </Section>
         )}
       </Page>
     </Document>

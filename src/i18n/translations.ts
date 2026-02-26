@@ -11,6 +11,7 @@ export interface Translations {
   features: { eyebrow: string; heading: string; items: Array<{ title: string; desc: string }> };
   finalCta: { note: string; headline1: string; headline2: string };
   footer: { tagline: string; madeWith: string };
+  support: { builtBy: string; message: string; coffee: string; feedback: string };
 
   // Builder chrome
   builder: {
@@ -64,6 +65,7 @@ export interface Translations {
   templates: {
     classic: string; modern: string; minimal: string; bold: string;
     elegant: string; compact: string; pro: string; executive: string;
+    timeline: string; creative: string; split: string; sharp: string; sleek: string; dev: string;
   };
 
   // Cover letter
@@ -136,6 +138,12 @@ const en: Translations = {
   footer: {
     tagline: 'frfr — the resume builder that actually lets you download',
     madeWith: 'Made with ❤️ and zero paywalls',
+  },
+  support: {
+    builtBy: '// built solo, kept free on purpose',
+    message: 'if it helped you land something, a coffee would honestly make my day',
+    coffee: 'buy me a coffee',
+    feedback: 'or leave feedback →',
   },
   builder: {
     fillExample: 'Fill example',
@@ -218,6 +226,12 @@ const en: Translations = {
     compact: 'Compact',
     pro: 'Pro',
     executive: 'Executive',
+    timeline: 'Timeline',
+    creative: 'Creative',
+    split: 'Split',
+    sharp: 'Sharp',
+    sleek: 'Sleek',
+    dev: 'Dev',
   },
   coverLetter: {
     pageTitle: 'Cover Letter',
@@ -288,6 +302,12 @@ const es: Translations = {
   footer: {
     tagline: 'frfr — el creador de CV que realmente te deja descargar',
     madeWith: 'Hecho con ❤️ y cero muros de pago',
+  },
+  support: {
+    builtBy: '// hecho en solitario, gratis a propósito',
+    message: 'si te ayudó a conseguir algo, un café me haría el día',
+    coffee: 'cómprame un café',
+    feedback: 'o deja un comentario →',
   },
   builder: {
     fillExample: 'Rellenar ejemplo',
@@ -370,6 +390,12 @@ const es: Translations = {
     compact: 'Compacto',
     pro: 'Pro',
     executive: 'Ejecutivo',
+    timeline: 'Timeline',
+    creative: 'Creative',
+    split: 'Split',
+    sharp: 'Sharp',
+    sleek: 'Sleek',
+    dev: 'Dev',
   },
   coverLetter: {
     pageTitle: 'Carta de presentación',
@@ -440,6 +466,12 @@ const fr: Translations = {
   footer: {
     tagline: 'frfr — le créateur de CV qui vous laisse vraiment télécharger',
     madeWith: 'Fait avec ❤️ et zéro paywall',
+  },
+  support: {
+    builtBy: '// fait seul, gratuit par choix',
+    message: "si ça t'a aidé à décrocher quelque chose, un café me ferait vraiment plaisir",
+    coffee: "m'offrir un café",
+    feedback: 'ou laisser un avis →',
   },
   builder: {
     fillExample: 'Remplir un exemple',
@@ -521,6 +553,12 @@ const fr: Translations = {
     compact: 'Compact',
     pro: 'Pro',
     executive: 'Exécutif',
+    timeline: 'Timeline',
+    creative: 'Creative',
+    split: 'Split',
+    sharp: 'Sharp',
+    sleek: 'Sleek',
+    dev: 'Dev',
   },
   coverLetter: {
     pageTitle: 'Lettre de motivation',
@@ -591,6 +629,12 @@ const de: Translations = {
   footer: {
     tagline: 'frfr — der Lebenslauf-Builder, der dich wirklich herunterladen lässt',
     madeWith: 'Gemacht mit ❤️ und null Paywalls',
+  },
+  support: {
+    builtBy: '// solo gebaut, bewusst kostenlos',
+    message: 'wenn es dir geholfen hat, würde mich ein Kaffee wirklich freuen',
+    coffee: 'kauf mir einen Kaffee',
+    feedback: 'oder Feedback hinterlassen →',
   },
   builder: {
     fillExample: 'Beispiel einfügen',
@@ -673,6 +717,12 @@ const de: Translations = {
     compact: 'Kompakt',
     pro: 'Pro',
     executive: 'Führungskraft',
+    timeline: 'Timeline',
+    creative: 'Creative',
+    split: 'Split',
+    sharp: 'Sharp',
+    sleek: 'Sleek',
+    dev: 'Dev',
   },
   coverLetter: {
     pageTitle: 'Anschreiben',
@@ -743,6 +793,12 @@ const pt: Translations = {
   footer: {
     tagline: 'frfr — o criador de currículo que realmente deixa você baixar',
     madeWith: 'Feito com ❤️ e zero paywalls',
+  },
+  support: {
+    builtBy: '// feito sozinho, gratuito de propósito',
+    message: 'se te ajudou a conseguir algo, um café faria meu dia',
+    coffee: 'me pagar um café',
+    feedback: 'ou deixar um feedback →',
   },
   builder: {
     fillExample: 'Preencher exemplo',
@@ -825,6 +881,12 @@ const pt: Translations = {
     compact: 'Compacto',
     pro: 'Pro',
     executive: 'Executivo',
+    timeline: 'Timeline',
+    creative: 'Creative',
+    split: 'Split',
+    sharp: 'Sharp',
+    sleek: 'Sleek',
+    dev: 'Dev',
   },
   coverLetter: {
     pageTitle: 'Carta de apresentação',
@@ -895,6 +957,12 @@ const zh: Translations = {
   footer: {
     tagline: 'frfr — 真正让您免费下载的简历工具',
     madeWith: '用 ❤️ 和零付费墙制作',
+  },
+  support: {
+    builtBy: '// 独立开发，免费不改变',
+    message: '如果帮到你了，请我喝杯咖啡会让我开心一整天',
+    coffee: '请我喝咖啡',
+    feedback: '或者留下反馈 →',
   },
   builder: {
     fillExample: '填充示例',
@@ -977,6 +1045,12 @@ const zh: Translations = {
     compact: '紧凑',
     pro: '专业',
     executive: '高管',
+    timeline: 'Timeline',
+    creative: 'Creative',
+    split: 'Split',
+    sharp: 'Sharp',
+    sleek: 'Sleek',
+    dev: 'Dev',
   },
   coverLetter: {
     pageTitle: '求职信',
@@ -1047,6 +1121,12 @@ const ja: Translations = {
   footer: {
     tagline: 'frfr — 本当にダウンロードさせてくれる履歴書ビルダー',
     madeWith: '❤️とゼロのペイウォールで作られました',
+  },
+  support: {
+    builtBy: '// ひとりで作成、ずっと無料',
+    message: 'お役に立てたなら、コーヒー一杯で本当に嬉しくなります',
+    coffee: 'コーヒーをおごる',
+    feedback: 'またはフィードバックを残す →',
   },
   builder: {
     fillExample: 'サンプルを入力',
@@ -1129,6 +1209,12 @@ const ja: Translations = {
     compact: 'コンパクト',
     pro: 'プロ',
     executive: 'エグゼクティブ',
+    timeline: 'Timeline',
+    creative: 'Creative',
+    split: 'Split',
+    sharp: 'Sharp',
+    sleek: 'Sleek',
+    dev: 'Dev',
   },
   coverLetter: {
     pageTitle: 'カバーレター',
@@ -1199,6 +1285,12 @@ const ko: Translations = {
   footer: {
     tagline: 'frfr — 실제로 다운로드할 수 있게 해주는 이력서 빌더',
     madeWith: '❤️와 제로 페이월로 만들어졌습니다',
+  },
+  support: {
+    builtBy: '// 혼자 만든, 의도적으로 무료',
+    message: '도움이 됐다면, 커피 한 잔이 하루를 행복하게 만들어요',
+    coffee: '커피 사주기',
+    feedback: '또는 피드백 남기기 →',
   },
   builder: {
     fillExample: '예시 채우기',
@@ -1281,6 +1373,12 @@ const ko: Translations = {
     compact: '컴팩트',
     pro: '프로',
     executive: '임원',
+    timeline: 'Timeline',
+    creative: 'Creative',
+    split: 'Split',
+    sharp: 'Sharp',
+    sleek: 'Sleek',
+    dev: 'Dev',
   },
   coverLetter: {
     pageTitle: '자기소개서',
@@ -1351,6 +1449,12 @@ const ar: Translations = {
   footer: {
     tagline: 'frfr — منشئ السيرة الذاتية الذي يسمح لك بالتنزيل فعلاً',
     madeWith: 'صُنع بـ ❤️ وصفر جدران دفع',
+  },
+  support: {
+    builtBy: '// بُني منفرداً، مجاني بقصد',
+    message: 'إن ساعدك في الحصول على شيء، فنجان قهوة سيسعدني كثيراً',
+    coffee: 'اشتر لي قهوة',
+    feedback: 'أو اترك ملاحظة →',
   },
   builder: {
     fillExample: 'ملء مثال',
@@ -1432,6 +1536,12 @@ const ar: Translations = {
     compact: 'مضغوط',
     pro: 'احترافي',
     executive: 'تنفيذي',
+    timeline: 'Timeline',
+    creative: 'Creative',
+    split: 'Split',
+    sharp: 'Sharp',
+    sleek: 'Sleek',
+    dev: 'Dev',
   },
   coverLetter: {
     pageTitle: 'خطاب تقديم',
@@ -1502,6 +1612,12 @@ const ru: Translations = {
   footer: {
     tagline: 'frfr — конструктор резюме, который действительно даёт скачать',
     madeWith: 'Сделано с ❤️ и нулём пейволлов',
+  },
+  support: {
+    builtBy: '// сделано в одиночку, бесплатно намеренно',
+    message: 'если помогло устроиться на работу, чашка кофе будет очень приятна',
+    coffee: 'угостить кофе',
+    feedback: 'или оставить отзыв →',
   },
   builder: {
     fillExample: 'Заполнить пример',
@@ -1583,6 +1699,12 @@ const ru: Translations = {
     compact: 'Компактный',
     pro: 'Про',
     executive: 'Исполнительный',
+    timeline: 'Timeline',
+    creative: 'Creative',
+    split: 'Split',
+    sharp: 'Sharp',
+    sleek: 'Sleek',
+    dev: 'Dev',
   },
   coverLetter: {
     pageTitle: 'Сопроводительное письмо',
@@ -1653,6 +1775,12 @@ const it: Translations = {
   footer: {
     tagline: 'frfr — il costruttore di CV che ti lascia davvero scaricare',
     madeWith: 'Fatto con ❤️ e zero paywall',
+  },
+  support: {
+    builtBy: '// fatto da solo, gratuito di proposito',
+    message: 'se ti ha aiutato a trovare qualcosa, un caffè mi farebbe davvero felice',
+    coffee: 'offrimi un caffè',
+    feedback: 'o lascia un feedback →',
   },
   builder: {
     fillExample: 'Compila esempio',
@@ -1734,6 +1862,12 @@ const it: Translations = {
     compact: 'Compatto',
     pro: 'Pro',
     executive: 'Dirigenziale',
+    timeline: 'Timeline',
+    creative: 'Creative',
+    split: 'Split',
+    sharp: 'Sharp',
+    sleek: 'Sleek',
+    dev: 'Dev',
   },
   coverLetter: {
     pageTitle: 'Lettera di presentazione',
@@ -1804,6 +1938,12 @@ const hi: Translations = {
   footer: {
     tagline: 'frfr — रिज्यूमे बिल्डर जो वास्तव में आपको डाउनलोड करने देता है',
     madeWith: '❤️ और शून्य पेवॉल के साथ बनाया गया',
+  },
+  support: {
+    builtBy: '// अकेले बनाया, जानबूझकर मुफ्त',
+    message: 'अगर इससे नौकरी मिलने में मदद हुई, तो एक कॉफी मेरा दिन बना देगी',
+    coffee: 'कॉफी खिलाएं',
+    feedback: 'या फीडबैक दें →',
   },
   builder: {
     fillExample: 'उदाहरण भरें',
@@ -1885,6 +2025,12 @@ const hi: Translations = {
     compact: 'कॉम्पैक्ट',
     pro: 'प्रो',
     executive: 'एग्जीक्यूटिव',
+    timeline: 'Timeline',
+    creative: 'Creative',
+    split: 'Split',
+    sharp: 'Sharp',
+    sleek: 'Sleek',
+    dev: 'Dev',
   },
   coverLetter: {
     pageTitle: 'कवर लेटर',
@@ -1955,6 +2101,12 @@ const tr: Translations = {
   footer: {
     tagline: 'frfr — gerçekten indirmenize izin veren özgeçmiş oluşturucu',
     madeWith: '❤️ ve sıfır ödeme duvarıyla yapıldı',
+  },
+  support: {
+    builtBy: '// tek başıma yaptım, bilerek ücretsiz',
+    message: 'iş bulmana yardım ettiyse, bir kahve günümü gerçekten güzelleştirir',
+    coffee: 'bana kahve ısmarla',
+    feedback: 'veya geri bildirim bırak →',
   },
   builder: {
     fillExample: 'Örnek doldur',
@@ -2036,6 +2188,12 @@ const tr: Translations = {
     compact: 'Kompakt',
     pro: 'Pro',
     executive: 'Yönetici',
+    timeline: 'Timeline',
+    creative: 'Creative',
+    split: 'Split',
+    sharp: 'Sharp',
+    sleek: 'Sleek',
+    dev: 'Dev',
   },
   coverLetter: {
     pageTitle: 'Ön yazı',
@@ -2106,6 +2264,12 @@ const nl: Translations = {
   footer: {
     tagline: 'frfr — de cv-bouwer die je echt laat downloaden',
     madeWith: 'Gemaakt met ❤️ en nul betaalmuren',
+  },
+  support: {
+    builtBy: '// solo gebouwd, bewust gratis',
+    message: 'als het je heeft geholpen iets te landen, zou een koffie mijn dag echt maken',
+    coffee: 'trakteer me op koffie',
+    feedback: 'of laat feedback achter →',
   },
   builder: {
     fillExample: 'Voorbeeld invullen',
@@ -2187,6 +2351,12 @@ const nl: Translations = {
     compact: 'Compact',
     pro: 'Pro',
     executive: 'Directeur',
+    timeline: 'Timeline',
+    creative: 'Creative',
+    split: 'Split',
+    sharp: 'Sharp',
+    sleek: 'Sleek',
+    dev: 'Dev',
   },
   coverLetter: {
     pageTitle: 'Motivatiebrief',
@@ -2257,6 +2427,12 @@ const pl: Translations = {
   footer: {
     tagline: 'frfr — kreator CV, który naprawdę pozwala pobierać',
     madeWith: 'Zrobione z ❤️ i zerowym paywallem',
+  },
+  support: {
+    builtBy: '// zbudowane solo, celowo darmowe',
+    message: 'jeśli pomogło ci zdobyć pracę, kawa naprawdę by mnie uszczęśliwiła',
+    coffee: 'postaw mi kawę',
+    feedback: 'lub zostaw opinię →',
   },
   builder: {
     fillExample: 'Wypełnij przykładem',
@@ -2338,6 +2514,12 @@ const pl: Translations = {
     compact: 'Kompaktowy',
     pro: 'Pro',
     executive: 'Kierowniczy',
+    timeline: 'Timeline',
+    creative: 'Creative',
+    split: 'Split',
+    sharp: 'Sharp',
+    sleek: 'Sleek',
+    dev: 'Dev',
   },
   coverLetter: {
     pageTitle: 'List motywacyjny',

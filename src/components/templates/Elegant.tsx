@@ -23,7 +23,7 @@ const s = StyleSheet.create({
   contactRow: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', fontSize: 8.5, color: '#666666' },
   contactSep: { marginHorizontal: 5, color: '#bbbbbb' },
 
-  rule: { borderBottomWidth: 0.75, borderBottomColor: '#888888', marginBottom: 4 },
+  rule: { borderBottomWidth: 0.75, marginBottom: 4 },
   thinRule: { borderBottomWidth: 0.25, borderBottomColor: '#cccccc', marginBottom: 10 },
 
   sectionTitle: {
@@ -50,7 +50,7 @@ const s = StyleSheet.create({
   skills: { fontSize: 9.5, color: '#444444', lineHeight: 1.6, textAlign: 'center' },
 });
 
-export function ElegantTemplate({ data, labels }: { data: ResumeData; labels: Labels }) {
+export function ElegantTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
   const { personal, experience, education, skills } = data;
   const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website].filter(Boolean);
 
@@ -72,7 +72,7 @@ export function ElegantTemplate({ data, labels }: { data: ResumeData; labels: La
           )}
         </View>
 
-        <View style={s.rule} />
+        <View style={[s.rule, { borderBottomColor: accentColor }]} />
 
         {/* Summary */}
         {data.summary && (
@@ -122,7 +122,7 @@ export function ElegantTemplate({ data, labels }: { data: ResumeData; labels: La
                 <View key={proj.id} style={s.expItem}>
                   <View style={s.expRow}>
                     <Text style={s.expTitle}>{proj.name}</Text>
-                    {proj.url ? <Text style={{ fontSize: 8.5, color: '#0891b2' }}>{proj.url}</Text> : null}
+                    {proj.url ? <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text> : null}
                   </View>
                   {proj.description ? <Text style={s.expCompany}>{proj.description}</Text> : null}
                   {bullets.map((b, i) => (

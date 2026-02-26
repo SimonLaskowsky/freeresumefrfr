@@ -5,38 +5,42 @@ import type { CoverLetterTemplateProps } from './index';
 const styles = StyleSheet.create({
   page: {
     fontFamily: SANS,
-    fontSize: 10.5,
-    paddingTop: 54,
-    paddingBottom: 54,
-    paddingHorizontal: 62,
+    fontSize: 11,
+    paddingTop: 70,
+    paddingBottom: 70,
+    paddingHorizontal: 70,
     color: '#1a1a1a',
-    lineHeight: 1.5,
+    lineHeight: 1.7,
+  },
+  senderName: {
+    fontSize: 16,
+    fontFamily: SANS,
+    fontWeight: 700,
+    marginBottom: 3,
+  },
+  contactLine: {
+    fontSize: 9.5,
+    color: '#555555',
+    marginBottom: 16,
+  },
+  rule: {
+    borderBottomWidth: 0.5,
+    marginBottom: 20,
   },
   dateRow: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    marginBottom: 22,
+    marginBottom: 20,
   },
   dateText: {
     fontSize: 10,
     color: '#555555',
   },
-  senderName: {
-    fontSize: 14,
-    fontFamily: SANS,
-    fontWeight: 700,
-    marginBottom: 2,
-  },
-  contactLine: {
-    fontSize: 9.5,
-    color: '#555555',
-    marginBottom: 20,
-  },
   recipientBlock: {
     marginBottom: 18,
   },
   recipientName: {
-    fontSize: 10.5,
+    fontSize: 11,
     fontFamily: SANS,
     fontWeight: 700,
   },
@@ -45,51 +49,53 @@ const styles = StyleSheet.create({
     color: '#444444',
   },
   salutation: {
-    fontSize: 10.5,
+    fontSize: 11,
     marginBottom: 12,
   },
   paragraph: {
-    fontSize: 10.5,
+    fontSize: 11,
     color: '#1a1a1a',
-    lineHeight: 1.6,
+    lineHeight: 1.7,
     marginBottom: 12,
   },
   signOffBlock: {
-    marginTop: 16,
+    marginTop: 20,
   },
   signOffText: {
-    fontSize: 10.5,
+    fontSize: 11,
     marginBottom: 28,
   },
   senderSignature: {
-    fontSize: 10.5,
+    fontSize: 11,
     fontFamily: SANS,
     fontWeight: 700,
   },
+  jobRef: {
+    fontSize: 10,
+    color: '#555555',
+    marginBottom: 14,
+  },
 });
 
-export function ClassicCoverLetter({ data, labels, accentColor }: CoverLetterTemplateProps) {
+export function MinimalCoverLetter({ data, labels, accentColor }: CoverLetterTemplateProps) {
   const contactParts = [data.senderEmail, data.senderPhone, data.senderLocation].filter(Boolean);
   const contactLine = contactParts.join('  ·  ');
-
   const recipientLine1 = data.recipientName || labels.hiringManager;
   const recipientDetails = [data.recipientTitle, data.companyName].filter(Boolean);
 
   return (
     <Document>
       <Page size={data.pageSize || 'LETTER'} style={styles.page}>
-        {/* Date top-right */}
+        {data.senderName && <Text style={styles.senderName}>{data.senderName}</Text>}
+        {contactLine ? <Text style={styles.contactLine}>{contactLine}</Text> : <View style={{ marginBottom: 16 }} />}
+        <View style={[styles.rule, { borderBottomColor: accentColor }]} />
+
         {data.date && (
           <View style={styles.dateRow}>
             <Text style={styles.dateText}>{data.date}</Text>
           </View>
         )}
 
-        {/* Sender */}
-        {data.senderName && <Text style={[styles.senderName, { color: accentColor }]}>{data.senderName}</Text>}
-        {contactLine ? <Text style={styles.contactLine}>{contactLine}</Text> : <View style={{ marginBottom: 20 }} />}
-
-        {/* Recipient block */}
         <View style={styles.recipientBlock}>
           <Text style={styles.recipientName}>{recipientLine1}</Text>
           {recipientDetails.map((d, i) => (
@@ -97,22 +103,17 @@ export function ClassicCoverLetter({ data, labels, accentColor }: CoverLetterTem
           ))}
         </View>
 
-        {/* Job title reference */}
         {data.jobTitle && (
-          <Text style={{ fontSize: 10, color: accentColor, marginBottom: 14 }}>
+          <Text style={[styles.jobRef, { color: accentColor }]}>
             {labels.reSubject}: {data.jobTitle}
           </Text>
         )}
 
-        {/* Salutation */}
         {data.salutation && <Text style={styles.salutation}>{data.salutation}</Text>}
-
-        {/* Body paragraphs */}
         {data.opening && <Text style={styles.paragraph}>{data.opening}</Text>}
         {data.body && <Text style={styles.paragraph}>{data.body}</Text>}
         {data.closing && <Text style={styles.paragraph}>{data.closing}</Text>}
 
-        {/* Sign-off */}
         <View style={styles.signOffBlock}>
           <Text style={styles.signOffText}>{data.signOff || 'Sincerely,'}</Text>
           {data.senderName && <Text style={styles.senderSignature}>{data.senderName}</Text>}

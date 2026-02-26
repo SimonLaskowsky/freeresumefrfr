@@ -24,7 +24,7 @@ const s = StyleSheet.create({
 
   sectionTitle: {
     fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 2,
-    color: '#94a3b8', textTransform: 'uppercase', marginBottom: 10, marginTop: 20,
+    textTransform: 'uppercase', marginBottom: 10, marginTop: 20,
   },
   divider: { borderBottomWidth: 0.5, borderBottomColor: '#e2e8f0', marginBottom: 10 },
 
@@ -47,7 +47,7 @@ const s = StyleSheet.create({
   skills: { fontSize: 9.5, color: '#475569', lineHeight: 1.6 },
 });
 
-export function MinimalTemplate({ data, labels }: { data: ResumeData; labels: Labels }) {
+export function MinimalTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
   const { personal, experience, education, skills } = data;
   const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website].filter(Boolean);
 
@@ -70,7 +70,7 @@ export function MinimalTemplate({ data, labels }: { data: ResumeData; labels: La
         {/* Summary */}
         {data.summary && (
           <View>
-            <Text style={[s.sectionTitle, { marginTop: 0 }]}>{labels.summary}</Text>
+            <Text style={[s.sectionTitle, { marginTop: 0, color: accentColor }]}>{labels.summary}</Text>
             <View style={s.divider} />
             <Text style={{ fontSize: 9.5, color: '#475569', lineHeight: 1.5 }}>{data.summary}</Text>
           </View>
@@ -78,7 +78,7 @@ export function MinimalTemplate({ data, labels }: { data: ResumeData; labels: La
 
         {experience.length > 0 && (
           <View>
-            <Text style={s.sectionTitle}>{labels.experience}</Text>
+            <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.experience}</Text>
             <View style={s.divider} />
             {experience.map((exp) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
@@ -107,7 +107,7 @@ export function MinimalTemplate({ data, labels }: { data: ResumeData; labels: La
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
           <View>
-            <Text style={[s.sectionTitle, { marginTop: 18 }]}>{labels.projects}</Text>
+            <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.projects}</Text>
             <View style={s.divider} />
             {data.projects.map((proj) => {
               const bullets = (proj.bullets || []).filter((b) => b.trim());
@@ -115,7 +115,7 @@ export function MinimalTemplate({ data, labels }: { data: ResumeData; labels: La
                 <View key={proj.id} style={s.expItem}>
                   <View style={s.expRow}>
                     <Text style={s.expTitle}>{proj.name}</Text>
-                    {proj.url ? <Text style={{ fontSize: 8.5, color: '#0891b2' }}>{proj.url}</Text> : null}
+                    {proj.url ? <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text> : null}
                   </View>
                   {proj.description ? <Text style={s.expCompany}>{proj.description}</Text> : null}
                   {bullets.map((b, i) => (
@@ -132,7 +132,7 @@ export function MinimalTemplate({ data, labels }: { data: ResumeData; labels: La
 
         {education.length > 0 && (
           <View>
-            <Text style={[s.sectionTitle, { marginTop: experience.length > 0 ? 18 : 20 }]}>{labels.education}</Text>
+            <Text style={[s.sectionTitle, { marginTop: experience.length > 0 ? 18 : 20, color: accentColor }]}>{labels.education}</Text>
             <View style={s.divider} />
             {education.map((edu) => {
               const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
@@ -153,7 +153,7 @@ export function MinimalTemplate({ data, labels }: { data: ResumeData; labels: La
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
           <View>
-            <Text style={[s.sectionTitle, { marginTop: 18 }]}>{labels.certifications}</Text>
+            <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.certifications}</Text>
             <View style={s.divider} />
             {data.certifications.map((cert) => (
               <View key={cert.id} style={{ marginBottom: 5, flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -166,7 +166,7 @@ export function MinimalTemplate({ data, labels }: { data: ResumeData; labels: La
 
         {skills && (
           <View>
-            <Text style={[s.sectionTitle, { marginTop: 18 }]}>{labels.skills}</Text>
+            <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.skills}</Text>
             <View style={s.divider} />
             <Text style={s.skills}>{skills}</Text>
           </View>

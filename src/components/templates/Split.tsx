@@ -1,0 +1,173 @@
+import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { SANS } from './fonts';
+import type { ResumeData } from '@/store/resumeStore';
+
+interface Props {
+  data: ResumeData;
+  labels: { summary: string; experience: string; education: string; skills: string; projects: string; certifications: string; contact: string; };
+  accentColor: string;
+}
+
+const s = StyleSheet.create({
+  page: { fontFamily: SANS, fontSize: 10, paddingTop: 40, paddingBottom: 40, paddingHorizontal: 44, color: '#1a1a1a' },
+  header: { marginBottom: 16 },
+  name: { fontSize: 22, fontFamily: SANS, fontWeight: 700, marginBottom: 3, letterSpacing: 0.3 },
+  title: { fontSize: 11, color: '#555555', marginBottom: 6 },
+  contactRow: { flexDirection: 'row', flexWrap: 'wrap', fontSize: 8.5, color: '#6b7280' },
+  contactSep: { marginHorizontal: 5, color: '#d1d5db' },
+  headerRule: { borderBottomWidth: 1, borderBottomColor: '#e5e7eb', marginTop: 12 },
+  columns: { flexDirection: 'row', marginTop: 0 },
+  leftCol: { width: '43%', paddingRight: 14 },
+  rightCol: { flex: 1, paddingLeft: 14, borderLeftWidth: 1, borderLeftColor: '#e5e7eb' },
+  pillLabel: { fontSize: 7, fontFamily: SANS, fontWeight: 700, letterSpacing: 1.2, textTransform: 'uppercase', paddingVertical: 2, paddingHorizontal: 6, borderRadius: 3, marginTop: 14, marginBottom: 7, alignSelf: 'flex-start' },
+  expItem: { marginBottom: 8 },
+  expRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
+  expTitle: { fontFamily: SANS, fontWeight: 700, fontSize: 10 },
+  expDates: { fontSize: 8.5, color: '#6b7280' },
+  expCompany: { fontSize: 9, color: '#4b5563', marginBottom: 2 },
+  bullet: { flexDirection: 'row', marginTop: 1.5, paddingLeft: 4 },
+  bulletDot: { width: 10, color: '#9ca3af' },
+  bulletText: { flex: 1, fontSize: 9, color: '#374151', lineHeight: 1.4 },
+  eduItem: { marginBottom: 6 },
+  eduRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
+  eduDegree: { fontFamily: SANS, fontWeight: 700, fontSize: 9.5 },
+  eduDates: { fontSize: 8.5, color: '#6b7280' },
+  eduSchool: { fontSize: 9, color: '#4b5563' },
+  eduNotes: { fontSize: 8.5, color: '#6b7280', marginTop: 1 },
+  skills: { fontSize: 9, color: '#374151', lineHeight: 1.6 },
+});
+
+export function SplitTemplate({ data, labels, accentColor }: Props) {
+  const { personal, experience, education, skills } = data;
+  const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website].filter(Boolean);
+
+  function Pill({ label }: { label: string }) {
+    return (
+      <View style={[s.pillLabel, { backgroundColor: accentColor }]}>
+        <Text style={{ color: '#ffffff' }}>{label.toUpperCase()}</Text>
+      </View>
+    );
+  }
+
+  return (
+    <Document>
+      <Page size={data.pageSize || 'LETTER'} style={s.page}>
+        <View style={s.header}>
+          {personal.name && <Text style={s.name}>{personal.name}</Text>}
+          {personal.title && <Text style={s.title}>{personal.title}</Text>}
+          {contact.length > 0 && (
+            <View style={s.contactRow}>
+              {contact.map((item, i) => (
+                <View key={i} style={{ flexDirection: 'row' }}>
+                  {i > 0 && <Text style={s.contactSep}>·</Text>}
+                  <Text>{item}</Text>
+                </View>
+              ))}
+            </View>
+          )}
+          <View style={s.headerRule} />
+        </View>
+
+        <View style={s.columns}>
+          {/* Left column */}
+          <View style={s.leftCol}>
+            {data.summary && (
+              <View>
+                <Pill label={labels.summary} />
+                <Text style={{ fontSize: 9, color: '#374151', lineHeight: 1.5 }}>{data.summary}</Text>
+              </View>
+            )}
+            {skills && (
+              <View>
+                <Pill label={labels.skills} />
+                <Text style={s.skills}>{skills}</Text>
+              </View>
+            )}
+            {education.length > 0 && (
+              <View>
+                <Pill label={labels.education} />
+                {education.map((edu) => {
+                  const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
+                  return (
+                    <View key={edu.id} style={s.eduItem}>
+                      <View style={s.eduRow}>
+                        <Text style={s.eduDegree}>{edu.degree}</Text>
+                        {dateRange && <Text style={s.eduDates}>{dateRange}</Text>}
+                      </View>
+                      {edu.school && <Text style={s.eduSchool}>{edu.school}</Text>}
+                      {edu.notes && <Text style={s.eduNotes}>{edu.notes}</Text>}
+                    </View>
+                  );
+                })}
+              </View>
+            )}
+            {data.certifications && data.certifications.length > 0 && (
+              <View>
+                <Pill label={labels.certifications} />
+                {data.certifications.map((cert) => (
+                  <View key={cert.id} style={{ marginBottom: 4 }}>
+                    <Text style={{ fontSize: 9, fontFamily: SANS, fontWeight: 700 }}>{cert.name}</Text>
+                    <Text style={{ fontSize: 8.5, color: '#6b7280' }}>{[cert.issuer, cert.date].filter(Boolean).join(' · ')}</Text>
+                  </View>
+                ))}
+              </View>
+            )}
+          </View>
+
+          {/* Right column */}
+          <View style={s.rightCol}>
+            {experience.length > 0 && (
+              <View>
+                <Pill label={labels.experience} />
+                {experience.map((exp) => {
+                  const bullets = (exp.bullets || []).filter((b) => b.trim());
+                  const dateRange = exp.current
+                    ? `${exp.startDate} – Present`
+                    : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
+                  return (
+                    <View key={exp.id} style={s.expItem}>
+                      <View style={s.expRow}>
+                        <Text style={s.expTitle}>{exp.title}</Text>
+                        {dateRange && <Text style={s.expDates}>{dateRange}</Text>}
+                      </View>
+                      {exp.company && <Text style={s.expCompany}>{exp.company}</Text>}
+                      {bullets.map((b, i) => (
+                        <View key={i} style={s.bullet}>
+                          <Text style={s.bulletDot}>•</Text>
+                          <Text style={s.bulletText}>{b.trim()}</Text>
+                        </View>
+                      ))}
+                    </View>
+                  );
+                })}
+              </View>
+            )}
+            {data.projects && data.projects.length > 0 && (
+              <View>
+                <Pill label={labels.projects} />
+                {data.projects.map((proj) => {
+                  const bullets = (proj.bullets || []).filter((b) => b.trim());
+                  return (
+                    <View key={proj.id} style={s.expItem}>
+                      <View style={s.expRow}>
+                        <Text style={s.expTitle}>{proj.name}</Text>
+                        {proj.url && <Text style={{ fontSize: 8, color: accentColor }}>{proj.url}</Text>}
+                      </View>
+                      {proj.description && <Text style={s.expCompany}>{proj.description}</Text>}
+                      {bullets.map((b, i) => (
+                        <View key={i} style={s.bullet}>
+                          <Text style={s.bulletDot}>•</Text>
+                          <Text style={s.bulletText}>{b.trim()}</Text>
+                        </View>
+                      ))}
+                    </View>
+                  );
+                })}
+              </View>
+            )}
+          </View>
+        </View>
+      </Page>
+    </Document>
+  );
+}

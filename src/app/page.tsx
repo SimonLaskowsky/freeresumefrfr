@@ -301,6 +301,34 @@ export default function Home() {
         </div>
       </main>
 
+      {/* ── Support / feedback ────────────────────────────── */}
+      <div className="border-t border-zinc-800/40 px-6 py-14 text-center">
+        <div className="max-w-sm mx-auto">
+          <p className="text-[11px] font-mono text-zinc-700 mb-2">{t.support.builtBy}</p>
+          <p className="text-zinc-500 text-sm mb-6 leading-relaxed">
+            {t.support.message}
+          </p>
+          <div className="flex items-center justify-center gap-5">
+            <a
+              href="https://suppi.pl/simonlaskowski"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-600 rounded-xl text-sm font-medium text-zinc-400 hover:text-zinc-200 transition-all"
+            >
+              ☕ {t.support.coffee}
+            </a>
+            <a
+              href="https://github.com/SimonLaskowsky/freeresumefrfr/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-zinc-700 hover:text-zinc-400 transition-colors"
+            >
+              {t.support.feedback}
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* ── Footer ────────────────────────────────────────── */}
       <footer className="border-t border-zinc-800/40 px-6 py-8">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">

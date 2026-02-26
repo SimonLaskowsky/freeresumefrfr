@@ -39,6 +39,7 @@ const DIVIDER = <div className="border-t border-zinc-800/60" />;
 export default function BuilderPage() {
   const data = useResumeStore((state) => state.data);
   const templateId = useResumeStore((state) => state.templateId);
+  const accentColor = useResumeStore((state) => state.accentColor);
   const setPageSize = useResumeStore((state) => state.setPageSize);
   const loadSampleData = useResumeStore((state) => state.loadSampleData);
   const resetData = useResumeStore((state) => state.resetData);
@@ -184,7 +185,7 @@ export default function BuilderPage() {
 
         {/* PDF viewer */}
         <div className="flex-1 min-h-0 relative">
-          <ResumePreviewPanel data={previewData} templateId={templateId} />
+          <ResumePreviewPanel data={previewData} templateId={templateId} accentColor={accentColor} />
           {isExampleMode && (
             <div className="absolute top-3 inset-x-0 flex justify-center z-10 pointer-events-none">
               <div className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900/90 border border-zinc-700/50 rounded-full text-[11px] text-zinc-500 font-mono backdrop-blur-sm whitespace-nowrap">
@@ -197,7 +198,7 @@ export default function BuilderPage() {
 
         {/* Download */}
         <div className="px-5 py-4 border-t border-zinc-800 flex-shrink-0">
-          <DownloadButton data={debouncedData} templateId={templateId} />
+          <DownloadButton data={debouncedData} templateId={templateId} accentColor={accentColor} />
           <p className="text-center text-[11px] text-zinc-700 mt-2">
             {t.builder.noAccountWatermark}
           </p>

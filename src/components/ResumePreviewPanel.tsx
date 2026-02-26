@@ -12,11 +12,12 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 interface Props {
   data: ResumeData;
   templateId: string;
+  accentColor: string;
 }
 
 type Slot = 'A' | 'B';
 
-export default function ResumePreviewPanel({ data, templateId }: Props) {
+export default function ResumePreviewPanel({ data, templateId, accentColor }: Props) {
   const { Component } = getTemplate(templateId);
   const { t, locale } = useI18n();
 
@@ -35,16 +36,16 @@ export default function ResumePreviewPanel({ data, templateId }: Props) {
   const labelsRef = useRef(labels);
   labelsRef.current = labels;
 
-  const [instance, update] = usePDF({ document: <Component data={data} labels={labels} /> });
+  const [instance, update] = usePDF({ document: <Component data={data} labels={labels} accentColor={accentColor} /> });
   const updateRef = useRef(update);
   updateRef.current = update;
 
   // Use `locale` (string) rather than `t` (object) as the language trigger —
   // same semantics but a stable primitive that won't cause double-fires
   useEffect(() => {
-    updateRef.current(<Component data={data} labels={labelsRef.current} />);
+    updateRef.current(<Component data={data} labels={labelsRef.current} accentColor={accentColor} />);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, templateId, locale]);
+  }, [data, templateId, locale, accentColor]);
 
   // Committed URL — only advances once rendering is done
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);

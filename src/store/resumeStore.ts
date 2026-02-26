@@ -78,6 +78,8 @@ interface ResumeStore {
   setPageSize: (size: 'LETTER' | 'A4') => void;
   loadSampleData: () => void;
   resetData: () => void;
+  accentColor: string;
+  setAccentColor: (color: string) => void;
 }
 
 const defaultData: ResumeData = {
@@ -271,6 +273,8 @@ export const useResumeStore = create<ResumeStore>()(
 
       loadSampleData: () => set({ data: sampleData }),
       resetData: () => set({ data: defaultData }),
+      accentColor: '#1a1a1a',
+      setAccentColor: (accentColor) => set({ accentColor }),
     }),
     {
       name: 'resume-data',

@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
   },
   divider: {
     borderBottomWidth: 1,
-    borderBottomColor: '#1a1a1a',
     marginBottom: 6,
   },
   sectionTitle: {
@@ -56,7 +55,6 @@ const styles = StyleSheet.create({
     letterSpacing: 1.5,
     marginBottom: 7,
     marginTop: 10,
-    color: '#1a1a1a',
   },
   expItem: {
     marginBottom: 9,
@@ -119,7 +117,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export function ClassicTemplate({ data, labels }: { data: ResumeData; labels: Labels }) {
+export function ClassicTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
   const { personal, experience, education, skills } = data;
 
   const contactItems = [
@@ -134,7 +132,7 @@ export function ClassicTemplate({ data, labels }: { data: ResumeData; labels: La
     <Document>
       <Page size={data.pageSize || 'LETTER'} style={styles.page}>
         {/* Header */}
-        {personal.name && <Text style={styles.name}>{personal.name}</Text>}
+        {personal.name && <Text style={[styles.name, { color: accentColor }]}>{personal.name}</Text>}
         {personal.title && <Text style={styles.jobTitle}>{personal.title}</Text>}
         {contactItems.length > 0 && (
           <View style={styles.contactRow}>
@@ -150,8 +148,8 @@ export function ClassicTemplate({ data, labels }: { data: ResumeData; labels: La
         {/* Summary */}
         {data.summary && (
           <View>
-            <View style={styles.divider} />
-            <Text style={styles.sectionTitle}>{labels.summary.toUpperCase()}</Text>
+            <View style={[styles.divider, { borderBottomColor: accentColor }]} />
+            <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.summary.toUpperCase()}</Text>
             <Text style={{ fontSize: 9.5, color: '#333333', lineHeight: 1.5 }}>{data.summary}</Text>
           </View>
         )}
@@ -159,8 +157,8 @@ export function ClassicTemplate({ data, labels }: { data: ResumeData; labels: La
         {/* Experience */}
         {experience.length > 0 && (
           <View>
-            <View style={styles.divider} />
-            <Text style={styles.sectionTitle}>{labels.experience.toUpperCase()}</Text>
+            <View style={[styles.divider, { borderBottomColor: accentColor }]} />
+            <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.experience.toUpperCase()}</Text>
             {experience.map((exp) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
               const dateRange = exp.current
@@ -189,15 +187,15 @@ export function ClassicTemplate({ data, labels }: { data: ResumeData; labels: La
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
           <View>
-            <View style={styles.divider} />
-            <Text style={styles.sectionTitle}>{labels.projects.toUpperCase()}</Text>
+            <View style={[styles.divider, { borderBottomColor: accentColor }]} />
+            <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.projects.toUpperCase()}</Text>
             {data.projects.map((proj) => {
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
                 <View key={proj.id} style={styles.expItem}>
                   <View style={styles.expTopRow}>
                     <Text style={styles.expTitleCompany}>{proj.name}</Text>
-                    {proj.url ? <Text style={{ fontSize: 8.5, color: '#0891b2' }}>{proj.url}</Text> : null}
+                    {proj.url ? <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text> : null}
                   </View>
                   {proj.description ? <Text style={{ fontSize: 9.5, color: '#444444', marginBottom: 2 }}>{proj.description}</Text> : null}
                   {bullets.map((b, i) => (
@@ -215,8 +213,8 @@ export function ClassicTemplate({ data, labels }: { data: ResumeData; labels: La
         {/* Education */}
         {education.length > 0 && (
           <View>
-            <View style={styles.divider} />
-            <Text style={styles.sectionTitle}>{labels.education.toUpperCase()}</Text>
+            <View style={[styles.divider, { borderBottomColor: accentColor }]} />
+            <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.education.toUpperCase()}</Text>
             {education.map((edu) => {
               const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
               return (
@@ -237,8 +235,8 @@ export function ClassicTemplate({ data, labels }: { data: ResumeData; labels: La
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
           <View>
-            <View style={styles.divider} />
-            <Text style={styles.sectionTitle}>{labels.certifications.toUpperCase()}</Text>
+            <View style={[styles.divider, { borderBottomColor: accentColor }]} />
+            <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.certifications.toUpperCase()}</Text>
             {data.certifications.map((cert) => (
               <View key={cert.id} style={{ marginBottom: 4, flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
@@ -251,8 +249,8 @@ export function ClassicTemplate({ data, labels }: { data: ResumeData; labels: La
         {/* Skills */}
         {skills && (
           <View>
-            <View style={styles.divider} />
-            <Text style={styles.sectionTitle}>{labels.skills.toUpperCase()}</Text>
+            <View style={[styles.divider, { borderBottomColor: accentColor }]} />
+            <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.skills.toUpperCase()}</Text>
             <Text style={styles.skillsText}>{skills}</Text>
           </View>
         )}

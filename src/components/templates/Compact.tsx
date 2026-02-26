@@ -23,7 +23,7 @@ const s = StyleSheet.create({
   contactRow: { flexDirection: 'row', flexWrap: 'wrap', fontSize: 8, color: '#6b7280', justifyContent: 'flex-end' },
   contactSep: { marginHorizontal: 4, color: '#d1d5db' },
 
-  divider: { borderBottomWidth: 1, borderBottomColor: '#1a1a1a', marginBottom: 4 },
+  divider: { borderBottomWidth: 1, marginBottom: 4 },
   sectionTitle: {
     fontSize: 8, fontFamily: SANS, fontWeight: 700, letterSpacing: 1.2,
     textTransform: 'uppercase', marginBottom: 4, marginTop: 9,
@@ -46,7 +46,7 @@ const s = StyleSheet.create({
   skills: { fontSize: 8.5, color: '#374151', lineHeight: 1.4 },
 });
 
-export function CompactTemplate({ data, labels }: { data: ResumeData; labels: Labels }) {
+export function CompactTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
   const { personal, experience, education, skills } = data;
   const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website].filter(Boolean);
 
@@ -72,16 +72,16 @@ export function CompactTemplate({ data, labels }: { data: ResumeData; labels: La
         {/* Summary */}
         {data.summary && (
           <View>
-            <View style={s.divider} />
-            <Text style={s.sectionTitle}>{labels.summary}</Text>
+            <View style={[s.divider, { borderBottomColor: accentColor }]} />
+            <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.summary}</Text>
             <Text style={{ fontSize: 8.5, color: '#374151', lineHeight: 1.4 }}>{data.summary}</Text>
           </View>
         )}
 
         {experience.length > 0 && (
           <View>
-            <View style={s.divider} />
-            <Text style={s.sectionTitle}>{labels.experience}</Text>
+            <View style={[s.divider, { borderBottomColor: accentColor }]} />
+            <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.experience}</Text>
             {experience.map((exp) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
               const dateRange = exp.current
@@ -110,15 +110,15 @@ export function CompactTemplate({ data, labels }: { data: ResumeData; labels: La
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
           <View>
-            <View style={s.divider} />
-            <Text style={s.sectionTitle}>{labels.projects}</Text>
+            <View style={[s.divider, { borderBottomColor: accentColor }]} />
+            <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.projects}</Text>
             {data.projects.map((proj) => {
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
                 <View key={proj.id} style={s.expItem}>
                   <View style={s.expRow}>
                     <Text style={s.expTitleCompany}>{proj.name}</Text>
-                    {proj.url ? <Text style={{ fontSize: 7.5, color: '#0891b2' }}>{proj.url}</Text> : null}
+                    {proj.url ? <Text style={{ fontSize: 7.5, color: accentColor }}>{proj.url}</Text> : null}
                   </View>
                   {proj.description ? <Text style={{ fontSize: 8, color: '#4b5563', marginBottom: 1 }}>{proj.description}</Text> : null}
                   {bullets.map((b, i) => (
@@ -135,8 +135,8 @@ export function CompactTemplate({ data, labels }: { data: ResumeData; labels: La
 
         {education.length > 0 && (
           <View>
-            <View style={s.divider} />
-            <Text style={s.sectionTitle}>{labels.education}</Text>
+            <View style={[s.divider, { borderBottomColor: accentColor }]} />
+            <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.education}</Text>
             {education.map((edu) => {
               const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
               return (
@@ -155,8 +155,8 @@ export function CompactTemplate({ data, labels }: { data: ResumeData; labels: La
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
           <View>
-            <View style={s.divider} />
-            <Text style={s.sectionTitle}>{labels.certifications}</Text>
+            <View style={[s.divider, { borderBottomColor: accentColor }]} />
+            <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.certifications}</Text>
             {data.certifications.map((cert) => (
               <View key={cert.id} style={{ marginBottom: 3, flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Text style={{ fontSize: 8.5, fontFamily: SANS, fontWeight: 700 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
@@ -168,8 +168,8 @@ export function CompactTemplate({ data, labels }: { data: ResumeData; labels: La
 
         {skills && (
           <View>
-            <View style={s.divider} />
-            <Text style={s.sectionTitle}>{labels.skills}</Text>
+            <View style={[s.divider, { borderBottomColor: accentColor }]} />
+            <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.skills}</Text>
             <Text style={s.skills}>{skills}</Text>
           </View>
         )}
