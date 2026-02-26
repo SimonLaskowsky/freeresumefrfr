@@ -198,7 +198,7 @@ export default function BuilderPage() {
 
         {/* Download */}
         <div className="px-5 py-4 border-t border-zinc-800 flex-shrink-0">
-          <DownloadButton data={debouncedData} templateId={templateId} accentColor={accentColor} />
+          <DownloadButton data={previewData} templateId={templateId} accentColor={accentColor} />
           <p className="text-center text-[11px] text-zinc-700 mt-2">
             {t.builder.noAccountWatermark}
           </p>
