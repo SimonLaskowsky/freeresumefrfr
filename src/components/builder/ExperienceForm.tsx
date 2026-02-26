@@ -26,13 +26,13 @@ export default function ExperienceForm() {
       }
     >
       {data.experience.length === 0 && (
-        <p className="text-xs text-zinc-600 italic">No experience added yet.</p>
+        <p className="text-xs text-zinc-600 italic">{t.fields.noneExperience}</p>
       )}
       <div className="space-y-4">
         {data.experience.map((exp, i) => (
           <div key={exp.id} className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-zinc-500">Position {i + 1}</span>
+              <span className="text-xs text-zinc-500">{t.fields.positionLabel} {i + 1}</span>
               <button
                 onClick={() => removeExperience(exp.id)}
                 className="text-xs text-zinc-600 hover:text-red-400 transition-colors"
@@ -79,7 +79,7 @@ export default function ExperienceForm() {
               </div>
             </div>
             <div>
-              <p className="text-[11px] text-zinc-600 mb-2">Bullet points — Enter to add, Backspace on empty to remove</p>
+              <p className="text-[11px] text-zinc-600 mb-2">{t.fields.bulletPointsHint}</p>
               <BulletList
                 bullets={exp.bullets}
                 onChange={(bullets) => updateExperience(exp.id, { bullets })}

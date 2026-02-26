@@ -21,7 +21,7 @@ export default function SkillsForm() {
         value={data.skills}
         onChange={(e) => updateSkills(e.target.value)}
       />
-      <p className="text-[11px] text-zinc-600 mt-1.5">Comma-separated. Most relevant first.</p>
+      <p className="text-[11px] text-zinc-600 mt-1.5">{t.fields.skillsHint}</p>
     </SectionWrapper>
   );
 }

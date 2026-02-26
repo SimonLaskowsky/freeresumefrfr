@@ -90,7 +90,7 @@ export default function CoverLetterPage() {
             </span>
             <Link
               href="/builder"
-              className="text-[11px] text-zinc-600 hover:text-lime-400 transition-colors font-medium flex-shrink-0 whitespace-nowrap"
+              className="text-[11px] text-zinc-400 hover:text-lime-400 transition-colors font-medium flex-shrink-0 whitespace-nowrap"
             >
               Resume →
             </Link>
@@ -99,24 +99,24 @@ export default function CoverLetterPage() {
           <div className="flex items-center justify-end gap-2 px-4 pb-2">
             <button
               onClick={loadSampleData}
-              className="text-[11px] text-zinc-600 hover:text-lime-400 transition-colors font-medium whitespace-nowrap"
+              className="text-[11px] text-zinc-400 hover:text-lime-400 transition-colors font-medium whitespace-nowrap"
               title="Fill with example data"
             >
               {t.builder.fillExample}
             </button>
-            <span className="text-zinc-800">·</span>
+            <span className="text-zinc-600">·</span>
             <button
               onClick={handleReset}
               className={`text-[11px] transition-colors font-medium whitespace-nowrap ${
                 resetState === 'confirm'
                   ? 'text-red-400 hover:text-red-300'
-                  : 'text-zinc-700 hover:text-zinc-500'
+                  : 'text-zinc-500 hover:text-zinc-300'
               }`}
             >
               {resetState === 'confirm' ? t.builder.resetConfirm : t.builder.reset}
             </button>
-            <span className="text-zinc-800">·</span>
-            <span className="text-[11px] text-zinc-700">{t.builder.saved}</span>
+            <span className="text-zinc-600">·</span>
+            <span className="text-[11px] text-zinc-500">{t.builder.saved}</span>
           </div>
         </div>
 

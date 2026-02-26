@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
+import { useI18n } from '@/i18n/I18nContext';
 
 interface Props {
   bullets: string[];
@@ -10,6 +11,7 @@ interface Props {
 
 export default function BulletList({ bullets, onChange, placeholder = 'Add a bullet point...' }: Props) {
   const refs = useRef<(HTMLInputElement | null)[]>([]);
+  const { t } = useI18n();
   const list = bullets.length > 0 ? bullets : [''];
 
   const update = (i: number, val: string) => {
@@ -64,8 +66,8 @@ export default function BulletList({ bullets, onChange, placeholder = 'Add a bul
         onClick={() => addAfter(list.length - 1)}
         className="flex items-center gap-1.5 text-xs text-zinc-600 hover:text-lime-400 transition-colors pl-5 mt-1"
       >
-        <span className="text-sm leading-none">+</span> Add bullet
-        <span className="text-zinc-700 ml-1 hidden sm:inline">· Enter to add faster</span>
+        <span className="text-sm leading-none">+</span> {t.fields.addBullet}
+        <span className="text-zinc-700 ml-1 hidden sm:inline">{t.fields.enterToAddFaster}</span>
       </button>
     </div>
   );

@@ -14,7 +14,7 @@ export default function CertificationsForm() {
       title={t.sections.certifications}
       icon="✪"
       count={data.certifications.length}
-      tip="List certs relevant to the role. Include the issuing org and year. AWS, Google Cloud, PMP, and similar certs are strong ATS signals."
+      tip={t.tips.certifications}
       action={
         <button
           onClick={addCertification}
@@ -25,13 +25,13 @@ export default function CertificationsForm() {
       }
     >
       {data.certifications.length === 0 && (
-        <p className="text-xs text-zinc-600 italic">AWS, Google Cloud, PMP, Scrum, etc.</p>
+        <p className="text-xs text-zinc-600 italic">{t.fields.noneCertifications}</p>
       )}
       <div className="space-y-3">
         {data.certifications.map((cert, i) => (
           <div key={cert.id} className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-zinc-500">Cert {i + 1}</span>
+              <span className="text-xs text-zinc-500">{t.fields.certLabel} {i + 1}</span>
               <button
                 onClick={() => removeCertification(cert.id)}
                 className="text-xs text-zinc-600 hover:text-red-400 transition-colors"

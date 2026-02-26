@@ -15,7 +15,7 @@ export default function ProjectsForm() {
       title={t.sections.projects}
       icon="⬡"
       count={data.projects.length}
-      tip="Great for devs and career changers. Include a live URL or GitHub link. Lead highlights with the tech stack and quantify impact where possible."
+      tip={t.tips.projects}
       action={
         <button
           onClick={addProject}
@@ -26,13 +26,13 @@ export default function ProjectsForm() {
       }
     >
       {data.projects.length === 0 && (
-        <p className="text-xs text-zinc-600 italic">No projects yet.</p>
+        <p className="text-xs text-zinc-600 italic">{t.fields.noneProjects}</p>
       )}
       <div className="space-y-4">
         {data.projects.map((proj, i) => (
           <div key={proj.id} className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-zinc-500">Project {i + 1}</span>
+              <span className="text-xs text-zinc-500">{t.fields.projectLabel} {i + 1}</span>
               <button
                 onClick={() => removeProject(proj.id)}
                 className="text-xs text-zinc-600 hover:text-red-400 transition-colors"
@@ -61,7 +61,7 @@ export default function ProjectsForm() {
               onChange={(e) => updateProject(proj.id, { description: e.target.value })}
             />
             <div>
-              <p className="text-[11px] text-zinc-600 mb-2">Highlights — Enter to add more</p>
+              <p className="text-[11px] text-zinc-600 mb-2">{t.fields.highlightsHint}</p>
               <BulletList
                 bullets={proj.bullets}
                 onChange={(bullets) => updateProject(proj.id, { bullets })}

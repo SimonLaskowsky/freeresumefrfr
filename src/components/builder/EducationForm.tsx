@@ -25,13 +25,13 @@ export default function EducationForm() {
       }
     >
       {data.education.length === 0 && (
-        <p className="text-xs text-zinc-600 italic">No education added yet.</p>
+        <p className="text-xs text-zinc-600 italic">{t.fields.noneEducation}</p>
       )}
       <div className="space-y-4">
         {data.education.map((edu, i) => (
           <div key={edu.id} className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-zinc-500">Entry {i + 1}</span>
+              <span className="text-xs text-zinc-500">{t.fields.entryLabel} {i + 1}</span>
               <button
                 onClick={() => removeEducation(edu.id)}
                 className="text-xs text-zinc-600 hover:text-red-400 transition-colors"
