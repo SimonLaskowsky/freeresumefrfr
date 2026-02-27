@@ -136,7 +136,7 @@ const en: Translations = {
     heading: 'What makes us different',
     items: [
       { title: 'Always free', desc: 'No trial, no freemium, no tricks. Download your PDF forever.' },
-      { title: '8 pro templates', desc: 'Classic, Modern, Elegant, Bold and more. All free.' },
+      { title: '14 pro templates', desc: 'Classic, Timeline, Dev, Creative and 10 more. All free.' },
       { title: 'Live preview', desc: 'See your resume update as you type. No lag, no reload.' },
       { title: 'No account', desc: "We don't want your email. Your data stays in your browser." },
       { title: 'ATS tips', desc: 'Built-in hints to help you pass applicant tracking systems.' },
@@ -317,7 +317,7 @@ const es: Translations = {
     heading: 'Qué nos hace diferentes',
     items: [
       { title: 'Siempre gratis', desc: 'Sin prueba, sin freemium, sin trucos. Descarga tu PDF para siempre.' },
-      { title: '8 plantillas pro', desc: 'Clásico, Moderno, Elegante, Negrita y más. Todo gratis.' },
+      { title: '14 plantillas pro', desc: 'Clásico, Timeline, Dev, Creativo y 10 más. Todo gratis.' },
       { title: 'Vista previa en vivo', desc: 'Ve cómo se actualiza tu CV mientras escribes. Sin retrasos.' },
       { title: 'Sin cuenta', desc: 'No queremos tu email. Tus datos se quedan en tu navegador.' },
       { title: 'Consejos ATS', desc: 'Sugerencias integradas para pasar los sistemas de seguimiento.' },
@@ -498,7 +498,7 @@ const fr: Translations = {
     heading: 'Ce qui nous distingue',
     items: [
       { title: 'Toujours gratuit', desc: "Pas d'essai, pas de freemium, pas de ruses. Téléchargez votre PDF pour toujours." },
-      { title: '8 modèles pro', desc: 'Classique, Moderne, Élégant, Gras et plus. Tout gratuit.' },
+      { title: '14 modèles pro', desc: 'Classique, Timeline, Dev, Créatif et 10 autres. Tout gratuit.' },
       { title: 'Aperçu en direct', desc: 'Voyez votre CV se mettre à jour en temps réel. Sans latence.' },
       { title: 'Sans compte', desc: "Nous ne voulons pas votre email. Vos données restent dans votre navigateur." },
       { title: 'Conseils ATS', desc: 'Astuces intégrées pour passer les systèmes de suivi des candidats.' },
@@ -678,7 +678,7 @@ const de: Translations = {
     heading: 'Was uns unterscheidet',
     items: [
       { title: 'Immer kostenlos', desc: 'Kein Test, kein Freemium, keine Tricks. PDF für immer herunterladen.' },
-      { title: '8 Profi-Vorlagen', desc: 'Klassisch, Modern, Elegant, Fett und mehr. Alles kostenlos.' },
+      { title: '14 Profi-Vorlagen', desc: 'Klassisch, Timeline, Dev, Kreativ und 10 weitere. Alles kostenlos.' },
       { title: 'Live-Vorschau', desc: 'Sieh deinen Lebenslauf beim Tippen aktualisieren. Ohne Verzögerung.' },
       { title: 'Kein Konto', desc: 'Wir wollen deine E-Mail nicht. Deine Daten bleiben im Browser.' },
       { title: 'ATS-Tipps', desc: 'Eingebaute Hinweise, um Bewerber-Tracking-Systeme zu passieren.' },
@@ -859,7 +859,7 @@ const pt: Translations = {
     heading: 'O que nos diferencia',
     items: [
       { title: 'Sempre grátis', desc: 'Sem teste, sem freemium, sem truques. Baixe seu PDF para sempre.' },
-      { title: '8 modelos pro', desc: 'Clássico, Moderno, Elegante, Negrito e mais. Tudo grátis.' },
+      { title: '14 modelos pro', desc: 'Clássico, Timeline, Dev, Criativo e mais 10. Tudo grátis.' },
       { title: 'Pré-visualização ao vivo', desc: 'Veja seu currículo atualizar enquanto digita. Sem atraso.' },
       { title: 'Sem conta', desc: 'Não queremos seu email. Seus dados ficam no seu navegador.' },
       { title: 'Dicas ATS', desc: 'Dicas integradas para passar em sistemas de rastreamento de candidatos.' },
@@ -1040,7 +1040,7 @@ const zh: Translations = {
     heading: '我们的不同之处',
     items: [
       { title: '永久免费', desc: '无试用期、无增值服务、无套路。永久免费下载PDF。' },
-      { title: '8个专业模板', desc: '经典、现代、优雅、粗体等。全部免费。' },
+      { title: '14个专业模板', desc: '经典、时间轴、开发者、创意等14款。全部免费。' },
       { title: '实时预览', desc: '边输入边看简历更新。零延迟，无需刷新。' },
       { title: '无需账号', desc: '我们不需要您的邮箱。您的数据留在浏览器中。' },
       { title: 'ATS提示', desc: '内置提示帮您通过求职申请人跟踪系统。' },
@@ -1221,7 +1221,7 @@ const ja: Translations = {
     heading: '私たちが違う理由',
     items: [
       { title: '常に無料', desc: '試用期間なし、フリーミアムなし、トリックなし。PDFを永遠に無料でダウンロード。' },
-      { title: '8つのプロテンプレート', desc: 'クラシック、モダン、エレガント、ボールドなど。すべて無料。' },
+      { title: '14種のプロテンプレート', desc: 'クラシック、タイムライン、Dev、クリエイティブなど14種。すべて無料。' },
       { title: 'リアルタイムプレビュー', desc: '入力しながら履歴書が更新されます。ラグなし、リロードなし。' },
       { title: 'アカウント不要', desc: 'メールアドレスは不要です。データはブラウザに保存されます。' },
       { title: 'ATSヒント', desc: '応募者追跡システムを通過するための組み込みヒント。' },
@@ -1402,7 +1402,7 @@ const ko: Translations = {
     heading: '우리가 다른 이유',
     items: [
       { title: '항상 무료', desc: '체험판 없음, 프리미엄 없음, 속임수 없음. 영원히 무료로 PDF 다운로드.' },
-      { title: '8가지 전문 템플릿', desc: '클래식, 모던, 엘레건트, 볼드 등. 모두 무료.' },
+      { title: '14가지 전문 템플릿', desc: '클래식, 타임라인, Dev, 크리에이티브 등 14종. 모두 무료.' },
       { title: '실시간 미리보기', desc: '입력하면서 이력서가 업데이트됩니다. 지연 없음, 새로고침 없음.' },
       { title: '계정 불필요', desc: '이메일이 필요 없습니다. 데이터는 브라우저에 저장됩니다.' },
       { title: 'ATS 팁', desc: '지원자 추적 시스템을 통과하는 데 도움이 되는 내장 힌트.' },
@@ -1583,7 +1583,7 @@ const ar: Translations = {
     heading: 'ما الذي يميزنا',
     items: [
       { title: 'مجاني دائماً', desc: 'لا تجربة، لا فريميوم، لا خدع. قم بتنزيل PDF إلى الأبد.' },
-      { title: '8 قوالب احترافية', desc: 'كلاسيكي، حديث، أنيق، غامق والمزيد. كل شيء مجاني.' },
+      { title: '14 قالبًا احترافيًا', desc: 'كلاسيكي، تايم لاين، Dev، إبداعي و10 آخرين. كل شيء مجاني.' },
       { title: 'معاينة مباشرة', desc: 'شاهد تحديث سيرتك الذاتية أثناء الكتابة. بدون تأخير.' },
       { title: 'بدون حساب', desc: 'لا نريد بريدك الإلكتروني. بياناتك تبقى في متصفحك.' },
       { title: 'نصائح ATS', desc: 'تلميحات مدمجة لمساعدتك على اجتياز أنظمة تتبع المتقدمين.' },
@@ -1763,7 +1763,7 @@ const ru: Translations = {
     heading: 'Чем мы отличаемся',
     items: [
       { title: 'Всегда бесплатно', desc: 'Без пробного периода, без фримиума, без уловок. Скачивайте PDF навсегда.' },
-      { title: '8 профессиональных шаблонов', desc: 'Классический, Современный, Элегантный, Жирный и другие. Все бесплатно.' },
+      { title: '14 профессиональных шаблонов', desc: 'Классический, Timeline, Dev, Креативный и ещё 10. Все бесплатно.' },
       { title: 'Предпросмотр в реальном времени', desc: 'Видите обновление резюме по мере ввода. Без лагов, без перезагрузки.' },
       { title: 'Без аккаунта', desc: 'Нам не нужен ваш email. Ваши данные остаются в браузере.' },
       { title: 'Советы ATS', desc: 'Встроенные подсказки для прохождения систем отслеживания кандидатов.' },
@@ -1943,7 +1943,7 @@ const it: Translations = {
     heading: 'Cosa ci differenzia',
     items: [
       { title: 'Sempre gratis', desc: 'Nessuna prova, nessun freemium, nessun trucco. Scarica il tuo PDF per sempre.' },
-      { title: '8 template pro', desc: 'Classico, Moderno, Elegante, Grassetto e altro. Tutti gratis.' },
+      { title: '14 template pro', desc: 'Classico, Timeline, Dev, Creativo e altri 10. Tutti gratis.' },
       { title: 'Anteprima in tempo reale', desc: 'Guarda il tuo CV aggiornarsi mentre scrivi. Senza ritardi.' },
       { title: 'Nessun account', desc: 'Non vogliamo la tua email. I tuoi dati restano nel browser.' },
       { title: 'Suggerimenti ATS', desc: 'Suggerimenti integrati per superare i sistemi di tracciamento candidati.' },
@@ -2123,7 +2123,7 @@ const hi: Translations = {
     heading: 'हम अलग क्यों हैं',
     items: [
       { title: 'हमेशा मुफ़्त', desc: 'कोई ट्रायल नहीं, कोई फ्रीमियम नहीं, कोई चाल नहीं। अपना PDF हमेशा के लिए डाउनलोड करें।' },
-      { title: '8 प्रोफेशनल टेम्पलेट', desc: 'क्लासिक, मॉडर्न, एलीगेंट, बोल्ड और अधिक। सभी मुफ़्त।' },
+      { title: '14 प्रोफेशनल टेम्पलेट', desc: 'क्लासिक, टाइमलाइन, Dev, क्रिएटिव और 10 और। सभी मुफ़्त।' },
       { title: 'लाइव प्रीव्यू', desc: 'टाइप करते समय अपना रिज्यूमे अपडेट होता देखें। कोई देरी नहीं।' },
       { title: 'कोई खाता नहीं', desc: 'हमें आपका ईमेल नहीं चाहिए। आपका डेटा ब्राउज़र में रहता है।' },
       { title: 'ATS सुझाव', desc: 'आवेदक ट्रैकिंग सिस्टम पास करने में मदद के लिए अंतर्निहित संकेत।' },
@@ -2303,7 +2303,7 @@ const tr: Translations = {
     heading: 'Bizi farklı kılan nedir',
     items: [
       { title: 'Her zaman ücretsiz', desc: 'Deneme yok, freemium yok, numara yok. PDF\'nizi sonsuza kadar indirin.' },
-      { title: '8 profesyonel şablon', desc: 'Klasik, Modern, Zarif, Kalın ve daha fazlası. Hepsi ücretsiz.' },
+      { title: '14 profesyonel şablon', desc: 'Klasik, Timeline, Dev, Yaratıcı ve 10 tane daha. Hepsi ücretsiz.' },
       { title: 'Canlı önizleme', desc: 'Yazarken özgeçmişinizin güncellendiğini görün. Gecikme yok.' },
       { title: 'Hesap yok', desc: 'E-postanızı istemiyoruz. Verileriniz tarayıcınızda kalır.' },
       { title: 'ATS ipuçları', desc: 'Başvuru takip sistemlerini geçmenize yardımcı yerleşik ipuçları.' },
@@ -2483,7 +2483,7 @@ const nl: Translations = {
     heading: 'Wat ons anders maakt',
     items: [
       { title: 'Altijd gratis', desc: 'Geen proefperiode, geen freemium, geen trucs. Download je PDF voor altijd.' },
-      { title: '8 professionele sjablonen', desc: 'Klassiek, Modern, Elegant, Vet en meer. Allemaal gratis.' },
+      { title: '14 professionele sjablonen', desc: 'Klassiek, Timeline, Dev, Creatief en 10 meer. Allemaal gratis.' },
       { title: 'Live voorbeeld', desc: 'Zie je cv bijwerken terwijl je typt. Geen vertraging, geen herladen.' },
       { title: 'Geen account', desc: 'We willen je e-mail niet. Je gegevens blijven in je browser.' },
       { title: 'ATS-tips', desc: 'Ingebouwde hints om applicant tracking systemen te passeren.' },
@@ -2663,7 +2663,7 @@ const pl: Translations = {
     heading: 'Co nas wyróżnia',
     items: [
       { title: 'Zawsze za darmo', desc: 'Bez okresu próbnego, bez freemium, bez sztuczek. Pobieraj PDF na zawsze.' },
-      { title: '8 profesjonalnych szablonów', desc: 'Klasyczny, Nowoczesny, Elegancki, Gruby i inne. Wszystko za darmo.' },
+      { title: '14 profesjonalnych szablonów', desc: 'Klasyczny, Timeline, Dev, Kreatywny i 10 innych. Wszystko za darmo.' },
       { title: 'Podgląd na żywo', desc: 'Obserwuj jak CV aktualizuje się podczas pisania. Bez opóźnień.' },
       { title: 'Bez konta', desc: 'Nie chcemy Twojego e-maila. Twoje dane zostają w przeglądarce.' },
       { title: 'Wskazówki ATS', desc: 'Wbudowane podpowiedzi, by przejść przez systemy śledzenia kandydatów.' },
