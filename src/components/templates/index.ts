@@ -24,6 +24,7 @@ export interface TemplateLabels {
   projects: string;
   certifications: string;
   contact: string;
+  present: string;
 }
 
 export interface TemplateProps {

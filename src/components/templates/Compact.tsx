@@ -10,6 +10,7 @@ interface Labels {
   projects: string;
   certifications: string;
   contact: string;
+  present: string;
 }
 
 const s = StyleSheet.create({
@@ -85,7 +86,7 @@ export function CompactTemplate({ data, labels, accentColor }: { data: ResumeDat
             {experience.map((exp) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
               const dateRange = exp.current
-                ? `${exp.startDate} – Present`
+                ? `${exp.startDate} – ${labels.present}`
                 : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
               return (
                 <View key={exp.id} style={s.expItem}>

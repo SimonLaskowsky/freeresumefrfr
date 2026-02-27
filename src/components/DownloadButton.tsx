@@ -36,6 +36,7 @@ export default function DownloadButton({ data, templateId, accentColor }: Props)
     projects: t.sections.projects,
     certifications: t.sections.certifications,
     contact: t.sections.contact,
+    present: t.fields.present,
   };
 
   return (

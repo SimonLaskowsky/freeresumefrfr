@@ -29,6 +29,7 @@ export default function ResumePreviewPanel({ data, templateId, accentColor }: Pr
     projects: t.sections.projects,
     certifications: t.sections.certifications,
     contact: t.sections.contact,
+    present: t.fields.present,
   };
 
   // Keep labels in a ref so the effect always uses the latest without

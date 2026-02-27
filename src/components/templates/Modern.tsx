@@ -10,6 +10,7 @@ interface Labels {
   projects: string;
   certifications: string;
   contact: string;
+  present: string;
 }
 
 const ACCENT = '#60a5fa';
@@ -94,7 +95,7 @@ export function ModernTemplate({ data, labels, accentColor }: { data: ResumeData
               {experience.map((exp) => {
                 const bullets = (exp.bullets || []).filter((b) => b.trim());
                 const dateRange = exp.current
-                  ? `${exp.startDate} – Present`
+                  ? `${exp.startDate} – ${labels.present}`
                   : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
                 return (
                   <View key={exp.id} style={s.expItem}>

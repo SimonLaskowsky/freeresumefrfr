@@ -4,7 +4,7 @@ import type { ResumeData } from '@/store/resumeStore';
 
 interface Props {
   data: ResumeData;
-  labels: { summary: string; experience: string; education: string; skills: string; projects: string; certifications: string; contact: string; };
+  labels: { summary: string; experience: string; education: string; skills: string; projects: string; certifications: string; contact: string; present: string; };
   accentColor: string;
 }
 
@@ -85,7 +85,7 @@ export function TimelineTemplate({ data, labels, accentColor }: Props) {
             {experience.map((exp, idx) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
               const dateRange = exp.current
-                ? `${exp.startDate} – Present`
+                ? `${exp.startDate} – ${labels.present}`
                 : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
               const isLast = idx === experience.length - 1;
               return (

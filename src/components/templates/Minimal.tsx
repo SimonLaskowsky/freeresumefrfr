@@ -10,6 +10,7 @@ interface Labels {
   projects: string;
   certifications: string;
   contact: string;
+  present: string;
 }
 
 const s = StyleSheet.create({
@@ -26,7 +27,7 @@ const s = StyleSheet.create({
     fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 2,
     textTransform: 'uppercase', marginBottom: 10, marginTop: 20,
   },
-  divider: { borderBottomWidth: 0.5, borderBottomColor: '#e2e8f0', marginBottom: 10 },
+  divider: { borderBottomWidth: 0.5, borderBottomColor: '#e2e8f0', marginBottom: 5 },
 
   expItem: { marginBottom: 10 },
   expRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
@@ -83,7 +84,7 @@ export function MinimalTemplate({ data, labels, accentColor }: { data: ResumeDat
             {experience.map((exp) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
               const dateRange = exp.current
-                ? `${exp.startDate} – Present`
+                ? `${exp.startDate} – ${labels.present}`
                 : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
               return (
                 <View key={exp.id} style={s.expItem}>
