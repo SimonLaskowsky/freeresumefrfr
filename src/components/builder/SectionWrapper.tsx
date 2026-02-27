@@ -46,7 +46,7 @@ export default function SectionWrapper({
           {tip && (
             <button
               onClick={() => setTipOpen((t) => !t)}
-              className={`text-[11px] transition-colors ${tipOpen ? 'text-lime-400' : 'text-zinc-700 hover:text-zinc-400'}`}
+              className={`text-[11px] transition-colors ${tipOpen ? 'text-lime-400' : 'text-zinc-500 hover:text-zinc-300'}`}
               title="ATS tip"
             >
               ⓘ
