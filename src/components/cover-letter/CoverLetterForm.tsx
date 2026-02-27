@@ -117,7 +117,7 @@ export default function CoverLetterForm() {
       <div className="border-t border-zinc-800/60" />
 
       {/* Body */}
-      <SectionWrapper title="Body" icon="📝">
+      <SectionWrapper title={cl.bodyLabel} icon="📝">
         <div className="space-y-3">
           <textarea
             className={`${textareaCls} min-h-[90px]`}
