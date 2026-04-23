@@ -85,7 +85,7 @@ export function MinimalCoverLetter({ data, labels, accentColor }: CoverLetterTem
 
   return (
     <Document>
-      <Page size={data.pageSize || 'LETTER'} style={styles.page}>
+      <Page size="A4" style={styles.page}>
         {data.senderName && <Text style={styles.senderName}>{data.senderName}</Text>}
         {contactLine ? <Text style={styles.contactLine}>{contactLine}</Text> : <View style={{ marginBottom: 16 }} />}
         <View style={[styles.rule, { borderBottomColor: accentColor }]} />

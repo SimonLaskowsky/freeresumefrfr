@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
 import { SANS } from './fonts';
 import type { ResumeData } from '@/store/resumeStore';
 
@@ -25,9 +25,9 @@ const s = StyleSheet.create({
 
   sectionTitle: {
     fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 2,
-    textTransform: 'uppercase', marginBottom: 10, marginTop: 20,
+    textTransform: 'uppercase', marginBottom: 4, marginTop: 18,
   },
-  divider: { borderBottomWidth: 0.5, borderBottomColor: '#e2e8f0', marginBottom: 5 },
+  divider: { borderBottomWidth: 0.5, borderBottomColor: '#e2e8f0', marginBottom: 8 },
 
   expItem: { marginBottom: 10 },
   expRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
@@ -46,6 +46,7 @@ const s = StyleSheet.create({
   eduNotes: { fontSize: 9, color: '#94a3b8', marginTop: 2 },
 
   skills: { fontSize: 9.5, color: '#475569', lineHeight: 1.6 },
+  photo: { width: 72, height: 90, marginBottom: 12, objectFit: 'cover' },
 });
 
 export function MinimalTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
@@ -54,7 +55,8 @@ export function MinimalTemplate({ data, labels, accentColor }: { data: ResumeDat
 
   return (
     <Document>
-      <Page size={data.pageSize || 'LETTER'} style={s.page}>
+      <Page size="A4" style={s.page}>
+        {personal.photo && <Image src={personal.photo} style={s.photo} />}
         {personal.name && <Text style={s.name}>{personal.name}</Text>}
         {personal.title && <Text style={s.title}>{personal.title}</Text>}
         {contact.length > 0 && (
@@ -156,8 +158,15 @@ export function MinimalTemplate({ data, labels, accentColor }: { data: ResumeDat
           <View>
             <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.certifications}</Text>
             <View style={s.divider} />
-            {data.certifications.map((cert) => (
-              <View key={cert.id} style={{ marginBottom: 5, flexDirection: 'row', justifyContent: 'space-between' }}>
+            {data.certifications.map((cert, idx) => (
+              <View
+                key={cert.id}
+                style={{
+                  marginBottom: idx === data.certifications!.length - 1 ? 0 : 4,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
                 <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700, color: '#0f172a' }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
                 {cert.date ? <Text style={{ fontSize: 8.5, color: '#9ca3af' }}>{cert.date}</Text> : null}
               </View>

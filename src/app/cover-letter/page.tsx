@@ -31,7 +31,6 @@ export default function CoverLetterPage() {
   const data = useCoverLetterStore((s) => s.data);
   const templateId = useCoverLetterStore((s) => s.templateId);
   const setTemplate = useCoverLetterStore((s) => s.setTemplate);
-  const setPageSize = useCoverLetterStore((s) => s.setPageSize);
   const loadSampleData = useCoverLetterStore((s) => s.loadSampleData);
   const resetData = useCoverLetterStore((s) => s.resetData);
   const accentColor = useCoverLetterStore((s) => s.accentColor);
@@ -173,22 +172,6 @@ export default function CoverLetterPage() {
                 );
               })}
             </div>
-          </div>
-          {/* Page size toggle */}
-          <div className="flex items-center gap-1 bg-zinc-800/60 rounded-lg p-0.5 flex-shrink-0">
-            {(['LETTER', 'A4'] as const).map((size) => (
-              <button
-                key={size}
-                onClick={() => setPageSize(size)}
-                className={`text-[11px] font-semibold px-2.5 py-1 rounded-md transition-colors ${
-                  data.pageSize === size
-                    ? 'bg-lime-400 text-zinc-950'
-                    : 'text-zinc-500 hover:text-zinc-300'
-                }`}
-              >
-                {size === 'LETTER' ? t.builder.letterLabel : t.builder.a4Label}
-              </button>
-            ))}
           </div>
         </div>
 

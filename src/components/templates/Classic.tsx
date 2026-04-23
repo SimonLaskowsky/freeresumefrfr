@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
 import { SANS } from './fonts';
 import type { ResumeData } from '@/store/resumeStore';
 
@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
     color: '#333333',
     lineHeight: 1.5,
   },
+  photo: { width: 90, height: 112, marginBottom: 10, objectFit: 'cover' },
 });
 
 export function ClassicTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
@@ -132,8 +133,9 @@ export function ClassicTemplate({ data, labels, accentColor }: { data: ResumeDat
 
   return (
     <Document>
-      <Page size={data.pageSize || 'LETTER'} style={styles.page}>
+      <Page size="A4" style={styles.page}>
         {/* Header */}
+        {personal.photo && <Image src={personal.photo} style={styles.photo} />}
         {personal.name && <Text style={[styles.name, { color: accentColor }]}>{personal.name}</Text>}
         {personal.title && <Text style={styles.jobTitle}>{personal.title}</Text>}
         {contactItems.length > 0 && (
@@ -239,8 +241,15 @@ export function ClassicTemplate({ data, labels, accentColor }: { data: ResumeDat
           <View>
             <View style={[styles.divider, { borderBottomColor: accentColor }]} />
             <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.certifications.toUpperCase()}</Text>
-            {data.certifications.map((cert) => (
-              <View key={cert.id} style={{ marginBottom: 4, flexDirection: 'row', justifyContent: 'space-between' }}>
+            {data.certifications.map((cert, idx) => (
+              <View
+                key={cert.id}
+                style={{
+                  marginBottom: idx === data.certifications!.length - 1 ? 0 : 4,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
                 <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
                 {cert.date ? <Text style={{ fontSize: 9, color: '#666666' }}>{cert.date}</Text> : null}
               </View>

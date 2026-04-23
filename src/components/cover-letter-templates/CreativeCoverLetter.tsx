@@ -99,7 +99,7 @@ export function CreativeCoverLetter({ data, labels, accentColor }: CoverLetterTe
 
   return (
     <Document>
-      <Page size={data.pageSize || 'LETTER'} style={styles.page}>
+      <Page size="A4" style={styles.page}>
         {/* Left accent strip */}
         <View style={[styles.accentStrip, { backgroundColor: accentColor }]} />
 

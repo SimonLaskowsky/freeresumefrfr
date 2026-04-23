@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
 import { SANS } from './fonts';
 import type { ResumeData } from '@/store/resumeStore';
 
@@ -52,6 +52,9 @@ const s = StyleSheet.create({
   eduNotes: { fontSize: 8.5, color: '#6b7280', marginTop: 1 },
 
   skills: { fontSize: 9.5, color: '#374151', lineHeight: 1.5 },
+  headerRow: { flexDirection: 'row', alignItems: 'flex-start' },
+  headerText: { flex: 1 },
+  photo: { width: 60, height: 76, borderRadius: 2, marginRight: 16, marginTop: 2, objectFit: 'cover' },
 });
 
 function Section({ title, children, accentColor }: { title: string; children: React.ReactNode; accentColor: string }) {
@@ -72,20 +75,25 @@ export function ProTemplate({ data, labels, accentColor }: { data: ResumeData; l
 
   return (
     <Document>
-      <Page size={data.pageSize || 'LETTER'} style={s.page}>
+      <Page size="A4" style={s.page}>
         <View style={s.header}>
-          {personal.name && <Text style={s.name}>{personal.name}</Text>}
-          {personal.title && <Text style={[s.title, { color: accentColor }]}>{personal.title}</Text>}
-          {contact.length > 0 && (
-            <View style={s.contactRow}>
-              {contact.map((item, i) => (
-                <View key={i} style={{ flexDirection: 'row' }}>
-                  {i > 0 && <Text style={s.contactSep}>|</Text>}
-                  <Text>{item}</Text>
+          <View style={s.headerRow}>
+            {personal.photo && <Image src={personal.photo} style={s.photo} />}
+            <View style={s.headerText}>
+              {personal.name && <Text style={s.name}>{personal.name}</Text>}
+              {personal.title && <Text style={[s.title, { color: accentColor }]}>{personal.title}</Text>}
+              {contact.length > 0 && (
+                <View style={s.contactRow}>
+                  {contact.map((item, i) => (
+                    <View key={i} style={{ flexDirection: 'row' }}>
+                      {i > 0 && <Text style={s.contactSep}>|</Text>}
+                      <Text>{item}</Text>
+                    </View>
+                  ))}
                 </View>
-              ))}
+              )}
             </View>
-          )}
+          </View>
           <View style={[s.headerRule, { borderBottomColor: accentColor }]} />
         </View>
 
@@ -166,8 +174,15 @@ export function ProTemplate({ data, labels, accentColor }: { data: ResumeData; l
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
           <Section title={labels.certifications} accentColor={accentColor}>
-            {data.certifications.map((cert) => (
-              <View key={cert.id} style={{ marginBottom: 5, flexDirection: 'row', justifyContent: 'space-between' }}>
+            {data.certifications.map((cert, idx) => (
+              <View
+                key={cert.id}
+                style={{
+                  marginBottom: idx === data.certifications!.length - 1 ? 0 : 5,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
                 <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700, color: '#0c1a2e' }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
                 {cert.date ? <Text style={{ fontSize: 8.5, color: '#6b7280' }}>{cert.date}</Text> : null}
               </View>

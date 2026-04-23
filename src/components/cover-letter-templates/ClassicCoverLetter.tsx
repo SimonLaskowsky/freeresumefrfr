@@ -77,7 +77,7 @@ export function ClassicCoverLetter({ data, labels, accentColor }: CoverLetterTem
 
   return (
     <Document>
-      <Page size={data.pageSize || 'LETTER'} style={styles.page}>
+      <Page size="A4" style={styles.page}>
         {/* Date top-right */}
         {data.date && (
           <View style={styles.dateRow}>

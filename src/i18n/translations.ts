@@ -69,6 +69,12 @@ export interface Translations {
     justStarted: string; gettingThere: string; lookingGood: string; strong: string;
   };
 
+  // Photo uploader
+  photo: {
+    upload: string; change: string; remove: string; processing: string;
+    hint: string; errorType: string; errorSize: string; errorDecode: string;
+  };
+
   // Template names
   templates: {
     classic: string; modern: string; minimal: string; bold: string;
@@ -282,6 +288,16 @@ const en: Translations = {
     salutationLabel: 'Salutation',
     salutationPlaceholder: 'Dear Sarah Chen,',
   },
+  photo: {
+    upload: 'Upload photo',
+    change: 'Change photo',
+    remove: 'Remove',
+    processing: 'Processing…',
+    hint: 'JPG or PNG, up to 8MB',
+    errorType: 'Please select an image file',
+    errorSize: 'File too large (max 8MB)',
+    errorDecode: "Couldn't read that image",
+  },
 };
 
 // ─── Spanish ──────────────────────────────────────────────────────────────────
@@ -463,6 +479,16 @@ const es: Translations = {
     salutationLabel: 'Saludo',
     salutationPlaceholder: 'Estimada Sra. Chen,',
   },
+  photo: {
+    upload: 'Subir foto',
+    change: 'Cambiar foto',
+    remove: 'Quitar',
+    processing: 'Procesando…',
+    hint: 'JPG o PNG, hasta 8 MB',
+    errorType: 'Selecciona un archivo de imagen',
+    errorSize: 'Archivo demasiado grande (máx 8 MB)',
+    errorDecode: 'No se pudo leer la imagen',
+  },
 };
 
 // ─── French ───────────────────────────────────────────────────────────────────
@@ -642,6 +668,16 @@ const fr: Translations = {
     reSubject: 'Objet',
     salutationLabel: "Formule d'appel",
     salutationPlaceholder: 'Madame Chen,',
+  },
+  photo: {
+    upload: 'Ajouter une photo',
+    change: 'Changer la photo',
+    remove: 'Retirer',
+    processing: 'Traitement…',
+    hint: "JPG ou PNG, jusqu'à 8 Mo",
+    errorType: 'Sélectionnez un fichier image',
+    errorSize: 'Fichier trop volumineux (max 8 Mo)',
+    errorDecode: "Impossible de lire l'image",
   },
 };
 
@@ -824,6 +860,16 @@ const de: Translations = {
     salutationLabel: 'Anrede',
     salutationPlaceholder: 'Sehr geehrte Frau Chen,',
   },
+  photo: {
+    upload: 'Foto hochladen',
+    change: 'Foto ändern',
+    remove: 'Entfernen',
+    processing: 'Wird verarbeitet…',
+    hint: 'JPG oder PNG, bis zu 8 MB',
+    errorType: 'Bitte eine Bilddatei wählen',
+    errorSize: 'Datei zu groß (max. 8 MB)',
+    errorDecode: 'Bild konnte nicht gelesen werden',
+  },
 };
 
 // ─── Portuguese ───────────────────────────────────────────────────────────────
@@ -1004,6 +1050,16 @@ const pt: Translations = {
     reSubject: 'Ref',
     salutationLabel: 'Saudação',
     salutationPlaceholder: 'Cara Sra. Chen,',
+  },
+  photo: {
+    upload: 'Enviar foto',
+    change: 'Alterar foto',
+    remove: 'Remover',
+    processing: 'A processar…',
+    hint: 'JPG ou PNG, até 8 MB',
+    errorType: 'Selecione um arquivo de imagem',
+    errorSize: 'Arquivo muito grande (máx 8 MB)',
+    errorDecode: 'Não foi possível ler a imagem',
   },
 };
 
@@ -1186,6 +1242,16 @@ const zh: Translations = {
     salutationLabel: '称呼',
     salutationPlaceholder: '尊敬的陈女士，',
   },
+  photo: {
+    upload: '上传照片',
+    change: '更换照片',
+    remove: '移除',
+    processing: '处理中…',
+    hint: 'JPG 或 PNG，最大 8MB',
+    errorType: '请选择图片文件',
+    errorSize: '文件过大（最大 8MB）',
+    errorDecode: '无法读取图片',
+  },
 };
 
 // ─── Japanese ─────────────────────────────────────────────────────────────────
@@ -1366,6 +1432,16 @@ const ja: Translations = {
     reSubject: '件名',
     salutationLabel: '宛名敬称',
     salutationPlaceholder: '陳様',
+  },
+  photo: {
+    upload: '写真をアップロード',
+    change: '写真を変更',
+    remove: '削除',
+    processing: '処理中…',
+    hint: 'JPGまたはPNG、最大8MB',
+    errorType: '画像ファイルを選択してください',
+    errorSize: 'ファイルが大きすぎます（最大8MB）',
+    errorDecode: '画像を読み込めませんでした',
   },
 };
 
@@ -1548,6 +1624,16 @@ const ko: Translations = {
     salutationLabel: '인사말',
     salutationPlaceholder: '채용 담당자님께,',
   },
+  photo: {
+    upload: '사진 업로드',
+    change: '사진 변경',
+    remove: '삭제',
+    processing: '처리 중…',
+    hint: 'JPG 또는 PNG, 최대 8MB',
+    errorType: '이미지 파일을 선택하세요',
+    errorSize: '파일이 너무 큽니다 (최대 8MB)',
+    errorDecode: '이미지를 읽을 수 없습니다',
+  },
 };
 
 // ─── Arabic ───────────────────────────────────────────────────────────────────
@@ -1727,6 +1813,16 @@ const ar: Translations = {
     reSubject: 'الموضوع',
     salutationLabel: 'تحية',
     salutationPlaceholder: 'السيدة شن العزيزة،',
+  },
+  photo: {
+    upload: 'تحميل صورة',
+    change: 'تغيير الصورة',
+    remove: 'إزالة',
+    processing: 'جارٍ المعالجة…',
+    hint: 'JPG أو PNG، حتى 8 ميجابايت',
+    errorType: 'يرجى اختيار ملف صورة',
+    errorSize: 'الملف كبير جدًا (الحد الأقصى 8 ميجابايت)',
+    errorDecode: 'تعذر قراءة الصورة',
   },
 };
 
@@ -1908,6 +2004,16 @@ const ru: Translations = {
     salutationLabel: 'Обращение',
     salutationPlaceholder: 'Уважаемая госпожа Чен,',
   },
+  photo: {
+    upload: 'Загрузить фото',
+    change: 'Изменить фото',
+    remove: 'Удалить',
+    processing: 'Обработка…',
+    hint: 'JPG или PNG, до 8 МБ',
+    errorType: 'Выберите файл изображения',
+    errorSize: 'Файл слишком большой (макс. 8 МБ)',
+    errorDecode: 'Не удалось прочитать изображение',
+  },
 };
 
 // ─── Italian ──────────────────────────────────────────────────────────────────
@@ -2087,6 +2193,16 @@ const it: Translations = {
     reSubject: 'Oggetto',
     salutationLabel: 'Formula di saluto',
     salutationPlaceholder: 'Gentile Signora Chen,',
+  },
+  photo: {
+    upload: 'Carica foto',
+    change: 'Cambia foto',
+    remove: 'Rimuovi',
+    processing: 'Elaborazione…',
+    hint: 'JPG o PNG, fino a 8 MB',
+    errorType: 'Seleziona un file immagine',
+    errorSize: 'File troppo grande (max 8 MB)',
+    errorDecode: "Impossibile leggere l'immagine",
   },
 };
 
@@ -2268,6 +2384,16 @@ const hi: Translations = {
     salutationLabel: 'अभिवादन',
     salutationPlaceholder: 'प्रिय सुश्री चेन,',
   },
+  photo: {
+    upload: 'फ़ोटो अपलोड करें',
+    change: 'फ़ोटो बदलें',
+    remove: 'हटाएं',
+    processing: 'प्रसंस्करण…',
+    hint: 'JPG या PNG, अधिकतम 8MB',
+    errorType: 'कृपया एक इमेज फ़ाइल चुनें',
+    errorSize: 'फ़ाइल बहुत बड़ी है (अधिकतम 8MB)',
+    errorDecode: 'इमेज नहीं पढ़ी जा सकी',
+  },
 };
 
 // ─── Turkish ──────────────────────────────────────────────────────────────────
@@ -2447,6 +2573,16 @@ const tr: Translations = {
     reSubject: 'Konu',
     salutationLabel: 'Hitap',
     salutationPlaceholder: 'Sayın Chen Hanım,',
+  },
+  photo: {
+    upload: 'Fotoğraf yükle',
+    change: 'Fotoğrafı değiştir',
+    remove: 'Kaldır',
+    processing: 'İşleniyor…',
+    hint: 'JPG veya PNG, en fazla 8 MB',
+    errorType: 'Lütfen bir görsel dosyası seçin',
+    errorSize: 'Dosya çok büyük (en fazla 8 MB)',
+    errorDecode: 'Görsel okunamadı',
   },
 };
 
@@ -2628,6 +2764,16 @@ const nl: Translations = {
     salutationLabel: 'Aanhef',
     salutationPlaceholder: 'Geachte mevrouw Chen,',
   },
+  photo: {
+    upload: 'Foto uploaden',
+    change: 'Foto wijzigen',
+    remove: 'Verwijderen',
+    processing: 'Bezig…',
+    hint: 'JPG of PNG, tot 8 MB',
+    errorType: 'Kies een afbeeldingsbestand',
+    errorSize: 'Bestand te groot (max 8 MB)',
+    errorDecode: 'Afbeelding kon niet worden gelezen',
+  },
 };
 
 // ─── Polish ───────────────────────────────────────────────────────────────────
@@ -2807,6 +2953,16 @@ const pl: Translations = {
     reSubject: 'Dotyczy',
     salutationLabel: 'Zwrot grzecznościowy',
     salutationPlaceholder: 'Szanowna Pani Chen,',
+  },
+  photo: {
+    upload: 'Dodaj zdjęcie',
+    change: 'Zmień zdjęcie',
+    remove: 'Usuń',
+    processing: 'Przetwarzanie…',
+    hint: 'JPG lub PNG, do 8 MB',
+    errorType: 'Wybierz plik obrazu',
+    errorSize: 'Plik za duży (maks. 8 MB)',
+    errorDecode: 'Nie udało się odczytać obrazu',
   },
 };
 

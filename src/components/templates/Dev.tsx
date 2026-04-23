@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
 import { SANS } from './fonts';
 import type { ResumeData } from '@/store/resumeStore';
 
@@ -32,6 +32,7 @@ const s = StyleSheet.create({
   eduDates: { fontSize: 8.5, color: '#6b7280' },
   eduSchool: { fontSize: 9.5, color: '#4b5563' },
   eduNotes: { fontSize: 8.5, color: '#6b7280', marginTop: 1 },
+  photo: { width: 78, height: 98, borderRadius: 2, marginBottom: 10, objectFit: 'cover' },
 });
 
 export function DevTemplate({ data, labels, accentColor }: Props) {
@@ -51,7 +52,8 @@ export function DevTemplate({ data, labels, accentColor }: Props) {
 
   return (
     <Document>
-      <Page size={data.pageSize || 'LETTER'} style={s.page}>
+      <Page size="A4" style={s.page}>
+        {personal.photo && <Image src={personal.photo} style={s.photo} />}
         {personal.name && <Text style={s.name}>{personal.name}</Text>}
         {personal.title && <Text style={s.title}>{personal.title}</Text>}
         {contact.length > 0 && (
@@ -139,8 +141,15 @@ export function DevTemplate({ data, labels, accentColor }: Props) {
 
         {data.certifications && data.certifications.length > 0 && (
           <CommentSection label={labels.certifications}>
-            {data.certifications.map((cert) => (
-              <View key={cert.id} style={{ marginBottom: 4, flexDirection: 'row', justifyContent: 'space-between' }}>
+            {data.certifications.map((cert, idx) => (
+              <View
+                key={cert.id}
+                style={{
+                  marginBottom: idx === data.certifications!.length - 1 ? 0 : 4,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
                 <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
                 {cert.date && <Text style={{ fontSize: 8.5, color: '#6b7280' }}>{cert.date}</Text>}
               </View>

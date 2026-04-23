@@ -17,7 +17,6 @@ export interface CoverLetterData {
   body: string;
   closing: string;
   signOff: string;
-  pageSize: 'LETTER' | 'A4';
 }
 
 interface CoverLetterStore {
@@ -26,7 +25,6 @@ interface CoverLetterStore {
   setTemplate: (id: string) => void;
   updateField: (field: keyof CoverLetterData, value: string) => void;
   syncFromResume: (personal: PersonalInfo) => void;
-  setPageSize: (size: 'LETTER' | 'A4') => void;
   loadSampleData: () => void;
   resetData: () => void;
   accentColor: string;
@@ -48,7 +46,6 @@ const defaultData: CoverLetterData = {
   body: '',
   closing: '',
   signOff: '',
-  pageSize: 'LETTER',
 };
 
 const sampleData: CoverLetterData = {
@@ -66,7 +63,6 @@ const sampleData: CoverLetterData = {
   body: 'In my current role at Linear, I owned the real-time sync engine powering collaborative editing across web and desktop — reducing initial page load by 60% through strategic code splitting and service worker caching. Before that, I built fraud detection dashboards at Stripe used by over 50,000 merchants. I thrive at the intersection of performance, reliability, and clean API design.',
   closing: 'I would love the opportunity to bring this experience to Stripe and help build the financial infrastructure of the internet. I am available for a conversation at your convenience, and I look forward to hearing from you.',
   signOff: 'Best regards,',
-  pageSize: 'LETTER',
 };
 
 export const useCoverLetterStore = create<CoverLetterStore>()(
@@ -89,9 +85,6 @@ export const useCoverLetterStore = create<CoverLetterStore>()(
             senderLocation: personal.location || s.data.senderLocation,
           },
         })),
-
-      setPageSize: (pageSize) =>
-        set((s) => ({ data: { ...s.data, pageSize } })),
 
       loadSampleData: () => set({ data: sampleData }),
       resetData: () => set({ data: defaultData }),

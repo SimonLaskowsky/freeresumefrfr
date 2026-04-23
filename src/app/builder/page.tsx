@@ -40,7 +40,6 @@ export default function BuilderPage() {
   const data = useResumeStore((state) => state.data);
   const templateId = useResumeStore((state) => state.templateId);
   const accentColor = useResumeStore((state) => state.accentColor);
-  const setPageSize = useResumeStore((state) => state.setPageSize);
   const loadSampleData = useResumeStore((state) => state.loadSampleData);
   const resetData = useResumeStore((state) => state.resetData);
   const debouncedData = useDebounce(data, 600);
@@ -51,9 +50,7 @@ export default function BuilderPage() {
     debouncedData.experience.length === 0 &&
     debouncedData.education.length === 0;
 
-  const previewData = isExampleMode
-    ? { ...sampleData, pageSize: data.pageSize }
-    : debouncedData;
+  const previewData = isExampleMode ? sampleData : debouncedData;
   const { t } = useI18n();
 
   // Mobile tab state
@@ -160,27 +157,9 @@ export default function BuilderPage() {
           mobileTab === 'preview' ? 'flex flex-1' : 'hidden md:flex'
         }`}
       >
-        {/* Template picker + page size toggle */}
-        <div className="px-4 py-3 border-b border-zinc-800 flex-shrink-0 flex items-center justify-between gap-3">
-          <div className="flex-1 min-w-0">
-            <TemplatePicker />
-          </div>
-          {/* Page size toggle */}
-          <div className="flex items-center gap-1 bg-zinc-800/60 rounded-lg p-0.5 flex-shrink-0">
-            {(['LETTER', 'A4'] as const).map((size) => (
-              <button
-                key={size}
-                onClick={() => setPageSize(size)}
-                className={`text-[11px] font-semibold px-2.5 py-1 rounded-md transition-colors ${
-                  data.pageSize === size
-                    ? 'bg-lime-400 text-zinc-950'
-                    : 'text-zinc-500 hover:text-zinc-300'
-                }`}
-              >
-                {size === 'LETTER' ? t.builder.letterLabel : t.builder.a4Label}
-              </button>
-            ))}
-          </div>
+        {/* Template picker */}
+        <div className="px-4 py-3 border-b border-zinc-800 flex-shrink-0">
+          <TemplatePicker />
         </div>
 
         {/* PDF viewer */}

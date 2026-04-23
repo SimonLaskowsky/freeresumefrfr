@@ -90,7 +90,7 @@ export function ModernCoverLetter({ data, labels, accentColor }: CoverLetterTemp
 
   return (
     <Document>
-      <Page size={data.pageSize || 'LETTER'} style={styles.page}>
+      <Page size="A4" style={styles.page}>
         {/* Dark navy header */}
         <View style={[styles.header, { backgroundColor: accentColor }]}>
           {data.senderName && <Text style={styles.senderName}>{data.senderName}</Text>}

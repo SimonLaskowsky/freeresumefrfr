@@ -4,6 +4,7 @@ import { useResumeStore } from '@/store/resumeStore';
 import { useI18n } from '@/i18n/I18nContext';
 import SectionWrapper from './SectionWrapper';
 import { inputCls } from './shared';
+import PhotoUpload from './PhotoUpload';
 
 export default function PersonalInfoForm() {
   const { data, updatePersonal } = useResumeStore();
@@ -17,6 +18,9 @@ export default function PersonalInfoForm() {
       tip={t.tips.personal}
     >
       <div className="grid grid-cols-2 gap-3">
+        <div className="col-span-2">
+          <PhotoUpload />
+        </div>
         <div className="col-span-2">
           <input
             className={inputCls}

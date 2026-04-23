@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
 import { SANS } from './fonts';
 import type { ResumeData } from '@/store/resumeStore';
 
@@ -19,9 +19,8 @@ const s = StyleSheet.create({
     paddingTop: 32, paddingBottom: 32, paddingHorizontal: 44, color: '#1a1a1a',
   },
   name: { fontSize: 20, fontFamily: SANS, fontWeight: 700, marginBottom: 2, letterSpacing: 0.2 },
-  titleAndContact: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 2 },
-  title: { fontSize: 10, color: '#4b5563' },
-  contactRow: { flexDirection: 'row', flexWrap: 'wrap', fontSize: 8, color: '#6b7280', justifyContent: 'flex-end' },
+  title: { fontSize: 10, color: '#4b5563', marginBottom: 3 },
+  contactRow: { flexDirection: 'row', flexWrap: 'wrap', fontSize: 8, color: '#6b7280' },
   contactSep: { marginHorizontal: 4, color: '#d1d5db' },
 
   divider: { borderBottomWidth: 1, marginTop: 8, marginBottom: 4 },
@@ -45,6 +44,9 @@ const s = StyleSheet.create({
   eduNotes: { fontSize: 8.5, color: '#6b7280', marginTop: 0.5 },
 
   skills: { fontSize: 8.5, color: '#374151', lineHeight: 1.4 },
+  headerRow: { flexDirection: 'row', alignItems: 'flex-start' },
+  headerText: { flex: 1 },
+  photo: { width: 56, height: 70, borderRadius: 2, marginRight: 14, marginTop: 1, objectFit: 'cover' },
 });
 
 export function CompactTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
@@ -53,21 +55,23 @@ export function CompactTemplate({ data, labels, accentColor }: { data: ResumeDat
 
   return (
     <Document>
-      <Page size={data.pageSize || 'LETTER'} style={s.page}>
-        {personal.name && <Text style={s.name}>{personal.name}</Text>}
-
-        <View style={s.titleAndContact}>
-          <Text style={s.title}>{personal.title}</Text>
-          {contact.length > 0 && (
-            <View style={s.contactRow}>
-              {contact.map((item, i) => (
-                <View key={i} style={{ flexDirection: 'row' }}>
-                  {i > 0 && <Text style={s.contactSep}>·</Text>}
-                  <Text>{item}</Text>
-                </View>
-              ))}
-            </View>
-          )}
+      <Page size="A4" style={s.page}>
+        <View style={s.headerRow}>
+          {personal.photo && <Image src={personal.photo} style={s.photo} />}
+          <View style={s.headerText}>
+            {personal.name && <Text style={s.name}>{personal.name}</Text>}
+            {personal.title && <Text style={s.title}>{personal.title}</Text>}
+            {contact.length > 0 && (
+              <View style={s.contactRow}>
+                {contact.map((item, i) => (
+                  <View key={i} style={{ flexDirection: 'row' }}>
+                    {i > 0 && <Text style={s.contactSep}>·</Text>}
+                    <Text>{item}</Text>
+                  </View>
+                ))}
+              </View>
+            )}
+          </View>
         </View>
 
         {/* Summary */}
@@ -158,8 +162,15 @@ export function CompactTemplate({ data, labels, accentColor }: { data: ResumeDat
           <View>
             <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.certifications}</Text>
-            {data.certifications.map((cert) => (
-              <View key={cert.id} style={{ marginBottom: 3, flexDirection: 'row', justifyContent: 'space-between' }}>
+            {data.certifications.map((cert, idx) => (
+              <View
+                key={cert.id}
+                style={{
+                  marginBottom: idx === data.certifications!.length - 1 ? 0 : 3,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
                 <Text style={{ fontSize: 8.5, fontFamily: SANS, fontWeight: 700 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
                 {cert.date ? <Text style={{ fontSize: 8, color: '#6b7280' }}>{cert.date}</Text> : null}
               </View>

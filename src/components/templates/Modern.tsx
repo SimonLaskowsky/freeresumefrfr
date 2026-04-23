@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
 import { SANS } from './fonts';
 import type { ResumeData } from '@/store/resumeStore';
 
@@ -50,6 +50,7 @@ const s = StyleSheet.create({
   eduDates: { fontSize: 8.5, color: '#6b7280' },
   eduSchool: { fontSize: 9, color: '#4b5563' },
   eduNotes: { fontSize: 8.5, color: '#6b7280', marginTop: 1 },
+  photo: { width: 144, height: 180, marginBottom: 16, objectFit: 'cover' },
 });
 
 export function ModernTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
@@ -59,9 +60,10 @@ export function ModernTemplate({ data, labels, accentColor }: { data: ResumeData
 
   return (
     <Document>
-      <Page size={data.pageSize || 'LETTER'} style={s.page}>
+      <Page size="A4" style={s.page}>
         {/* Sidebar */}
         <View style={[s.sidebar, { backgroundColor: accentColor }]}>
+          {personal.photo && <Image src={personal.photo} style={s.photo} />}
           {personal.name && <Text style={s.sName}>{personal.name}</Text>}
           {personal.title && <Text style={s.sTitle}>{personal.title}</Text>}
           {contact.length > 0 && (
@@ -166,8 +168,15 @@ export function ModernTemplate({ data, labels, accentColor }: { data: ResumeData
             <View>
               <Text style={[s.mSectionTitle, { marginTop: 14, color: accentColor }]}>{labels.certifications}</Text>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
-              {data.certifications.map((cert) => (
-                <View key={cert.id} style={{ marginBottom: 5, flexDirection: 'row', justifyContent: 'space-between' }}>
+              {data.certifications.map((cert, idx) => (
+                <View
+                  key={cert.id}
+                  style={{
+                    marginBottom: idx === data.certifications!.length - 1 ? 0 : 5,
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                  }}
+                >
                   <Text style={{ fontSize: 9, fontFamily: SANS, fontWeight: 700, color: accentColor }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
                   {cert.date ? <Text style={{ fontSize: 8.5, color: '#6b7280' }}>{cert.date}</Text> : null}
                 </View>

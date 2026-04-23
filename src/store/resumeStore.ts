@@ -9,6 +9,7 @@ export interface PersonalInfo {
   location: string;
   linkedin: string;
   website: string;
+  photo?: string;
 }
 
 export interface Experience {
@@ -53,7 +54,6 @@ export interface ResumeData {
   projects: Project[];
   certifications: Certification[];
   skills: string;
-  pageSize: 'LETTER' | 'A4';
 }
 
 interface ResumeStore {
@@ -75,7 +75,6 @@ interface ResumeStore {
   updateCertification: (id: string, updates: Partial<Omit<Certification, 'id'>>) => void;
   removeCertification: (id: string) => void;
   updateSkills: (skills: string) => void;
-  setPageSize: (size: 'LETTER' | 'A4') => void;
   loadSampleData: () => void;
   resetData: () => void;
   accentColor: string;
@@ -90,7 +89,6 @@ const defaultData: ResumeData = {
   projects: [],
   certifications: [],
   skills: '',
-  pageSize: 'LETTER',
 };
 
 export const sampleData: ResumeData = {
@@ -162,7 +160,6 @@ export const sampleData: ResumeData = {
     },
   ],
   skills: 'TypeScript, React, Node.js, Rust, PostgreSQL, Redis, Kafka, AWS, Docker, Kubernetes',
-  pageSize: 'LETTER',
 };
 
 export const useResumeStore = create<ResumeStore>()(
@@ -268,9 +265,6 @@ export const useResumeStore = create<ResumeStore>()(
       updateSkills: (skills) =>
         set((s) => ({ data: { ...s.data, skills } })),
 
-      setPageSize: (pageSize) =>
-        set((s) => ({ data: { ...s.data, pageSize } })),
-
       loadSampleData: () => set({ data: sampleData }),
       resetData: () => set({ data: defaultData }),
       accentColor: '#1a1a1a',
@@ -294,7 +288,6 @@ export const useResumeStore = create<ResumeStore>()(
           state.data.summary ??= '';
           state.data.projects ??= [];
           state.data.certifications ??= [];
-          state.data.pageSize ??= 'LETTER';
         }
         return state as { data: ResumeData; templateId: string };
       },

@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
 import { SANS } from './fonts';
 import type { ResumeData } from '@/store/resumeStore';
 
@@ -51,6 +51,9 @@ const s = StyleSheet.create({
   eduNotes: { fontSize: 9, color: '#6b7280', marginTop: 1 },
 
   skills: { fontSize: 9.5, color: '#374151', lineHeight: 1.5 },
+  headerRow: { flexDirection: 'row', alignItems: 'flex-start' },
+  headerText: { flex: 1 },
+  photo: { width: 78, height: 78, borderRadius: 3, marginRight: 18, marginTop: 2, objectFit: 'cover' },
 });
 
 export function BoldTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
@@ -59,25 +62,30 @@ export function BoldTemplate({ data, labels, accentColor }: { data: ResumeData; 
 
   return (
     <Document>
-      <Page size={data.pageSize || 'LETTER'} style={s.page}>
+      <Page size="A4" style={s.page}>
         <View style={s.header}>
-          {personal.name && <Text style={s.name}>{personal.name}</Text>}
-          {personal.title && (
-            <View style={s.titleLine}>
-              <View style={[s.accentBar, { backgroundColor: accentColor }]} />
-              <Text style={[s.titleText, { color: accentColor }]}>{personal.title}</Text>
-            </View>
-          )}
-          {contact.length > 0 && (
-            <View style={s.contactRow}>
-              {contact.map((item, i) => (
-                <View key={i} style={{ flexDirection: 'row' }}>
-                  {i > 0 && <Text style={s.contactSep}>·</Text>}
-                  <Text>{item}</Text>
+          <View style={s.headerRow}>
+            {personal.photo && <Image src={personal.photo} style={s.photo} />}
+            <View style={s.headerText}>
+              {personal.name && <Text style={s.name}>{personal.name}</Text>}
+              {personal.title && (
+                <View style={s.titleLine}>
+                  <View style={[s.accentBar, { backgroundColor: accentColor }]} />
+                  <Text style={[s.titleText, { color: accentColor }]}>{personal.title}</Text>
                 </View>
-              ))}
+              )}
+              {contact.length > 0 && (
+                <View style={s.contactRow}>
+                  {contact.map((item, i) => (
+                    <View key={i} style={{ flexDirection: 'row' }}>
+                      {i > 0 && <Text style={s.contactSep}>·</Text>}
+                      <Text>{item}</Text>
+                    </View>
+                  ))}
+                </View>
+              )}
             </View>
-          )}
+          </View>
         </View>
 
         <View style={s.body}>
@@ -162,8 +170,15 @@ export function BoldTemplate({ data, labels, accentColor }: { data: ResumeData; 
           {data.certifications && data.certifications.length > 0 && (
             <View>
               <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.certifications}</Text>
-              {data.certifications.map((cert) => (
-                <View key={cert.id} style={{ marginBottom: 5, flexDirection: 'row', justifyContent: 'space-between' }}>
+              {data.certifications.map((cert, idx) => (
+                <View
+                  key={cert.id}
+                  style={{
+                    marginBottom: idx === data.certifications!.length - 1 ? 0 : 5,
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                  }}
+                >
                   <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700, color: '#0f172a' }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
                   {cert.date ? <Text style={{ fontSize: 8.5, color: '#6b7280' }}>{cert.date}</Text> : null}
                 </View>

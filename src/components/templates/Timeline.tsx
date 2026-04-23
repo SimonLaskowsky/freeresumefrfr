@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
 import { SANS } from './fonts';
 import type { ResumeData } from '@/store/resumeStore';
 
@@ -38,6 +38,7 @@ const s = StyleSheet.create({
   itemDates: { fontSize: 8.5, color: '#9ca3af' },
   itemNotes: { fontSize: 9, color: '#94a3b8', marginTop: 1 },
   skills: { fontSize: 9.5, color: '#374151', lineHeight: 1.5 },
+  photo: { width: 84, height: 104, borderRadius: 3, marginBottom: 12, objectFit: 'cover' },
 });
 
 export function TimelineTemplate({ data, labels, accentColor }: Props) {
@@ -58,7 +59,8 @@ export function TimelineTemplate({ data, labels, accentColor }: Props) {
 
   return (
     <Document>
-      <Page size={data.pageSize || 'LETTER'} style={s.page}>
+      <Page size="A4" style={s.page}>
+        {personal.photo && <Image src={personal.photo} style={s.photo} />}
         {personal.name && <Text style={s.name}>{personal.name}</Text>}
         {personal.title && <Text style={s.title}>{personal.title}</Text>}
         {contact.length > 0 && (
@@ -162,8 +164,15 @@ export function TimelineTemplate({ data, labels, accentColor }: Props) {
         {data.certifications && data.certifications.length > 0 && (
           <View>
             <SectionHead label={labels.certifications} />
-            {data.certifications.map((cert) => (
-              <View key={cert.id} style={{ marginBottom: 4, flexDirection: 'row', justifyContent: 'space-between' }}>
+            {data.certifications.map((cert, idx) => (
+              <View
+                key={cert.id}
+                style={{
+                  marginBottom: idx === data.certifications!.length - 1 ? 0 : 3,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
                 <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
                 {cert.date && <Text style={{ fontSize: 9, color: '#9ca3af' }}>{cert.date}</Text>}
               </View>

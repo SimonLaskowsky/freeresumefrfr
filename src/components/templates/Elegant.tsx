@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
 import { SERIF } from './fonts';
 import type { ResumeData } from '@/store/resumeStore';
 
@@ -25,7 +25,7 @@ const s = StyleSheet.create({
   contactSep: { marginHorizontal: 5, color: '#bbbbbb' },
 
   rule: { borderBottomWidth: 0.75, marginBottom: 4 },
-  thinRule: { borderBottomWidth: 0.25, borderBottomColor: '#cccccc', marginBottom: 10 },
+  thinRule: { borderBottomWidth: 0.25, borderBottomColor: '#cccccc', marginBottom: 6 },
 
   sectionTitle: {
     fontSize: 9, fontFamily: SERIF, fontWeight: 700, letterSpacing: 2,
@@ -49,6 +49,7 @@ const s = StyleSheet.create({
   eduNotes: { fontSize: 9, color: '#777777', fontFamily: SERIF, fontStyle: 'italic', marginTop: 1 },
 
   skills: { fontSize: 9.5, color: '#444444', lineHeight: 1.6, textAlign: 'center' },
+  photo: { width: 64, height: 80, borderRadius: 1, marginBottom: 12, objectFit: 'cover' },
 });
 
 export function ElegantTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
@@ -57,8 +58,9 @@ export function ElegantTemplate({ data, labels, accentColor }: { data: ResumeDat
 
   return (
     <Document>
-      <Page size={data.pageSize || 'LETTER'} style={s.page}>
+      <Page size="A4" style={s.page}>
         <View style={s.header}>
+          {personal.photo && <Image src={personal.photo} style={s.photo} />}
           {personal.name && <Text style={s.name}>{personal.name}</Text>}
           {personal.title && <Text style={s.title}>{personal.title}</Text>}
           {contact.length > 0 && (
@@ -161,8 +163,14 @@ export function ElegantTemplate({ data, labels, accentColor }: { data: ResumeDat
           <View>
             <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.certifications}</Text>
             <View style={s.thinRule} />
-            {data.certifications.map((cert) => (
-              <View key={cert.id} style={{ marginBottom: 5, alignItems: 'center' }}>
+            {data.certifications.map((cert, idx) => (
+              <View
+                key={cert.id}
+                style={{
+                  marginBottom: idx === data.certifications!.length - 1 ? 0 : 4,
+                  alignItems: 'center',
+                }}
+              >
                 <Text style={{ fontSize: 9.5, fontFamily: SERIF, fontWeight: 700 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
                 {cert.date ? <Text style={{ fontSize: 9, color: '#777777', fontFamily: SERIF, fontStyle: 'italic' }}>{cert.date}</Text> : null}
               </View>

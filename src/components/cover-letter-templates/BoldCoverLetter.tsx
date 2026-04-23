@@ -91,7 +91,7 @@ export function BoldCoverLetter({ data, labels, accentColor }: CoverLetterTempla
 
   return (
     <Document>
-      <Page size={data.pageSize || 'LETTER'} style={styles.page}>
+      <Page size="A4" style={styles.page}>
         <View style={styles.header}>
           {data.senderName && <Text style={[styles.senderName, { color: accentColor }]}>{data.senderName}</Text>}
           {contactLine ? <Text style={styles.contactLine}>{contactLine}</Text> : null}
