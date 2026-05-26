@@ -6,6 +6,7 @@ interface Props {
   data: ResumeData;
   labels: { summary: string; experience: string; education: string; skills: string; projects: string; certifications: string; contact: string; present: string; };
   accentColor: string;
+  companyLogo?: string;
 }
 
 const s = StyleSheet.create({
@@ -40,7 +41,7 @@ const s = StyleSheet.create({
   photo: { width: 60, height: 76, marginRight: 18, objectFit: 'cover' },
 });
 
-export function SleekTemplate({ data, labels, accentColor }: Props) {
+export function SleekTemplate({ data, labels, accentColor, companyLogo }: Props) {
   const { personal, experience, education, skills } = data;
   const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website].filter(Boolean);
 
@@ -57,6 +58,11 @@ export function SleekTemplate({ data, labels, accentColor }: Props) {
   return (
     <Document>
       <Page size="A4" style={s.page}>
+        {companyLogo && (
+          <View style={{ position: 'absolute', bottom: 24, right: 24 }}>
+            <Image src={companyLogo} style={{ width: 160, height: 160, opacity: 0.10, objectFit: 'contain' }} />
+          </View>
+        )}
         <View style={s.headerRow}>
           {personal.photo && <Image src={personal.photo} style={s.photo} />}
           <View style={[s.header, s.headerText]}>

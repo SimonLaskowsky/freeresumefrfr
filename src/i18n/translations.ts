@@ -75,6 +75,12 @@ export interface Translations {
     hint: string; errorType: string; errorSize: string; errorDecode: string;
   };
 
+  // Company logo watermark
+  companyLogo: {
+    upload: string; change: string; remove: string; processing: string;
+    hint: string; hintSet: string; errorType: string; errorSize: string; errorDecode: string;
+  };
+
   // Template names
   templates: {
     classic: string; modern: string; minimal: string; bold: string;
@@ -298,6 +304,17 @@ const en: Translations = {
     errorSize: 'File too large (max 8MB)',
     errorDecode: "Couldn't read that image",
   },
+  companyLogo: {
+    upload: 'Upload logo',
+    change: 'Change logo',
+    remove: 'Remove',
+    processing: 'Processing…',
+    hint: 'Target company logo — watermark on every page.',
+    hintSet: 'Shown as a faint watermark bottom-right.',
+    errorType: 'Only image files are supported.',
+    errorSize: 'File too large (max 8 MB).',
+    errorDecode: "Couldn't decode the image.",
+  },
 };
 
 // ─── Spanish ──────────────────────────────────────────────────────────────────
@@ -489,6 +506,17 @@ const es: Translations = {
     errorSize: 'Archivo demasiado grande (máx 8 MB)',
     errorDecode: 'No se pudo leer la imagen',
   },
+  companyLogo: {
+    upload: 'Subir logo',
+    change: 'Cambiar logo',
+    remove: 'Quitar',
+    processing: 'Procesando…',
+    hint: 'Logo de la empresa objetivo — marca de agua en cada página.',
+    hintSet: 'Se muestra como marca de agua sutil abajo a la derecha.',
+    errorType: 'Solo se aceptan archivos de imagen.',
+    errorSize: 'Archivo demasiado grande (máx 8 MB).',
+    errorDecode: 'No se pudo decodificar la imagen.',
+  },
 };
 
 // ─── French ───────────────────────────────────────────────────────────────────
@@ -678,6 +706,17 @@ const fr: Translations = {
     errorType: 'Sélectionnez un fichier image',
     errorSize: 'Fichier trop volumineux (max 8 Mo)',
     errorDecode: "Impossible de lire l'image",
+  },
+  companyLogo: {
+    upload: 'Importer le logo',
+    change: 'Changer le logo',
+    remove: 'Retirer',
+    processing: 'Traitement…',
+    hint: "Logo de l'entreprise cible — filigrane sur chaque page.",
+    hintSet: 'Affiché comme filigrane discret en bas à droite.',
+    errorType: 'Seuls les fichiers image sont acceptés.',
+    errorSize: 'Fichier trop volumineux (max 8 Mo).',
+    errorDecode: "Impossible de décoder l'image.",
   },
 };
 
@@ -870,6 +909,17 @@ const de: Translations = {
     errorSize: 'Datei zu groß (max. 8 MB)',
     errorDecode: 'Bild konnte nicht gelesen werden',
   },
+  companyLogo: {
+    upload: 'Logo hochladen',
+    change: 'Logo ändern',
+    remove: 'Entfernen',
+    processing: 'Wird verarbeitet…',
+    hint: 'Zielunternehmen-Logo — Wasserzeichen auf jeder Seite.',
+    hintSet: 'Als dezentes Wasserzeichen unten rechts angezeigt.',
+    errorType: 'Nur Bilddateien werden unterstützt.',
+    errorSize: 'Datei zu groß (max. 8 MB).',
+    errorDecode: 'Bild konnte nicht dekodiert werden.',
+  },
 };
 
 // ─── Portuguese ───────────────────────────────────────────────────────────────
@@ -1060,6 +1110,17 @@ const pt: Translations = {
     errorType: 'Selecione um arquivo de imagem',
     errorSize: 'Arquivo muito grande (máx 8 MB)',
     errorDecode: 'Não foi possível ler a imagem',
+  },
+  companyLogo: {
+    upload: 'Enviar logo',
+    change: 'Alterar logo',
+    remove: 'Remover',
+    processing: 'A processar…',
+    hint: "Logo da empresa alvo — marca d'água em cada página.",
+    hintSet: "Exibido como marca d'água discreta em baixo à direita.",
+    errorType: 'Apenas arquivos de imagem são suportados.',
+    errorSize: 'Arquivo muito grande (máx 8 MB).',
+    errorDecode: 'Não foi possível decodificar a imagem.',
   },
 };
 
@@ -1252,6 +1313,17 @@ const zh: Translations = {
     errorSize: '文件过大（最大 8MB）',
     errorDecode: '无法读取图片',
   },
+  companyLogo: {
+    upload: '上传徽标',
+    change: '更换徽标',
+    remove: '移除',
+    processing: '处理中…',
+    hint: '目标公司徽标 — 每页显示水印。',
+    hintSet: '以淡色水印显示在右下角。',
+    errorType: '请选择图片文件。',
+    errorSize: '文件过大（最大 8MB）。',
+    errorDecode: '无法解码图片。',
+  },
 };
 
 // ─── Japanese ─────────────────────────────────────────────────────────────────
@@ -1442,6 +1514,17 @@ const ja: Translations = {
     errorType: '画像ファイルを選択してください',
     errorSize: 'ファイルが大きすぎます（最大8MB）',
     errorDecode: '画像を読み込めませんでした',
+  },
+  companyLogo: {
+    upload: 'ロゴをアップロード',
+    change: 'ロゴを変更',
+    remove: '削除',
+    processing: '処理中…',
+    hint: '志望企業のロゴ — 各ページに薄い透かしとして表示。',
+    hintSet: '右下に薄い透かしとして表示されます。',
+    errorType: '画像ファイルのみ対応しています。',
+    errorSize: 'ファイルが大きすぎます（最大8MB）。',
+    errorDecode: '画像をデコードできませんでした。',
   },
 };
 
@@ -1634,6 +1717,17 @@ const ko: Translations = {
     errorSize: '파일이 너무 큽니다 (최대 8MB)',
     errorDecode: '이미지를 읽을 수 없습니다',
   },
+  companyLogo: {
+    upload: '로고 업로드',
+    change: '로고 변경',
+    remove: '제거',
+    processing: '처리 중…',
+    hint: '지원 회사 로고 — 모든 페이지에 워터마크로 표시.',
+    hintSet: '우측 하단에 희미한 워터마크로 표시됩니다.',
+    errorType: '이미지 파일만 지원됩니다.',
+    errorSize: '파일이 너무 큽니다 (최대 8MB).',
+    errorDecode: '이미지를 디코딩할 수 없습니다.',
+  },
 };
 
 // ─── Arabic ───────────────────────────────────────────────────────────────────
@@ -1823,6 +1917,17 @@ const ar: Translations = {
     errorType: 'يرجى اختيار ملف صورة',
     errorSize: 'الملف كبير جدًا (الحد الأقصى 8 ميجابايت)',
     errorDecode: 'تعذر قراءة الصورة',
+  },
+  companyLogo: {
+    upload: 'رفع الشعار',
+    change: 'تغيير الشعار',
+    remove: 'إزالة',
+    processing: 'جارٍ المعالجة…',
+    hint: 'شعار الشركة المستهدفة — علامة مائية على كل صفحة.',
+    hintSet: 'يظهر كعلامة مائية خفية في أسفل اليمين.',
+    errorType: 'يُقبل ملفات الصور فقط.',
+    errorSize: 'الملف كبير جداً (الحد الأقصى 8 ميغابايت).',
+    errorDecode: 'تعذّر فك ترميز الصورة.',
   },
 };
 
@@ -2014,6 +2119,17 @@ const ru: Translations = {
     errorSize: 'Файл слишком большой (макс. 8 МБ)',
     errorDecode: 'Не удалось прочитать изображение',
   },
+  companyLogo: {
+    upload: 'Загрузить логотип',
+    change: 'Изменить логотип',
+    remove: 'Удалить',
+    processing: 'Обработка…',
+    hint: 'Логотип целевой компании — водяной знак на каждой странице.',
+    hintSet: 'Отображается как слабый водяной знак внизу справа.',
+    errorType: 'Поддерживаются только файлы изображений.',
+    errorSize: 'Файл слишком большой (макс. 8 МБ).',
+    errorDecode: 'Не удалось декодировать изображение.',
+  },
 };
 
 // ─── Italian ──────────────────────────────────────────────────────────────────
@@ -2203,6 +2319,17 @@ const it: Translations = {
     errorType: 'Seleziona un file immagine',
     errorSize: 'File troppo grande (max 8 MB)',
     errorDecode: "Impossibile leggere l'immagine",
+  },
+  companyLogo: {
+    upload: 'Carica logo',
+    change: 'Cambia logo',
+    remove: 'Rimuovi',
+    processing: 'Elaborazione…',
+    hint: 'Logo azienda target — filigrana su ogni pagina.',
+    hintSet: 'Visualizzato come filigrana in basso a destra.',
+    errorType: 'Sono supportati solo file immagine.',
+    errorSize: 'File troppo grande (max 8 MB).',
+    errorDecode: "Impossibile decodificare l'immagine.",
   },
 };
 
@@ -2394,6 +2521,17 @@ const hi: Translations = {
     errorSize: 'फ़ाइल बहुत बड़ी है (अधिकतम 8MB)',
     errorDecode: 'इमेज नहीं पढ़ी जा सकी',
   },
+  companyLogo: {
+    upload: 'लोगो अपलोड करें',
+    change: 'लोगो बदलें',
+    remove: 'हटाएं',
+    processing: 'प्रोसेसिंग…',
+    hint: 'लक्ष्य कंपनी का लोगो — हर पृष्ठ पर वॉटरमार्क।',
+    hintSet: 'नीचे दाईं ओर हल्के वॉटरमार्क के रूप में दिखाया गया।',
+    errorType: 'केवल इमेज फ़ाइलें समर्थित हैं।',
+    errorSize: 'फ़ाइल बहुत बड़ी है (अधिकतम 8 MB)।',
+    errorDecode: 'इमेज डिकोड नहीं हो सकी।',
+  },
 };
 
 // ─── Turkish ──────────────────────────────────────────────────────────────────
@@ -2583,6 +2721,17 @@ const tr: Translations = {
     errorType: 'Lütfen bir görsel dosyası seçin',
     errorSize: 'Dosya çok büyük (en fazla 8 MB)',
     errorDecode: 'Görsel okunamadı',
+  },
+  companyLogo: {
+    upload: 'Logo yükle',
+    change: 'Logoyu değiştir',
+    remove: 'Kaldır',
+    processing: 'İşleniyor…',
+    hint: 'Hedef şirket logosu — her sayfada filigran olarak.',
+    hintSet: 'Sağ altta soluk filigran olarak gösterilir.',
+    errorType: 'Yalnızca görüntü dosyaları desteklenir.',
+    errorSize: 'Dosya çok büyük (maks. 8 MB).',
+    errorDecode: 'Görüntü çözümlenemedi.',
   },
 };
 
@@ -2774,6 +2923,17 @@ const nl: Translations = {
     errorSize: 'Bestand te groot (max 8 MB)',
     errorDecode: 'Afbeelding kon niet worden gelezen',
   },
+  companyLogo: {
+    upload: 'Logo uploaden',
+    change: 'Logo wijzigen',
+    remove: 'Verwijderen',
+    processing: 'Verwerken…',
+    hint: 'Logo van doelbedrijf — watermerk op elke pagina.',
+    hintSet: 'Weergegeven als zwak watermerk rechtsonder.',
+    errorType: 'Alleen afbeeldingsbestanden worden ondersteund.',
+    errorSize: 'Bestand te groot (max. 8 MB).',
+    errorDecode: 'Afbeelding kon niet worden gedecodeerd.',
+  },
 };
 
 // ─── Polish ───────────────────────────────────────────────────────────────────
@@ -2963,6 +3123,17 @@ const pl: Translations = {
     errorType: 'Wybierz plik obrazu',
     errorSize: 'Plik za duży (maks. 8 MB)',
     errorDecode: 'Nie udało się odczytać obrazu',
+  },
+  companyLogo: {
+    upload: 'Prześlij logo',
+    change: 'Zmień logo',
+    remove: 'Usuń',
+    processing: 'Przetwarzanie…',
+    hint: 'Logo docelowej firmy — znak wodny na każdej stronie.',
+    hintSet: 'Wyświetlane jako delikatny znak wodny w prawym dolnym rogu.',
+    errorType: 'Obsługiwane są tylko pliki graficzne.',
+    errorSize: 'Plik zbyt duży (maks. 8 MB).',
+    errorDecode: 'Nie można zdekodować obrazu.',
   },
 };
 

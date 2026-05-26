@@ -49,13 +49,18 @@ const s = StyleSheet.create({
   photo: { width: 72, height: 90, marginBottom: 12, objectFit: 'cover' },
 });
 
-export function MinimalTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
+export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { data: ResumeData; labels: Labels; accentColor: string; companyLogo?: string }) {
   const { personal, experience, education, skills } = data;
   const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website].filter(Boolean);
 
   return (
     <Document>
       <Page size="A4" style={s.page}>
+        {companyLogo && (
+          <View style={{ position: 'absolute', bottom: 24, right: 24 }}>
+            <Image src={companyLogo} style={{ width: 160, height: 160, opacity: 0.10, objectFit: 'contain' }} />
+          </View>
+        )}
         {personal.photo && <Image src={personal.photo} style={s.photo} />}
         {personal.name && <Text style={s.name}>{personal.name}</Text>}
         {personal.title && <Text style={s.title}>{personal.title}</Text>}

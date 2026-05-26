@@ -31,6 +31,7 @@ export interface TemplateProps {
   data: ResumeData;
   labels: TemplateLabels;
   accentColor: string;
+  companyLogo?: string;
 }
 
 export interface TemplateConfig {

@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   photo: { width: 90, height: 112, marginBottom: 10, objectFit: 'cover' },
 });
 
-export function ClassicTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
+export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { data: ResumeData; labels: Labels; accentColor: string; companyLogo?: string }) {
   const { personal, experience, education, skills } = data;
 
   const contactItems = [
@@ -134,6 +134,11 @@ export function ClassicTemplate({ data, labels, accentColor }: { data: ResumeDat
   return (
     <Document>
       <Page size="A4" style={styles.page}>
+        {companyLogo && (
+          <View style={{ position: 'absolute', bottom: 24, right: 24 }}>
+            <Image src={companyLogo} style={{ width: 160, height: 160, opacity: 0.10, objectFit: 'contain' }} />
+          </View>
+        )}
         {/* Header */}
         {personal.photo && <Image src={personal.photo} style={styles.photo} />}
         {personal.name && <Text style={[styles.name, { color: accentColor }]}>{personal.name}</Text>}

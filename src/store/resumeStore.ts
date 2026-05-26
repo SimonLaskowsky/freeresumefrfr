@@ -79,6 +79,8 @@ interface ResumeStore {
   resetData: () => void;
   accentColor: string;
   setAccentColor: (color: string) => void;
+  companyLogo?: string;
+  setCompanyLogo: (logo: string | undefined) => void;
 }
 
 const defaultData: ResumeData = {
@@ -269,6 +271,8 @@ export const useResumeStore = create<ResumeStore>()(
       resetData: () => set({ data: defaultData }),
       accentColor: '#1a1a1a',
       setAccentColor: (accentColor) => set({ accentColor }),
+      companyLogo: undefined,
+      setCompanyLogo: (companyLogo) => set({ companyLogo }),
     }),
     {
       name: 'resume-data',

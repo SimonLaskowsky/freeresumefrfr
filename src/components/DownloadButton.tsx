@@ -10,6 +10,7 @@ interface Props {
   data: ResumeData;
   templateId: string;
   accentColor: string;
+  companyLogo?: string;
 }
 
 function incrementPaywallsDodged() {
@@ -21,7 +22,7 @@ function incrementPaywallsDodged() {
   }
 }
 
-export default function DownloadButton({ data, templateId, accentColor }: Props) {
+export default function DownloadButton({ data, templateId, accentColor, companyLogo }: Props) {
   const { Component } = getTemplate(templateId);
   const { t } = useI18n();
   const fileName = `${
@@ -41,7 +42,7 @@ export default function DownloadButton({ data, templateId, accentColor }: Props)
 
   return (
     <PDFDownloadLink
-      document={<Component data={data} labels={labels} accentColor={accentColor} />}
+      document={<Component data={data} labels={labels} accentColor={accentColor} companyLogo={companyLogo} />}
       fileName={fileName}
       onClick={() => {
         incrementPaywallsDodged();

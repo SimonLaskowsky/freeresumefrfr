@@ -13,11 +13,12 @@ interface Props {
   data: ResumeData;
   templateId: string;
   accentColor: string;
+  companyLogo?: string;
 }
 
 type Slot = 'A' | 'B';
 
-export default function ResumePreviewPanel({ data, templateId, accentColor }: Props) {
+export default function ResumePreviewPanel({ data, templateId, accentColor, companyLogo }: Props) {
   const { Component } = getTemplate(templateId);
   const { t, locale } = useI18n();
 
@@ -37,16 +38,16 @@ export default function ResumePreviewPanel({ data, templateId, accentColor }: Pr
   const labelsRef = useRef(labels);
   labelsRef.current = labels;
 
-  const [instance, update] = usePDF({ document: <Component data={data} labels={labels} accentColor={accentColor} /> });
+  const [instance, update] = usePDF({ document: <Component data={data} labels={labels} accentColor={accentColor} companyLogo={companyLogo} /> });
   const updateRef = useRef(update);
   updateRef.current = update;
 
   // Use `locale` (string) rather than `t` (object) as the language trigger —
   // same semantics but a stable primitive that won't cause double-fires
   useEffect(() => {
-    updateRef.current(<Component data={data} labels={labelsRef.current} accentColor={accentColor} />);
+    updateRef.current(<Component data={data} labels={labelsRef.current} accentColor={accentColor} companyLogo={companyLogo} />);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, templateId, locale, accentColor]);
+  }, [data, templateId, locale, accentColor, companyLogo]);
 
   // Committed URL — only advances once rendering is done
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);

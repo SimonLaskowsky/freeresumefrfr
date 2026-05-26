@@ -53,7 +53,7 @@ const s = StyleSheet.create({
   photo: { width: 144, height: 180, marginBottom: 16, objectFit: 'cover' },
 });
 
-export function ModernTemplate({ data, labels, accentColor }: { data: ResumeData; labels: Labels; accentColor: string }) {
+export function ModernTemplate({ data, labels, accentColor, companyLogo }: { data: ResumeData; labels: Labels; accentColor: string; companyLogo?: string }) {
   const { personal, experience, education, skills } = data;
   const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website].filter(Boolean);
   const skillList = skills.split(',').map((sk) => sk.trim()).filter(Boolean);
@@ -61,6 +61,11 @@ export function ModernTemplate({ data, labels, accentColor }: { data: ResumeData
   return (
     <Document>
       <Page size="A4" style={s.page}>
+        {companyLogo && (
+          <View style={{ position: 'absolute', bottom: 24, right: 24 }}>
+            <Image src={companyLogo} style={{ width: 160, height: 160, opacity: 0.10, objectFit: 'contain' }} />
+          </View>
+        )}
         {/* Sidebar */}
         <View style={[s.sidebar, { backgroundColor: accentColor }]}>
           {personal.photo && <Image src={personal.photo} style={s.photo} />}
