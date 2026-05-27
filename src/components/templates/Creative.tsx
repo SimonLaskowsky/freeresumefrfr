@@ -10,9 +10,9 @@ interface Props {
 }
 
 const s = StyleSheet.create({
-  page: { flexDirection: 'row', fontFamily: SANS, fontSize: 9.5, color: '#1a1a1a' },
-  left: { width: '38%', paddingTop: 36, paddingBottom: 36, paddingHorizontal: 18 },
-  right: { flex: 1, paddingTop: 36, paddingBottom: 36, paddingHorizontal: 22, backgroundColor: '#ffffff' },
+  page: { flexDirection: 'row', fontFamily: SANS, fontSize: 9.5, color: '#1a1a1a', paddingTop: 32 },
+  left: { width: '38%', paddingTop: 4, paddingBottom: 36, paddingHorizontal: 18 },
+  right: { flex: 1, paddingTop: 4, paddingBottom: 36, paddingHorizontal: 22, backgroundColor: '#ffffff' },
 
   lName: { fontSize: 20, fontFamily: SANS, fontWeight: 700, color: '#ffffff', marginBottom: 4, lineHeight: 1.2 },
   lTitle: { fontSize: 9.5, color: '#ffffff', opacity: 0.8, marginBottom: 18, fontFamily: SANS, fontStyle: 'italic' },

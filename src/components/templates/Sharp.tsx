@@ -10,8 +10,8 @@ interface Props {
 }
 
 const s = StyleSheet.create({
-  page: { fontFamily: SANS, fontSize: 10, color: '#1a1a1a', paddingBottom: 40 },
-  header: { paddingTop: 28, paddingBottom: 24, paddingHorizontal: 48 },
+  page: { fontFamily: SANS, fontSize: 10, color: '#1a1a1a', paddingTop: 24, paddingBottom: 40 },
+  header: { paddingTop: 4, paddingBottom: 24, paddingHorizontal: 48 },
   name: { fontSize: 26, fontFamily: SANS, fontWeight: 700, color: '#ffffff', marginBottom: 4, letterSpacing: 0.2 },
   titleLine: { fontSize: 11, color: '#ffffff', opacity: 0.85, marginBottom: 10 },
   contactRow: { flexDirection: 'row', flexWrap: 'wrap', fontSize: 8.5, color: '#ffffff', opacity: 0.75 },

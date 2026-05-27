@@ -16,7 +16,7 @@ interface Labels {
 const s = StyleSheet.create({
   page: {
     fontFamily: SERIF, fontSize: 10,
-    paddingTop: 46, paddingBottom: 46, paddingHorizontal: 58, color: '#1a1a1a',
+    paddingTop: 40, paddingBottom: 46, paddingHorizontal: 58, color: '#1a1a1a',
   },
   header: { alignItems: 'center', marginBottom: 14 },
   name: { fontSize: 24, fontFamily: SERIF, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 5 },

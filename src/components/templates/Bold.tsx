@@ -16,9 +16,9 @@ interface Labels {
 const HEADER_BG = '#0f172a';
 
 const s = StyleSheet.create({
-  page: { fontFamily: SANS, fontSize: 10, color: '#1a1a1a', paddingBottom: 40 },
+  page: { fontFamily: SANS, fontSize: 10, color: '#1a1a1a', paddingTop: 28, paddingBottom: 40 },
 
-  header: { backgroundColor: HEADER_BG, paddingTop: 30, paddingBottom: 26, paddingHorizontal: 48 },
+  header: { backgroundColor: HEADER_BG, paddingTop: 2, paddingBottom: 26, paddingHorizontal: 48 },
   name: { fontSize: 26, fontFamily: SANS, fontWeight: 700, color: '#ffffff', marginBottom: 4, letterSpacing: 0.2 },
   titleLine: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
   accentBar: { width: 3, height: 14, marginRight: 8 },

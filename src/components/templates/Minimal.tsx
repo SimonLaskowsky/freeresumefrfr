@@ -16,7 +16,7 @@ interface Labels {
 const s = StyleSheet.create({
   page: {
     fontFamily: SANS, fontSize: 10,
-    paddingTop: 52, paddingBottom: 52, paddingHorizontal: 64, color: '#111827',
+    paddingTop: 40, paddingBottom: 52, paddingHorizontal: 64, color: '#111827',
   },
   name: { fontSize: 24, fontFamily: SANS, fontWeight: 700, marginBottom: 4, color: '#0f172a' },
   title: { fontSize: 11, color: '#64748b', marginBottom: 8 },

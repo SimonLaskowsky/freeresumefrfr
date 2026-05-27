@@ -10,7 +10,7 @@ interface Props {
 }
 
 const s = StyleSheet.create({
-  page: { fontFamily: SANS, fontSize: 10, paddingTop: 44, paddingBottom: 44, paddingHorizontal: 52, color: '#1a1a1a' },
+  page: { fontFamily: SANS, fontSize: 10, paddingTop: 40, paddingBottom: 44, paddingHorizontal: 52, color: '#1a1a1a' },
   name: { fontSize: 22, fontFamily: SANS, fontWeight: 700, marginBottom: 3, letterSpacing: 0.3 },
   title: { fontSize: 11, color: '#555555', marginBottom: 6 },
   contactRow: { flexDirection: 'row', flexWrap: 'wrap', fontSize: 8.5, color: '#666666', marginBottom: 18 },

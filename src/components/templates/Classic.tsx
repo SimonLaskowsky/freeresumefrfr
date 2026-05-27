@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   page: {
     fontFamily: SANS,
     fontSize: 10,
-    paddingTop: 42,
+    paddingTop: 40,
     paddingBottom: 42,
     paddingHorizontal: 52,
     color: '#1a1a1a',
