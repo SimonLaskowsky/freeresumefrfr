@@ -119,7 +119,7 @@ export interface Translations {
 const en: Translations = {
   nav: { build: 'Build my resume →', github: 'GitHub', coverLetter: 'Cover letter →' },
   hero: {
-    badge: '100% free. No paywall. No watermark. frfr.',
+    badge: 'Free forever — no account, no watermark',
     headline1: 'Your resume',
     headline2: "shouldn't cost",
     headline3: 'you anything.',
@@ -127,7 +127,7 @@ const en: Translations = {
     cta: 'Build my resume — free',
     counter: 'Paywalls dodged:',
   },
-  ticker: ['No credit card', 'No watermark', 'No paywall', 'No account needed', 'Unlimited downloads', 'PDF in seconds', 'Actually free', 'frfr'],
+  ticker: ['No credit card', 'No watermark', 'No paywall', 'No account needed', 'Unlimited downloads', 'PDF in seconds', '14 templates', 'Cover letter builder'],
   roast: {
     eyebrow: 'what competitors actually do',
     heading: 'Other resume builders be like:',
@@ -321,7 +321,7 @@ const en: Translations = {
 const es: Translations = {
   nav: { build: 'Crear mi CV →', github: 'GitHub', coverLetter: 'Carta de presentación →' },
   hero: {
-    badge: '100% gratis. Sin muro de pago. Sin marca de agua. frfr.',
+    badge: 'Gratis para siempre — sin cuenta, sin marca de agua',
     headline1: 'Tu currículum',
     headline2: 'no debería costarte',
     headline3: 'nada.',
@@ -329,7 +329,7 @@ const es: Translations = {
     cta: 'Crear mi CV — gratis',
     counter: 'Muros de pago evitados:',
   },
-  ticker: ['Sin tarjeta de crédito', 'Sin marca de agua', 'Sin muro de pago', 'Sin cuenta necesaria', 'Descargas ilimitadas', 'PDF en segundos', 'Realmente gratis', 'frfr'],
+  ticker: ['Sin tarjeta de crédito', 'Sin marca de agua', 'Sin muro de pago', 'Sin cuenta necesaria', 'Descargas ilimitadas', 'PDF en segundos', '14 plantillas', 'Carta de presentación'],
   roast: {
     eyebrow: 'lo que hacen los competidores',
     heading: 'Otros creadores de CV son así:',
@@ -523,7 +523,7 @@ const es: Translations = {
 const fr: Translations = {
   nav: { build: 'Créer mon CV →', github: 'GitHub', coverLetter: 'Lettre de motivation →' },
   hero: {
-    badge: '100% gratuit. Sans paywall. Sans filigrane. frfr.',
+    badge: 'Gratuit pour toujours — sans compte, sans filigrane',
     headline1: 'Votre CV',
     headline2: 'ne devrait rien',
     headline3: 'vous coûter.',
@@ -531,7 +531,7 @@ const fr: Translations = {
     cta: 'Créer mon CV — gratuit',
     counter: 'Paywalls esquivés :',
   },
-  ticker: ['Sans carte bancaire', 'Sans filigrane', 'Sans paywall', 'Sans compte', 'Téléchargements illimités', 'PDF en secondes', 'Vraiment gratuit', 'frfr'],
+  ticker: ['Sans carte bancaire', 'Sans filigrane', 'Sans paywall', 'Sans compte', 'Téléchargements illimités', 'PDF en secondes', '14 modèles', 'Lettre de motivation'],
   roast: {
     eyebrow: 'ce que font les concurrents',
     heading: 'Les autres créateurs de CV font ça :',
@@ -724,7 +724,7 @@ const fr: Translations = {
 const de: Translations = {
   nav: { build: 'Lebenslauf erstellen →', github: 'GitHub', coverLetter: 'Anschreiben →' },
   hero: {
-    badge: '100% kostenlos. Kein Paywall. Kein Wasserzeichen. frfr.',
+    badge: 'Dauerhaft kostenlos — kein Konto, kein Wasserzeichen',
     headline1: 'Dein Lebenslauf',
     headline2: 'sollte dich nichts',
     headline3: 'kosten.',
@@ -732,7 +732,7 @@ const de: Translations = {
     cta: 'Lebenslauf erstellen — kostenlos',
     counter: 'Paywalls umgangen:',
   },
-  ticker: ['Keine Kreditkarte', 'Kein Wasserzeichen', 'Kein Paywall', 'Kein Konto nötig', 'Unbegrenzte Downloads', 'PDF in Sekunden', 'Wirklich kostenlos', 'frfr'],
+  ticker: ['Keine Kreditkarte', 'Kein Wasserzeichen', 'Kein Paywall', 'Kein Konto nötig', 'Unbegrenzte Downloads', 'PDF in Sekunden', '14 Vorlagen', 'Anschreiben'],
   roast: {
     eyebrow: 'was Konkurrenten wirklich machen',
     heading: 'Andere Lebenslauf-Builder machen das:',
@@ -926,7 +926,7 @@ const de: Translations = {
 const pt: Translations = {
   nav: { build: 'Criar meu currículo →', github: 'GitHub', coverLetter: 'Carta de apresentação →' },
   hero: {
-    badge: '100% grátis. Sem paywall. Sem marca d\'água. frfr.',
+    badge: 'Grátis para sempre — sem conta, sem marca d\'água',
     headline1: 'Seu currículo',
     headline2: 'não deveria custar',
     headline3: 'nada.',
@@ -934,7 +934,7 @@ const pt: Translations = {
     cta: 'Criar meu currículo — grátis',
     counter: 'Paywalls evitados:',
   },
-  ticker: ['Sem cartão de crédito', 'Sem marca d\'água', 'Sem paywall', 'Sem conta necessária', 'Downloads ilimitados', 'PDF em segundos', 'Realmente grátis', 'frfr'],
+  ticker: ['Sem cartão de crédito', 'Sem marca d\'água', 'Sem paywall', 'Sem conta necessária', 'Downloads ilimitados', 'PDF em segundos', '14 modelos', 'Carta de apresentação'],
   roast: {
     eyebrow: 'o que os concorrentes fazem',
     heading: 'Outros criadores de currículo fazem assim:',
@@ -1128,7 +1128,7 @@ const pt: Translations = {
 const zh: Translations = {
   nav: { build: '创建简历 →', github: 'GitHub', coverLetter: '求职信 →' },
   hero: {
-    badge: '100% 免费。无付费墙。无水印。frfr.',
+    badge: '永久免费 — 无需账号，无水印',
     headline1: '您的简历',
     headline2: '不应该让',
     headline3: '您花一分钱。',
@@ -1136,7 +1136,7 @@ const zh: Translations = {
     cta: '免费创建简历',
     counter: '已绕过付费墙：',
   },
-  ticker: ['无需信用卡', '无水印', '无付费墙', '无需账号', '无限次下载', '秒速生成PDF', '真正免费', 'frfr'],
+  ticker: ['无需信用卡', '无水印', '无付费墙', '无需账号', '无限次下载', '秒速生成PDF', '14个模板', '求职信生成器'],
   roast: {
     eyebrow: '竞争对手是怎么做的',
     heading: '其他简历平台是这样的：',
@@ -1330,7 +1330,7 @@ const zh: Translations = {
 const ja: Translations = {
   nav: { build: '履歴書を作成 →', github: 'GitHub', coverLetter: 'カバーレター →' },
   hero: {
-    badge: '100%無料。ペイウォールなし。透かしなし。frfr.',
+    badge: '永久無料 — アカウント不要、透かしなし',
     headline1: 'あなたの履歴書は',
     headline2: '何も',
     headline3: 'かかるべきではない。',
@@ -1338,7 +1338,7 @@ const ja: Translations = {
     cta: '履歴書を無料で作成',
     counter: '回避したペイウォール：',
   },
-  ticker: ['クレジットカード不要', '透かしなし', 'ペイウォールなし', 'アカウント不要', '無制限ダウンロード', '数秒でPDF', '本当に無料', 'frfr'],
+  ticker: ['クレジットカード不要', '透かしなし', 'ペイウォールなし', 'アカウント不要', '無制限ダウンロード', '数秒でPDF', '14テンプレート', '志望動機書'],
   roast: {
     eyebrow: '競合他社がやっていること',
     heading: '他の履歴書サービスはこんな感じ：',
@@ -1532,7 +1532,7 @@ const ja: Translations = {
 const ko: Translations = {
   nav: { build: '이력서 만들기 →', github: 'GitHub', coverLetter: '자기소개서 →' },
   hero: {
-    badge: '100% 무료. 페이월 없음. 워터마크 없음. frfr.',
+    badge: '영원히 무료 — 계정 불필요, 워터마크 없음',
     headline1: '당신의 이력서는',
     headline2: '아무것도',
     headline3: '비용이 들어선 안 됩니다.',
@@ -1540,7 +1540,7 @@ const ko: Translations = {
     cta: '이력서 무료로 만들기',
     counter: '피한 페이월:',
   },
-  ticker: ['신용카드 불필요', '워터마크 없음', '페이월 없음', '계정 불필요', '무제한 다운로드', '몇 초 만에 PDF', '진짜 무료', 'frfr'],
+  ticker: ['신용카드 불필요', '워터마크 없음', '페이월 없음', '계정 불필요', '무제한 다운로드', '몇 초 만에 PDF', '14가지 템플릿', '자기소개서 빌더'],
   roast: {
     eyebrow: '경쟁사들이 실제로 하는 것',
     heading: '다른 이력서 서비스들은 이렇습니다:',
@@ -1734,7 +1734,7 @@ const ko: Translations = {
 const ar: Translations = {
   nav: { build: 'إنشاء سيرتي الذاتية ←', github: 'GitHub', coverLetter: 'خطاب تقديم →' },
   hero: {
-    badge: '100% مجاني. بدون جدار دفع. بدون علامة مائية. frfr.',
+    badge: 'مجاني للأبد — بدون حساب، بدون علامة مائية',
     headline1: 'سيرتك الذاتية',
     headline2: 'لا ينبغي أن',
     headline3: 'تكلفك شيئاً.',
@@ -1742,7 +1742,7 @@ const ar: Translations = {
     cta: 'إنشاء سيرتي الذاتية — مجاناً',
     counter: 'جدران الدفع التي تجنبتها:',
   },
-  ticker: ['بدون بطاقة ائتمان', 'بدون علامة مائية', 'بدون جدار دفع', 'بدون حساب', 'تنزيلات غير محدودة', 'PDF في ثوانٍ', 'مجاني فعلاً', 'frfr'],
+  ticker: ['بدون بطاقة ائتمان', 'بدون علامة مائية', 'بدون جدار دفع', 'بدون حساب', 'تنزيلات غير محدودة', 'PDF في ثوانٍ', '14 قالباً', 'منشئ خطاب التقديم'],
   roast: {
     eyebrow: 'ما يفعله المنافسون',
     heading: 'منشئو السير الذاتية الآخرون هكذا:',
@@ -1935,7 +1935,7 @@ const ar: Translations = {
 const ru: Translations = {
   nav: { build: 'Создать резюме →', github: 'GitHub', coverLetter: 'Сопроводительное письмо →' },
   hero: {
-    badge: '100% бесплатно. Без пейволла. Без водяного знака. frfr.',
+    badge: 'Бесплатно навсегда — без аккаунта, без водяного знака',
     headline1: 'Ваше резюме',
     headline2: 'не должно ничего',
     headline3: 'стоить.',
@@ -1943,7 +1943,7 @@ const ru: Translations = {
     cta: 'Создать резюме — бесплатно',
     counter: 'Пройдено пейволлов:',
   },
-  ticker: ['Без кредитной карты', 'Без водяного знака', 'Без пейволла', 'Без аккаунта', 'Безлимитные загрузки', 'PDF за секунды', 'Реально бесплатно', 'frfr'],
+  ticker: ['Без кредитной карты', 'Без водяного знака', 'Без пейволла', 'Без аккаунта', 'Безлимитные загрузки', 'PDF за секунды', '14 шаблонов', 'Сопроводительное письмо'],
   roast: {
     eyebrow: 'что делают конкуренты',
     heading: 'Другие конструкторы резюме делают так:',
@@ -2136,7 +2136,7 @@ const ru: Translations = {
 const it: Translations = {
   nav: { build: 'Crea il mio CV →', github: 'GitHub', coverLetter: 'Lettera di presentazione →' },
   hero: {
-    badge: '100% gratis. Nessun paywall. Nessuna filigrana. frfr.',
+    badge: 'Gratis per sempre — nessun account, nessuna filigrana',
     headline1: 'Il tuo curriculum',
     headline2: 'non dovrebbe costarti',
     headline3: 'nulla.',
@@ -2144,7 +2144,7 @@ const it: Translations = {
     cta: 'Crea il mio CV — gratis',
     counter: 'Paywall evitati:',
   },
-  ticker: ['Nessuna carta di credito', 'Nessuna filigrana', 'Nessun paywall', 'Nessun account', 'Download illimitati', 'PDF in secondi', 'Davvero gratis', 'frfr'],
+  ticker: ['Nessuna carta di credito', 'Nessuna filigrana', 'Nessun paywall', 'Nessun account', 'Download illimitati', 'PDF in secondi', '14 modelli', 'Lettera di presentazione'],
   roast: {
     eyebrow: 'cosa fanno i concorrenti',
     heading: 'Gli altri costruttori di CV fanno così:',
@@ -2337,7 +2337,7 @@ const it: Translations = {
 const hi: Translations = {
   nav: { build: 'अपना रिज्यूमे बनाएं →', github: 'GitHub', coverLetter: 'कवर लेटर →' },
   hero: {
-    badge: '100% मुफ़्त। कोई पेवॉल नहीं। कोई वाटरमार्क नहीं। frfr.',
+    badge: 'हमेशा के लिए मुफ़्त — कोई खाता नहीं, कोई वाटरमार्क नहीं',
     headline1: 'आपके रिज्यूमे की',
     headline2: 'कोई कीमत',
     headline3: 'नहीं होनी चाहिए।',
@@ -2345,7 +2345,7 @@ const hi: Translations = {
     cta: 'अपना रिज्यूमे बनाएं — मुफ़्त',
     counter: 'बचाए गए पेवॉल:',
   },
-  ticker: ['कोई क्रेडिट कार्ड नहीं', 'कोई वाटरमार्क नहीं', 'कोई पेवॉल नहीं', 'कोई खाता नहीं', 'असीमित डाउनलोड', 'कुछ सेकंड में PDF', 'वाकई मुफ़्त', 'frfr'],
+  ticker: ['कोई क्रेडिट कार्ड नहीं', 'कोई वाटरमार्क नहीं', 'कोई पेवॉल नहीं', 'कोई खाता नहीं', 'असीमित डाउनलोड', 'कुछ सेकंड में PDF', '14 टेम्पलेट', 'कवर लेटर बिल्डर'],
   roast: {
     eyebrow: 'प्रतिस्पर्धी क्या करते हैं',
     heading: 'दूसरे रिज्यूमे बिल्डर ऐसे करते हैं:',
@@ -2538,7 +2538,7 @@ const hi: Translations = {
 const tr: Translations = {
   nav: { build: 'Özgeçmişimi oluştur →', github: 'GitHub', coverLetter: 'Ön yazı →' },
   hero: {
-    badge: '%100 ücretsiz. Ödeme duvarı yok. Filigran yok. frfr.',
+    badge: 'Sonsuza kadar ücretsiz — hesap yok, filigran yok',
     headline1: 'Özgeçmişiniz',
     headline2: 'size hiçbir şeye',
     headline3: 'mal olmamalı.',
@@ -2546,7 +2546,7 @@ const tr: Translations = {
     cta: 'Özgeçmişimi oluştur — ücretsiz',
     counter: 'Atlatılan ödeme duvarları:',
   },
-  ticker: ['Kredi kartı yok', 'Filigran yok', 'Ödeme duvarı yok', 'Hesap gerekmez', 'Sınırsız indirme', 'Saniyeler içinde PDF', 'Gerçekten ücretsiz', 'frfr'],
+  ticker: ['Kredi kartı yok', 'Filigran yok', 'Ödeme duvarı yok', 'Hesap gerekmez', 'Sınırsız indirme', 'Saniyeler içinde PDF', '14 şablon', 'Ön yazı oluşturucu'],
   roast: {
     eyebrow: 'rakipler gerçekte ne yapıyor',
     heading: 'Diğer özgeçmiş oluşturucular böyle:',
@@ -2739,7 +2739,7 @@ const tr: Translations = {
 const nl: Translations = {
   nav: { build: 'Maak mijn cv →', github: 'GitHub', coverLetter: 'Motivatiebrief →' },
   hero: {
-    badge: '100% gratis. Geen betaalmuur. Geen watermerk. frfr.',
+    badge: 'Voor altijd gratis — geen account, geen watermerk',
     headline1: 'Jouw cv',
     headline2: 'mag niets',
     headline3: 'kosten.',
@@ -2747,7 +2747,7 @@ const nl: Translations = {
     cta: 'Maak mijn cv — gratis',
     counter: 'Betaalmuren omzeild:',
   },
-  ticker: ['Geen creditcard', 'Geen watermerk', 'Geen betaalmuur', 'Geen account nodig', 'Onbeperkt downloaden', 'PDF in seconden', 'Echt gratis', 'frfr'],
+  ticker: ['Geen creditcard', 'Geen watermerk', 'Geen betaalmuur', 'Geen account nodig', 'Onbeperkt downloaden', 'PDF in seconden', '14 sjablonen', 'Sollicitatiebrief'],
   roast: {
     eyebrow: 'wat concurrenten echt doen',
     heading: 'Andere cv-bouwers doen dit:',
@@ -2940,7 +2940,7 @@ const nl: Translations = {
 const pl: Translations = {
   nav: { build: 'Stwórz moje CV →', github: 'GitHub', coverLetter: 'List motywacyjny →' },
   hero: {
-    badge: '100% darmowe. Bez paywall. Bez znaku wodnego. frfr.',
+    badge: 'Za darmo na zawsze — bez konta, bez znaku wodnego',
     headline1: 'Twoje CV',
     headline2: 'nie powinno nic',
     headline3: 'kosztować.',
@@ -2948,7 +2948,7 @@ const pl: Translations = {
     cta: 'Stwórz moje CV — za darmo',
     counter: 'Ominięte paywall\'e:',
   },
-  ticker: ['Bez karty kredytowej', 'Bez znaku wodnego', 'Bez paywall', 'Bez konta', 'Nieograniczone pobieranie', 'PDF w sekundy', 'Naprawdę za darmo', 'frfr'],
+  ticker: ['Bez karty kredytowej', 'Bez znaku wodnego', 'Bez paywall', 'Bez konta', 'Nieograniczone pobieranie', 'PDF w sekundy', '14 szablonów', 'List motywacyjny'],
   roast: {
     eyebrow: 'co robią konkurenci',
     heading: 'Inne kreatory CV robią tak:',
