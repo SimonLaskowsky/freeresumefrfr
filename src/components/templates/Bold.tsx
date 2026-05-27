@@ -143,7 +143,7 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
 
           {/* Projects */}
           {data.projects && data.projects.length > 0 && (
-            <View>
+            <View wrap={false}>
               <View minPresenceAhead={60}>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.projects}</Text>
               </View>
@@ -199,7 +199,7 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
 
           {/* Certifications */}
           {data.certifications && data.certifications.length > 0 && (
-            <View>
+            <View wrap={false}>
               <View minPresenceAhead={60}>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.certifications}</Text>
               </View>

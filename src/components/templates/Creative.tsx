@@ -132,7 +132,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
           )}
 
           {data.projects && data.projects.length > 0 && (
-            <View>
+            <View wrap={false}>
               <View minPresenceAhead={60}>
                 <Text style={[s.rSectionTitle, { color: accentColor }]}>{labels.projects}</Text>
               </View>
@@ -168,7 +168,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
           )}
 
           {education.length > 0 && (
-            <View>
+            <View wrap={false}>
               <View minPresenceAhead={60}>
                 <Text style={[s.rSectionTitle, { color: accentColor }]}>{labels.education}</Text>
               </View>
@@ -189,7 +189,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
           )}
 
           {data.certifications && data.certifications.length > 0 && (
-            <View>
+            <View wrap={false}>
               <View minPresenceAhead={60}>
                 <Text style={[s.rSectionTitle, { color: accentColor }]}>{labels.certifications}</Text>
               </View>

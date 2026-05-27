@@ -132,7 +132,7 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
-          <View>
+          <View wrap={false}>
             <View minPresenceAhead={60}>
               <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.projects}</Text>
@@ -190,7 +190,7 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
-          <View>
+          <View wrap={false}>
             <View minPresenceAhead={60}>
               <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.certifications}</Text>

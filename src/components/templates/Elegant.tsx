@@ -134,7 +134,7 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
-          <View>
+          <View wrap={false}>
             <View minPresenceAhead={60}>
               <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.projects}</Text>
             </View>
@@ -191,7 +191,7 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
-          <View>
+          <View wrap={false}>
             <View minPresenceAhead={60}>
               <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.certifications}</Text>
             </View>

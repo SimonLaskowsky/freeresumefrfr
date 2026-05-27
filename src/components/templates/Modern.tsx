@@ -138,7 +138,7 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
 
           {/* Projects */}
           {data.projects && data.projects.length > 0 && (
-            <View>
+            <View wrap={false}>
               <View minPresenceAhead={60}>
                 <Text style={[s.mSectionTitle, { marginTop: 14, color: accentColor }]}>{labels.projects}</Text>
               </View>
@@ -196,7 +196,7 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
 
           {/* Certifications */}
           {data.certifications && data.certifications.length > 0 && (
-            <View>
+            <View wrap={false}>
               <View minPresenceAhead={60}>
                 <Text style={[s.mSectionTitle, { marginTop: 14, color: accentColor }]}>{labels.certifications}</Text>
               </View>

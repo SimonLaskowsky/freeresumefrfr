@@ -135,7 +135,7 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
         )}
 
         {data.projects && data.projects.length > 0 && (
-          <View>
+          <View wrap={false}>
             <SectionHead label={labels.projects} />
             {data.projects.map((proj) => {
               const bullets = (proj.bullets || []).filter((b) => b.trim());
@@ -168,7 +168,7 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
         )}
 
         {education.length > 0 && (
-          <View>
+          <View wrap={false}>
             <SectionHead label={labels.education} />
             {education.map((edu) => {
               const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
@@ -186,7 +186,7 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
         )}
 
         {data.certifications && data.certifications.length > 0 && (
-          <View>
+          <View wrap={false}>
             <SectionHead label={labels.certifications} />
             {data.certifications.map((cert, idx) => (
               <View

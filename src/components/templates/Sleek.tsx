@@ -47,7 +47,7 @@ export function SleekTemplate({ data, labels, accentColor, companyLogo }: Props)
 
   function Section({ title, children }: { title: string; children: React.ReactNode }) {
     return (
-      <View style={s.sectionBlock} minPresenceAhead={60}>
+      <View style={s.sectionBlock} minPresenceAhead={60} wrap={false}>
         <Text style={[s.sectionTitle, { color: accentColor }]}>{title.toUpperCase()}</Text>
         <View style={s.sectionRule} />
         {children}

@@ -127,7 +127,7 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
-          <View>
+          <View wrap={false}>
             <View minPresenceAhead={60}>
               <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.projects}</Text>
             </View>
@@ -186,7 +186,7 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
-          <View>
+          <View wrap={false}>
             <View minPresenceAhead={60}>
               <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.certifications}</Text>
             </View>

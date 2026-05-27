@@ -58,7 +58,7 @@ const s = StyleSheet.create({
 
 function LabeledSection({ label, children, accentColor }: { label: string; children: React.ReactNode; accentColor: string }) {
   return (
-    <View style={s.sectionRow} minPresenceAhead={60}>
+    <View style={s.sectionRow} minPresenceAhead={60} wrap={false}>
       <View style={s.sectionLabelCol}>
         <Text style={[s.sectionLabel, { color: accentColor }]}>{label}</Text>
       </View>

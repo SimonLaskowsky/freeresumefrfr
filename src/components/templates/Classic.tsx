@@ -208,7 +208,7 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
-          <View>
+          <View wrap={false}>
             <View minPresenceAhead={60}>
               <View style={[styles.divider, { borderBottomColor: accentColor }]} />
             <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.projects.toUpperCase()}</Text>
@@ -245,7 +245,7 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {/* Education */}
         {education.length > 0 && (
-          <View>
+          <View wrap={false}>
             <View minPresenceAhead={60}>
               <View style={[styles.divider, { borderBottomColor: accentColor }]} />
             <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.education.toUpperCase()}</Text>
@@ -269,7 +269,7 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
-          <View>
+          <View wrap={false}>
             <View minPresenceAhead={60}>
               <View style={[styles.divider, { borderBottomColor: accentColor }]} />
             <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.certifications.toUpperCase()}</Text>

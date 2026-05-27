@@ -98,7 +98,7 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
               </View>
             )}
             {education.length > 0 && (
-              <View>
+              <View wrap={false}>
                 <Pill label={labels.education} />
                 {education.map((edu) => {
                   const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
@@ -116,7 +116,7 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
               </View>
             )}
             {data.certifications && data.certifications.length > 0 && (
-              <View>
+              <View wrap={false}>
                 <Pill label={labels.certifications} />
                 {data.certifications.map((cert, idx) => (
                   <View
@@ -169,7 +169,7 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
               </View>
             )}
             {data.projects && data.projects.length > 0 && (
-              <View>
+              <View wrap={false}>
                 <Pill label={labels.projects} />
                 {data.projects.map((proj) => {
                   const bullets = (proj.bullets || []).filter((b) => b.trim());
