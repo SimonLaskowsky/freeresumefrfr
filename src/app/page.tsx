@@ -288,14 +288,22 @@ export default function Home() {
           <p className="text-xs text-zinc-700 font-mono text-center">
             {t.footer.tagline}
           </p>
-          <a
-            href="https://github.com/SimonLaskowsky"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-zinc-700 hover:text-zinc-400 transition-colors"
-          >
-            {t.nav.github} →
-          </a>
+          <div className="flex items-center gap-5">
+            <Link
+              href="/privacy"
+              className="text-xs text-zinc-700 hover:text-zinc-400 transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <a
+              href="https://github.com/SimonLaskowsky"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-zinc-700 hover:text-zinc-400 transition-colors"
+            >
+              {t.nav.github} →
+            </a>
+          </div>
         </div>
       </footer>
     </div>
