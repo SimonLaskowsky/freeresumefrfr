@@ -154,6 +154,15 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
                           <Text style={s.bulletText}>{b.trim()}</Text>
                         </View>
                       ))}
+                  {exp.technologies && exp.technologies.trim() && (
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: 4 }}>
+                      {exp.technologies.split(',').filter((t: string) => t.trim()).map((tech: string, idx: number) => (
+                        <View key={idx} style={{ borderWidth: 0.5, borderColor: accentColor, borderRadius: 2, paddingHorizontal: 4, paddingVertical: 1.5, marginRight: 3, marginBottom: 2 }}>
+                          <Text style={{ fontSize: 7.5, color: accentColor }}>{tech.trim()}</Text>
+                        </View>
+                      ))}
+                    </View>
+                  )}
                     </View>
                   );
                 })}
@@ -177,6 +186,15 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
                           <Text style={s.bulletText}>{b.trim()}</Text>
                         </View>
                       ))}
+                  {proj.technologies && proj.technologies.trim() && (
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: 4 }}>
+                      {proj.technologies.split(',').filter((t: string) => t.trim()).map((tech: string, idx: number) => (
+                        <View key={idx} style={{ borderWidth: 0.5, borderColor: accentColor, borderRadius: 2, paddingHorizontal: 4, paddingVertical: 1.5, marginRight: 3, marginBottom: 2 }}>
+                          <Text style={{ fontSize: 7.5, color: accentColor }}>{tech.trim()}</Text>
+                        </View>
+                      ))}
+                    </View>
+                  )}
                     </View>
                   );
                 })}

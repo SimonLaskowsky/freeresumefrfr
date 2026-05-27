@@ -86,6 +86,12 @@ export default function ExperienceForm() {
                 placeholder={t.fields.bulletPlaceholder}
               />
             </div>
+            <input
+              className={inputCls}
+              placeholder={`${t.fields.technologies} — ${t.fields.technologiesPlaceholder}`}
+              value={exp.technologies ?? ''}
+              onChange={(e) => updateExperience(exp.id, { technologies: e.target.value })}
+            />
           </div>
         ))}
       </div>

@@ -20,6 +20,7 @@ export interface Experience {
   endDate: string;
   current: boolean;
   bullets: string[];
+  technologies?: string;
 }
 
 export interface Education {
@@ -37,6 +38,7 @@ export interface Project {
   description: string;
   url: string;
   bullets: string[];
+  technologies?: string;
 }
 
 export interface Certification {
@@ -117,6 +119,7 @@ export const sampleData: ResumeData = {
         'Built the Radar fraud detection dashboard used by 50k+ merchants',
         'Mentored 4 junior engineers and established team-wide code review standards',
       ],
+      technologies: 'Go, Kafka, React, PostgreSQL',
     },
     {
       id: 'sample-exp-2',
@@ -129,6 +132,7 @@ export const sampleData: ResumeData = {
         'Owned the realtime sync engine powering collaborative editing across web and desktop',
         'Reduced initial page load by 60% through code splitting and service worker caching',
       ],
+      technologies: 'TypeScript, React, WebSockets',
     },
   ],
   education: [
@@ -151,6 +155,7 @@ export const sampleData: ResumeData = {
         '800+ GitHub stars, adopted by teams at Vercel and Shopify',
         'Written in Rust for 10× faster scanning vs alternatives',
       ],
+      technologies: 'Rust, Node.js, GitHub Actions',
     },
   ],
   certifications: [
@@ -183,7 +188,7 @@ export const useResumeStore = create<ResumeStore>()(
             ...s.data,
             experience: [...s.data.experience, {
               id: crypto.randomUUID(), company: '', title: '',
-              startDate: '', endDate: '', current: false, bullets: [''],
+              startDate: '', endDate: '', current: false, bullets: [''], technologies: '',
             }],
           },
         })),
@@ -225,7 +230,7 @@ export const useResumeStore = create<ResumeStore>()(
           data: {
             ...s.data,
             projects: [...s.data.projects, {
-              id: crypto.randomUUID(), name: '', description: '', url: '', bullets: [''],
+              id: crypto.randomUUID(), name: '', description: '', url: '', bullets: [''], technologies: '',
             }],
           },
         })),

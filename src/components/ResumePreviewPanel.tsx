@@ -106,9 +106,12 @@ export default function ResumePreviewPanel({ data, templateId, accentColor, comp
     return () => ro.disconnect();
   }, []);
 
+  const PAGE_PADDING = 16;
+  const pageWidth = width > 0 ? width - PAGE_PADDING * 2 : 0;
+
   // ── Shared slot renderer ──────────────────────────────────────────────────
   function renderSlot(slot: Slot, url: string | null, numPages: number) {
-    if (!url || width === 0) return null;
+    if (!url || pageWidth === 0) return null;
     return (
       <div
         key={slot}
@@ -116,10 +119,12 @@ export default function ResumePreviewPanel({ data, templateId, accentColor, comp
           position: 'absolute',
           inset: 0,
           overflowY: 'auto',
-          // Render below but keep visible so canvas stays painted; only the
-          // front slot is interactive and visible to the user
           zIndex: front === slot ? 1 : 0,
           visibility: front === slot ? 'visible' : 'hidden',
+          padding: `${PAGE_PADDING}px`,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px',
         }}
       >
         <Document
@@ -131,16 +136,37 @@ export default function ResumePreviewPanel({ data, templateId, accentColor, comp
           error={null}
         >
           {Array.from({ length: numPages }, (_, i) => (
-            <Page
+            <div
               key={i + 1}
-              pageNumber={i + 1}
-              width={width}
-              renderAnnotationLayer={false}
-              renderTextLayer={false}
-              loading={null}
-              // Only need page 1's render to confirm the slot is ready
-              onRenderSuccess={i === 0 ? () => handleRenderSuccess(slot) : undefined}
-            />
+              style={{
+                position: 'relative',
+                boxShadow: '0 4px 16px rgba(0,0,0,0.5)',
+                lineHeight: 0,
+              }}
+            >
+              <Page
+                pageNumber={i + 1}
+                width={pageWidth}
+                renderAnnotationLayer={false}
+                renderTextLayer={false}
+                loading={null}
+                onRenderSuccess={i === 0 ? () => handleRenderSuccess(slot) : undefined}
+              />
+              {numPages > 1 && (
+                <div style={{
+                  position: 'absolute',
+                  bottom: 6,
+                  right: 8,
+                  fontSize: 9,
+                  color: 'rgba(0,0,0,0.25)',
+                  fontFamily: 'sans-serif',
+                  pointerEvents: 'none',
+                  userSelect: 'none',
+                }}>
+                  {i + 1} / {numPages}
+                </div>
+              )}
+            </div>
           ))}
         </Document>
       </div>
@@ -155,6 +181,8 @@ export default function ResumePreviewPanel({ data, templateId, accentColor, comp
     );
   }
 
+  const frontNumPages = front === 'A' ? numPagesA : numPagesB;
+
   return (
     <div ref={containerRef} className="relative w-full h-full bg-zinc-800">
       {!pdfUrl && (
@@ -165,6 +193,18 @@ export default function ResumePreviewPanel({ data, templateId, accentColor, comp
 
       {renderSlot('A', urlA, numPagesA)}
       {renderSlot('B', urlB, numPagesB)}
+
+      {pdfUrl && frontNumPages > 0 && (
+        <div className="absolute top-3 right-3 pointer-events-none z-20 flex items-center gap-1 bg-zinc-900/80 px-2 py-1 rounded-full">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="text-zinc-400">
+            <rect x="1" y="0.5" width="7" height="9" rx="1" stroke="currentColor" strokeWidth="1" fill="none"/>
+            <line x1="2.5" y1="3" x2="7.5" y2="3" stroke="currentColor" strokeWidth="0.8"/>
+            <line x1="2.5" y1="5" x2="7.5" y2="5" stroke="currentColor" strokeWidth="0.8"/>
+            <line x1="2.5" y1="7" x2="5.5" y2="7" stroke="currentColor" strokeWidth="0.8"/>
+          </svg>
+          <span className="text-[10px] text-zinc-400">{frontNumPages}</span>
+        </div>
+      )}
 
       {instance.loading && pdfUrl && (
         <div className="absolute bottom-3 right-3 pointer-events-none z-20">
