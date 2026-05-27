@@ -89,7 +89,9 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
         <View style={s.main}>
           {data.summary && (
             <View>
-              <Text style={[s.mSectionTitle, { color: accentColor }]}>{labels.summary}</Text>
+              <View minPresenceAhead={60}>
+                <Text style={[s.mSectionTitle, { color: accentColor }]}>{labels.summary}</Text>
+              </View>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
               <Text style={{ fontSize: 9, color: '#374151', lineHeight: 1.5, marginBottom: 8 }}>{data.summary}</Text>
             </View>
@@ -97,7 +99,9 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
 
           {experience.length > 0 && (
             <View>
-              <Text style={[s.mSectionTitle, { color: accentColor }]}>{labels.experience}</Text>
+              <View minPresenceAhead={60}>
+                <Text style={[s.mSectionTitle, { color: accentColor }]}>{labels.experience}</Text>
+              </View>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
               {experience.map((exp) => {
                 const bullets = (exp.bullets || []).filter((b) => b.trim());
@@ -105,7 +109,7 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
                   ? `${exp.startDate} – ${labels.present}`
                   : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
                 return (
-                  <View key={exp.id} style={s.expItem}>
+                  <View key={exp.id} style={s.expItem} wrap={false}>
                     <View style={s.expRow}>
                       <Text style={s.expTitle}>{exp.title}</Text>
                       {dateRange && <Text style={s.expDates}>{dateRange}</Text>}
@@ -135,12 +139,14 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
           {/* Projects */}
           {data.projects && data.projects.length > 0 && (
             <View>
-              <Text style={[s.mSectionTitle, { marginTop: 14, color: accentColor }]}>{labels.projects}</Text>
+              <View minPresenceAhead={60}>
+                <Text style={[s.mSectionTitle, { marginTop: 14, color: accentColor }]}>{labels.projects}</Text>
+              </View>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
               {data.projects.map((proj) => {
                 const bullets = (proj.bullets || []).filter((b) => b.trim());
                 return (
-                  <View key={proj.id} style={s.expItem}>
+                  <View key={proj.id} style={s.expItem} wrap={false}>
                     <View style={s.expRow}>
                       <Text style={s.expTitle}>{proj.name}</Text>
                       {proj.url ? <Text style={{ fontSize: 8, color: '#60a5fa' }}>{proj.url}</Text> : null}
@@ -169,12 +175,14 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
 
           {education.length > 0 && (
             <View>
-              <Text style={[s.mSectionTitle, { marginTop: experience.length > 0 ? 14 : 0, color: accentColor }]}>{labels.education}</Text>
+              <View minPresenceAhead={60}>
+                <Text style={[s.mSectionTitle, { marginTop: experience.length > 0 ? 14 : 0, color: accentColor }]}>{labels.education}</Text>
+              </View>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
               {education.map((edu) => {
                 const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
                 return (
-                  <View key={edu.id} style={s.eduItem}>
+                  <View key={edu.id} style={s.eduItem} wrap={false}>
                     <View style={s.eduRow}>
                       <Text style={s.eduDegree}>{[edu.degree, edu.school].filter(Boolean).join(' · ')}</Text>
                       {dateRange && <Text style={s.eduDates}>{dateRange}</Text>}
@@ -189,7 +197,9 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
           {/* Certifications */}
           {data.certifications && data.certifications.length > 0 && (
             <View>
-              <Text style={[s.mSectionTitle, { marginTop: 14, color: accentColor }]}>{labels.certifications}</Text>
+              <View minPresenceAhead={60}>
+                <Text style={[s.mSectionTitle, { marginTop: 14, color: accentColor }]}>{labels.certifications}</Text>
+              </View>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
               {data.certifications.map((cert, idx) => (
                 <View

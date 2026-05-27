@@ -78,7 +78,9 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Summary */}
         {data.summary && (
           <View>
-            <Text style={[s.sectionTitle, { marginTop: 0, color: accentColor }]}>{labels.summary}</Text>
+            <View minPresenceAhead={60}>
+              <Text style={[s.sectionTitle, { marginTop: 0, color: accentColor }]}>{labels.summary}</Text>
+            </View>
             <View style={s.divider} />
             <Text style={{ fontSize: 9.5, color: '#475569', lineHeight: 1.5 }}>{data.summary}</Text>
           </View>
@@ -86,7 +88,9 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {experience.length > 0 && (
           <View>
-            <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.experience}</Text>
+            <View minPresenceAhead={60}>
+              <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.experience}</Text>
+            </View>
             <View style={s.divider} />
             {experience.map((exp) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
@@ -94,7 +98,7 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
                 ? `${exp.startDate} – ${labels.present}`
                 : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
               return (
-                <View key={exp.id} style={s.expItem}>
+                <View key={exp.id} style={s.expItem} wrap={false}>
                   <View style={s.expRow}>
                     <Text style={s.expTitle}>{exp.title}</Text>
                     {dateRange && <Text style={s.expDates}>{dateRange}</Text>}
@@ -124,12 +128,14 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
           <View>
-            <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.projects}</Text>
+            <View minPresenceAhead={60}>
+              <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.projects}</Text>
+            </View>
             <View style={s.divider} />
             {data.projects.map((proj) => {
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
-                <View key={proj.id} style={s.expItem}>
+                <View key={proj.id} style={s.expItem} wrap={false}>
                   <View style={s.expRow}>
                     <Text style={s.expTitle}>{proj.name}</Text>
                     {proj.url ? <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text> : null}
@@ -158,12 +164,14 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {education.length > 0 && (
           <View>
-            <Text style={[s.sectionTitle, { marginTop: experience.length > 0 ? 18 : 20, color: accentColor }]}>{labels.education}</Text>
+            <View minPresenceAhead={60}>
+              <Text style={[s.sectionTitle, { marginTop: experience.length > 0 ? 18 : 20, color: accentColor }]}>{labels.education}</Text>
+            </View>
             <View style={s.divider} />
             {education.map((edu) => {
               const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
               return (
-                <View key={edu.id} style={s.eduItem}>
+                <View key={edu.id} style={s.eduItem} wrap={false}>
                   <View style={s.eduRow}>
                     <Text style={s.eduDegree}>{edu.degree}</Text>
                     {dateRange && <Text style={s.eduDates}>{dateRange}</Text>}
@@ -179,7 +187,9 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
           <View>
-            <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.certifications}</Text>
+            <View minPresenceAhead={60}>
+              <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.certifications}</Text>
+            </View>
             <View style={s.divider} />
             {data.certifications.map((cert, idx) => (
               <View
@@ -199,7 +209,9 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {skills && (
           <View>
-            <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.skills}</Text>
+            <View minPresenceAhead={60}>
+              <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.skills}</Text>
+            </View>
             <View style={s.divider} />
             <Text style={s.skills}>{skills}</Text>
           </View>

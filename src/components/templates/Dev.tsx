@@ -43,7 +43,7 @@ export function DevTemplate({ data, labels, accentColor, companyLogo }: Props) {
 
   function CommentSection({ label, children }: { label: string; children: React.ReactNode }) {
     return (
-      <View>
+      <View minPresenceAhead={60}>
         <Text style={[s.sectionComment, { color: accentColor }]}>{`// ${label}`}</Text>
         <View style={s.sectionRule} />
         {children}
@@ -87,7 +87,7 @@ export function DevTemplate({ data, labels, accentColor, companyLogo }: Props) {
                 ? `${exp.startDate} – ${labels.present}`
                 : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
               return (
-                <View key={exp.id} style={s.expItem}>
+                <View key={exp.id} style={s.expItem} wrap={false}>
                   <View style={s.expRow}>
                     <Text style={s.expTitle}>{exp.title}</Text>
                     {dateRange && <Text style={s.expDates}>{dateRange}</Text>}
@@ -119,7 +119,7 @@ export function DevTemplate({ data, labels, accentColor, companyLogo }: Props) {
             {data.projects.map((proj) => {
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
-                <View key={proj.id} style={s.expItem}>
+                <View key={proj.id} style={s.expItem} wrap={false}>
                   <View style={s.expRow}>
                     <Text style={s.expTitle}>{proj.name}</Text>
                     {proj.url && <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text>}
@@ -151,7 +151,7 @@ export function DevTemplate({ data, labels, accentColor, companyLogo }: Props) {
             {education.map((edu) => {
               const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
               return (
-                <View key={edu.id} style={s.eduItem}>
+                <View key={edu.id} style={s.eduItem} wrap={false}>
                   <View style={s.eduRow}>
                     <Text style={s.eduDegree}>{[edu.degree, edu.school].filter(Boolean).join(' · ')}</Text>
                     {dateRange && <Text style={s.eduDates}>{dateRange}</Text>}

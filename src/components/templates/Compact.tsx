@@ -82,23 +82,27 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Summary */}
         {data.summary && (
           <View>
-            <View style={[s.divider, { borderBottomColor: accentColor }]} />
+            <View minPresenceAhead={60}>
+              <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.summary}</Text>
+            </View>
             <Text style={{ fontSize: 8.5, color: '#374151', lineHeight: 1.4 }}>{data.summary}</Text>
           </View>
         )}
 
         {experience.length > 0 && (
           <View>
-            <View style={[s.divider, { borderBottomColor: accentColor }]} />
+            <View minPresenceAhead={60}>
+              <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.experience}</Text>
+            </View>
             {experience.map((exp) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
               const dateRange = exp.current
                 ? `${exp.startDate} – ${labels.present}`
                 : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
               return (
-                <View key={exp.id} style={s.expItem}>
+                <View key={exp.id} style={s.expItem} wrap={false}>
                   <View style={s.expRow}>
                     <Text style={s.expTitleCompany}>
                       {[exp.title, exp.company].filter(Boolean).join(' · ')}
@@ -129,12 +133,14 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
           <View>
-            <View style={[s.divider, { borderBottomColor: accentColor }]} />
+            <View minPresenceAhead={60}>
+              <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.projects}</Text>
+            </View>
             {data.projects.map((proj) => {
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
-                <View key={proj.id} style={s.expItem}>
+                <View key={proj.id} style={s.expItem} wrap={false}>
                   <View style={s.expRow}>
                     <Text style={s.expTitleCompany}>{proj.name}</Text>
                     {proj.url ? <Text style={{ fontSize: 7.5, color: accentColor }}>{proj.url}</Text> : null}
@@ -163,12 +169,14 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {education.length > 0 && (
           <View>
-            <View style={[s.divider, { borderBottomColor: accentColor }]} />
+            <View minPresenceAhead={60}>
+              <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.education}</Text>
+            </View>
             {education.map((edu) => {
               const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
               return (
-                <View key={edu.id} style={s.eduItem}>
+                <View key={edu.id} style={s.eduItem} wrap={false}>
                   <View style={s.eduRow}>
                     <Text style={s.eduDegreeSchool}>{[edu.degree, edu.school].filter(Boolean).join(' · ')}</Text>
                     {dateRange && <Text style={s.eduDates}>{dateRange}</Text>}
@@ -183,8 +191,10 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
           <View>
-            <View style={[s.divider, { borderBottomColor: accentColor }]} />
+            <View minPresenceAhead={60}>
+              <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.certifications}</Text>
+            </View>
             {data.certifications.map((cert, idx) => (
               <View
                 key={cert.id}
@@ -203,8 +213,10 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {skills && (
           <View>
-            <View style={[s.divider, { borderBottomColor: accentColor }]} />
+            <View minPresenceAhead={60}>
+              <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.skills}</Text>
+            </View>
             <Text style={s.skills}>{skills}</Text>
           </View>
         )}

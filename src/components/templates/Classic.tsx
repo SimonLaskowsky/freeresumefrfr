@@ -157,8 +157,10 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Summary */}
         {data.summary && (
           <View>
-            <View style={[styles.divider, { borderBottomColor: accentColor }]} />
+            <View minPresenceAhead={60}>
+              <View style={[styles.divider, { borderBottomColor: accentColor }]} />
             <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.summary.toUpperCase()}</Text>
+            </View>
             <Text style={{ fontSize: 9.5, color: '#333333', lineHeight: 1.5 }}>{data.summary}</Text>
           </View>
         )}
@@ -166,15 +168,17 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Experience */}
         {experience.length > 0 && (
           <View>
-            <View style={[styles.divider, { borderBottomColor: accentColor }]} />
+            <View minPresenceAhead={60}>
+              <View style={[styles.divider, { borderBottomColor: accentColor }]} />
             <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.experience.toUpperCase()}</Text>
+            </View>
             {experience.map((exp) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
               const dateRange = exp.current
                 ? `${exp.startDate} – ${labels.present}`
                 : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
               return (
-                <View key={exp.id} style={styles.expItem}>
+                <View key={exp.id} style={styles.expItem} wrap={false}>
                   <View style={styles.expTopRow}>
                     <Text style={styles.expTitleCompany}>
                       {[exp.title, exp.company].filter(Boolean).join(' · ')}
@@ -205,12 +209,14 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
           <View>
-            <View style={[styles.divider, { borderBottomColor: accentColor }]} />
+            <View minPresenceAhead={60}>
+              <View style={[styles.divider, { borderBottomColor: accentColor }]} />
             <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.projects.toUpperCase()}</Text>
+            </View>
             {data.projects.map((proj) => {
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
-                <View key={proj.id} style={styles.expItem}>
+                <View key={proj.id} style={styles.expItem} wrap={false}>
                   <View style={styles.expTopRow}>
                     <Text style={styles.expTitleCompany}>{proj.name}</Text>
                     {proj.url ? <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text> : null}
@@ -240,12 +246,14 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Education */}
         {education.length > 0 && (
           <View>
-            <View style={[styles.divider, { borderBottomColor: accentColor }]} />
+            <View minPresenceAhead={60}>
+              <View style={[styles.divider, { borderBottomColor: accentColor }]} />
             <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.education.toUpperCase()}</Text>
+            </View>
             {education.map((edu) => {
               const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
               return (
-                <View key={edu.id} style={styles.eduItem}>
+                <View key={edu.id} style={styles.eduItem} wrap={false}>
                   <View style={styles.eduTopRow}>
                     <Text style={styles.eduDegreeSchool}>
                       {[edu.degree, edu.school].filter(Boolean).join(' · ')}
@@ -262,8 +270,10 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
           <View>
-            <View style={[styles.divider, { borderBottomColor: accentColor }]} />
+            <View minPresenceAhead={60}>
+              <View style={[styles.divider, { borderBottomColor: accentColor }]} />
             <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.certifications.toUpperCase()}</Text>
+            </View>
             {data.certifications.map((cert, idx) => (
               <View
                 key={cert.id}
@@ -283,8 +293,10 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Skills */}
         {skills && (
           <View>
-            <View style={[styles.divider, { borderBottomColor: accentColor }]} />
+            <View minPresenceAhead={60}>
+              <View style={[styles.divider, { borderBottomColor: accentColor }]} />
             <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.skills.toUpperCase()}</Text>
+            </View>
             <Text style={styles.skillsText}>{skills}</Text>
           </View>
         )}

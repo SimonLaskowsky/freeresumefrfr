@@ -47,7 +47,7 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
 
   function Pill({ label }: { label: string }) {
     return (
-      <View style={[s.pillLabel, { backgroundColor: accentColor }]}>
+      <View style={[s.pillLabel, { backgroundColor: accentColor }]} minPresenceAhead={60}>
         <Text style={{ color: '#ffffff' }}>{label.toUpperCase()}</Text>
       </View>
     );
@@ -103,7 +103,7 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
                 {education.map((edu) => {
                   const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
                   return (
-                    <View key={edu.id} style={s.eduItem}>
+                    <View key={edu.id} style={s.eduItem} wrap={false}>
                       <View style={s.eduRow}>
                         <Text style={s.eduDegree}>{edu.degree}</Text>
                         {dateRange && <Text style={s.eduDates}>{dateRange}</Text>}
@@ -142,7 +142,7 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
                     ? `${exp.startDate} – ${labels.present}`
                     : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
                   return (
-                    <View key={exp.id} style={s.expItem}>
+                    <View key={exp.id} style={s.expItem} wrap={false}>
                       <View style={s.expRow}>
                         <Text style={s.expTitle}>{exp.title}</Text>
                         {dateRange && <Text style={s.expDates}>{dateRange}</Text>}
@@ -174,7 +174,7 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
                 {data.projects.map((proj) => {
                   const bullets = (proj.bullets || []).filter((b) => b.trim());
                   return (
-                    <View key={proj.id} style={s.expItem}>
+                    <View key={proj.id} style={s.expItem} wrap={false}>
                       <View style={s.expRow}>
                         <Text style={s.expTitle}>{proj.name}</Text>
                         {proj.url && <Text style={{ fontSize: 8, color: accentColor }}>{proj.url}</Text>}

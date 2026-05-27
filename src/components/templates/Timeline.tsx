@@ -48,7 +48,7 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
 
   function SectionHead({ label }: { label: string }) {
     return (
-      <View>
+      <View minPresenceAhead={60}>
         <View style={s.sectionHeader}>
           <View style={[s.sectionDot, { backgroundColor: accentColor }]} />
           <Text style={[s.sectionTitle, { color: accentColor }]}>{label.toUpperCase()}</Text>
@@ -97,7 +97,7 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
                 : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
               const isLast = idx === experience.length - 1;
               return (
-                <View key={exp.id} style={s.expWrapper}>
+                <View key={exp.id} style={s.expWrapper} wrap={false}>
                   <View style={s.timelineCol}>
                     <View style={[s.timelineCircle, { backgroundColor: accentColor }]} />
                     {!isLast && (
@@ -140,7 +140,7 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
             {data.projects.map((proj) => {
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
-                <View key={proj.id} style={s.normalItem}>
+                <View key={proj.id} style={s.normalItem} wrap={false}>
                   <View style={s.itemRow}>
                     <Text style={s.itemTitle}>{proj.name}</Text>
                     {proj.url && <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text>}
@@ -173,7 +173,7 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
             {education.map((edu) => {
               const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
               return (
-                <View key={edu.id} style={s.normalItem}>
+                <View key={edu.id} style={s.normalItem} wrap={false}>
                   <View style={s.itemRow}>
                     <Text style={s.itemTitle}>{[edu.degree, edu.school].filter(Boolean).join(' · ')}</Text>
                     {dateRange && <Text style={s.itemDates}>{dateRange}</Text>}

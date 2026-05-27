@@ -97,21 +97,25 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
           {/* Summary */}
           {data.summary && (
             <View>
-              <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.summary}</Text>
+              <View minPresenceAhead={60}>
+                <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.summary}</Text>
+              </View>
               <Text style={{ fontSize: 9.5, color: '#374151', lineHeight: 1.5 }}>{data.summary}</Text>
             </View>
           )}
 
           {experience.length > 0 && (
             <View>
-              <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.experience}</Text>
+              <View minPresenceAhead={60}>
+                <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.experience}</Text>
+              </View>
               {experience.map((exp) => {
                 const bullets = (exp.bullets || []).filter((b) => b.trim());
                 const dateRange = exp.current
                   ? `${exp.startDate} – ${labels.present}`
                   : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
                 return (
-                  <View key={exp.id} style={s.expItem}>
+                  <View key={exp.id} style={s.expItem} wrap={false}>
                     <View style={s.expRow}>
                       <Text style={s.expTitle}>{[exp.title, exp.company].filter(Boolean).join(' · ')}</Text>
                       {dateRange && <Text style={s.expDates}>{dateRange}</Text>}
@@ -140,11 +144,13 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
           {/* Projects */}
           {data.projects && data.projects.length > 0 && (
             <View>
-              <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.projects}</Text>
+              <View minPresenceAhead={60}>
+                <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.projects}</Text>
+              </View>
               {data.projects.map((proj) => {
                 const bullets = (proj.bullets || []).filter((b) => b.trim());
                 return (
-                  <View key={proj.id} style={s.expItem}>
+                  <View key={proj.id} style={s.expItem} wrap={false}>
                     <View style={s.expRow}>
                       <Text style={s.expTitle}>{proj.name}</Text>
                       {proj.url ? <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text> : null}
@@ -173,11 +179,13 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
 
           {education.length > 0 && (
             <View>
-              <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.education}</Text>
+              <View minPresenceAhead={60}>
+                <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.education}</Text>
+              </View>
               {education.map((edu) => {
                 const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
                 return (
-                  <View key={edu.id} style={s.eduItem}>
+                  <View key={edu.id} style={s.eduItem} wrap={false}>
                     <View style={s.eduRow}>
                       <Text style={s.eduDegree}>{[edu.degree, edu.school].filter(Boolean).join(' · ')}</Text>
                       {dateRange && <Text style={s.eduDates}>{dateRange}</Text>}
@@ -192,7 +200,9 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
           {/* Certifications */}
           {data.certifications && data.certifications.length > 0 && (
             <View>
-              <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.certifications}</Text>
+              <View minPresenceAhead={60}>
+                <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.certifications}</Text>
+              </View>
               {data.certifications.map((cert, idx) => (
                 <View
                   key={cert.id}
@@ -211,7 +221,9 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
 
           {skills && (
             <View>
-              <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.skills}</Text>
+              <View minPresenceAhead={60}>
+                <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.skills}</Text>
+              </View>
               <Text style={s.skills}>{skills}</Text>
             </View>
           )}

@@ -85,7 +85,9 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Summary */}
         {data.summary && (
           <View>
-            <Text style={s.sectionTitle}>{labels.summary}</Text>
+            <View minPresenceAhead={60}>
+              <Text style={s.sectionTitle}>{labels.summary}</Text>
+            </View>
             <View style={s.thinRule} />
             <Text style={{ fontSize: 9.5, color: '#333333', lineHeight: 1.6, textAlign: 'center' }}>{data.summary}</Text>
           </View>
@@ -93,7 +95,9 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {experience.length > 0 && (
           <View>
-            <Text style={s.sectionTitle}>{labels.experience}</Text>
+            <View minPresenceAhead={60}>
+              <Text style={s.sectionTitle}>{labels.experience}</Text>
+            </View>
             <View style={s.thinRule} />
             {experience.map((exp) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
@@ -101,7 +105,7 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
                 ? `${exp.startDate} – ${labels.present}`
                 : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
               return (
-                <View key={exp.id} style={s.expItem}>
+                <View key={exp.id} style={s.expItem} wrap={false}>
                   <View style={s.expRow}>
                     <Text style={s.expTitle}>{exp.title}</Text>
                     {dateRange && <Text style={s.expDates}>{dateRange}</Text>}
@@ -131,12 +135,14 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
           <View>
-            <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.projects}</Text>
+            <View minPresenceAhead={60}>
+              <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.projects}</Text>
+            </View>
             <View style={s.thinRule} />
             {data.projects.map((proj) => {
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
-                <View key={proj.id} style={s.expItem}>
+                <View key={proj.id} style={s.expItem} wrap={false}>
                   <View style={s.expRow}>
                     <Text style={s.expTitle}>{proj.name}</Text>
                     {proj.url ? <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text> : null}
@@ -165,12 +171,14 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {education.length > 0 && (
           <View>
-            <Text style={[s.sectionTitle, { marginTop: experience.length > 0 ? 12 : 14 }]}>{labels.education}</Text>
+            <View minPresenceAhead={60}>
+              <Text style={[s.sectionTitle, { marginTop: experience.length > 0 ? 12 : 14 }]}>{labels.education}</Text>
+            </View>
             <View style={s.thinRule} />
             {education.map((edu) => {
               const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
               return (
-                <View key={edu.id} style={s.eduItem}>
+                <View key={edu.id} style={s.eduItem} wrap={false}>
                   {edu.degree && <Text style={s.eduDegree}>{edu.degree}</Text>}
                   {edu.school && <Text style={s.eduSchool}>{edu.school}</Text>}
                   {dateRange && <Text style={s.eduDates}>{dateRange}</Text>}
@@ -184,7 +192,9 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
           <View>
-            <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.certifications}</Text>
+            <View minPresenceAhead={60}>
+              <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.certifications}</Text>
+            </View>
             <View style={s.thinRule} />
             {data.certifications.map((cert, idx) => (
               <View
@@ -203,7 +213,9 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {skills && (
           <View>
-            <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.skills}</Text>
+            <View minPresenceAhead={60}>
+              <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.skills}</Text>
+            </View>
             <View style={s.thinRule} />
             <Text style={s.skills}>{skills}</Text>
           </View>
