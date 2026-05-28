@@ -129,6 +129,7 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
     personal.location,
     personal.linkedin,
     personal.website,
+    ...(personal.links ?? []).map((l) => l.label || l.url),
   ].filter(Boolean);
 
   return (

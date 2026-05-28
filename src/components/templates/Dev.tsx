@@ -38,7 +38,7 @@ const s = StyleSheet.create({
 
 export function DevTemplate({ data, labels, accentColor, companyLogo }: Props) {
   const { personal, experience, education, skills } = data;
-  const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website].filter(Boolean);
+  const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website, ...(personal.links ?? []).map((l) => l.label || l.url)].filter(Boolean);
   const skillList = skills.split(',').map((s) => s.trim()).filter(Boolean);
 
   function CommentSection({ label, children }: { label: string; children: React.ReactNode }) {

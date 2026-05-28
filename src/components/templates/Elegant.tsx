@@ -54,7 +54,7 @@ const s = StyleSheet.create({
 
 export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { data: ResumeData; labels: Labels; accentColor: string; companyLogo?: string }) {
   const { personal, experience, education, skills } = data;
-  const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website].filter(Boolean);
+  const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website, ...(personal.links ?? []).map((l) => l.label || l.url)].filter(Boolean);
 
   return (
     <Document>

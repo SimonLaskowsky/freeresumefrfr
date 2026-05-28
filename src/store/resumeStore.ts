@@ -1,6 +1,12 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+export interface PersonalLink {
+  id: string;
+  label: string;
+  url: string;
+}
+
 export interface PersonalInfo {
   name: string;
   title: string;
@@ -10,6 +16,7 @@ export interface PersonalInfo {
   linkedin: string;
   website: string;
   photo?: string;
+  links?: PersonalLink[];
 }
 
 export interface Experience {
@@ -97,6 +104,9 @@ interface ResumeStore {
   updateSkillGroup: (id: string, updates: Partial<Omit<SkillGroup, 'id'>>) => void;
   removeSkillGroup: (id: string) => void;
   updateSkills: (skills: string) => void;
+  addPersonalLink: () => void;
+  updatePersonalLink: (id: string, updates: Partial<Omit<PersonalLink, 'id'>>) => void;
+  removePersonalLink: (id: string) => void;
   loadSampleData: () => void;
   resetData: () => void;
   accentColor: string;
@@ -347,6 +357,39 @@ export const useResumeStore = create<ResumeStore>()(
 
       updateSkills: (skills) =>
         set((s) => ({ data: { ...s.data, skills } })),
+
+      addPersonalLink: () =>
+        set((s) => ({
+          data: {
+            ...s.data,
+            personal: {
+              ...s.data.personal,
+              links: [...(s.data.personal.links ?? []), { id: crypto.randomUUID(), label: '', url: '' }],
+            },
+          },
+        })),
+
+      updatePersonalLink: (id, updates) =>
+        set((s) => ({
+          data: {
+            ...s.data,
+            personal: {
+              ...s.data.personal,
+              links: (s.data.personal.links ?? []).map((l) => l.id === id ? { ...l, ...updates } : l),
+            },
+          },
+        })),
+
+      removePersonalLink: (id) =>
+        set((s) => ({
+          data: {
+            ...s.data,
+            personal: {
+              ...s.data.personal,
+              links: (s.data.personal.links ?? []).filter((l) => l.id !== id),
+            },
+          },
+        })),
 
       loadSampleData: () => set({ data: sampleData }),
       resetData: () => set({ data: defaultData }),

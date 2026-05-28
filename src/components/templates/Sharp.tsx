@@ -43,7 +43,7 @@ const s = StyleSheet.create({
 
 export function SharpTemplate({ data, labels, accentColor, companyLogo }: Props) {
   const { personal, experience, education, skills } = data;
-  const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website].filter(Boolean);
+  const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website, ...(personal.links ?? []).map((l) => l.label || l.url)].filter(Boolean);
 
   function Section({ title, children }: { title: string; children: React.ReactNode }) {
     return (

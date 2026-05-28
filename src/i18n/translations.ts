@@ -49,6 +49,7 @@ export interface Translations {
     positionLabel: string; entryLabel: string;
     projectLabel: string; certLabel: string; langLabel: string;
     langName: string; langLevel: string; langLevelPlaceholder: string;
+    linkLabel: string; linkLabelPlaceholder: string; linkUrl: string;
   };
 
   // Actions
@@ -59,6 +60,7 @@ export interface Translations {
     addCertification: string; removeCertification: string;
     addLanguage: string; removeLanguage: string;
     addSkillGroup: string; removeSkillGroup: string;
+    addLink: string; removeLink: string;
   };
 
   // ATS tips (shown in SectionWrapper)
@@ -236,6 +238,7 @@ const en: Translations = {
     projectLabel: 'Project',
     certLabel: 'Cert',
     langLabel: 'Lang', langName: 'Language', langLevel: 'Level', langLevelPlaceholder: 'Native, Fluent, C1, B2…',
+    linkLabel: 'Links', linkLabelPlaceholder: 'LinkedIn, GitHub…', linkUrl: 'https://…',
   },
   actions: {
     addExperience: '+ Add Experience',
@@ -248,6 +251,7 @@ const en: Translations = {
     removeCertification: 'Remove',
     addLanguage: '+ Add Language', removeLanguage: 'Remove',
     addSkillGroup: '+ Add Skill Group', removeSkillGroup: 'Remove',
+    addLink: '+ Add Link', removeLink: 'Remove',
   },
   tips: {
     summary: 'Lead with your strongest value. Include years of experience and 2-3 top skills. ATS scanners love keywords from the job description.',
@@ -446,6 +450,7 @@ const es: Translations = {
     projectLabel: 'Proyecto',
     certLabel: 'Cert.',
     langLabel: 'Idioma', langName: 'Idioma', langLevel: 'Nivel', langLevelPlaceholder: 'Nativo, Fluido, C1, B2…',
+    linkLabel: 'Enlace', linkLabelPlaceholder: 'LinkedIn, GitHub…', linkUrl: 'https://…',
   },
   actions: {
     addExperience: '+ Añadir experiencia',
@@ -458,6 +463,7 @@ const es: Translations = {
     removeCertification: 'Eliminar',
     addLanguage: '+ Añadir idioma', removeLanguage: 'Eliminar',
     addSkillGroup: '+ Añadir grupo', removeSkillGroup: 'Eliminar',
+    addLink: '+ Añadir enlace', removeLink: 'Eliminar',
   },
   tips: {
     summary: 'Comienza con tu mayor valor. Incluye años de experiencia y 2-3 habilidades clave. Los sistemas ATS adoran las palabras clave del trabajo.',
@@ -656,6 +662,7 @@ const fr: Translations = {
     projectLabel: 'Projet',
     certLabel: 'Cert.',
     langLabel: 'Langue', langName: 'Langue', langLevel: 'Niveau', langLevelPlaceholder: 'Natif, Courant, C1, B2…',
+    linkLabel: 'Liens', linkLabelPlaceholder: 'LinkedIn, GitHub…', linkUrl: 'https://…',
   },
   actions: {
     addExperience: '+ Ajouter une expérience',
@@ -668,6 +675,7 @@ const fr: Translations = {
     removeCertification: 'Supprimer',
     addLanguage: '+ Ajouter une langue', removeLanguage: 'Supprimer',
     addSkillGroup: '+ Ajouter un groupe', removeSkillGroup: 'Supprimer',
+    addLink: '+ Ajouter un lien', removeLink: 'Supprimer',
   },
   tips: {
     summary: 'Commencez par votre valeur ajoutée. Incluez vos années d\'expérience et 2-3 compétences clés. Les ATS adorent les mots-clés de l\'offre d\'emploi.',
@@ -865,6 +873,7 @@ const de: Translations = {
     projectLabel: 'Projekt',
     certLabel: 'Zert.',
     langLabel: 'Sprache', langName: 'Sprache', langLevel: 'Niveau', langLevelPlaceholder: 'Muttersprache, Fließend, C1, B2…',
+    linkLabel: 'Links', linkLabelPlaceholder: 'LinkedIn, GitHub…', linkUrl: 'https://…',
   },
   actions: {
     addExperience: '+ Erfahrung hinzufügen',
@@ -877,6 +886,7 @@ const de: Translations = {
     removeCertification: 'Entfernen',
     addLanguage: '+ Sprache hinzufügen', removeLanguage: 'Entfernen',
     addSkillGroup: '+ Gruppe hinzufügen', removeSkillGroup: 'Entfernen',
+    addLink: '+ Link hinzufügen', removeLink: 'Entfernen',
   },
   tips: {
     summary: 'Beginnen Sie mit Ihrem stärksten Wert. Nennen Sie Erfahrungsjahre und 2-3 Top-Fähigkeiten. ATS-Scanner lieben Schlüsselwörter aus der Stellenbeschreibung.',
@@ -1075,6 +1085,7 @@ const pt: Translations = {
     projectLabel: 'Projeto',
     certLabel: 'Cert.',
     langLabel: 'Idioma', langName: 'Idioma', langLevel: 'Nível', langLevelPlaceholder: 'Nativo, Fluente, C1, B2…',
+    linkLabel: 'Links', linkLabelPlaceholder: 'LinkedIn, GitHub…', linkUrl: 'https://…',
   },
   actions: {
     addExperience: '+ Adicionar experiência',
@@ -1087,6 +1098,7 @@ const pt: Translations = {
     removeCertification: 'Remover',
     addLanguage: '+ Adicionar idioma', removeLanguage: 'Remover',
     addSkillGroup: '+ Adicionar grupo', removeSkillGroup: 'Remover',
+    addLink: '+ Adicionar link', removeLink: 'Remover',
   },
   tips: {
     summary: 'Comece com seu maior valor. Inclua anos de experiência e 2-3 habilidades principais. Sistemas ATS adoram palavras-chave da descrição do cargo.',
@@ -1285,6 +1297,7 @@ const zh: Translations = {
     projectLabel: '项目',
     certLabel: '证书',
     langLabel: '语言', langName: '语言', langLevel: '熟练程度', langLevelPlaceholder: '母语、流利、C1、B2…',
+    linkLabel: '链接', linkLabelPlaceholder: 'LinkedIn, GitHub…', linkUrl: 'https://…',
   },
   actions: {
     addExperience: '+ 添加工作经历',
@@ -1297,6 +1310,7 @@ const zh: Translations = {
     removeCertification: '删除',
     addLanguage: '+ 添加语言', removeLanguage: '删除',
     addSkillGroup: '+ 添加技能组', removeSkillGroup: '删除',
+    addLink: '+ 添加链接', removeLink: '删除',
   },
   tips: {
     summary: '以您最强的价值开头。包含工作年限和2-3项顶尖技能。ATS扫描仪喜欢职位描述中的关键词。',
@@ -1495,6 +1509,7 @@ const ja: Translations = {
     projectLabel: 'プロジェクト',
     certLabel: '資格',
     langLabel: '言語', langName: '言語', langLevel: 'レベル', langLevelPlaceholder: 'ネイティブ、流晩、C1、B2…',
+    linkLabel: 'リンク', linkLabelPlaceholder: 'LinkedIn, GitHub…', linkUrl: 'https://…',
   },
   actions: {
     addExperience: '+ 職歴を追加',
@@ -1507,6 +1522,7 @@ const ja: Translations = {
     removeCertification: '削除',
     addLanguage: '+ 言語を追加', removeLanguage: '削除',
     addSkillGroup: '+ グループを追加', removeSkillGroup: '削除',
+    addLink: '+ リンクを追加', removeLink: '削除',
   },
   tips: {
     summary: '最も強みとなる価値から始めましょう。経験年数と上位2-3のスキルを含めてください。ATSスキャナーは求人票のキーワードを好みます。',
@@ -1705,6 +1721,7 @@ const ko: Translations = {
     projectLabel: '프로젝트',
     certLabel: '자격증',
     langLabel: '언어', langName: '언어', langLevel: '수준', langLevelPlaceholder: '원어민, 유창, C1, B2…',
+    linkLabel: '링크', linkLabelPlaceholder: 'LinkedIn, GitHub…', linkUrl: 'https://…',
   },
   actions: {
     addExperience: '+ 경력 추가',
@@ -1717,6 +1734,7 @@ const ko: Translations = {
     removeCertification: '삭제',
     addLanguage: '+ 언어 추가', removeLanguage: '삭제',
     addSkillGroup: '+ 기술 그룹 추가', removeSkillGroup: '삭제',
+    addLink: '+ 링크 추가', removeLink: '삭제',
   },
   tips: {
     summary: '가장 강한 가치로 시작하세요. 경력 연수와 상위 2-3가지 기술을 포함하세요. ATS 스캐너는 직무 설명의 키워드를 좋아합니다.',
@@ -1915,6 +1933,7 @@ const ar: Translations = {
     projectLabel: 'مشروع',
     certLabel: 'شهادة',
     langLabel: 'لغة', langName: 'اللغة', langLevel: 'المستوى', langLevelPlaceholder: 'لغة أم، طلاقة، C1، B2…',
+    linkLabel: 'روابط', linkLabelPlaceholder: 'LinkedIn, GitHub…', linkUrl: 'https://…',
   },
   actions: {
     addExperience: '+ إضافة خبرة',
@@ -1927,6 +1946,7 @@ const ar: Translations = {
     removeCertification: 'إزالة',
     addLanguage: '+ إضافة لغة', removeLanguage: 'إزالة',
     addSkillGroup: '+ إضافة مجموعة', removeSkillGroup: 'إزالة',
+    addLink: '+ إضافة رابط', removeLink: 'حذف',
   },
   tips: {
     summary: 'ابدأ بأقوى قيمة لديك. أدرج سنوات الخبرة و2-3 مهارات رئيسية. ماسحات ATS تحب الكلمات المفتاحية من وصف الوظيفة.',
@@ -2124,6 +2144,7 @@ const ru: Translations = {
     projectLabel: 'Проект',
     certLabel: 'Серт.',
     langLabel: 'Язык', langName: 'Язык', langLevel: 'Уровень', langLevelPlaceholder: 'Родной, Свободно, C1, B2…',
+    linkLabel: 'Ссылки', linkLabelPlaceholder: 'LinkedIn, GitHub…', linkUrl: 'https://…',
   },
   actions: {
     addExperience: '+ Добавить опыт',
@@ -2136,6 +2157,7 @@ const ru: Translations = {
     removeCertification: 'Удалить',
     addLanguage: '+ Добавить язык', removeLanguage: 'Удалить',
     addSkillGroup: '+ Добавить группу', removeSkillGroup: 'Удалить',
+    addLink: '+ Добавить ссылку', removeLink: 'Удалить',
   },
   tips: {
     summary: 'Начните с вашей главной ценности. Укажите годы опыта и 2-3 ключевых навыка. ATS-сканеры любят ключевые слова из описания вакансии.',
@@ -2333,6 +2355,7 @@ const it: Translations = {
     projectLabel: 'Progetto',
     certLabel: 'Cert.',
     langLabel: 'Lingua', langName: 'Lingua', langLevel: 'Livello', langLevelPlaceholder: 'Madrelingua, Fluente, C1, B2…',
+    linkLabel: 'Link', linkLabelPlaceholder: 'LinkedIn, GitHub…', linkUrl: 'https://…',
   },
   actions: {
     addExperience: '+ Aggiungi esperienza',
@@ -2345,6 +2368,7 @@ const it: Translations = {
     removeCertification: 'Rimuovi',
     addLanguage: '+ Aggiungi lingua', removeLanguage: 'Rimuovi',
     addSkillGroup: '+ Aggiungi gruppo', removeSkillGroup: 'Rimuovi',
+    addLink: '+ Aggiungi link', removeLink: 'Rimuovi',
   },
   tips: {
     summary: 'Inizia con il tuo punto di forza. Includi anni di esperienza e 2-3 competenze chiave. Gli scanner ATS amano le parole chiave dall\'annuncio di lavoro.',
@@ -2542,6 +2566,7 @@ const hi: Translations = {
     projectLabel: 'प्रोजेक्ट',
     certLabel: 'सर्टिफिकेट',
     langLabel: 'भाषा', langName: 'भाषा', langLevel: 'स्तर', langLevelPlaceholder: 'मातृभाषा, धाराप्रवाह, C1, B2…',
+    linkLabel: 'लिंक', linkLabelPlaceholder: 'LinkedIn, GitHub…', linkUrl: 'https://…',
   },
   actions: {
     addExperience: '+ अनुभव जोड़ें',
@@ -2554,6 +2579,7 @@ const hi: Translations = {
     removeCertification: 'हटाएं',
     addLanguage: '+ भाषा जोड़ें', removeLanguage: 'हटाएं',
     addSkillGroup: '+ कौशल समूह जोड़ें', removeSkillGroup: 'हटाएं',
+    addLink: '+ लिंक जोड़ें', removeLink: 'हटाएं',
   },
   tips: {
     summary: 'अपनी सबसे मजबूत ताकत से शुरू करें। अनुभव के वर्ष और 2-3 शीर्ष कौशल शामिल करें। ATS स्कैनर नौकरी विवरण के कीवर्ड पसंद करते हैं।',
@@ -2751,6 +2777,7 @@ const tr: Translations = {
     projectLabel: 'Proje',
     certLabel: 'Sert.',
     langLabel: 'Dil', langName: 'Dil', langLevel: 'Seviye', langLevelPlaceholder: 'Anadil, Akıcı, C1, B2…',
+    linkLabel: 'Bağlantılar', linkLabelPlaceholder: 'LinkedIn, GitHub…', linkUrl: 'https://…',
   },
   actions: {
     addExperience: '+ Deneyim Ekle',
@@ -2763,6 +2790,7 @@ const tr: Translations = {
     removeCertification: 'Kaldır',
     addLanguage: '+ Dil Ekle', removeLanguage: 'Kaldır',
     addSkillGroup: '+ Beceri grubu ekle', removeSkillGroup: 'Kaldır',
+    addLink: '+ Bağlantı ekle', removeLink: 'Kaldır',
   },
   tips: {
     summary: 'En güçlü değerinizle başlayın. Deneyim yıllarını ve 2-3 temel beceriyi ekleyin. ATS tarayıcıları iş tanımındaki anahtar kelimeleri sever.',
@@ -2960,6 +2988,7 @@ const nl: Translations = {
     projectLabel: 'Project',
     certLabel: 'Cert.',
     langLabel: 'Taal', langName: 'Taal', langLevel: 'Niveau', langLevelPlaceholder: 'Moedertaal, Vloeiend, C1, B2…',
+    linkLabel: 'Links', linkLabelPlaceholder: 'LinkedIn, GitHub…', linkUrl: 'https://…',
   },
   actions: {
     addExperience: '+ Ervaring toevoegen',
@@ -2972,6 +3001,7 @@ const nl: Translations = {
     removeCertification: 'Verwijderen',
     addLanguage: '+ Taal toevoegen', removeLanguage: 'Verwijderen',
     addSkillGroup: '+ Vaardigheidsgroep toevoegen', removeSkillGroup: 'Verwijderen',
+    addLink: '+ Link toevoegen', removeLink: 'Verwijderen',
   },
   tips: {
     summary: 'Begin met je sterkste waarde. Noem jaren ervaring en 2-3 topvaardigheden. ATS-scanners houden van trefwoorden uit de vacature.',
@@ -3169,6 +3199,7 @@ const pl: Translations = {
     projectLabel: 'Projekt',
     certLabel: 'Cert.',
     langLabel: 'Język', langName: 'Język', langLevel: 'Poziom', langLevelPlaceholder: 'Ojczysty, Biegły, C1, B2…',
+    linkLabel: 'Linki', linkLabelPlaceholder: 'LinkedIn, GitHub…', linkUrl: 'https://…',
   },
   actions: {
     addExperience: '+ Dodaj doświadczenie',
@@ -3181,6 +3212,7 @@ const pl: Translations = {
     removeCertification: 'Usuń',
     addLanguage: '+ Dodaj język', removeLanguage: 'Usuń',
     addSkillGroup: '+ Dodaj grupę', removeSkillGroup: 'Usuń',
+    addLink: '+ Dodaj link', removeLink: 'Usuń',
   },
   tips: {
     summary: 'Zacznij od swojej największej wartości. Wymień lata doświadczenia i 2-3 kluczowe umiejętności. Skanery ATS kochają słowa kluczowe z opisu stanowiska.',
