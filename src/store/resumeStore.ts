@@ -134,8 +134,12 @@ export const sampleData: ResumeData = {
     email: 'alex@email.com',
     phone: '(415) 555-0192',
     location: 'San Francisco, CA',
-    linkedin: 'linkedin.com/in/alexrivera',
-    website: 'alexrivera.dev',
+    linkedin: '',
+    website: '',
+    links: [
+      { id: 'sample-link-1', label: 'LinkedIn', url: 'linkedin.com/in/alexrivera' },
+      { id: 'sample-link-2', label: 'alexrivera.dev', url: 'https://alexrivera.dev' },
+    ],
   },
   summary: 'Full-stack engineer with 6 years building products used by millions. Obsessed with performance, clean APIs, and shipping things that matter. Previously at Stripe and Linear.',
   experience: [
@@ -400,11 +404,11 @@ export const useResumeStore = create<ResumeStore>()(
     }),
     {
       name: 'resume-data',
-      version: 1,
+      version: 2,
       migrate: (raw: unknown, version: number) => {
-        // v0 → v1: bullets was a string, now string[]
         const state = raw as { data?: Partial<ResumeData> & { experience?: Array<{ bullets: unknown }> } };
         if (version === 0 && state.data) {
+          // v0 → v1: bullets was a string, now string[]
           if (state.data.experience) {
             state.data.experience = state.data.experience.map((exp) => ({
               ...exp,
@@ -418,6 +422,20 @@ export const useResumeStore = create<ResumeStore>()(
           state.data.certifications ??= [];
           state.data.languages ??= [];
           state.data.skillGroups ??= [];
+        }
+        if (version < 2 && state.data?.personal) {
+          // v1 → v2: migrate linkedin/website to links array
+          const p = state.data.personal as PersonalInfo;
+          const links = [...(p.links ?? [])];
+          if (p.linkedin) {
+            links.push({ id: crypto.randomUUID(), label: 'LinkedIn', url: p.linkedin });
+            p.linkedin = '';
+          }
+          if (p.website) {
+            links.push({ id: crypto.randomUUID(), label: 'Website', url: p.website });
+            p.website = '';
+          }
+          p.links = links;
         }
         return state as { data: ResumeData; templateId: string };
       },
