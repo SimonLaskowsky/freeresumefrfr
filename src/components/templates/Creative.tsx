@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SANS } from './fonts';
 import type { ResumeData } from '@/store/resumeStore';
 
@@ -44,7 +44,14 @@ const s = StyleSheet.create({
 
 export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Props) {
   const { personal, experience, education, skills } = data;
-  const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website, ...(personal.links ?? []).map((l) => l.label || l.url)].filter(Boolean);
+  const contact: { text: string; url?: string }[] = [
+    { text: personal.email }, { text: personal.phone }, { text: personal.location },
+    { text: personal.linkedin }, { text: personal.website },
+    ...(personal.links ?? []).map((l) => ({
+      text: l.label || l.url,
+      url: l.url.startsWith('http') ? l.url : `https://${l.url}`,
+    })),
+  ].filter((c) => Boolean(c.text));
   const skillList = skills.split(',').map((s) => s.trim()).filter(Boolean);
 
   return (
@@ -64,7 +71,10 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
             <View wrap={false}>
               <Text style={s.lSectionTitle}>{labels.contact}</Text>
               <View style={s.lRule} />
-              {contact.map((item, i) => <Text key={i} style={s.lItem}>{item}</Text>)}
+              {contact.map((item, i) => item.url
+                ? <Link key={i} src={item.url}><Text style={[s.lItem, { textDecoration: 'none', color: 'inherit' }]}>{item.text}</Text></Link>
+                : <Text key={i} style={s.lItem}>{item.text}</Text>
+              )}
             </View>
           )}
           {(data.skillGroups && data.skillGroups.length > 0 ? true : skillList.length > 0) && (

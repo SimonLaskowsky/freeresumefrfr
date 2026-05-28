@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SANS } from './fonts';
 import type { ResumeData } from '@/store/resumeStore';
 
@@ -38,7 +38,14 @@ const s = StyleSheet.create({
 
 export function DevTemplate({ data, labels, accentColor, companyLogo }: Props) {
   const { personal, experience, education, skills } = data;
-  const contact = [personal.email, personal.phone, personal.location, personal.linkedin, personal.website, ...(personal.links ?? []).map((l) => l.label || l.url)].filter(Boolean);
+  const contact: { text: string; url?: string }[] = [
+    { text: personal.email }, { text: personal.phone }, { text: personal.location },
+    { text: personal.linkedin }, { text: personal.website },
+    ...(personal.links ?? []).map((l) => ({
+      text: l.label || l.url,
+      url: l.url.startsWith('http') ? l.url : `https://${l.url}`,
+    })),
+  ].filter((c) => Boolean(c.text));
   const skillList = skills.split(',').map((s) => s.trim()).filter(Boolean);
 
   function CommentSection({ label, children }: { label: string; children: React.ReactNode }) {
@@ -67,7 +74,9 @@ export function DevTemplate({ data, labels, accentColor, companyLogo }: Props) {
             {contact.map((item, i) => (
               <View key={i} style={{ flexDirection: 'row' }}>
                 {i > 0 && <Text style={s.contactSep}>·</Text>}
-                <Text>{item}</Text>
+                {item.url
+                  ? <Link src={item.url}><Text style={{ color: 'inherit', textDecoration: 'none' }}>{item.text}</Text></Link>
+                  : <Text>{item.text}</Text>}
               </View>
             ))}
           </View>

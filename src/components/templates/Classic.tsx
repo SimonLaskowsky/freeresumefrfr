@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
+import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SANS } from './fonts';
 import type { ResumeData } from '@/store/resumeStore';
 
@@ -123,14 +123,14 @@ const styles = StyleSheet.create({
 export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { data: ResumeData; labels: Labels; accentColor: string; companyLogo?: string }) {
   const { personal, experience, education, skills } = data;
 
-  const contactItems = [
-    personal.email,
-    personal.phone,
-    personal.location,
-    personal.linkedin,
-    personal.website,
-    ...(personal.links ?? []).map((l) => l.label || l.url),
-  ].filter(Boolean);
+  const contactItems: { text: string; url?: string }[] = [
+    { text: personal.email }, { text: personal.phone }, { text: personal.location },
+    { text: personal.linkedin }, { text: personal.website },
+    ...(personal.links ?? []).map((l) => ({
+      text: l.label || l.url,
+      url: l.url.startsWith('http') ? l.url : `https://${l.url}`,
+    })),
+  ].filter((c) => Boolean(c.text));
 
   return (
     <Document>
@@ -149,7 +149,9 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
             {contactItems.map((item, i) => (
               <View key={i} style={{ flexDirection: 'row' }}>
                 {i > 0 && <Text style={styles.contactSep}>·</Text>}
-                <Text>{item}</Text>
+                {item.url
+                  ? <Link src={item.url}><Text style={{ color: 'inherit', textDecoration: 'none' }}>{item.text}</Text></Link>
+                  : <Text>{item.text}</Text>}
               </View>
             ))}
           </View>
