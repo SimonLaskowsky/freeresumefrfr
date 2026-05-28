@@ -107,6 +107,12 @@ interface ResumeStore {
   addPersonalLink: () => void;
   updatePersonalLink: (id: string, updates: Partial<Omit<PersonalLink, 'id'>>) => void;
   removePersonalLink: (id: string) => void;
+  reorderExperience: (items: Experience[]) => void;
+  reorderEducation: (items: Education[]) => void;
+  reorderProjects: (items: Project[]) => void;
+  reorderCertifications: (items: Certification[]) => void;
+  reorderLanguages: (items: Language[]) => void;
+  reorderSkillGroups: (items: SkillGroup[]) => void;
   loadSampleData: () => void;
   resetData: () => void;
   accentColor: string;
@@ -394,6 +400,13 @@ export const useResumeStore = create<ResumeStore>()(
             },
           },
         })),
+
+      reorderExperience: (items) => set((s) => ({ data: { ...s.data, experience: items } })),
+      reorderEducation: (items) => set((s) => ({ data: { ...s.data, education: items } })),
+      reorderProjects: (items) => set((s) => ({ data: { ...s.data, projects: items } })),
+      reorderCertifications: (items) => set((s) => ({ data: { ...s.data, certifications: items } })),
+      reorderLanguages: (items) => set((s) => ({ data: { ...s.data, languages: items } })),
+      reorderSkillGroups: (items) => set((s) => ({ data: { ...s.data, skillGroups: items } })),
 
       loadSampleData: () => set({ data: sampleData }),
       resetData: () => set({ data: defaultData }),
