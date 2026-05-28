@@ -8,7 +8,7 @@ interface Labels {
   education: string;
   skills: string;
   projects: string;
-  certifications: string;
+  certifications: string; languages: string;
   contact: string;
   present: string;
 }
@@ -202,6 +202,21 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
               >
                 <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700, color: '#0f172a' }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
                 {cert.date ? <Text style={{ fontSize: 8.5, color: '#9ca3af' }}>{cert.date}</Text> : null}
+              </View>
+            ))}
+          </View>
+        )}
+
+        {data.languages && data.languages.length > 0 && (
+          <View wrap={false}>
+            <View minPresenceAhead={60}>
+              <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.languages}</Text>
+            </View>
+            <View style={s.divider} />
+            {(data.languages ?? []).map((lang, idx) => (
+              <View key={lang.id} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: idx === (data.languages ?? []).length - 1 ? 0 : 3 }}>
+                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{lang.name}</Text>
+                {lang.level ? <Text style={{ fontSize: 9, color: '#6b7280' }}>{lang.level}</Text> : null}
               </View>
             ))}
           </View>

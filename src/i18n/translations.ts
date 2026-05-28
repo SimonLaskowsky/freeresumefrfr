@@ -26,7 +26,7 @@ export interface Translations {
   // Section titles
   sections: {
     summary: string; personal: string; experience: string;
-    education: string; projects: string; certifications: string; skills: string;
+    education: string; projects: string; certifications: string; languages: string; skills: string;
     contact: string;
   };
 
@@ -45,9 +45,10 @@ export interface Translations {
     technologies: string; technologiesPlaceholder: string;
     addBullet: string; enterToAddFaster: string; present: string;
     noneExperience: string; noneEducation: string;
-    noneProjects: string; noneCertifications: string;
+    noneProjects: string; noneCertifications: string; noneLanguages: string;
     positionLabel: string; entryLabel: string;
-    projectLabel: string; certLabel: string;
+    projectLabel: string; certLabel: string; langLabel: string;
+    langName: string; langLevel: string; langLevelPlaceholder: string;
   };
 
   // Actions
@@ -56,13 +57,14 @@ export interface Translations {
     addEducation: string; removeEducation: string;
     addProject: string; removeProject: string;
     addCertification: string; removeCertification: string;
+    addLanguage: string; removeLanguage: string;
   };
 
   // ATS tips (shown in SectionWrapper)
   tips: {
     summary: string; personal: string; experience: string;
     education: string; skills: string; contact?: string;
-    projects: string; certifications: string;
+    projects: string; certifications: string; languages: string;
   };
 
   // Completeness score labels
@@ -185,6 +187,7 @@ const en: Translations = {
     education: 'Education',
     projects: 'Projects',
     certifications: 'Certifications',
+    languages: 'Languages',
     skills: 'Skills',
     contact: 'Contact',
   },
@@ -225,10 +228,12 @@ const en: Translations = {
     noneEducation: 'No education added yet.',
     noneProjects: 'No projects yet.',
     noneCertifications: 'AWS, Google Cloud, PMP, Scrum, etc.',
+    noneLanguages: 'e.g. English — Native',
     positionLabel: 'Position',
     entryLabel: 'Entry',
     projectLabel: 'Project',
     certLabel: 'Cert',
+    langLabel: 'Lang', langName: 'Language', langLevel: 'Level', langLevelPlaceholder: 'Native, Fluent, C1, B2…',
   },
   actions: {
     addExperience: '+ Add Experience',
@@ -239,6 +244,7 @@ const en: Translations = {
     removeProject: 'Remove',
     addCertification: '+ Add Certification',
     removeCertification: 'Remove',
+    addLanguage: '+ Add Language', removeLanguage: 'Remove',
   },
   tips: {
     summary: 'Lead with your strongest value. Include years of experience and 2-3 top skills. ATS scanners love keywords from the job description.',
@@ -249,6 +255,7 @@ const en: Translations = {
     contact: 'Contacto',
     projects: 'Great for devs and career changers. Include a live URL or GitHub link. Lead highlights with the tech stack and quantify impact where possible.',
     certifications: 'List certs relevant to the role. Include the issuing org and year. AWS, Google Cloud, PMP, and similar certs are strong ATS signals.',
+    languages: 'Include all languages you speak. Use standard levels (Native, C1, B2) or descriptive (Fluent, Conversational, Basic).',
   },
   completeness: {
     justStarted: 'Just started',
@@ -388,6 +395,7 @@ const es: Translations = {
     education: 'Educación',
     projects: 'Proyectos',
     certifications: 'Certificaciones',
+    languages: 'Idiomas',
     skills: 'Habilidades',
     contact: 'Contact',
   },
@@ -428,10 +436,12 @@ const es: Translations = {
     noneEducation: 'Aún no se agregó educación.',
     noneProjects: 'Sin proyectos aún.',
     noneCertifications: 'AWS, Google Cloud, PMP, Scrum, etc.',
+    noneLanguages: 'ej. Inglés — Nativo',
     positionLabel: 'Posición',
     entryLabel: 'Entrada',
     projectLabel: 'Proyecto',
     certLabel: 'Cert.',
+    langLabel: 'Idioma', langName: 'Idioma', langLevel: 'Nivel', langLevelPlaceholder: 'Nativo, Fluido, C1, B2…',
   },
   actions: {
     addExperience: '+ Añadir experiencia',
@@ -442,6 +452,7 @@ const es: Translations = {
     removeProject: 'Eliminar',
     addCertification: '+ Añadir certificación',
     removeCertification: 'Eliminar',
+    addLanguage: '+ Añadir idioma', removeLanguage: 'Eliminar',
   },
   tips: {
     summary: 'Comienza con tu mayor valor. Incluye años de experiencia y 2-3 habilidades clave. Los sistemas ATS adoran las palabras clave del trabajo.',
@@ -452,6 +463,7 @@ const es: Translations = {
     contact: 'Kontakt',
     projects: 'Ideal para devs y reconversiones. Incluye URL o GitHub. Encabeza con el stack y cuantifica el impacto.',
     certifications: 'Lista certs relevantes al puesto. Incluye la org emisora y el año. AWS, Google Cloud y PMP son señales ATS fuertes.',
+    languages: 'Incluye todos los idiomas que hablas. Usa niveles estándar (Nativo, C1, B2) o descriptivos (Fluido, Conversacional, Básico).',
   },
   completeness: {
     justStarted: 'Recién empezado',
@@ -591,6 +603,7 @@ const fr: Translations = {
     education: 'Formation',
     projects: 'Projets',
     certifications: 'Certifications',
+    languages: 'Langues',
     skills: 'Compétences',
     contact: 'Contato',
   },
@@ -631,10 +644,12 @@ const fr: Translations = {
     noneEducation: 'Aucune formation ajoutée.',
     noneProjects: 'Aucun projet encore.',
     noneCertifications: 'AWS, Google Cloud, PMP, Scrum, etc.',
+    noneLanguages: 'ex. Anglais — Natif',
     positionLabel: 'Poste',
     entryLabel: 'Entrée',
     projectLabel: 'Projet',
     certLabel: 'Cert.',
+    langLabel: 'Langue', langName: 'Langue', langLevel: 'Niveau', langLevelPlaceholder: 'Natif, Courant, C1, B2…',
   },
   actions: {
     addExperience: '+ Ajouter une expérience',
@@ -645,6 +660,7 @@ const fr: Translations = {
     removeProject: 'Supprimer',
     addCertification: '+ Ajouter une certification',
     removeCertification: 'Supprimer',
+    addLanguage: '+ Ajouter une langue', removeLanguage: 'Supprimer',
   },
   tips: {
     summary: 'Commencez par votre valeur ajoutée. Incluez vos années d\'expérience et 2-3 compétences clés. Les ATS adorent les mots-clés de l\'offre d\'emploi.',
@@ -654,6 +670,7 @@ const fr: Translations = {
     skills: 'Listez d\'abord les compétences techniques. Incluez outils, langages, frameworks. Utilisez les termes exacts pour les ATS.',
     projects: 'Idéal pour les devs et reconversions. Inclure une URL ou GitHub. Mettez en avant la stack et quantifiez l\'impact.',
     certifications: 'Listez les certifications pertinentes. Incluez l\'organisme émetteur et l\'année. AWS, Google Cloud, PMP sont de bons signaux ATS.',
+    languages: 'Incluez toutes les langues que vous parlez. Utilisez les niveaux standard (Natif, C1, B2) ou descriptifs (Courant, Conversationnel, Basique).',
   },
   completeness: {
     justStarted: 'Tout juste commencé',
@@ -793,6 +810,7 @@ const de: Translations = {
     education: 'Ausbildung',
     projects: 'Projekte',
     certifications: 'Zertifizierungen',
+    languages: 'Sprachen',
     skills: 'Fähigkeiten',
     contact: '联系方式',
   },
@@ -833,10 +851,12 @@ const de: Translations = {
     noneEducation: 'Noch keine Ausbildung hinzugefügt.',
     noneProjects: 'Noch keine Projekte.',
     noneCertifications: 'AWS, Google Cloud, PMP, Scrum, usw.',
+    noneLanguages: 'z.B. Englisch — Muttersprache',
     positionLabel: 'Position',
     entryLabel: 'Eintrag',
     projectLabel: 'Projekt',
     certLabel: 'Zert.',
+    langLabel: 'Sprache', langName: 'Sprache', langLevel: 'Niveau', langLevelPlaceholder: 'Muttersprache, Fließend, C1, B2…',
   },
   actions: {
     addExperience: '+ Erfahrung hinzufügen',
@@ -847,6 +867,7 @@ const de: Translations = {
     removeProject: 'Entfernen',
     addCertification: '+ Zertifizierung hinzufügen',
     removeCertification: 'Entfernen',
+    addLanguage: '+ Sprache hinzufügen', removeLanguage: 'Entfernen',
   },
   tips: {
     summary: 'Beginnen Sie mit Ihrem stärksten Wert. Nennen Sie Erfahrungsjahre und 2-3 Top-Fähigkeiten. ATS-Scanner lieben Schlüsselwörter aus der Stellenbeschreibung.',
@@ -857,6 +878,7 @@ const de: Translations = {
     contact: '連絡先',
     projects: 'Ideal für Entwickler und Quereinsteiger. URL oder GitHub-Link angeben. Stack voranstellen und Auswirkungen quantifizieren.',
     certifications: 'Relevante Zertifikate auflisten. Ausstellende Organisation und Jahr angeben. AWS, Google Cloud, PMP sind starke ATS-Signale.',
+    languages: 'Alle Sprachen auflisten. Standard-Niveaus (Muttersprache, C1, B2) oder beschreibende (Fließend, Konversation, Grundkenntnisse) verwenden.',
   },
   completeness: {
     justStarted: 'Gerade angefangen',
@@ -996,6 +1018,7 @@ const pt: Translations = {
     education: 'Educação',
     projects: 'Projetos',
     certifications: 'Certificações',
+    languages: 'Idiomas',
     skills: 'Habilidades',
     contact: '연락처',
   },
@@ -1036,10 +1059,12 @@ const pt: Translations = {
     noneEducation: 'Nenhuma educação adicionada ainda.',
     noneProjects: 'Sem projetos ainda.',
     noneCertifications: 'AWS, Google Cloud, PMP, Scrum, etc.',
+    noneLanguages: 'ex. Inglês — Nativo',
     positionLabel: 'Posição',
     entryLabel: 'Entrada',
     projectLabel: 'Projeto',
     certLabel: 'Cert.',
+    langLabel: 'Idioma', langName: 'Idioma', langLevel: 'Nível', langLevelPlaceholder: 'Nativo, Fluente, C1, B2…',
   },
   actions: {
     addExperience: '+ Adicionar experiência',
@@ -1050,6 +1075,7 @@ const pt: Translations = {
     removeProject: 'Remover',
     addCertification: '+ Adicionar certificação',
     removeCertification: 'Remover',
+    addLanguage: '+ Adicionar idioma', removeLanguage: 'Remover',
   },
   tips: {
     summary: 'Comece com seu maior valor. Inclua anos de experiência e 2-3 habilidades principais. Sistemas ATS adoram palavras-chave da descrição do cargo.',
@@ -1060,6 +1086,7 @@ const pt: Translations = {
     contact: 'التواصل',
     projects: 'Ótimo para devs e reconversões. Inclua URL ou GitHub. Destaque a stack e quantifique o impacto.',
     certifications: 'Liste certifications relevantes. Inclua a org emissora e o ano. AWS, Google Cloud, PMP são bons sinais ATS.',
+    languages: 'Inclua todos os idiomas que fala. Use níveis padrão (Nativo, C1, B2) ou descritivos (Fluente, Conversacional, Básico).',
   },
   completeness: {
     justStarted: 'Recém começado',
@@ -1199,6 +1226,7 @@ const zh: Translations = {
     education: '教育背景',
     projects: '项目经历',
     certifications: '证书认证',
+    languages: '语言能力',
     skills: '技能',
     contact: 'Контакты',
   },
@@ -1239,10 +1267,12 @@ const zh: Translations = {
     noneEducation: '尚未添加教育经历。',
     noneProjects: '暂无项目。',
     noneCertifications: 'AWS、Google Cloud、PMP、Scrum 等',
+    noneLanguages: '例如：英语 — 母语',
     positionLabel: '职位',
     entryLabel: '条目',
     projectLabel: '项目',
     certLabel: '证书',
+    langLabel: '语言', langName: '语言', langLevel: '熟练程度', langLevelPlaceholder: '母语、流利、C1、B2…',
   },
   actions: {
     addExperience: '+ 添加工作经历',
@@ -1253,6 +1283,7 @@ const zh: Translations = {
     removeProject: '删除',
     addCertification: '+ 添加证书',
     removeCertification: '删除',
+    addLanguage: '+ 添加语言', removeLanguage: '删除',
   },
   tips: {
     summary: '以您最强的价值开头。包含工作年限和2-3项顶尖技能。ATS扫描仪喜欢职位描述中的关键词。',
@@ -1263,6 +1294,7 @@ const zh: Translations = {
     contact: 'Contatti',
     projects: '适合开发者和转行人士。附上在线URL或GitHub链接，突出技术栈并量化成果。',
     certifications: '列出与职位相关的证书，注明颁发机构和年份。AWS、Google Cloud、PMP等是重要的ATS关键词。',
+    languages: '列出所有掌握的语言，使用标准等级（母语、C1、B2）或描述性等级（流利、日常会话、基础）。',
   },
   completeness: {
     justStarted: '刚刚开始',
@@ -1402,6 +1434,7 @@ const ja: Translations = {
     education: '学歴',
     projects: 'プロジェクト',
     certifications: '資格・認定',
+    languages: '語学力',
     skills: 'スキル',
     contact: 'संपर्क',
   },
@@ -1442,10 +1475,12 @@ const ja: Translations = {
     noneEducation: 'まだ学歴が追加されていません。',
     noneProjects: 'まだプロジェクトがありません。',
     noneCertifications: 'AWS、Google Cloud、PMP、Scrum など',
+    noneLanguages: '例: 英語 — ネイティブ',
     positionLabel: '職歴',
     entryLabel: '項目',
     projectLabel: 'プロジェクト',
     certLabel: '資格',
+    langLabel: '言語', langName: '言語', langLevel: 'レベル', langLevelPlaceholder: 'ネイティブ、流晩、C1、B2…',
   },
   actions: {
     addExperience: '+ 職歴を追加',
@@ -1456,6 +1491,7 @@ const ja: Translations = {
     removeProject: '削除',
     addCertification: '+ 資格を追加',
     removeCertification: '削除',
+    addLanguage: '+ 言語を追加', removeLanguage: '削除',
   },
   tips: {
     summary: '最も強みとなる価値から始めましょう。経験年数と上位2-3のスキルを含めてください。ATSスキャナーは求人票のキーワードを好みます。',
@@ -1466,6 +1502,7 @@ const ja: Translations = {
     contact: 'İletişim',
     projects: '開発者やキャリアチェンジに最適。URLやGitHubリンクを含め、技術スタックを先頭に、成果を数値化してください。',
     certifications: '役職に関連する資格を記載。発行機関と年を明記。AWS、Google Cloud、PMPは強力なATSシグナルです。',
+    languages: '話せる言語をすべて記載してください。標準レベル（ネイティブ、C1、B2）または説明的な表現（流暢、日常会話、基礎）を使用してください。',
   },
   completeness: {
     justStarted: '始めたばかり',
@@ -1605,6 +1642,7 @@ const ko: Translations = {
     education: '학력',
     projects: '프로젝트',
     certifications: '자격증',
+    languages: '언어',
     skills: '기술',
     contact: 'Contact',
   },
@@ -1645,10 +1683,12 @@ const ko: Translations = {
     noneEducation: '아직 학력이 없습니다.',
     noneProjects: '아직 프로젝트가 없습니다.',
     noneCertifications: 'AWS, Google Cloud, PMP, Scrum 등',
+    noneLanguages: '예: 영어 — 원어민',
     positionLabel: '직위',
     entryLabel: '항목',
     projectLabel: '프로젝트',
     certLabel: '자격증',
+    langLabel: '언어', langName: '언어', langLevel: '수준', langLevelPlaceholder: '원어민, 유창, C1, B2…',
   },
   actions: {
     addExperience: '+ 경력 추가',
@@ -1659,6 +1699,7 @@ const ko: Translations = {
     removeProject: '삭제',
     addCertification: '+ 자격증 추가',
     removeCertification: '삭제',
+    addLanguage: '+ 언어 추가', removeLanguage: '삭제',
   },
   tips: {
     summary: '가장 강한 가치로 시작하세요. 경력 연수와 상위 2-3가지 기술을 포함하세요. ATS 스캐너는 직무 설명의 키워드를 좋아합니다.',
@@ -1669,6 +1710,7 @@ const ko: Translations = {
     contact: 'Kontakt',
     projects: '개발자와 커리어 전환자에게 적합합니다. URL 또는 GitHub 링크를 포함하고 기술 스택을 앞에 두며 성과를 수치화하세요.',
     certifications: '직무 관련 자격증을 나열하세요. 발급 기관과 연도를 포함하세요. AWS, Google Cloud, PMP는 강력한 ATS 신호입니다.',
+    languages: '구사하는 모든 언어를 포함하세요. 표준 수준(원어민, C1, B2) 또는 설명적(유창, 일상 대화, 기초) 표현을 사용하세요.',
   },
   completeness: {
     justStarted: '이제 시작',
@@ -1808,6 +1850,7 @@ const ar: Translations = {
     education: 'التعليم',
     projects: 'المشاريع',
     certifications: 'الشهادات',
+    languages: 'اللغات',
     skills: 'المهارات',
     contact: 'التواصل',
   },
@@ -1848,10 +1891,12 @@ const ar: Translations = {
     noneEducation: 'لا توجد تعليم مضاف بعد.',
     noneProjects: 'لا توجد مشاريع بعد.',
     noneCertifications: 'AWS، Google Cloud، PMP، Scrum، إلخ.',
+    noneLanguages: 'مثل: الإنجليزية — لغة أم',
     positionLabel: 'المنصب',
     entryLabel: 'إدخال',
     projectLabel: 'مشروع',
     certLabel: 'شهادة',
+    langLabel: 'لغة', langName: 'اللغة', langLevel: 'المستوى', langLevelPlaceholder: 'لغة أم، طلاقة، C1، B2…',
   },
   actions: {
     addExperience: '+ إضافة خبرة',
@@ -1862,6 +1907,7 @@ const ar: Translations = {
     removeProject: 'إزالة',
     addCertification: '+ إضافة شهادة',
     removeCertification: 'إزالة',
+    addLanguage: '+ إضافة لغة', removeLanguage: 'إزالة',
   },
   tips: {
     summary: 'ابدأ بأقوى قيمة لديك. أدرج سنوات الخبرة و2-3 مهارات رئيسية. ماسحات ATS تحب الكلمات المفتاحية من وصف الوظيفة.',
@@ -1871,6 +1917,7 @@ const ar: Translations = {
     skills: 'اذكر المهارات التقنية أولاً. أدرج الأدوات واللغات والأطر. استخدم المصطلحات الدقيقة من إعلانات الوظائف لأنظمة ATS.',
     projects: 'ممتاز للمطورين وتغييري المسار. أضف رابط URL أو GitHub. ابدأ بالتقنيات المستخدمة وحدد الأثر بالأرقام.',
     certifications: 'اذكر الشهادات ذات الصلة بالوظيفة مع الجهة المانحة والسنة. شهادات AWS وGoogle Cloud وPMP تُعزز نتائج ATS.',
+    languages: 'اذكر جميع اللغات التي تتحدثها. استخدم المستويات القياسية (لغة أم، C1، B2) أو الوصفية (طلاقة، محادثة، أساسي).',
   },
   completeness: {
     justStarted: 'بدأت للتو',
@@ -2010,6 +2057,7 @@ const ru: Translations = {
     education: 'Образование',
     projects: 'Проекты',
     certifications: 'Сертификаты',
+    languages: 'Языки',
     skills: 'Навыки',
     contact: 'Контакты',
   },
@@ -2050,10 +2098,12 @@ const ru: Translations = {
     noneEducation: 'Образование пока не добавлено.',
     noneProjects: 'Проектов пока нет.',
     noneCertifications: 'AWS, Google Cloud, PMP, Scrum и др.',
+    noneLanguages: 'напр. Английский — Родной',
     positionLabel: 'Позиция',
     entryLabel: 'Запись',
     projectLabel: 'Проект',
     certLabel: 'Серт.',
+    langLabel: 'Язык', langName: 'Язык', langLevel: 'Уровень', langLevelPlaceholder: 'Родной, Свободно, C1, B2…',
   },
   actions: {
     addExperience: '+ Добавить опыт',
@@ -2064,6 +2114,7 @@ const ru: Translations = {
     removeProject: 'Удалить',
     addCertification: '+ Добавить сертификат',
     removeCertification: 'Удалить',
+    addLanguage: '+ Добавить язык', removeLanguage: 'Удалить',
   },
   tips: {
     summary: 'Начните с вашей главной ценности. Укажите годы опыта и 2-3 ключевых навыка. ATS-сканеры любят ключевые слова из описания вакансии.',
@@ -2073,6 +2124,7 @@ const ru: Translations = {
     skills: 'Сначала перечисляйте технические навыки. Включайте инструменты, языки, фреймворки. Используйте точные термины из вакансий для ATS.',
     projects: 'Отлично для разработчиков и тех, кто меняет профессию. Добавьте URL или ссылку на GitHub. Укажите стек и результаты в цифрах.',
     certifications: 'Перечислите актуальные сертификаты с организацией и годом получения. AWS, Google Cloud, PMP — сильные сигналы для ATS.',
+    languages: 'Укажите все языки, которыми владеете. Используйте стандартные уровни (Родной, C1, B2) или описательные (Свободно, Разговорный, Базовый).',
   },
   completeness: {
     justStarted: 'Только начали',
@@ -2212,6 +2264,7 @@ const it: Translations = {
     education: 'Istruzione',
     projects: 'Progetti',
     certifications: 'Certificazioni',
+    languages: 'Lingue',
     skills: 'Competenze',
     contact: 'Contatti',
   },
@@ -2252,10 +2305,12 @@ const it: Translations = {
     noneEducation: 'Nessuna formazione aggiunta.',
     noneProjects: 'Nessun progetto ancora.',
     noneCertifications: 'AWS, Google Cloud, PMP, Scrum, ecc.',
+    noneLanguages: 'es. Inglese — Madrelingua',
     positionLabel: 'Posizione',
     entryLabel: 'Voce',
     projectLabel: 'Progetto',
     certLabel: 'Cert.',
+    langLabel: 'Lingua', langName: 'Lingua', langLevel: 'Livello', langLevelPlaceholder: 'Madrelingua, Fluente, C1, B2…',
   },
   actions: {
     addExperience: '+ Aggiungi esperienza',
@@ -2266,6 +2321,7 @@ const it: Translations = {
     removeProject: 'Rimuovi',
     addCertification: '+ Aggiungi certificazione',
     removeCertification: 'Rimuovi',
+    addLanguage: '+ Aggiungi lingua', removeLanguage: 'Rimuovi',
   },
   tips: {
     summary: 'Inizia con il tuo punto di forza. Includi anni di esperienza e 2-3 competenze chiave. Gli scanner ATS amano le parole chiave dall\'annuncio di lavoro.',
@@ -2275,6 +2331,7 @@ const it: Translations = {
     skills: 'Elenca prima le competenze tecniche. Includi strumenti, linguaggi, framework. Usa i termini esatti degli annunci per l\'ATS.',
     projects: 'Ottimo per sviluppatori e chi cambia carriera. Includi URL o GitHub. Evidenzia lo stack e quantifica l\'impatto.',
     certifications: 'Elenca certificazioni pertinenti con ente e anno. AWS, Google Cloud, PMP sono segnali ATS forti.',
+    languages: 'Includi tutte le lingue che parli. Usa livelli standard (Madrelingua, C1, B2) o descrittivi (Fluente, Conversazionale, Base).',
   },
   completeness: {
     justStarted: 'Appena iniziato',
@@ -2414,6 +2471,7 @@ const hi: Translations = {
     education: 'शिक्षा',
     projects: 'प्रोजेक्ट',
     certifications: 'प्रमाणपत्र',
+    languages: 'भाषाएं',
     skills: 'कौशल',
     contact: 'संपर्क',
   },
@@ -2454,10 +2512,12 @@ const hi: Translations = {
     noneEducation: 'अभी तक कोई शिक्षा नहीं जोड़ी गई।',
     noneProjects: 'अभी तक कोई प्रोजेक्ट नहीं।',
     noneCertifications: 'AWS, Google Cloud, PMP, Scrum, आदि',
+    noneLanguages: 'जैसे: अंग्रेजी — मातृभाषा',
     positionLabel: 'पद',
     entryLabel: 'प्रविष्टि',
     projectLabel: 'प्रोजेक्ट',
     certLabel: 'सर्टिफिकेट',
+    langLabel: 'भाषा', langName: 'भाषा', langLevel: 'स्तर', langLevelPlaceholder: 'मातृभाषा, धाराप्रवाह, C1, B2…',
   },
   actions: {
     addExperience: '+ अनुभव जोड़ें',
@@ -2468,6 +2528,7 @@ const hi: Translations = {
     removeProject: 'हटाएं',
     addCertification: '+ प्रमाणपत्र जोड़ें',
     removeCertification: 'हटाएं',
+    addLanguage: '+ भाषा जोड़ें', removeLanguage: 'हटाएं',
   },
   tips: {
     summary: 'अपनी सबसे मजबूत ताकत से शुरू करें। अनुभव के वर्ष और 2-3 शीर्ष कौशल शामिल करें। ATS स्कैनर नौकरी विवरण के कीवर्ड पसंद करते हैं।',
@@ -2477,6 +2538,7 @@ const hi: Translations = {
     skills: 'पहले हार्ड स्किल सूचीबद्ध करें। टूल्स, भाषाएं, फ्रेमवर्क शामिल करें। ATS के लिए नौकरी पोस्टिंग से सटीक शब्दों का उपयोग करें।',
     projects: 'डेवलपर्स और करियर बदलने वालों के लिए बढ़िया। URL या GitHub लिंक जोड़ें। टेक स्टैक पहले रखें और प्रभाव को संख्याओं में बताएं।',
     certifications: 'भूमिका से संबंधित सर्टिफिकेट सूचीबद्ध करें। जारी करने वाली संस्था और वर्ष शामिल करें। AWS, Google Cloud, PMP मजबूत ATS संकेत हैं।',
+    languages: 'सभी भाषाएं शामिल करें जो आप बोलते हैं। मानक स्तर (मातृभाषा, C1, B2) या वर्णनात्मक (धाराप्रवाह, संवादात्मक, बुनियादी) का उपयोग करें।',
   },
   completeness: {
     justStarted: 'अभी शुरू किया',
@@ -2616,6 +2678,7 @@ const tr: Translations = {
     education: 'Eğitim',
     projects: 'Projeler',
     certifications: 'Sertifikalar',
+    languages: 'Diller',
     skills: 'Beceriler',
     contact: 'İletişim',
   },
@@ -2656,10 +2719,12 @@ const tr: Translations = {
     noneEducation: 'Henüz eğitim eklenmedi.',
     noneProjects: 'Henüz proje yok.',
     noneCertifications: 'AWS, Google Cloud, PMP, Scrum, vb.',
+    noneLanguages: 'örn. İngilizce — Anadil',
     positionLabel: 'Pozisyon',
     entryLabel: 'Giriş',
     projectLabel: 'Proje',
     certLabel: 'Sert.',
+    langLabel: 'Dil', langName: 'Dil', langLevel: 'Seviye', langLevelPlaceholder: 'Anadil, Akıcı, C1, B2…',
   },
   actions: {
     addExperience: '+ Deneyim Ekle',
@@ -2670,6 +2735,7 @@ const tr: Translations = {
     removeProject: 'Kaldır',
     addCertification: '+ Sertifika Ekle',
     removeCertification: 'Kaldır',
+    addLanguage: '+ Dil Ekle', removeLanguage: 'Kaldır',
   },
   tips: {
     summary: 'En güçlü değerinizle başlayın. Deneyim yıllarını ve 2-3 temel beceriyi ekleyin. ATS tarayıcıları iş tanımındaki anahtar kelimeleri sever.',
@@ -2679,6 +2745,7 @@ const tr: Translations = {
     skills: 'Önce teknik becerileri listeleyin. Araçlar, diller, çerçeveler ekleyin. ATS için iş ilanlarındaki tam terimleri kullanın.',
     projects: 'Geliştiriciler ve kariyer değiştirenler için mükemmel. URL veya GitHub linki ekle. Teknolojiyi öne çıkar ve etkiyi sayılarla göster.',
     certifications: 'Role ilgili sertifikaları listele. Veren kurum ve yılı ekle. AWS, Google Cloud, PMP güçlü ATS sinyalleridir.',
+    languages: 'Konuştuğun tüm dilleri ekle. Standart seviyeleri (Anadil, C1, B2) veya tanımlayıcı ifadeleri (Akıcı, Günlük Konuşma, Temel) kullan.',
   },
   completeness: {
     justStarted: 'Yeni başlandı',
@@ -2818,6 +2885,7 @@ const nl: Translations = {
     education: 'Opleiding',
     projects: 'Projecten',
     certifications: 'Certificeringen',
+    languages: 'Talen',
     skills: 'Vaardigheden',
     contact: 'Contact',
   },
@@ -2858,10 +2926,12 @@ const nl: Translations = {
     noneEducation: 'Nog geen opleiding toegevoegd.',
     noneProjects: 'Nog geen projecten.',
     noneCertifications: 'AWS, Google Cloud, PMP, Scrum, enz.',
+    noneLanguages: 'bijv. Engels — Moedertaal',
     positionLabel: 'Positie',
     entryLabel: 'Invoer',
     projectLabel: 'Project',
     certLabel: 'Cert.',
+    langLabel: 'Taal', langName: 'Taal', langLevel: 'Niveau', langLevelPlaceholder: 'Moedertaal, Vloeiend, C1, B2…',
   },
   actions: {
     addExperience: '+ Ervaring toevoegen',
@@ -2872,6 +2942,7 @@ const nl: Translations = {
     removeProject: 'Verwijderen',
     addCertification: '+ Certificering toevoegen',
     removeCertification: 'Verwijderen',
+    addLanguage: '+ Taal toevoegen', removeLanguage: 'Verwijderen',
   },
   tips: {
     summary: 'Begin met je sterkste waarde. Noem jaren ervaring en 2-3 topvaardigheden. ATS-scanners houden van trefwoorden uit de vacature.',
@@ -2881,6 +2952,7 @@ const nl: Translations = {
     skills: 'Lijst hard skills eerst. Voeg tools, talen, frameworks toe. Gebruik exacte termen uit vacatures voor ATS.',
     projects: 'Geweldig voor devs en carrièreswitchers. Voeg een URL of GitHub-link toe. Zet de stack voorop en kwantificeer impact.',
     certifications: 'Lijst relevante certificaten op met de uitgevende organisatie en het jaar. AWS, Google Cloud, PMP zijn sterke ATS-signalen.',
+    languages: 'Vermeld alle talen die je spreekt. Gebruik standaardniveaus (Moedertaal, C1, B2) of beschrijvende termen (Vloeiend, Conversationeel, Basis).',
   },
   completeness: {
     justStarted: 'Net begonnen',
@@ -3020,6 +3092,7 @@ const pl: Translations = {
     education: 'Wykształcenie',
     projects: 'Projekty',
     certifications: 'Certyfikaty',
+    languages: 'Języki',
     skills: 'Umiejętności',
     contact: 'Kontakt',
   },
@@ -3060,10 +3133,12 @@ const pl: Translations = {
     noneEducation: 'Brak dodanej edukacji.',
     noneProjects: 'Brak projektów.',
     noneCertifications: 'AWS, Google Cloud, PMP, Scrum itp.',
+    noneLanguages: 'np. Angielski — Ojczysty',
     positionLabel: 'Pozycja',
     entryLabel: 'Wpis',
     projectLabel: 'Projekt',
     certLabel: 'Cert.',
+    langLabel: 'Język', langName: 'Język', langLevel: 'Poziom', langLevelPlaceholder: 'Ojczysty, Biegły, C1, B2…',
   },
   actions: {
     addExperience: '+ Dodaj doświadczenie',
@@ -3074,6 +3149,7 @@ const pl: Translations = {
     removeProject: 'Usuń',
     addCertification: '+ Dodaj certyfikat',
     removeCertification: 'Usuń',
+    addLanguage: '+ Dodaj język', removeLanguage: 'Usuń',
   },
   tips: {
     summary: 'Zacznij od swojej największej wartości. Wymień lata doświadczenia i 2-3 kluczowe umiejętności. Skanery ATS kochają słowa kluczowe z opisu stanowiska.',
@@ -3083,6 +3159,7 @@ const pl: Translations = {
     skills: 'Wypisz najpierw umiejętności twarde. Uwzględnij narzędzia, języki, frameworki. Używaj dokładnych terminów z ogłoszeń dla ATS.',
     projects: 'Świetne dla devów i zmieniających branżę. Dodaj URL lub link do GitHub. Zacznij od stack\'u i podaj wpływ w liczbach.',
     certifications: 'Wymień certyfikaty związane z rolą. Podaj organ wydający i rok. AWS, Google Cloud, PMP to silne sygnały ATS.',
+    languages: 'Wymień wszystkie języki, którymi się posługujesz. Użyj poziomów standardowych (Ojczysty, C1, B2) lub opisowych (Biegły, Konwersacyjny, Podstawowy).',
   },
   completeness: {
     justStarted: 'Dopiero zaczęte',

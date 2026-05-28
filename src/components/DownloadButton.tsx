@@ -36,6 +36,7 @@ export default function DownloadButton({ data, templateId, accentColor, companyL
     skills: t.sections.skills,
     projects: t.sections.projects,
     certifications: t.sections.certifications,
+    languages: t.sections.languages,
     contact: t.sections.contact,
     present: t.fields.present,
   };

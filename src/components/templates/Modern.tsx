@@ -8,7 +8,7 @@ interface Labels {
   education: string;
   skills: string;
   projects: string;
-  certifications: string;
+  certifications: string; languages: string;
   contact: string;
   present: string;
 }
@@ -81,6 +81,14 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
             <View>
               <Text style={s.sSectionTitle}>{labels.skills}</Text>
               {skillList.map((skill, i) => <Text key={i} style={s.sItem}>{skill}</Text>)}
+            </View>
+          )}
+          {data.languages && data.languages.length > 0 && (
+            <View>
+              <Text style={s.sSectionTitle}>{labels.languages}</Text>
+              {(data.languages ?? []).map((lang) => (
+                <Text key={lang.id} style={s.sItem}>{lang.name}{lang.level ? ` — ${lang.level}` : ''}</Text>
+              ))}
             </View>
           )}
         </View>

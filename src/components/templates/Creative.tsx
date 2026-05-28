@@ -4,7 +4,7 @@ import type { ResumeData } from '@/store/resumeStore';
 
 interface Props {
   data: ResumeData;
-  labels: { summary: string; experience: string; education: string; skills: string; projects: string; certifications: string; contact: string; present: string; };
+  labels: { summary: string; experience: string; education: string; skills: string; projects: string; certifications: string; languages: string; contact: string; present: string; };
   accentColor: string;
   companyLogo?: string;
 }
@@ -75,6 +75,15 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
                 <View key={i} style={{ marginBottom: 3 }}>
                   <Text style={s.lItem}>{skill}</Text>
                 </View>
+              ))}
+            </View>
+          )}
+          {data.languages && data.languages.length > 0 && (
+            <View>
+              <Text style={s.lSectionTitle}>{labels.languages}</Text>
+              <View style={s.lRule} />
+              {(data.languages ?? []).map((lang) => (
+                <Text key={lang.id} style={s.lItem}>{lang.name}{lang.level ? ` — ${lang.level}` : ''}</Text>
               ))}
             </View>
           )}

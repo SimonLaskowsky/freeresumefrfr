@@ -48,6 +48,12 @@ export interface Certification {
   date: string;
 }
 
+export interface Language {
+  id: string;
+  name: string;
+  level: string;
+}
+
 export interface ResumeData {
   personal: PersonalInfo;
   summary: string;
@@ -55,6 +61,7 @@ export interface ResumeData {
   education: Education[];
   projects: Project[];
   certifications: Certification[];
+  languages: Language[];
   skills: string;
 }
 
@@ -76,6 +83,9 @@ interface ResumeStore {
   addCertification: () => void;
   updateCertification: (id: string, updates: Partial<Omit<Certification, 'id'>>) => void;
   removeCertification: (id: string) => void;
+  addLanguage: () => void;
+  updateLanguage: (id: string, updates: Partial<Omit<Language, 'id'>>) => void;
+  removeLanguage: (id: string) => void;
   updateSkills: (skills: string) => void;
   loadSampleData: () => void;
   resetData: () => void;
@@ -92,6 +102,7 @@ const defaultData: ResumeData = {
   education: [],
   projects: [],
   certifications: [],
+  languages: [],
   skills: '',
 };
 
@@ -165,6 +176,10 @@ export const sampleData: ResumeData = {
       issuer: 'Amazon',
       date: '2023',
     },
+  ],
+  languages: [
+    { id: 'sample-lang-1', name: 'English', level: 'Native' },
+    { id: 'sample-lang-2', name: 'Spanish', level: 'B2' },
   ],
   skills: 'TypeScript, React, Node.js, Rust, PostgreSQL, Redis, Kafka, AWS, Docker, Kubernetes',
 };
@@ -269,6 +284,29 @@ export const useResumeStore = create<ResumeStore>()(
           data: { ...s.data, certifications: s.data.certifications.filter((c) => c.id !== id) },
         })),
 
+      addLanguage: () =>
+        set((s) => ({
+          data: {
+            ...s.data,
+            languages: [...(s.data.languages ?? []), {
+              id: crypto.randomUUID(), name: '', level: '',
+            }],
+          },
+        })),
+
+      updateLanguage: (id, updates) =>
+        set((s) => ({
+          data: {
+            ...s.data,
+            languages: (s.data.languages ?? []).map((l) => l.id === id ? { ...l, ...updates } : l),
+          },
+        })),
+
+      removeLanguage: (id) =>
+        set((s) => ({
+          data: { ...s.data, languages: (s.data.languages ?? []).filter((l) => l.id !== id) },
+        })),
+
       updateSkills: (skills) =>
         set((s) => ({ data: { ...s.data, skills } })),
 
@@ -297,6 +335,7 @@ export const useResumeStore = create<ResumeStore>()(
           state.data.summary ??= '';
           state.data.projects ??= [];
           state.data.certifications ??= [];
+          state.data.languages ??= [];
         }
         return state as { data: ResumeData; templateId: string };
       },

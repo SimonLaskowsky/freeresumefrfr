@@ -4,7 +4,7 @@ import type { ResumeData } from '@/store/resumeStore';
 
 interface Props {
   data: ResumeData;
-  labels: { summary: string; experience: string; education: string; skills: string; projects: string; certifications: string; contact: string; present: string; };
+  labels: { summary: string; experience: string; education: string; skills: string; projects: string; certifications: string; languages: string; contact: string; present: string; };
   accentColor: string;
   companyLogo?: string;
 }
@@ -125,6 +125,18 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
                   >
                     <Text style={{ fontSize: 9, fontFamily: SANS, fontWeight: 700 }}>{cert.name}</Text>
                     <Text style={{ fontSize: 8.5, color: '#6b7280' }}>{[cert.issuer, cert.date].filter(Boolean).join(' · ')}</Text>
+                  </View>
+                ))}
+              </View>
+            )}
+
+            {data.languages && data.languages.length > 0 && (
+              <View wrap={false}>
+                <Pill label={labels.languages} />
+                {(data.languages ?? []).map((lang, idx) => (
+                  <View key={lang.id} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: idx === (data.languages ?? []).length - 1 ? 0 : 3 }}>
+                    <Text style={{ fontSize: 9, fontFamily: SANS, fontWeight: 700 }}>{lang.name}</Text>
+                    {lang.level ? <Text style={{ fontSize: 8.5, color: '#6b7280' }}>{lang.level}</Text> : null}
                   </View>
                 ))}
               </View>

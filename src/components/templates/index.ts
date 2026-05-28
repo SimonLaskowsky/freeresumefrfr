@@ -23,6 +23,7 @@ export interface TemplateLabels {
   skills: string;
   projects: string;
   certifications: string;
+  languages: string;
   contact: string;
   present: string;
 }

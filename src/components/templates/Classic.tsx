@@ -8,7 +8,7 @@ interface Labels {
   education: string;
   skills: string;
   projects: string;
-  certifications: string;
+  certifications: string; languages: string;
   contact: string;
   present: string;
 }
@@ -290,12 +290,28 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
           </View>
         )}
 
-        {/* Skills */}
-        {skills && (
-          <View>
+        {/* Languages */}
+        {data.languages && data.languages.length > 0 && (
+          <View wrap={false}>
             <View minPresenceAhead={60}>
               <View style={[styles.divider, { borderBottomColor: accentColor }]} />
-            <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.skills.toUpperCase()}</Text>
+              <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.languages.toUpperCase()}</Text>
+            </View>
+            {(data.languages ?? []).map((lang, idx) => (
+              <View key={lang.id} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: idx === (data.languages ?? []).length - 1 ? 0 : 4 }}>
+                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{lang.name}</Text>
+                {lang.level ? <Text style={{ fontSize: 9, color: '#6b7280' }}>{lang.level}</Text> : null}
+              </View>
+            ))}
+          </View>
+        )}
+
+        {/* Skills */}
+        {skills && (
+          <View wrap={false}>
+            <View minPresenceAhead={60}>
+              <View style={[styles.divider, { borderBottomColor: accentColor }]} />
+              <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.skills.toUpperCase()}</Text>
             </View>
             <Text style={styles.skillsText}>{skills}</Text>
           </View>

@@ -29,6 +29,7 @@ export default function ResumePreviewPanel({ data, templateId, accentColor, comp
     skills: t.sections.skills,
     projects: t.sections.projects,
     certifications: t.sections.certifications,
+    languages: t.sections.languages,
     contact: t.sections.contact,
     present: t.fields.present,
   };

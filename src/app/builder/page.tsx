@@ -12,6 +12,7 @@ import ExperienceForm from '@/components/builder/ExperienceForm';
 import EducationForm from '@/components/builder/EducationForm';
 import ProjectsForm from '@/components/builder/ProjectsForm';
 import CertificationsForm from '@/components/builder/CertificationsForm';
+import LanguagesForm from '@/components/builder/LanguagesForm';
 import SkillsForm from '@/components/builder/SkillsForm';
 import TemplatePicker from '@/components/TemplatePicker';
 import CompletenessScore from '@/components/CompletenessScore';
@@ -149,6 +150,8 @@ export default function BuilderPage() {
           <ProjectsForm />
           {DIVIDER}
           <CertificationsForm />
+          {DIVIDER}
+          <LanguagesForm />
           {DIVIDER}
           <SkillsForm />
           <div className="h-8" />
