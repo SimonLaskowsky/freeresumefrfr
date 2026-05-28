@@ -53,7 +53,26 @@ export default function BuilderPage() {
     debouncedData.experience.length === 0 &&
     debouncedData.education.length === 0;
 
-  const previewData = isExampleMode ? sampleData : debouncedData;
+  // For preview: use live data for discrete actions (reorder), debounced for typing.
+  // We detect a reorder when array lengths are the same but references differ from debounced.
+  const hasReordered =
+    !isExampleMode && (
+      data.experience !== debouncedData.experience ||
+      data.education !== debouncedData.education ||
+      data.projects !== debouncedData.projects ||
+      data.certifications !== debouncedData.certifications ||
+      data.languages !== debouncedData.languages ||
+      data.skillGroups !== debouncedData.skillGroups
+    ) && (
+      data.experience.length === debouncedData.experience.length &&
+      data.education.length === debouncedData.education.length &&
+      data.projects.length === debouncedData.projects.length &&
+      data.certifications.length === debouncedData.certifications.length &&
+      (data.languages ?? []).length === (debouncedData.languages ?? []).length &&
+      (data.skillGroups ?? []).length === (debouncedData.skillGroups ?? []).length
+    );
+
+  const previewData = isExampleMode ? sampleData : (hasReordered ? data : debouncedData);
   const { t } = useI18n();
 
   // Mobile tab state
