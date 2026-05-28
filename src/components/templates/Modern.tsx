@@ -16,9 +16,9 @@ interface Labels {
 const ACCENT = '#60a5fa';
 
 const s = StyleSheet.create({
-  page: { flexDirection: 'row', fontFamily: SANS, fontSize: 9.5, paddingTop: 32 },
-  sidebar: { width: 178, padding: '4 16 36 18' },
-  main: { flex: 1, padding: '4 26 36 22' },
+  page: { flexDirection: 'row', fontFamily: SANS, fontSize: 9.5 },
+  sidebar: { width: 178, padding: '36 16 36 18' },
+  main: { flex: 1, padding: '36 26 36 22' },
 
   sName: { fontSize: 17, fontFamily: SANS, fontWeight: 700, color: '#ffffff', marginBottom: 3, lineHeight: 1.2 },
   sTitle: { fontSize: 9.5, color: '#93c5fd', marginBottom: 18, fontFamily: SANS, fontStyle: 'italic' },
