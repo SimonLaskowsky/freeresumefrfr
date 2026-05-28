@@ -77,10 +77,23 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
               {contact.map((item, i) => <Text key={i} style={s.sItem}>{item}</Text>)}
             </View>
           )}
-          {skillList.length > 0 && (
+          {(data.skillGroups && data.skillGroups.length > 0 ? true : skillList.length > 0) && (
             <View wrap={false}>
               <Text style={s.sSectionTitle}>{labels.skills}</Text>
-              {skillList.map((skill, i) => <Text key={i} style={s.sItem}>{skill}</Text>)}
+              {data.skillGroups && data.skillGroups.length > 0 ? (
+                <View>
+                  {data.skillGroups.map((group, idx) => (
+                    <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 6 : 0 }}>
+                      {group.category ? <Text style={{ fontSize: 7, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, color: '#e2e8f0', textTransform: 'uppercase', marginBottom: 3 }}>{group.category}</Text> : null}
+                      {group.items.split(',').filter((t: string) => t.trim()).map((skill: string, i: number) => (
+                        <Text key={i} style={s.sItem}>{skill.trim()}</Text>
+                      ))}
+                    </View>
+                  ))}
+                </View>
+              ) : (
+                skillList.map((skill, i) => <Text key={i} style={s.sItem}>{skill}</Text>)
+              )}
             </View>
           )}
           {data.languages && data.languages.length > 0 && (

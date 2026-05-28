@@ -232,7 +232,18 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
               <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.skills}</Text>
             </View>
-            <Text style={s.skills}>{skills}</Text>
+            {data.skillGroups && data.skillGroups.length > 0 ? (
+              <View>
+                {data.skillGroups.map((group, idx) => (
+                  <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
+                    {group.category ? <Text style={{ fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: accentColor, marginBottom: 2 }}>{group.category}</Text> : null}
+                    <Text style={s.skills}>{group.items}</Text>
+                  </View>
+                ))}
+              </View>
+            ) : (
+              <Text style={s.skills}>{skills}</Text>
+            )}
           </View>
         )}
       </Page>

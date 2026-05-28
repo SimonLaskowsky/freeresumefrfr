@@ -232,7 +232,18 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
               <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.skills}</Text>
             </View>
             <View style={s.thinRule} />
-            <Text style={s.skills}>{skills}</Text>
+            {data.skillGroups && data.skillGroups.length > 0 ? (
+              <View>
+                {data.skillGroups.map((group, idx) => (
+                  <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
+                    {group.category ? <Text style={{ fontSize: 7.5, fontFamily: SERIF, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: accentColor, marginBottom: 2 }}>{group.category}</Text> : null}
+                    <Text style={s.skills}>{group.items}</Text>
+                  </View>
+                ))}
+              </View>
+            ) : (
+              <Text style={s.skills}>{skills}</Text>
+            )}
           </View>
         )}
       </Page>

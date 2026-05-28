@@ -54,6 +54,12 @@ export interface Language {
   level: string;
 }
 
+export interface SkillGroup {
+  id: string;
+  category: string;
+  items: string;
+}
+
 export interface ResumeData {
   personal: PersonalInfo;
   summary: string;
@@ -62,6 +68,7 @@ export interface ResumeData {
   projects: Project[];
   certifications: Certification[];
   languages: Language[];
+  skillGroups: SkillGroup[];
   skills: string;
 }
 
@@ -86,6 +93,9 @@ interface ResumeStore {
   addLanguage: () => void;
   updateLanguage: (id: string, updates: Partial<Omit<Language, 'id'>>) => void;
   removeLanguage: (id: string) => void;
+  addSkillGroup: () => void;
+  updateSkillGroup: (id: string, updates: Partial<Omit<SkillGroup, 'id'>>) => void;
+  removeSkillGroup: (id: string) => void;
   updateSkills: (skills: string) => void;
   loadSampleData: () => void;
   resetData: () => void;
@@ -103,6 +113,7 @@ const defaultData: ResumeData = {
   projects: [],
   certifications: [],
   languages: [],
+  skillGroups: [],
   skills: '',
 };
 
@@ -180,6 +191,10 @@ export const sampleData: ResumeData = {
   languages: [
     { id: 'sample-lang-1', name: 'English', level: 'Native' },
     { id: 'sample-lang-2', name: 'Spanish', level: 'B2' },
+  ],
+  skillGroups: [
+    { id: 'sample-sg-1', category: 'Frontend', items: 'TypeScript, React, Node.js, Next.js' },
+    { id: 'sample-sg-2', category: 'Backend & Infra', items: 'Rust, PostgreSQL, Redis, Kafka, AWS, Docker, Kubernetes' },
   ],
   skills: 'TypeScript, React, Node.js, Rust, PostgreSQL, Redis, Kafka, AWS, Docker, Kubernetes',
 };
@@ -307,6 +322,29 @@ export const useResumeStore = create<ResumeStore>()(
           data: { ...s.data, languages: (s.data.languages ?? []).filter((l) => l.id !== id) },
         })),
 
+      addSkillGroup: () =>
+        set((s) => ({
+          data: {
+            ...s.data,
+            skillGroups: [...(s.data.skillGroups ?? []), {
+              id: crypto.randomUUID(), category: '', items: '',
+            }],
+          },
+        })),
+
+      updateSkillGroup: (id, updates) =>
+        set((s) => ({
+          data: {
+            ...s.data,
+            skillGroups: (s.data.skillGroups ?? []).map((g) => g.id === id ? { ...g, ...updates } : g),
+          },
+        })),
+
+      removeSkillGroup: (id) =>
+        set((s) => ({
+          data: { ...s.data, skillGroups: (s.data.skillGroups ?? []).filter((g) => g.id !== id) },
+        })),
+
       updateSkills: (skills) =>
         set((s) => ({ data: { ...s.data, skills } })),
 
@@ -336,6 +374,7 @@ export const useResumeStore = create<ResumeStore>()(
           state.data.projects ??= [];
           state.data.certifications ??= [];
           state.data.languages ??= [];
+          state.data.skillGroups ??= [];
         }
         return state as { data: ResumeData; templateId: string };
       },

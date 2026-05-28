@@ -67,15 +67,30 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
               {contact.map((item, i) => <Text key={i} style={s.lItem}>{item}</Text>)}
             </View>
           )}
-          {skillList.length > 0 && (
+          {(data.skillGroups && data.skillGroups.length > 0 ? true : skillList.length > 0) && (
             <View wrap={false}>
               <Text style={s.lSectionTitle}>{labels.skills}</Text>
               <View style={s.lRule} />
-              {skillList.map((skill, i) => (
-                <View key={i} style={{ marginBottom: 3 }}>
-                  <Text style={s.lItem}>{skill}</Text>
+              {data.skillGroups && data.skillGroups.length > 0 ? (
+                <View>
+                  {data.skillGroups.map((group, idx) => (
+                    <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 6 : 0 }}>
+                      {group.category ? <Text style={{ fontSize: 7, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, color: '#ffffff', textTransform: 'uppercase', marginBottom: 3 }}>{group.category}</Text> : null}
+                      {group.items.split(',').filter((t: string) => t.trim()).map((skill: string, i: number) => (
+                        <View key={i} style={{ marginBottom: 3 }}>
+                          <Text style={s.lItem}>{skill.trim()}</Text>
+                        </View>
+                      ))}
+                    </View>
+                  ))}
                 </View>
-              ))}
+              ) : (
+                skillList.map((skill, i) => (
+                  <View key={i} style={{ marginBottom: 3 }}>
+                    <Text style={s.lItem}>{skill}</Text>
+                  </View>
+                ))
+              )}
             </View>
           )}
           {data.languages && data.languages.length > 0 && (

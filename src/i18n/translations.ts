@@ -42,7 +42,7 @@ export interface Translations {
     bulletPlaceholder: string;
     summaryOptional: string; skillsHint: string;
     bulletPointsHint: string; highlightsHint: string;
-    technologies: string; technologiesPlaceholder: string;
+    technologies: string; technologiesPlaceholder: string; skillCategory: string;
     addBullet: string; enterToAddFaster: string; present: string;
     noneExperience: string; noneEducation: string;
     noneProjects: string; noneCertifications: string; noneLanguages: string;
@@ -58,6 +58,7 @@ export interface Translations {
     addProject: string; removeProject: string;
     addCertification: string; removeCertification: string;
     addLanguage: string; removeLanguage: string;
+    addSkillGroup: string; removeSkillGroup: string;
   };
 
   // ATS tips (shown in SectionWrapper)
@@ -221,6 +222,7 @@ const en: Translations = {
     bulletPointsHint: 'Bullet points — Enter to add, Backspace on empty to remove',
     highlightsHint: 'Highlights — Enter to add more',
     technologies: 'Technologies', technologiesPlaceholder: 'React, TypeScript, Node.js',
+    skillCategory: 'Category (optional)',
     addBullet: 'Add bullet',
     enterToAddFaster: '· Enter to add faster',
     present: 'Present',
@@ -245,6 +247,7 @@ const en: Translations = {
     addCertification: '+ Add Certification',
     removeCertification: 'Remove',
     addLanguage: '+ Add Language', removeLanguage: 'Remove',
+    addSkillGroup: '+ Add Skill Group', removeSkillGroup: 'Remove',
   },
   tips: {
     summary: 'Lead with your strongest value. Include years of experience and 2-3 top skills. ATS scanners love keywords from the job description.',
@@ -429,6 +432,7 @@ const es: Translations = {
     bulletPointsHint: 'Puntos clave — Enter para agregar, Backspace en vacío para eliminar',
     highlightsHint: 'Puntos destacados — Enter para agregar más',
     technologies: 'Tecnologías', technologiesPlaceholder: 'React, TypeScript, Node.js',
+    skillCategory: 'Categoría (opcional)',
     addBullet: 'Agregar punto',
     enterToAddFaster: '· Enter para agregar más rápido',
     present: 'Actualmente',
@@ -453,6 +457,7 @@ const es: Translations = {
     addCertification: '+ Añadir certificación',
     removeCertification: 'Eliminar',
     addLanguage: '+ Añadir idioma', removeLanguage: 'Eliminar',
+    addSkillGroup: '+ Añadir grupo', removeSkillGroup: 'Eliminar',
   },
   tips: {
     summary: 'Comienza con tu mayor valor. Incluye años de experiencia y 2-3 habilidades clave. Los sistemas ATS adoran las palabras clave del trabajo.',
@@ -637,6 +642,7 @@ const fr: Translations = {
     bulletPointsHint: 'Points — Entrée pour ajouter, Retour arrière sur vide pour supprimer',
     highlightsHint: 'Points clés — Entrée pour en ajouter',
     technologies: 'Technologies', technologiesPlaceholder: 'React, TypeScript, Node.js',
+    skillCategory: 'Catégorie (optionnelle)',
     addBullet: 'Ajouter un point',
     enterToAddFaster: '· Entrée pour ajouter plus vite',
     present: "Aujourd'hui",
@@ -661,6 +667,7 @@ const fr: Translations = {
     addCertification: '+ Ajouter une certification',
     removeCertification: 'Supprimer',
     addLanguage: '+ Ajouter une langue', removeLanguage: 'Supprimer',
+    addSkillGroup: '+ Ajouter un groupe', removeSkillGroup: 'Supprimer',
   },
   tips: {
     summary: 'Commencez par votre valeur ajoutée. Incluez vos années d\'expérience et 2-3 compétences clés. Les ATS adorent les mots-clés de l\'offre d\'emploi.',
@@ -844,6 +851,7 @@ const de: Translations = {
     bulletPointsHint: 'Punkte — Enter zum Hinzufügen, Backspace bei leerem Feld zum Entfernen',
     highlightsHint: 'Highlights — Enter für mehr',
     technologies: 'Technologien', technologiesPlaceholder: 'React, TypeScript, Node.js',
+    skillCategory: 'Kategorie (optional)',
     addBullet: 'Punkt hinzufügen',
     enterToAddFaster: '· Enter für schnelleres Hinzufügen',
     present: 'Heute',
@@ -868,6 +876,7 @@ const de: Translations = {
     addCertification: '+ Zertifizierung hinzufügen',
     removeCertification: 'Entfernen',
     addLanguage: '+ Sprache hinzufügen', removeLanguage: 'Entfernen',
+    addSkillGroup: '+ Gruppe hinzufügen', removeSkillGroup: 'Entfernen',
   },
   tips: {
     summary: 'Beginnen Sie mit Ihrem stärksten Wert. Nennen Sie Erfahrungsjahre und 2-3 Top-Fähigkeiten. ATS-Scanner lieben Schlüsselwörter aus der Stellenbeschreibung.',
@@ -1052,6 +1061,7 @@ const pt: Translations = {
     bulletPointsHint: 'Pontos — Enter para adicionar, Backspace no vazio para remover',
     highlightsHint: 'Destaques — Enter para adicionar mais',
     technologies: 'Tecnologias', technologiesPlaceholder: 'React, TypeScript, Node.js',
+    skillCategory: 'Categoria (opcional)',
     addBullet: 'Adicionar ponto',
     enterToAddFaster: '· Enter para adicionar mais rápido',
     present: 'Atualmente',
@@ -1076,6 +1086,7 @@ const pt: Translations = {
     addCertification: '+ Adicionar certificação',
     removeCertification: 'Remover',
     addLanguage: '+ Adicionar idioma', removeLanguage: 'Remover',
+    addSkillGroup: '+ Adicionar grupo', removeSkillGroup: 'Remover',
   },
   tips: {
     summary: 'Comece com seu maior valor. Inclua anos de experiência e 2-3 habilidades principais. Sistemas ATS adoram palavras-chave da descrição do cargo.',
@@ -1260,6 +1271,7 @@ const zh: Translations = {
     bulletPointsHint: '要点 — 回车添加，空白时退格删除',
     highlightsHint: '亮点 — 回车添加更多',
     technologies: '技术栈', technologiesPlaceholder: 'React, TypeScript, Node.js',
+    skillCategory: '分类（可选）',
     addBullet: '添加要点',
     enterToAddFaster: '· 回车快速添加',
     present: '至今',
@@ -1284,6 +1296,7 @@ const zh: Translations = {
     addCertification: '+ 添加证书',
     removeCertification: '删除',
     addLanguage: '+ 添加语言', removeLanguage: '删除',
+    addSkillGroup: '+ 添加技能组', removeSkillGroup: '删除',
   },
   tips: {
     summary: '以您最强的价值开头。包含工作年限和2-3项顶尖技能。ATS扫描仪喜欢职位描述中的关键词。',
@@ -1468,6 +1481,7 @@ const ja: Translations = {
     bulletPointsHint: '箇条書き — Enterで追加、空白でBackspaceを押すと削除',
     highlightsHint: 'ハイライト — Enterでさらに追加',
     technologies: '使用技術', technologiesPlaceholder: 'React, TypeScript, Node.js',
+    skillCategory: 'カテゴリ（任意）',
     addBullet: '箇条書きを追加',
     enterToAddFaster: '· Enterで素早く追加',
     present: '現在',
@@ -1492,6 +1506,7 @@ const ja: Translations = {
     addCertification: '+ 資格を追加',
     removeCertification: '削除',
     addLanguage: '+ 言語を追加', removeLanguage: '削除',
+    addSkillGroup: '+ グループを追加', removeSkillGroup: '削除',
   },
   tips: {
     summary: '最も強みとなる価値から始めましょう。経験年数と上位2-3のスキルを含めてください。ATSスキャナーは求人票のキーワードを好みます。',
@@ -1676,6 +1691,7 @@ const ko: Translations = {
     bulletPointsHint: '항목 — Enter로 추가, 빈 칸에서 Backspace로 삭제',
     highlightsHint: '하이라이트 — Enter로 더 추가',
     technologies: '기술', technologiesPlaceholder: 'React, TypeScript, Node.js',
+    skillCategory: '카테고리 (선택)',
     addBullet: '항목 추가',
     enterToAddFaster: '· Enter로 빠르게 추가',
     present: '현재',
@@ -1700,6 +1716,7 @@ const ko: Translations = {
     addCertification: '+ 자격증 추가',
     removeCertification: '삭제',
     addLanguage: '+ 언어 추가', removeLanguage: '삭제',
+    addSkillGroup: '+ 기술 그룹 추가', removeSkillGroup: '삭제',
   },
   tips: {
     summary: '가장 강한 가치로 시작하세요. 경력 연수와 상위 2-3가지 기술을 포함하세요. ATS 스캐너는 직무 설명의 키워드를 좋아합니다.',
@@ -1884,6 +1901,7 @@ const ar: Translations = {
     bulletPointsHint: 'نقاط — Enter للإضافة، Backspace على نقطة فارغة للحذف',
     highlightsHint: 'أبرز النقاط — Enter لإضافة المزيد',
     technologies: 'التقنيات', technologiesPlaceholder: 'React, TypeScript, Node.js',
+    skillCategory: 'الفئة (اختياري)',
     addBullet: 'أضف نقطة',
     enterToAddFaster: '· Enter للإضافة أسرع',
     present: 'حتى الآن',
@@ -1908,6 +1926,7 @@ const ar: Translations = {
     addCertification: '+ إضافة شهادة',
     removeCertification: 'إزالة',
     addLanguage: '+ إضافة لغة', removeLanguage: 'إزالة',
+    addSkillGroup: '+ إضافة مجموعة', removeSkillGroup: 'إزالة',
   },
   tips: {
     summary: 'ابدأ بأقوى قيمة لديك. أدرج سنوات الخبرة و2-3 مهارات رئيسية. ماسحات ATS تحب الكلمات المفتاحية من وصف الوظيفة.',
@@ -2091,6 +2110,7 @@ const ru: Translations = {
     bulletPointsHint: 'Пункты — Enter для добавления, Backspace на пустом для удаления',
     highlightsHint: 'Ключевые моменты — Enter для добавления',
     technologies: 'Технологии', technologiesPlaceholder: 'React, TypeScript, Node.js',
+    skillCategory: 'Категория (необязательно)',
     addBullet: 'Добавить пункт',
     enterToAddFaster: '· Enter для быстрого добавления',
     present: 'По н. вр.',
@@ -2115,6 +2135,7 @@ const ru: Translations = {
     addCertification: '+ Добавить сертификат',
     removeCertification: 'Удалить',
     addLanguage: '+ Добавить язык', removeLanguage: 'Удалить',
+    addSkillGroup: '+ Добавить группу', removeSkillGroup: 'Удалить',
   },
   tips: {
     summary: 'Начните с вашей главной ценности. Укажите годы опыта и 2-3 ключевых навыка. ATS-сканеры любят ключевые слова из описания вакансии.',
@@ -2298,6 +2319,7 @@ const it: Translations = {
     bulletPointsHint: 'Punti — Invio per aggiungere, Backspace su vuoto per rimuovere',
     highlightsHint: 'Punti salienti — Invio per aggiungere',
     technologies: 'Tecnologie', technologiesPlaceholder: 'React, TypeScript, Node.js',
+    skillCategory: 'Categoria (opzionale)',
     addBullet: 'Aggiungi punto',
     enterToAddFaster: '· Invio per aggiungere più veloce',
     present: 'Presente',
@@ -2322,6 +2344,7 @@ const it: Translations = {
     addCertification: '+ Aggiungi certificazione',
     removeCertification: 'Rimuovi',
     addLanguage: '+ Aggiungi lingua', removeLanguage: 'Rimuovi',
+    addSkillGroup: '+ Aggiungi gruppo', removeSkillGroup: 'Rimuovi',
   },
   tips: {
     summary: 'Inizia con il tuo punto di forza. Includi anni di esperienza e 2-3 competenze chiave. Gli scanner ATS amano le parole chiave dall\'annuncio di lavoro.',
@@ -2505,6 +2528,7 @@ const hi: Translations = {
     bulletPointsHint: 'बुलेट पॉइंट — जोड़ने के लिए Enter, खाली पर हटाने के लिए Backspace',
     highlightsHint: 'मुख्य बिंदु — और जोड़ने के लिए Enter',
     technologies: 'प्रौद्योगिकियाँ', technologiesPlaceholder: 'React, TypeScript, Node.js',
+    skillCategory: 'श्रेणी (वैकल्पिक)',
     addBullet: 'बुलेट जोड़ें',
     enterToAddFaster: '· तेज़ जोड़ने के लिए Enter',
     present: 'वर्तमान',
@@ -2529,6 +2553,7 @@ const hi: Translations = {
     addCertification: '+ प्रमाणपत्र जोड़ें',
     removeCertification: 'हटाएं',
     addLanguage: '+ भाषा जोड़ें', removeLanguage: 'हटाएं',
+    addSkillGroup: '+ कौशल समूह जोड़ें', removeSkillGroup: 'हटाएं',
   },
   tips: {
     summary: 'अपनी सबसे मजबूत ताकत से शुरू करें। अनुभव के वर्ष और 2-3 शीर्ष कौशल शामिल करें। ATS स्कैनर नौकरी विवरण के कीवर्ड पसंद करते हैं।',
@@ -2712,6 +2737,7 @@ const tr: Translations = {
     bulletPointsHint: 'Maddeler — Eklemek için Enter, boşta Backspace ile sil',
     highlightsHint: 'Öne çıkanlar — Daha fazla eklemek için Enter',
     technologies: 'Teknolojiler', technologiesPlaceholder: 'React, TypeScript, Node.js',
+    skillCategory: 'Kategori (isteğe bağlı)',
     addBullet: 'Madde ekle',
     enterToAddFaster: '· Daha hızlı eklemek için Enter',
     present: 'Hâlâ',
@@ -2736,6 +2762,7 @@ const tr: Translations = {
     addCertification: '+ Sertifika Ekle',
     removeCertification: 'Kaldır',
     addLanguage: '+ Dil Ekle', removeLanguage: 'Kaldır',
+    addSkillGroup: '+ Beceri grubu ekle', removeSkillGroup: 'Kaldır',
   },
   tips: {
     summary: 'En güçlü değerinizle başlayın. Deneyim yıllarını ve 2-3 temel beceriyi ekleyin. ATS tarayıcıları iş tanımındaki anahtar kelimeleri sever.',
@@ -2919,6 +2946,7 @@ const nl: Translations = {
     bulletPointsHint: 'Punten — Enter om toe te voegen, Backspace op leeg om te verwijderen',
     highlightsHint: 'Hoogtepunten — Enter voor meer',
     technologies: 'Technologieën', technologiesPlaceholder: 'React, TypeScript, Node.js',
+    skillCategory: 'Categorie (optioneel)',
     addBullet: 'Punt toevoegen',
     enterToAddFaster: '· Enter om sneller toe te voegen',
     present: 'Heden',
@@ -2943,6 +2971,7 @@ const nl: Translations = {
     addCertification: '+ Certificering toevoegen',
     removeCertification: 'Verwijderen',
     addLanguage: '+ Taal toevoegen', removeLanguage: 'Verwijderen',
+    addSkillGroup: '+ Vaardigheidsgroep toevoegen', removeSkillGroup: 'Verwijderen',
   },
   tips: {
     summary: 'Begin met je sterkste waarde. Noem jaren ervaring en 2-3 topvaardigheden. ATS-scanners houden van trefwoorden uit de vacature.',
@@ -3126,6 +3155,7 @@ const pl: Translations = {
     bulletPointsHint: 'Punkty — Enter aby dodać, Backspace na pustym aby usunąć',
     highlightsHint: 'Wyróżnienia — Enter aby dodać więcej',
     technologies: 'Technologie', technologiesPlaceholder: 'React, TypeScript, Node.js',
+    skillCategory: 'Kategoria (opcjonalna)',
     addBullet: 'Dodaj punkt',
     enterToAddFaster: '· Enter aby dodać szybciej',
     present: 'Obecnie',
@@ -3150,6 +3180,7 @@ const pl: Translations = {
     addCertification: '+ Dodaj certyfikat',
     removeCertification: 'Usuń',
     addLanguage: '+ Dodaj język', removeLanguage: 'Usuń',
+    addSkillGroup: '+ Dodaj grupę', removeSkillGroup: 'Usuń',
   },
   tips: {
     summary: 'Zacznij od swojej największej wartości. Wymień lata doświadczenia i 2-3 kluczowe umiejętności. Skanery ATS kochają słowa kluczowe z opisu stanowiska.',

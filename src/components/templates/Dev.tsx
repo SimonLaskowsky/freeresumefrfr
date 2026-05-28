@@ -194,15 +194,32 @@ export function DevTemplate({ data, labels, accentColor, companyLogo }: Props) {
           </CommentSection>
         )}
 
-        {skillList.length > 0 && (
+        {(data.skillGroups && data.skillGroups.length > 0 ? true : skillList.length > 0) && (
           <CommentSection label={labels.skills}>
-            <View style={s.skillsRow}>
-              {skillList.map((skill, i) => (
-                <View key={i} style={[s.skillPill, { borderColor: accentColor }]}>
-                  <Text style={{ color: accentColor }}>{skill}</Text>
-                </View>
-              ))}
-            </View>
+            {data.skillGroups && data.skillGroups.length > 0 ? (
+              <View>
+                {data.skillGroups.map((group, idx) => (
+                  <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 8 : 0 }}>
+                    {group.category ? <Text style={{ fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: accentColor, marginBottom: 4 }}>{group.category}</Text> : null}
+                    <View style={s.skillsRow}>
+                      {group.items.split(',').filter((t: string) => t.trim()).map((skill: string, i: number) => (
+                        <View key={i} style={[s.skillPill, { borderColor: accentColor }]}>
+                          <Text style={{ color: accentColor }}>{skill.trim()}</Text>
+                        </View>
+                      ))}
+                    </View>
+                  </View>
+                ))}
+              </View>
+            ) : (
+              <View style={s.skillsRow}>
+                {skillList.map((skill, i) => (
+                  <View key={i} style={[s.skillPill, { borderColor: accentColor }]}>
+                    <Text style={{ color: accentColor }}>{skill}</Text>
+                  </View>
+                ))}
+              </View>
+            )}
           </CommentSection>
         )}
       </Page>
