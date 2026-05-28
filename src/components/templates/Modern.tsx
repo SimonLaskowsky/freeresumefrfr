@@ -72,19 +72,19 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
           {personal.name && <Text style={s.sName}>{personal.name}</Text>}
           {personal.title && <Text style={s.sTitle}>{personal.title}</Text>}
           {contact.length > 0 && (
-            <View>
+            <View wrap={false}>
               <Text style={s.sSectionTitle}>{labels.contact}</Text>
               {contact.map((item, i) => <Text key={i} style={s.sItem}>{item}</Text>)}
             </View>
           )}
           {skillList.length > 0 && (
-            <View>
+            <View wrap={false}>
               <Text style={s.sSectionTitle}>{labels.skills}</Text>
               {skillList.map((skill, i) => <Text key={i} style={s.sItem}>{skill}</Text>)}
             </View>
           )}
           {data.languages && data.languages.length > 0 && (
-            <View>
+            <View wrap={false}>
               <Text style={s.sSectionTitle}>{labels.languages}</Text>
               {(data.languages ?? []).map((lang) => (
                 <Text key={lang.id} style={s.sItem}>{lang.name}{lang.level ? ` — ${lang.level}` : ''}</Text>

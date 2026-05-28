@@ -61,14 +61,14 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
           {personal.name && <Text style={s.lName}>{personal.name}</Text>}
           {personal.title && <Text style={s.lTitle}>{personal.title}</Text>}
           {contact.length > 0 && (
-            <View>
+            <View wrap={false}>
               <Text style={s.lSectionTitle}>{labels.contact}</Text>
               <View style={s.lRule} />
               {contact.map((item, i) => <Text key={i} style={s.lItem}>{item}</Text>)}
             </View>
           )}
           {skillList.length > 0 && (
-            <View>
+            <View wrap={false}>
               <Text style={s.lSectionTitle}>{labels.skills}</Text>
               <View style={s.lRule} />
               {skillList.map((skill, i) => (
@@ -79,7 +79,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
             </View>
           )}
           {data.languages && data.languages.length > 0 && (
-            <View>
+            <View wrap={false}>
               <Text style={s.lSectionTitle}>{labels.languages}</Text>
               <View style={s.lRule} />
               {(data.languages ?? []).map((lang) => (
