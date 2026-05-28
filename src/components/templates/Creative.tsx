@@ -72,7 +72,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
               <Text style={s.lSectionTitle}>{labels.contact}</Text>
               <View style={s.lRule} />
               {contact.map((item, i) => item.url
-                ? <Link key={i} src={item.url}><Text style={[s.lItem, { textDecoration: 'none', color: 'inherit' }]}>{item.text}</Text></Link>
+                ? <Link key={i} src={item.url}><Text style={s.lItem}>{item.text}</Text></Link>
                 : <Text key={i} style={s.lItem}>{item.text}</Text>
               )}
             </View>

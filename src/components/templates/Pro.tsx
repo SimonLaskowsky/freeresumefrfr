@@ -100,7 +100,7 @@ export function ProTemplate({ data, labels, accentColor, companyLogo }: { data: 
                     <View key={i} style={{ flexDirection: 'row' }}>
                       {i > 0 && <Text style={s.contactSep}>|</Text>}
                       {item.url
-                        ? <Link src={item.url}><Text style={{ color: 'inherit', textDecoration: 'none' }}>{item.text}</Text></Link>
+                        ? <Link src={item.url}><Text>{item.text}</Text></Link>
                         : <Text>{item.text}</Text>}
                     </View>
                   ))}

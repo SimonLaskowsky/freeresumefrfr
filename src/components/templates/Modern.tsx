@@ -82,7 +82,7 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
             <View wrap={false}>
               <Text style={s.sSectionTitle}>{labels.contact}</Text>
               {contact.map((item, i) => item.url
-                ? <Link key={i} src={item.url}><Text style={[s.sItem, { textDecoration: 'none', color: 'inherit' }]}>{item.text}</Text></Link>
+                ? <Link key={i} src={item.url}><Text style={s.sItem}>{item.text}</Text></Link>
                 : <Text key={i} style={s.sItem}>{item.text}</Text>
               )}
             </View>
