@@ -73,6 +73,7 @@ export default function BuilderPage() {
     );
 
   const previewData = isExampleMode ? sampleData : (hasReordered ? data : debouncedData);
+  const reorderVersion = useResumeStore((state) => state.reorderVersion);
   const { t } = useI18n();
 
   // Mobile tab state
@@ -190,7 +191,7 @@ export default function BuilderPage() {
 
         {/* PDF viewer */}
         <div className="flex-1 min-h-0 relative">
-          <ResumePreviewPanel data={previewData} templateId={templateId} accentColor={accentColor} companyLogo={companyLogo} />
+          <ResumePreviewPanel key={reorderVersion} data={previewData} templateId={templateId} accentColor={accentColor} companyLogo={companyLogo} />
           {isExampleMode && (
             <div className="absolute top-3 inset-x-0 flex justify-center z-10 pointer-events-none">
               <div className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900/90 border border-zinc-700/50 rounded-full text-[11px] text-zinc-500 font-mono backdrop-blur-sm whitespace-nowrap">

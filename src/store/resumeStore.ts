@@ -113,6 +113,7 @@ interface ResumeStore {
   reorderCertifications: (items: Certification[]) => void;
   reorderLanguages: (items: Language[]) => void;
   reorderSkillGroups: (items: SkillGroup[]) => void;
+  reorderVersion: number;
   loadSampleData: () => void;
   resetData: () => void;
   accentColor: string;
@@ -401,12 +402,13 @@ export const useResumeStore = create<ResumeStore>()(
           },
         })),
 
-      reorderExperience: (items) => set((s) => ({ data: { ...s.data, experience: items } })),
-      reorderEducation: (items) => set((s) => ({ data: { ...s.data, education: items } })),
-      reorderProjects: (items) => set((s) => ({ data: { ...s.data, projects: items } })),
-      reorderCertifications: (items) => set((s) => ({ data: { ...s.data, certifications: items } })),
-      reorderLanguages: (items) => set((s) => ({ data: { ...s.data, languages: items } })),
-      reorderSkillGroups: (items) => set((s) => ({ data: { ...s.data, skillGroups: items } })),
+      reorderExperience: (items) => set((s) => ({ data: { ...s.data, experience: items }, reorderVersion: s.reorderVersion + 1 })),
+      reorderEducation: (items) => set((s) => ({ data: { ...s.data, education: items }, reorderVersion: s.reorderVersion + 1 })),
+      reorderProjects: (items) => set((s) => ({ data: { ...s.data, projects: items }, reorderVersion: s.reorderVersion + 1 })),
+      reorderCertifications: (items) => set((s) => ({ data: { ...s.data, certifications: items }, reorderVersion: s.reorderVersion + 1 })),
+      reorderLanguages: (items) => set((s) => ({ data: { ...s.data, languages: items }, reorderVersion: s.reorderVersion + 1 })),
+      reorderSkillGroups: (items) => set((s) => ({ data: { ...s.data, skillGroups: items }, reorderVersion: s.reorderVersion + 1 })),
+      reorderVersion: 0,
 
       loadSampleData: () => set({ data: sampleData }),
       resetData: () => set({ data: defaultData }),

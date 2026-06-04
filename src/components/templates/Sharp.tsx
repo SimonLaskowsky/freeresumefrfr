@@ -10,8 +10,8 @@ interface Props {
 }
 
 const s = StyleSheet.create({
-  page: { fontFamily: SANS, fontSize: 10, color: '#1a1a1a', paddingTop: 24, paddingBottom: 40 },
-  header: { paddingTop: 4, paddingBottom: 24, paddingHorizontal: 48 },
+  page: { fontFamily: SANS, fontSize: 10, color: '#1a1a1a', paddingBottom: 40 },
+  header: { paddingTop: 28, paddingBottom: 24, paddingHorizontal: 48 },
   name: { fontSize: 26, fontFamily: SANS, fontWeight: 700, color: '#ffffff', marginBottom: 4, letterSpacing: 0.2 },
   titleLine: { fontSize: 11, color: '#ffffff', opacity: 0.85, marginBottom: 10 },
   contactRow: { flexDirection: 'row', flexWrap: 'wrap', fontSize: 8.5, color: '#ffffff', opacity: 0.75 },
@@ -68,7 +68,7 @@ export function SharpTemplate({ data, labels, accentColor, companyLogo }: Props)
     <Document>
       <Page size="A4" style={s.page}>
         {companyLogo && (
-          <View style={{ position: 'absolute', bottom: 24, right: 24 }}>
+          <View fixed style={{ position: 'absolute', bottom: 24, right: 24 }}>
             <Image src={companyLogo} style={{ width: 160, height: 160, opacity: 0.10, objectFit: 'contain' }} />
           </View>
         )}
@@ -84,7 +84,7 @@ export function SharpTemplate({ data, labels, accentColor, companyLogo }: Props)
                     <View key={i} style={{ flexDirection: 'row' }}>
                       {i > 0 && <Text style={s.contactSep}>·</Text>}
                       {item.url
-                        ? <Link src={item.url}><Text>{item.text}</Text></Link>
+                        ? <Link src={item.url} style={{ color: '#ffffff', textDecoration: 'underline', opacity: 0.75 }}><Text>{item.text}</Text></Link>
                         : <Text>{item.text}</Text>}
                     </View>
                   ))}

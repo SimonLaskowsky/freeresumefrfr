@@ -69,7 +69,7 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
     <Document>
       <Page size="A4" style={s.page}>
         {companyLogo && (
-          <View style={{ position: 'absolute', bottom: 24, right: 24 }}>
+          <View fixed style={{ position: 'absolute', bottom: 24, right: 24 }}>
             <Image src={companyLogo} style={{ width: 160, height: 160, opacity: 0.10, objectFit: 'contain' }} />
           </View>
         )}
@@ -82,7 +82,7 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
             <View wrap={false}>
               <Text style={s.sSectionTitle}>{labels.contact}</Text>
               {contact.map((item, i) => item.url
-                ? <Link key={i} src={item.url}><Text style={s.sItem}>{item.text}</Text></Link>
+                ? <Link key={i} src={item.url} style={{ color: '#cbd5e1', textDecoration: 'underline' }}><Text style={s.sItem}>{item.text}</Text></Link>
                 : <Text key={i} style={s.sItem}>{item.text}</Text>
               )}
             </View>

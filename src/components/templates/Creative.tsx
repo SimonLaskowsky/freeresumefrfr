@@ -58,7 +58,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
     <Document>
       <Page size="A4" style={s.page}>
         {companyLogo && (
-          <View style={{ position: 'absolute', bottom: 24, right: 24 }}>
+          <View fixed style={{ position: 'absolute', bottom: 24, right: 24 }}>
             <Image src={companyLogo} style={{ width: 160, height: 160, opacity: 0.10, objectFit: 'contain' }} />
           </View>
         )}
@@ -72,7 +72,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
               <Text style={s.lSectionTitle}>{labels.contact}</Text>
               <View style={s.lRule} />
               {contact.map((item, i) => item.url
-                ? <Link key={i} src={item.url}><Text style={s.lItem}>{item.text}</Text></Link>
+                ? <Link key={i} src={item.url} style={{ color: '#ffffff', textDecoration: 'underline' }}><Text style={s.lItem}>{item.text}</Text></Link>
                 : <Text key={i} style={s.lItem}>{item.text}</Text>
               )}
             </View>

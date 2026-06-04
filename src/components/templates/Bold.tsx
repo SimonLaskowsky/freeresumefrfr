@@ -16,9 +16,9 @@ interface Labels {
 const HEADER_BG = '#0f172a';
 
 const s = StyleSheet.create({
-  page: { fontFamily: SANS, fontSize: 10, color: '#1a1a1a', paddingTop: 28, paddingBottom: 40 },
+  page: { fontFamily: SANS, fontSize: 10, color: '#1a1a1a', paddingBottom: 40 },
 
-  header: { backgroundColor: HEADER_BG, paddingTop: 2, paddingBottom: 26, paddingHorizontal: 48 },
+  header: { backgroundColor: HEADER_BG, paddingTop: 30, paddingBottom: 26, paddingHorizontal: 48 },
   name: { fontSize: 26, fontFamily: SANS, fontWeight: 700, color: '#ffffff', marginBottom: 4, letterSpacing: 0.2 },
   titleLine: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
   accentBar: { width: 3, height: 14, marginRight: 8 },
@@ -71,7 +71,7 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
     <Document>
       <Page size="A4" style={s.page}>
         {companyLogo && (
-          <View style={{ position: 'absolute', bottom: 24, right: 24 }}>
+          <View fixed style={{ position: 'absolute', bottom: 24, right: 24 }}>
             <Image src={companyLogo} style={{ width: 160, height: 160, opacity: 0.10, objectFit: 'contain' }} />
           </View>
         )}
@@ -92,7 +92,7 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
                     <View key={i} style={{ flexDirection: 'row' }}>
                       {i > 0 && <Text style={s.contactSep}>·</Text>}
                       {item.url
-                        ? <Link src={item.url}><Text>{item.text}</Text></Link>
+                        ? <Link src={item.url} style={{ color: '#94a3b8', textDecoration: 'underline' }}><Text>{item.text}</Text></Link>
                         : <Text>{item.text}</Text>}
                     </View>
                   ))}

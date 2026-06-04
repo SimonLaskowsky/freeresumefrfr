@@ -82,7 +82,7 @@ export function ExecutiveTemplate({ data, labels, accentColor, companyLogo }: { 
     <Document>
       <Page size="A4" style={s.page}>
         {companyLogo && (
-          <View style={{ position: 'absolute', bottom: 24, right: 24 }}>
+          <View fixed style={{ position: 'absolute', bottom: 24, right: 24 }}>
             <Image src={companyLogo} style={{ width: 160, height: 160, opacity: 0.10, objectFit: 'contain' }} />
           </View>
         )}
@@ -96,7 +96,7 @@ export function ExecutiveTemplate({ data, labels, accentColor, companyLogo }: { 
                 <View key={i} style={{ flexDirection: 'row' }}>
                   {i > 0 && <Text style={s.contactSep}>·</Text>}
                   {item.url
-                    ? <Link src={item.url}><Text>{item.text}</Text></Link>
+                    ? <Link src={item.url} style={{ color: '#666666', textDecoration: 'underline' }}><Text>{item.text}</Text></Link>
                     : <Text>{item.text}</Text>}
                 </View>
               ))}
