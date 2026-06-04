@@ -94,7 +94,7 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Summary */}
         {data.summary && (
           <View>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <Text style={s.sectionTitle}>{labels.summary}</Text>
             </View>
             <View style={s.thinRule} />
@@ -104,7 +104,7 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {experience.length > 0 && (
           <View>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <Text style={s.sectionTitle}>{labels.experience}</Text>
             </View>
             <View style={s.thinRule} />
@@ -144,7 +144,7 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
           <View wrap={false}>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.projects}</Text>
             </View>
             <View style={s.thinRule} />
@@ -180,7 +180,7 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {education.length > 0 && (
           <View>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <Text style={[s.sectionTitle, { marginTop: experience.length > 0 ? 12 : 14 }]}>{labels.education}</Text>
             </View>
             <View style={s.thinRule} />
@@ -201,7 +201,7 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
           <View wrap={false}>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.certifications}</Text>
             </View>
             <View style={s.thinRule} />
@@ -222,7 +222,7 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {data.languages && data.languages.length > 0 && (
           <View wrap={false}>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.languages}</Text>
             </View>
             <View style={s.thinRule} />
@@ -236,8 +236,8 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
         )}
 
         {skills && (
-          <View>
-            <View minPresenceAhead={60}>
+          <View wrap={false}>
+            <View minPresenceAhead={120}>
               <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.skills}</Text>
             </View>
             <View style={s.thinRule} />

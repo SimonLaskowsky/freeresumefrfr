@@ -106,7 +106,7 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
           {/* Summary */}
           {data.summary && (
             <View>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.summary}</Text>
               </View>
               <Text style={{ fontSize: 9.5, color: '#374151', lineHeight: 1.5 }}>{data.summary}</Text>
@@ -115,7 +115,7 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
 
           {experience.length > 0 && (
             <View>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.experience}</Text>
               </View>
               {experience.map((exp) => {
@@ -153,7 +153,7 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
           {/* Projects */}
           {data.projects && data.projects.length > 0 && (
             <View wrap={false}>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.projects}</Text>
               </View>
               {data.projects.map((proj) => {
@@ -188,7 +188,7 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
 
           {education.length > 0 && (
             <View>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.education}</Text>
               </View>
               {education.map((edu) => {
@@ -209,7 +209,7 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
           {/* Certifications */}
           {data.certifications && data.certifications.length > 0 && (
             <View wrap={false}>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.certifications}</Text>
               </View>
               {data.certifications.map((cert, idx) => (
@@ -230,7 +230,7 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
 
           {data.languages && data.languages.length > 0 && (
             <View wrap={false}>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.languages}</Text>
               </View>
               {(data.languages ?? []).map((lang, idx) => (
@@ -243,8 +243,8 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
           )}
 
           {skills && (
-            <View>
-              <View minPresenceAhead={60}>
+            <View wrap={false}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.skills}</Text>
               </View>
               {data.skillGroups && data.skillGroups.length > 0 ? (

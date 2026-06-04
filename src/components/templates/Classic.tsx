@@ -160,7 +160,7 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Summary */}
         {data.summary && (
           <View>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <View style={[styles.divider, { borderBottomColor: accentColor }]} />
             <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.summary.toUpperCase()}</Text>
             </View>
@@ -171,7 +171,7 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Experience */}
         {experience.length > 0 && (
           <View>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <View style={[styles.divider, { borderBottomColor: accentColor }]} />
             <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.experience.toUpperCase()}</Text>
             </View>
@@ -212,7 +212,7 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
           <View wrap={false}>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <View style={[styles.divider, { borderBottomColor: accentColor }]} />
             <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.projects.toUpperCase()}</Text>
             </View>
@@ -249,7 +249,7 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Education */}
         {education.length > 0 && (
           <View wrap={false}>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <View style={[styles.divider, { borderBottomColor: accentColor }]} />
             <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.education.toUpperCase()}</Text>
             </View>
@@ -273,7 +273,7 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
           <View wrap={false}>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <View style={[styles.divider, { borderBottomColor: accentColor }]} />
             <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.certifications.toUpperCase()}</Text>
             </View>
@@ -296,7 +296,7 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Languages */}
         {data.languages && data.languages.length > 0 && (
           <View wrap={false}>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <View style={[styles.divider, { borderBottomColor: accentColor }]} />
               <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.languages.toUpperCase()}</Text>
             </View>
@@ -312,7 +312,7 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Skills */}
         {skills && (
           <View wrap={false}>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <View style={[styles.divider, { borderBottomColor: accentColor }]} />
               <Text style={[styles.sectionTitle, { color: accentColor }]}>{labels.skills.toUpperCase()}</Text>
             </View>

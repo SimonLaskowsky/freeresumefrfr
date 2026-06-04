@@ -118,7 +118,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
         <View style={s.right}>
           {data.summary && (
             <View>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.rSectionTitle, { color: accentColor, marginTop: 0 }]}>{labels.summary}</Text>
               </View>
               <View style={[s.rDivider, { borderBottomColor: accentColor }]} />
@@ -128,7 +128,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
 
           {experience.length > 0 && (
             <View>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.rSectionTitle, { color: accentColor }]}>{labels.experience}</Text>
               </View>
               <View style={[s.rDivider, { borderBottomColor: accentColor }]} />
@@ -167,7 +167,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
 
           {data.projects && data.projects.length > 0 && (
             <View wrap={false}>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.rSectionTitle, { color: accentColor }]}>{labels.projects}</Text>
               </View>
               <View style={[s.rDivider, { borderBottomColor: accentColor }]} />
@@ -203,7 +203,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
 
           {education.length > 0 && (
             <View wrap={false}>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.rSectionTitle, { color: accentColor }]}>{labels.education}</Text>
               </View>
               <View style={[s.rDivider, { borderBottomColor: accentColor }]} />
@@ -224,7 +224,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
 
           {data.certifications && data.certifications.length > 0 && (
             <View wrap={false}>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.rSectionTitle, { color: accentColor }]}>{labels.certifications}</Text>
               </View>
               <View style={[s.rDivider, { borderBottomColor: accentColor }]} />

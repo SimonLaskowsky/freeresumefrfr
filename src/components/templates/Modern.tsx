@@ -120,7 +120,7 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
         <View style={s.main}>
           {data.summary && (
             <View>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.mSectionTitle, { color: accentColor }]}>{labels.summary}</Text>
               </View>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
@@ -130,7 +130,7 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
 
           {experience.length > 0 && (
             <View>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.mSectionTitle, { color: accentColor }]}>{labels.experience}</Text>
               </View>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
@@ -170,7 +170,7 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
           {/* Projects */}
           {data.projects && data.projects.length > 0 && (
             <View wrap={false}>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.mSectionTitle, { marginTop: 14, color: accentColor }]}>{labels.projects}</Text>
               </View>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
@@ -206,7 +206,7 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
 
           {education.length > 0 && (
             <View>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.mSectionTitle, { marginTop: experience.length > 0 ? 14 : 0, color: accentColor }]}>{labels.education}</Text>
               </View>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
@@ -228,7 +228,7 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
           {/* Certifications */}
           {data.certifications && data.certifications.length > 0 && (
             <View wrap={false}>
-              <View minPresenceAhead={60}>
+              <View minPresenceAhead={120}>
                 <Text style={[s.mSectionTitle, { marginTop: 14, color: accentColor }]}>{labels.certifications}</Text>
               </View>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />

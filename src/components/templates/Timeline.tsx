@@ -55,7 +55,7 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
 
   function SectionHead({ label }: { label: string }) {
     return (
-      <View minPresenceAhead={60}>
+      <View minPresenceAhead={120}>
         <View style={s.sectionHeader}>
           <View style={[s.sectionDot, { backgroundColor: accentColor }]} />
           <Text style={[s.sectionTitle, { color: accentColor }]}>{label.toUpperCase()}</Text>
@@ -226,7 +226,7 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
         )}
 
         {skills && (
-          <View>
+          <View wrap={false}>
             <SectionHead label={labels.skills} />
             {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>

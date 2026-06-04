@@ -54,7 +54,7 @@ export function SharpTemplate({ data, labels, accentColor, companyLogo }: Props)
 
   function Section({ title, children }: { title: string; children: React.ReactNode }) {
     return (
-      <View style={s.sectionBlock} minPresenceAhead={60} wrap={false}>
+      <View style={s.sectionBlock} minPresenceAhead={120} wrap={false}>
         <View style={[s.sectionBar, { backgroundColor: accentColor }]} />
         <View style={s.sectionContent}>
           <Text style={[s.sectionTitle, { color: accentColor }]}>{title.toUpperCase()}</Text>

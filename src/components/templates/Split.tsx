@@ -54,7 +54,7 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
 
   function Pill({ label }: { label: string }) {
     return (
-      <View style={[s.pillLabel, { backgroundColor: accentColor }]} minPresenceAhead={60}>
+      <View style={[s.pillLabel, { backgroundColor: accentColor }]} minPresenceAhead={120}>
         <Text style={{ color: '#ffffff' }}>{label.toUpperCase()}</Text>
       </View>
     );
@@ -101,7 +101,7 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
               </View>
             )}
             {skills && (
-              <View>
+              <View wrap={false}>
                 <Pill label={labels.skills} />
                 {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>

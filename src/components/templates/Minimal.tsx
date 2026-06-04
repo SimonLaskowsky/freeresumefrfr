@@ -87,7 +87,7 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Summary */}
         {data.summary && (
           <View>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <Text style={[s.sectionTitle, { marginTop: 0, color: accentColor }]}>{labels.summary}</Text>
             </View>
             <View style={s.divider} />
@@ -97,7 +97,7 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {experience.length > 0 && (
           <View>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.experience}</Text>
             </View>
             <View style={s.divider} />
@@ -137,7 +137,7 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
           <View wrap={false}>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.projects}</Text>
             </View>
             <View style={s.divider} />
@@ -173,7 +173,7 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {education.length > 0 && (
           <View>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <Text style={[s.sectionTitle, { marginTop: experience.length > 0 ? 18 : 20, color: accentColor }]}>{labels.education}</Text>
             </View>
             <View style={s.divider} />
@@ -196,7 +196,7 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
           <View wrap={false}>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.certifications}</Text>
             </View>
             <View style={s.divider} />
@@ -218,7 +218,7 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {data.languages && data.languages.length > 0 && (
           <View wrap={false}>
-            <View minPresenceAhead={60}>
+            <View minPresenceAhead={120}>
               <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.languages}</Text>
             </View>
             <View style={s.divider} />
@@ -232,8 +232,8 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
         )}
 
         {skills && (
-          <View>
-            <View minPresenceAhead={60}>
+          <View wrap={false}>
+            <View minPresenceAhead={120}>
               <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.skills}</Text>
             </View>
             <View style={s.divider} />

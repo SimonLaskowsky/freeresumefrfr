@@ -50,7 +50,7 @@ export function DevTemplate({ data, labels, accentColor, companyLogo }: Props) {
 
   function CommentSection({ label, children }: { label: string; children: React.ReactNode }) {
     return (
-      <View minPresenceAhead={60} wrap={false}>
+      <View minPresenceAhead={120} wrap={false}>
         <Text style={[s.sectionComment, { color: accentColor }]}>{`// ${label}`}</Text>
         <View style={s.sectionRule} />
         {children}
