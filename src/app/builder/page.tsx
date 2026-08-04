@@ -17,6 +17,7 @@ import SkillsForm from '@/components/builder/SkillsForm';
 import TemplatePicker from '@/components/TemplatePicker';
 import CompletenessScore from '@/components/CompletenessScore';
 import CompanyLogoUpload from '@/components/builder/CompanyLogoUpload';
+import ImportResume from '@/components/builder/ImportResume';
 
 const ResumePreviewPanel = dynamic(() => import('@/components/ResumePreviewPanel'), {
   ssr: false,
@@ -157,6 +158,8 @@ export default function BuilderPage() {
 
         {/* Scrollable form */}
         <div className="flex-1 overflow-y-auto px-5 py-5 space-y-5">
+          <ImportResume />
+          {DIVIDER}
           <CompanyLogoUpload />
           {DIVIDER}
           <SummaryForm />

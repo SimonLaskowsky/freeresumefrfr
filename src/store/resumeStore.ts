@@ -115,6 +115,7 @@ interface ResumeStore {
   reorderSkillGroups: (items: SkillGroup[]) => void;
   reorderVersion: number;
   loadSampleData: () => void;
+  setData: (data: ResumeData) => void;
   resetData: () => void;
   accentColor: string;
   setAccentColor: (color: string) => void;
@@ -411,6 +412,7 @@ export const useResumeStore = create<ResumeStore>()(
       reorderVersion: 0,
 
       loadSampleData: () => set({ data: sampleData }),
+      setData: (data) => set((s) => ({ data, reorderVersion: s.reorderVersion + 1 })),
       resetData: () => set({ data: defaultData }),
       accentColor: '#1a1a1a',
       setAccentColor: (accentColor) => set({ accentColor }),

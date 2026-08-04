@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:parse": "tsc src/lib/parseResume.ts src/lib/parseResume.test.ts --outDir node_modules/.cache/parsecheck --module nodenext --target es2022 --moduleResolution nodenext --skipLibCheck && node node_modules/.cache/parsecheck/lib/parseResume.test.js"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
