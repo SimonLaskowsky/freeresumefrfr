@@ -75,7 +75,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" translate="no" suppressHydrationWarning>
+      <head>
+        {/* The app ships its own 16 language picker. Edge auto-translate rewrites
+            text nodes before React hydrates, which kills hydration (React #418). */}
+        <meta name="google" content="notranslate" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
