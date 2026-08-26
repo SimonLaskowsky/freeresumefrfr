@@ -242,7 +242,7 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
             </View>
           )}
 
-          {skills && (
+          {(skills || (data.skillGroups?.length ?? 0) > 0) && (
             <View wrap={false}>
               <View minPresenceAhead={120}>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.skills}</Text>

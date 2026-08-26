@@ -100,7 +100,7 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
                 <Text style={{ fontSize: 9, color: '#374151', lineHeight: 1.5 }}>{data.summary}</Text>
               </View>
             )}
-            {skills && (
+            {(skills || (data.skillGroups?.length ?? 0) > 0) && (
               <View wrap={false}>
                 <Pill label={labels.skills} />
                 {data.skillGroups && data.skillGroups.length > 0 ? (

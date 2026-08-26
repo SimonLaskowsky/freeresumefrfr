@@ -212,7 +212,7 @@ export function SleekTemplate({ data, labels, accentColor, companyLogo }: Props)
           </Section>
         )}
 
-        {skills && (
+        {(skills || (data.skillGroups?.length ?? 0) > 0) && (
           <Section title={labels.skills}>
             {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>

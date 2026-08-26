@@ -227,7 +227,7 @@ export function ExecutiveTemplate({ data, labels, accentColor, companyLogo }: { 
           </LabeledSection>
         )}
 
-        {skills && (
+        {(skills || (data.skillGroups?.length ?? 0) > 0) && (
           <LabeledSection label={labels.skills} accentColor={accentColor}>
             {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>

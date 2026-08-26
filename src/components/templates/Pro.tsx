@@ -233,7 +233,7 @@ export function ProTemplate({ data, labels, accentColor, companyLogo }: { data: 
           </Section>
         )}
 
-        {skills && (
+        {(skills || (data.skillGroups?.length ?? 0) > 0) && (
           <Section title={labels.skills} accentColor={accentColor}>
             {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>

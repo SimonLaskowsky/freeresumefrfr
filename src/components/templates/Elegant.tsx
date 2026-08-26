@@ -235,7 +235,7 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
           </View>
         )}
 
-        {skills && (
+        {(skills || (data.skillGroups?.length ?? 0) > 0) && (
           <View wrap={false}>
             <View minPresenceAhead={120}>
               <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.skills}</Text>

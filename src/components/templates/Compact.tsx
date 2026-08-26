@@ -235,7 +235,7 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
           </View>
         )}
 
-        {skills && (
+        {(skills || (data.skillGroups?.length ?? 0) > 0) && (
           <View wrap={false}>
             <View minPresenceAhead={120}>
               <View style={[s.divider, { borderBottomColor: accentColor }]} />

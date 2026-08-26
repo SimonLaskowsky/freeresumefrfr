@@ -225,7 +225,7 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
           </View>
         )}
 
-        {skills && (
+        {(skills || (data.skillGroups?.length ?? 0) > 0) && (
           <View wrap={false}>
             <SectionHead label={labels.skills} />
             {data.skillGroups && data.skillGroups.length > 0 ? (

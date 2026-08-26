@@ -310,7 +310,7 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
         )}
 
         {/* Skills */}
-        {skills && (
+        {(skills || (data.skillGroups?.length ?? 0) > 0) && (
           <View wrap={false}>
             <View minPresenceAhead={120}>
               <View style={[styles.divider, { borderBottomColor: accentColor }]} />
