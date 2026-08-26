@@ -35,7 +35,7 @@ function ClassicMock({ accent }: { accent: string }) {
       <div style={{ marginBottom: 16 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
           <div style={{ fontSize: 12, fontWeight: 700 }}>Senior Product Designer</div>
-          <div style={{ fontSize: 11, color: '#888' }}>2021 – Present</div>
+          <div style={{ fontSize: 11, color: '#888' }}>2021 - Present</div>
         </div>
         <div style={{ fontSize: 11, color: '#555', marginBottom: 7 }}>Figma Inc., New York</div>
         <Bar w="92%" color="#d1d5db" h={8} mb={4} /><Bar w="84%" color="#d1d5db" h={8} mb={4} /><Bar w="76%" color="#d1d5db" h={8} />
@@ -43,7 +43,7 @@ function ClassicMock({ accent }: { accent: string }) {
       <div style={{ marginBottom: 20 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
           <div style={{ fontSize: 12, fontWeight: 700 }}>UX Designer</div>
-          <div style={{ fontSize: 11, color: '#888' }}>2019 – 2021</div>
+          <div style={{ fontSize: 11, color: '#888' }}>2019 - 2021</div>
         </div>
         <div style={{ fontSize: 11, color: '#555', marginBottom: 7 }}>Stripe, San Francisco</div>
         <Bar w="88%" color="#d1d5db" h={8} mb={4} /><Bar w="74%" color="#d1d5db" h={8} />
@@ -55,7 +55,7 @@ function ClassicMock({ accent }: { accent: string }) {
       <div style={{ marginBottom: 20 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
           <div style={{ fontSize: 12, fontWeight: 700 }}>B.S. Design, MIT</div>
-          <div style={{ fontSize: 11, color: '#888' }}>2015 – 2019</div>
+          <div style={{ fontSize: 11, color: '#888' }}>2015 - 2019</div>
         </div>
       </div>
 
@@ -92,7 +92,7 @@ function ModernMock({ accent }: { accent: string }) {
         <div style={{ marginBottom: 16 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}>
             <div style={{ fontSize: 12, fontWeight: 700 }}>Senior Designer</div>
-            <div style={{ fontSize: 10, color: '#9ca3af' }}>2021–Now</div>
+            <div style={{ fontSize: 10, color: '#9ca3af' }}>2021-Now</div>
           </div>
           <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 6 }}>Figma Inc.</div>
           <Bar w="95%" color="#e5e7eb" h={8} mb={4} /><Bar w="85%" color="#e5e7eb" h={8} mb={4} /><Bar w="74%" color="#e5e7eb" h={8} />
@@ -100,7 +100,7 @@ function ModernMock({ accent }: { accent: string }) {
         <div style={{ marginBottom: 20 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}>
             <div style={{ fontSize: 12, fontWeight: 700 }}>UX Designer</div>
-            <div style={{ fontSize: 10, color: '#9ca3af' }}>2019–2021</div>
+            <div style={{ fontSize: 10, color: '#9ca3af' }}>2019-2021</div>
           </div>
           <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 6 }}>Stripe</div>
           <Bar w="90%" color="#e5e7eb" h={8} mb={4} /><Bar w="78%" color="#e5e7eb" h={8} />
@@ -108,7 +108,7 @@ function ModernMock({ accent }: { accent: string }) {
         <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: 'uppercase' as const, color: '#374151', marginBottom: 4 }}>Education</div>
         <div style={{ borderBottom: '1px solid #e5e7eb', marginBottom: 10 }} />
         <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 3 }}>B.S. Design · MIT</div>
-        <div style={{ fontSize: 11, color: '#6b7280' }}>2015 – 2019</div>
+        <div style={{ fontSize: 11, color: '#6b7280' }}>2015 - 2019</div>
       </div>
     </div>
   );
@@ -126,7 +126,7 @@ function MinimalMock({ accent }: { accent: string }) {
       <div style={{ marginBottom: 18 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
           <div style={{ fontSize: 12, fontWeight: 700, color: '#1e293b' }}>Senior Product Designer</div>
-          <div style={{ fontSize: 11, color: '#9ca3af', fontStyle: 'italic' as const }}>2021 – Present</div>
+          <div style={{ fontSize: 11, color: '#9ca3af', fontStyle: 'italic' as const }}>2021 - Present</div>
         </div>
         <div style={{ fontSize: 11, color: '#64748b', fontStyle: 'italic' as const, marginBottom: 8 }}>Figma Inc.</div>
         <Bar w="92%" color="#e2e8f0" h={8} mb={5} /><Bar w="82%" color="#e2e8f0" h={8} mb={5} /><Bar w="70%" color="#e2e8f0" h={8} />
@@ -134,7 +134,7 @@ function MinimalMock({ accent }: { accent: string }) {
       <div style={{ marginBottom: 28 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
           <div style={{ fontSize: 12, fontWeight: 700, color: '#1e293b' }}>UX Designer</div>
-          <div style={{ fontSize: 11, color: '#9ca3af', fontStyle: 'italic' as const }}>2019 – 2021</div>
+          <div style={{ fontSize: 11, color: '#9ca3af', fontStyle: 'italic' as const }}>2019 - 2021</div>
         </div>
         <div style={{ fontSize: 11, color: '#64748b', fontStyle: 'italic' as const, marginBottom: 8 }}>Stripe</div>
         <Bar w="88%" color="#e2e8f0" h={8} mb={5} /><Bar w="76%" color="#e2e8f0" h={8} />
@@ -155,7 +155,7 @@ function BoldMock({ accent }: { accent: string }) {
       <div style={{ marginBottom: 18 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>Senior Designer</div>
-          <div style={{ fontSize: 11, color: '#71717a' }}>2021 – Now</div>
+          <div style={{ fontSize: 11, color: '#71717a' }}>2021 - Now</div>
         </div>
         <div style={{ fontSize: 11, color: '#a1a1aa', marginBottom: 8 }}>Figma Inc.</div>
         <Bar w="92%" color="#3f3f46" h={8} mb={5} /><Bar w="80%" color="#3f3f46" h={8} mb={5} /><Bar w="68%" color="#3f3f46" h={8} />
@@ -163,7 +163,7 @@ function BoldMock({ accent }: { accent: string }) {
       <div style={{ marginBottom: 22 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>UX Designer</div>
-          <div style={{ fontSize: 11, color: '#71717a' }}>2019 – 2021</div>
+          <div style={{ fontSize: 11, color: '#71717a' }}>2019 - 2021</div>
         </div>
         <div style={{ fontSize: 11, color: '#a1a1aa', marginBottom: 8 }}>Stripe</div>
         <Bar w="86%" color="#3f3f46" h={8} mb={5} /><Bar w="74%" color="#3f3f46" h={8} />
@@ -202,7 +202,7 @@ function ExecutiveMock({ accent }: { accent: string }) {
         <div style={{ marginBottom: 16 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
             <div style={{ fontSize: 12, fontWeight: 700 }}>Senior Designer</div>
-            <div style={{ fontSize: 10, color: '#9ca3af' }}>2021–Now</div>
+            <div style={{ fontSize: 10, color: '#9ca3af' }}>2021-Now</div>
           </div>
           <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 7 }}>Figma Inc.</div>
           <Bar w="94%" color="#e5e7eb" h={8} mb={4} /><Bar w="84%" color="#e5e7eb" h={8} mb={4} /><Bar w="72%" color="#e5e7eb" h={8} />
@@ -210,7 +210,7 @@ function ExecutiveMock({ accent }: { accent: string }) {
         <div style={{ marginBottom: 22 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
             <div style={{ fontSize: 12, fontWeight: 700 }}>UX Designer</div>
-            <div style={{ fontSize: 10, color: '#9ca3af' }}>2019–2021</div>
+            <div style={{ fontSize: 10, color: '#9ca3af' }}>2019-2021</div>
           </div>
           <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 7 }}>Stripe</div>
           <Bar w="88%" color="#e5e7eb" h={8} mb={4} /><Bar w="76%" color="#e5e7eb" h={8} />
@@ -218,7 +218,7 @@ function ExecutiveMock({ accent }: { accent: string }) {
         <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: 'uppercase' as const, color: accent, marginBottom: 4 }}>Education</div>
         <div style={{ borderBottom: `1.5px solid ${accent}`, marginBottom: 10 }} />
         <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 3 }}>B.S. Design · MIT</div>
-        <div style={{ fontSize: 11, color: '#6b7280' }}>2015 – 2019</div>
+        <div style={{ fontSize: 11, color: '#6b7280' }}>2015 - 2019</div>
       </div>
     </div>
   );

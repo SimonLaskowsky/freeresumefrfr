@@ -1,8 +1,8 @@
-# freeresumefrfr — Vision
+# freeresumefrfr: Vision
 
 ## Why This Exists
 
-You've been there. You spend 45 minutes filling out your resume on some slick website, hit "Download PDF," and then — surprise — you need to pay $2.95/week (billed annually) to get the file you just made. With your own information. That you typed.
+You've been there. You spend 45 minutes filling out your resume on some slick website, hit "Download PDF," and then, surprise, you need to pay $2.95/week (billed annually) to get the file you just made. With your own information. That you typed.
 
 That's not a product. That's a hostage situation.
 

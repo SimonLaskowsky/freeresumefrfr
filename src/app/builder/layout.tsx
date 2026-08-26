@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free Resume Builder — PDF Download in Seconds | freeresumefrfr',
+  title: 'Free Resume Builder: PDF Download in Seconds | freeresumefrfr',
   description:
     'Build your professional resume online for free. 14 templates, live preview, instant PDF download. No sign-up, no paywall, no watermark. Just your resume.',
   keywords: [
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     'free resume template download',
   ],
   openGraph: {
-    title: 'Free Resume Builder — No Paywall, No Account | freeresumefrfr',
+    title: 'Free Resume Builder: No Paywall, No Account | freeresumefrfr',
     description:
       'Build and download your resume as PDF for free. 14 professional templates, live preview. No sign-up, no watermark, no paywall. frfr.',
     url: 'https://freeresumefrfr.com/builder',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Resume Builder — No Paywall | freeresumefrfr',
+    title: 'Free Resume Builder: No Paywall | freeresumefrfr',
     description:
       'Build and download your resume as PDF for free. 14 templates, no sign-up, no watermark. frfr.',
   },

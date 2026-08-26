@@ -88,7 +88,7 @@ export default function ProjectsForm() {
                     </div>
                     <input
                       className={inputCls}
-                      placeholder={`${t.fields.technologies} — ${t.fields.technologiesPlaceholder}`}
+                      placeholder={`${t.fields.technologies}: ${t.fields.technologiesPlaceholder}`}
                       value={proj.technologies ?? ''}
                       onChange={(e) => updateProject(proj.id, { technologies: e.target.value })}
                     />

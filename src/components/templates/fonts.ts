@@ -6,7 +6,7 @@ import { Font } from '@react-pdf/renderer';
 // correctly regardless of the current page path.
 const origin = typeof window !== 'undefined' ? window.location.origin : '';
 
-// Inter — sans-serif with full Latin Extended coverage (Polish, Turkish, etc.)
+// Inter: sans-serif with full Latin Extended coverage (Polish, Turkish, etc.)
 Font.register({
   family: 'Inter',
   fonts: [
@@ -17,7 +17,7 @@ Font.register({
   ],
 });
 
-// Lora — serif with Latin Extended coverage (for Elegant template)
+// Lora: serif with Latin Extended coverage (for Elegant template)
 Font.register({
   family: 'Lora',
   fonts: [

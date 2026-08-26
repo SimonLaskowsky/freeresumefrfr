@@ -112,7 +112,7 @@ export default function BuilderPage() {
         ))}
       </div>
 
-      {/* ── Left panel — form ─────────────────────────────── */}
+      {/* ── Left panel: form ─────────────────────────────── */}
       <div
         className={`md:w-[48%] flex flex-col border-zinc-800 md:border-r min-w-0 ${
           mobileTab === 'form' ? 'flex flex-1' : 'hidden md:flex'
@@ -181,7 +181,7 @@ export default function BuilderPage() {
         </div>
       </div>
 
-      {/* ── Right panel — template + preview + download ───── */}
+      {/* ── Right panel: template + preview + download ───── */}
       <div
         className={`md:flex-1 flex flex-col bg-zinc-900 min-w-0 ${
           mobileTab === 'preview' ? 'flex flex-1' : 'hidden md:flex'

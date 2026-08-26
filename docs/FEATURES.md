@@ -1,6 +1,6 @@
-# freeresumefrfr — Feature Roadmap
+# freeresumefrfr: Feature Roadmap
 
-## v1 — Ship It (Current)
+## v1: Ship It (Current)
 
 The MVP. Does exactly what it promises and nothing more.
 
@@ -16,15 +16,15 @@ The MVP. Does exactly what it promises and nothing more.
 - [x] Education (school, degree, dates, notes)
 - [x] Skills (freeform, comma-separated)
 - [x] Live preview (react-pdf rendered in-browser)
-- [x] Download PDF button — always visible, always free
+- [x] Download PDF button: always visible, always free
 - [x] localStorage persistence (data survives page refresh)
 
 ### Resume Template
-- [x] Classic — clean, ATS-friendly single column layout
+- [x] Classic: clean, ATS-friendly single column layout
 
 ---
 
-## v2 — Polish
+## v2: Polish
 
 - [ ] Multiple templates (Modern, Minimal, Two-column)
 - [ ] Custom section ordering via drag-and-drop
@@ -34,12 +34,12 @@ The MVP. Does exactly what it promises and nothing more.
 
 ---
 
-## v3 — Optional Accounts
+## v3: Optional Accounts
 
 - [ ] Supabase auth (GitHub, Google OAuth)
-- [ ] Cloud sync — save multiple resumes
+- [ ] Cloud sync: save multiple resumes
 - [ ] Resume versioning
-- [ ] Cover letter builder (same deal — always free to download)
+- [ ] Cover letter builder (same deal: always free to download)
 
 ---
 
@@ -59,7 +59,7 @@ These features will never exist in freeresumefrfr:
 
 ## Tech Notes
 
-- PDF generation is entirely client-side via `@react-pdf/renderer` — no file hits our servers
+- PDF generation is entirely client-side via `@react-pdf/renderer`: no file hits our servers
 - State managed with Zustand, persisted to localStorage
 - No backend required for v1
 - Hosted on Vercel free tier (no server costs)

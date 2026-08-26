@@ -108,7 +108,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
               <Text style={s.lSectionTitle}>{labels.languages}</Text>
               <View style={s.lRule} />
               {(data.languages ?? []).map((lang) => (
-                <Text key={lang.id} style={s.lItem}>{lang.name}{lang.level ? ` — ${lang.level}` : ''}</Text>
+                <Text key={lang.id} style={s.lItem}>{lang.name}{lang.level ? `: ${lang.level}` : ''}</Text>
               ))}
             </View>
           )}
@@ -135,8 +135,8 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
               {experience.map((exp) => {
                 const bullets = (exp.bullets || []).filter((b) => b.trim());
                 const dateRange = exp.current
-                  ? `${exp.startDate} – ${labels.present}`
-                  : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
+                  ? `${exp.startDate} - ${labels.present}`
+                  : [exp.startDate, exp.endDate].filter(Boolean).join(' - ');
                 return (
                   <View key={exp.id} style={s.expItem} wrap={false}>
                     <View style={s.expRow}>
@@ -208,7 +208,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
               </View>
               <View style={[s.rDivider, { borderBottomColor: accentColor }]} />
               {education.map((edu) => {
-                const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
+                const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' - ');
                 return (
                   <View key={edu.id} style={s.eduItem} wrap={false}>
                     <View style={s.eduRow}>

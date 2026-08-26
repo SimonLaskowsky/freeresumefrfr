@@ -110,7 +110,7 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
             <View wrap={false}>
               <Text style={s.sSectionTitle}>{labels.languages}</Text>
               {(data.languages ?? []).map((lang) => (
-                <Text key={lang.id} style={s.sItem}>{lang.name}{lang.level ? ` — ${lang.level}` : ''}</Text>
+                <Text key={lang.id} style={s.sItem}>{lang.name}{lang.level ? `: ${lang.level}` : ''}</Text>
               ))}
             </View>
           )}
@@ -137,8 +137,8 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
               {experience.map((exp) => {
                 const bullets = (exp.bullets || []).filter((b) => b.trim());
                 const dateRange = exp.current
-                  ? `${exp.startDate} – ${labels.present}`
-                  : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
+                  ? `${exp.startDate} - ${labels.present}`
+                  : [exp.startDate, exp.endDate].filter(Boolean).join(' - ');
                 return (
                   <View key={exp.id} style={s.expItem} wrap={false}>
                     <View style={s.expRow}>
@@ -211,7 +211,7 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
               </View>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
               {education.map((edu) => {
-                const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
+                const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' - ');
                 return (
                   <View key={edu.id} style={s.eduItem} wrap={false}>
                     <View style={s.eduRow}>

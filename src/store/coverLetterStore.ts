@@ -60,7 +60,7 @@ const sampleData: CoverLetterData = {
   jobTitle: 'Senior Software Engineer',
   salutation: 'Dear Sarah Chen,',
   opening: 'I am writing to express my strong interest in the Senior Software Engineer position at Stripe. With six years of experience building high-scale payment infrastructure and a deep passion for developer tooling, I believe I would be a great fit for your team.',
-  body: 'In my current role at Linear, I owned the real-time sync engine powering collaborative editing across web and desktop — reducing initial page load by 60% through strategic code splitting and service worker caching. Before that, I built fraud detection dashboards at Stripe used by over 50,000 merchants. I thrive at the intersection of performance, reliability, and clean API design.',
+  body: 'In my current role at Linear, I owned the real-time sync engine powering collaborative editing across web and desktop, reducing initial page load by 60% through strategic code splitting and service worker caching. Before that, I built fraud detection dashboards at Stripe used by over 50,000 merchants. I thrive at the intersection of performance, reliability, and clean API design.',
   closing: 'I would love the opportunity to bring this experience to Stripe and help build the financial infrastructure of the internet. I am available for a conversation at your convenience, and I look forward to hearing from you.',
   signOff: 'Best regards,',
 };

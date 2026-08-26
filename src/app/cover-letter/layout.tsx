@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free Cover Letter Builder — PDF Download | freeresumefrfr',
+  title: 'Free Cover Letter Builder: PDF Download | freeresumefrfr',
   description:
     'Write and download a professional cover letter as PDF for free. 5 templates, instant download, no account needed. Pair with your resume.',
   keywords: [
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     'free cover letter writer',
   ],
   openGraph: {
-    title: 'Free Cover Letter Builder — No Paywall | freeresumefrfr',
+    title: 'Free Cover Letter Builder: No Paywall | freeresumefrfr',
     description:
       'Write and download a professional cover letter as PDF for free. 5 templates, no sign-up, no watermark. frfr.',
     url: 'https://freeresumefrfr.com/cover-letter',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Cover Letter Builder — No Paywall | freeresumefrfr',
+    title: 'Free Cover Letter Builder: No Paywall | freeresumefrfr',
     description:
       'Write and download a cover letter as PDF for free. 5 templates, no sign-up, no watermark. frfr.',
   },

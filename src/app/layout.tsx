@@ -19,7 +19,7 @@ const BASE_URL = 'https://freeresumefrfr.com';
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'freeresumefrfr — Free Resume Builder. No Paywall. frfr.',
+    default: 'freeresumefrfr: Free Resume Builder. No Paywall. frfr.',
     template: '%s | freeresumefrfr',
   },
   description:
@@ -43,14 +43,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'freeresumefrfr',
-    title: 'freeresumefrfr — Free Resume Builder. No Paywall. frfr.',
+    title: 'freeresumefrfr: Free Resume Builder. No Paywall. frfr.',
     description:
       'Build and download your resume as PDF for free. No sign-up, no paywall, no watermark. 14 professional templates. Actually free, frfr.',
     url: BASE_URL,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'freeresumefrfr — Free Resume Builder. No Paywall. frfr.',
+    title: 'freeresumefrfr: Free Resume Builder. No Paywall. frfr.',
     description:
       'Build and download your resume as PDF for free. No sign-up, no paywall, no watermark. Actually free, frfr.',
   },

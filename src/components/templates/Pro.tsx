@@ -122,8 +122,8 @@ export function ProTemplate({ data, labels, accentColor, companyLogo }: { data: 
             {experience.map((exp) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
               const dateRange = exp.current
-                ? `${exp.startDate} – ${labels.present}`
-                : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
+                ? `${exp.startDate} - ${labels.present}`
+                : [exp.startDate, exp.endDate].filter(Boolean).join(' - ');
               return (
                 <View key={exp.id} style={s.expItem} wrap={false}>
                   <View style={s.expRow}>
@@ -188,7 +188,7 @@ export function ProTemplate({ data, labels, accentColor, companyLogo }: { data: 
         {education.length > 0 && (
           <Section title={labels.education} accentColor={accentColor}>
             {education.map((edu) => {
-              const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
+              const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' - ');
               return (
                 <View key={edu.id} style={s.eduItem} wrap={false}>
                   <View style={s.eduRow}>

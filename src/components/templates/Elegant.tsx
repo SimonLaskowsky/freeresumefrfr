@@ -111,8 +111,8 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
             {experience.map((exp) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
               const dateRange = exp.current
-                ? `${exp.startDate} – ${labels.present}`
-                : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
+                ? `${exp.startDate} - ${labels.present}`
+                : [exp.startDate, exp.endDate].filter(Boolean).join(' - ');
               return (
                 <View key={exp.id} style={s.expItem} wrap={false}>
                   <View style={s.expRow}>
@@ -185,7 +185,7 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
             </View>
             <View style={s.thinRule} />
             {education.map((edu) => {
-              const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
+              const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' - ');
               return (
                 <View key={edu.id} style={s.eduItem} wrap={false}>
                   {edu.degree && <Text style={s.eduDegree}>{edu.degree}</Text>}

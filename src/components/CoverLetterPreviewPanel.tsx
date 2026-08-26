@@ -37,7 +37,7 @@ export default function CoverLetterPreviewPanel({ data, templateId, accentColor 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, templateId, locale, accentColor]);
 
-  // Committed URL — only advances once rendering is done
+  // Committed URL: only advances once rendering is done
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   useEffect(() => {
     if (!instance.loading && instance.url) setPdfUrl(instance.url);
@@ -128,7 +128,7 @@ export default function CoverLetterPreviewPanel({ data, templateId, accentColor 
   if (instance.error) {
     return (
       <div className="flex items-center justify-center h-full text-red-400 text-sm px-6 text-center">
-        Preview error — try switching templates or refreshing.
+        Preview error: try switching templates or refreshing.
       </div>
     );
   }

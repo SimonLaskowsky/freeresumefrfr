@@ -102,8 +102,8 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
             {experience.map((exp, idx) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
               const dateRange = exp.current
-                ? `${exp.startDate} – ${labels.present}`
-                : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
+                ? `${exp.startDate} - ${labels.present}`
+                : [exp.startDate, exp.endDate].filter(Boolean).join(' - ');
               const isLast = idx === experience.length - 1;
               return (
                 <View key={exp.id} style={s.expWrapper} wrap={false}>
@@ -180,7 +180,7 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
           <View wrap={false}>
             <SectionHead label={labels.education} />
             {education.map((edu) => {
-              const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
+              const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' - ');
               return (
                 <View key={edu.id} style={s.normalItem} wrap={false}>
                   <View style={s.itemRow}>

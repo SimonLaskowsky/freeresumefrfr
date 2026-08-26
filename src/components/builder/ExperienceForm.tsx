@@ -106,7 +106,7 @@ export default function ExperienceForm() {
                     </div>
                     <input
                       className={inputCls}
-                      placeholder={`${t.fields.technologies} — ${t.fields.technologiesPlaceholder}`}
+                      placeholder={`${t.fields.technologies}: ${t.fields.technologiesPlaceholder}`}
                       value={exp.technologies ?? ''}
                       onChange={(e) => updateExperience(exp.id, { technologies: e.target.value })}
                     />

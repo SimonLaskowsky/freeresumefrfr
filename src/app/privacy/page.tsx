@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Privacy policy for freeresumefrfr — what data we collect and how we use it.',
+  description: 'Privacy policy for freeresumefrfr: what data we collect and how we use it.',
 };
 
 const LAST_UPDATED = 'May 27, 2026';
@@ -42,13 +42,13 @@ export default function PrivacyPage() {
             <h2 className="text-base font-bold text-white mb-3">1. What we collect</h2>
             <div className="text-zinc-400 space-y-3">
               <p>
-                <span className="text-zinc-300 font-medium">Resume and cover letter data</span> — everything you type into the builder (name, job history, skills, etc.) is stored only in your browser&apos;s <code className="text-lime-500/80 bg-zinc-900 px-1 py-0.5 rounded text-xs">localStorage</code>. It is never sent to our servers. We have no database of your personal information.
+                <span className="text-zinc-300 font-medium">Resume and cover letter data</span>: everything you type into the builder (name, job history, skills, etc.) is stored only in your browser&apos;s <code className="text-lime-500/80 bg-zinc-900 px-1 py-0.5 rounded text-xs">localStorage</code>. It is never sent to our servers. We have no database of your personal information.
               </p>
               <p>
-                <span className="text-zinc-300 font-medium">Anonymous page analytics</span> — we use <a href="https://vercel.com/analytics" target="_blank" rel="noopener noreferrer" className="text-zinc-300 underline underline-offset-2 hover:text-white transition-colors">Vercel Analytics</a> to count page views and understand which features are used. This data is aggregated and does not include any personally identifiable information. No cookies are set for this purpose.
+                <span className="text-zinc-300 font-medium">Anonymous page analytics</span>: we use <a href="https://vercel.com/analytics" target="_blank" rel="noopener noreferrer" className="text-zinc-300 underline underline-offset-2 hover:text-white transition-colors">Vercel Analytics</a> to count page views and understand which features are used. This data is aggregated and does not include any personally identifiable information. No cookies are set for this purpose.
               </p>
               <p>
-                <span className="text-zinc-300 font-medium">Font loading</span> — we use Geist fonts served via Google Fonts. When your browser loads the page, it makes a request to Google&apos;s CDN. Google&apos;s own <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-zinc-300 underline underline-offset-2 hover:text-white transition-colors">privacy policy</a> applies to that request.
+                <span className="text-zinc-300 font-medium">Font loading</span>: we use Geist fonts served via Google Fonts. When your browser loads the page, it makes a request to Google&apos;s CDN. Google&apos;s own <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-zinc-300 underline underline-offset-2 hover:text-white transition-colors">privacy policy</a> applies to that request.
               </p>
             </div>
           </section>
@@ -57,9 +57,9 @@ export default function PrivacyPage() {
             <h2 className="text-base font-bold text-white mb-3">2. What we do not collect</h2>
             <ul className="text-zinc-400 space-y-2">
               {[
-                'No account creation — we never ask for your email or password.',
-                'No payment data — the service is free, we process no payments.',
-                'No uploaded files stored on our servers — photos and logos you add are processed client-side and stored in localStorage only.',
+                'No account creation: we never ask for your email or password.',
+                'No payment data: the service is free, we process no payments.',
+                'No uploaded files stored on our servers: photos and logos you add are processed client-side and stored in localStorage only.',
                 'No tracking cookies.',
                 'No third-party ad networks.',
               ].map((item, i) => (
@@ -89,10 +89,10 @@ export default function PrivacyPage() {
             <h2 className="text-base font-bold text-white mb-3">5. Third-party services</h2>
             <div className="text-zinc-400 space-y-3">
               <p>
-                <span className="text-zinc-300 font-medium">Vercel</span> — the site is hosted on <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="text-zinc-300 underline underline-offset-2 hover:text-white transition-colors">Vercel</a>. Standard server logs (IP address, user agent, request path) may be retained by Vercel for infrastructure purposes. See <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-zinc-300 underline underline-offset-2 hover:text-white transition-colors">Vercel&apos;s privacy policy</a>.
+                <span className="text-zinc-300 font-medium">Vercel</span>: the site is hosted on <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="text-zinc-300 underline underline-offset-2 hover:text-white transition-colors">Vercel</a>. Standard server logs (IP address, user agent, request path) may be retained by Vercel for infrastructure purposes. See <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-zinc-300 underline underline-offset-2 hover:text-white transition-colors">Vercel&apos;s privacy policy</a>.
               </p>
               <p>
-                <span className="text-zinc-300 font-medium">GitHub</span> — links to GitHub on this site are external. GitHub&apos;s own privacy policy applies when you visit them.
+                <span className="text-zinc-300 font-medium">GitHub</span>: links to GitHub on this site are external. GitHub&apos;s own privacy policy applies when you visit them.
               </p>
             </div>
           </section>

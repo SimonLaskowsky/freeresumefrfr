@@ -43,14 +43,14 @@ export default function ResumePreviewPanel({ data, templateId, accentColor, comp
   const updateRef = useRef(update);
   updateRef.current = update;
 
-  // Use `locale` (string) rather than `t` (object) as the language trigger —
+  // Use `locale` (string) rather than `t` (object) as the language trigger,
   // same semantics but a stable primitive that won't cause double-fires
   useEffect(() => {
     updateRef.current(<Component data={data} labels={labelsRef.current} accentColor={accentColor} companyLogo={companyLogo} />);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, templateId, locale, accentColor, companyLogo]);
 
-  // Committed URL — only advances once rendering is done
+  // Committed URL: only advances once rendering is done
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   useEffect(() => {
     if (!instance.loading && instance.url) setPdfUrl(instance.url);
@@ -59,7 +59,7 @@ export default function ResumePreviewPanel({ data, templateId, accentColor, comp
   // ── Double-slot setup ─────────────────────────────────────────────────────
   // Two Document slots mount side-by-side. When a new URL arrives, load it
   // into the hidden slot. Only flip it to the front AFTER its first page
-  // fires onRenderSuccess — canvas is already painted, nothing to flash.
+  // fires onRenderSuccess: canvas is already painted, nothing to flash.
 
   const [urlA, setUrlA] = useState<string | null>(null);
   const [urlB, setUrlB] = useState<string | null>(null);
@@ -75,7 +75,7 @@ export default function ResumePreviewPanel({ data, templateId, accentColor, comp
     if (!pdfUrl) return;
 
     if (isFirstLoad.current) {
-      // First PDF — just load into slot A and show immediately
+      // First PDF: just load into slot A and show immediately
       isFirstLoad.current = false;
       setUrlA(pdfUrl);
       pendingSlot.current = 'A';
@@ -177,7 +177,7 @@ export default function ResumePreviewPanel({ data, templateId, accentColor, comp
   if (instance.error) {
     return (
       <div className="flex items-center justify-center h-full text-red-400 text-sm px-6 text-center">
-        Preview error — try switching templates or refreshing.
+        Preview error: try switching templates or refreshing.
       </div>
     );
   }

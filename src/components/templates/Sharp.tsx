@@ -106,8 +106,8 @@ export function SharpTemplate({ data, labels, accentColor, companyLogo }: Props)
               {experience.map((exp) => {
                 const bullets = (exp.bullets || []).filter((b) => b.trim());
                 const dateRange = exp.current
-                  ? `${exp.startDate} – ${labels.present}`
-                  : [exp.startDate, exp.endDate].filter(Boolean).join(' – ');
+                  ? `${exp.startDate} - ${labels.present}`
+                  : [exp.startDate, exp.endDate].filter(Boolean).join(' - ');
                 return (
                   <View key={exp.id} style={s.expItem} wrap={false}>
                     <View style={s.expRow}>
@@ -171,7 +171,7 @@ export function SharpTemplate({ data, labels, accentColor, companyLogo }: Props)
           {education.length > 0 && (
             <Section title={labels.education}>
               {education.map((edu) => {
-                const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' – ');
+                const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' - ');
                 return (
                   <View key={edu.id} style={s.eduItem} wrap={false}>
                     <View style={s.eduRow}>

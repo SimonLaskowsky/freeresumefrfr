@@ -9,11 +9,10 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState('en');
 
   useEffect(() => {
-    const saved = localStorage.getItem('locale');
-    const detected = navigator.language.split('-')[0];
-    const initial = (saved || detected);
-    const resolved = locales[initial] ? initial : 'en';
-    setLocaleState(resolved);
+    let saved = null;
+    try { saved = localStorage.getItem('locale'); } catch { /* storage blocked */ }
+    const initial = saved || navigator.language.split('-')[0];
+    setLocaleState(locales[initial] ? initial : 'en');
   }, []);
 
   useEffect(() => {
@@ -23,7 +22,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
 
   function setLocale(l: string) {
     if (!locales[l]) return;
-    localStorage.setItem('locale', l);
+    try { localStorage.setItem('locale', l); } catch { /* storage blocked */ }
     setLocaleState(l);
   }
 
