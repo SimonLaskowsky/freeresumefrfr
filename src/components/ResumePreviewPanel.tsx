@@ -141,7 +141,7 @@ export default function ResumePreviewPanel({ data, templateId, accentColor, comp
               key={i + 1}
               style={{
                 position: 'relative',
-                boxShadow: '0 4px 16px rgba(0,0,0,0.5)',
+                boxShadow: '0 6px 24px -6px rgba(24,33,22,0.18), 0 1px 3px rgba(24,33,22,0.08)',
                 lineHeight: 0,
               }}
             >
@@ -176,7 +176,7 @@ export default function ResumePreviewPanel({ data, templateId, accentColor, comp
 
   if (instance.error) {
     return (
-      <div className="flex items-center justify-center h-full text-red-400 text-sm px-6 text-center">
+      <div className="flex items-center justify-center h-full text-red-500 text-sm px-6 text-center">
         Preview error: try switching templates or refreshing.
       </div>
     );
@@ -185,9 +185,9 @@ export default function ResumePreviewPanel({ data, templateId, accentColor, comp
   const frontNumPages = front === 'A' ? numPagesA : numPagesB;
 
   return (
-    <div ref={containerRef} className="relative w-full h-full bg-zinc-800">
+    <div ref={containerRef} className="relative w-full h-full bg-zinc-900/5">
       {!pdfUrl && (
-        <div className="flex items-center justify-center h-full text-zinc-600 text-sm">
+        <div className="flex items-center justify-center h-full text-zinc-400 text-sm">
           {t.builder.generatingPreview}
         </div>
       )}
@@ -196,20 +196,20 @@ export default function ResumePreviewPanel({ data, templateId, accentColor, comp
       {renderSlot('B', urlB, numPagesB)}
 
       {pdfUrl && frontNumPages > 0 && (
-        <div className="absolute top-3 right-3 pointer-events-none z-20 flex items-center gap-1 bg-zinc-900/80 px-2 py-1 rounded-full">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="text-zinc-400">
+        <div className="absolute top-3 right-3 pointer-events-none z-20 flex items-center gap-1 bg-white/80 px-2 py-1 rounded-full">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="text-zinc-600">
             <rect x="1" y="0.5" width="7" height="9" rx="1" stroke="currentColor" strokeWidth="1" fill="none"/>
             <line x1="2.5" y1="3" x2="7.5" y2="3" stroke="currentColor" strokeWidth="0.8"/>
             <line x1="2.5" y1="5" x2="7.5" y2="5" stroke="currentColor" strokeWidth="0.8"/>
             <line x1="2.5" y1="7" x2="5.5" y2="7" stroke="currentColor" strokeWidth="0.8"/>
           </svg>
-          <span className="text-[10px] text-zinc-400">{frontNumPages}</span>
+          <span className="text-[10px] text-zinc-600">{frontNumPages}</span>
         </div>
       )}
 
       {instance.loading && pdfUrl && (
         <div className="absolute bottom-3 right-3 pointer-events-none z-20">
-          <span className="text-[10px] text-zinc-500 bg-zinc-900/90 px-2 py-1 rounded-full animate-pulse">
+          <span className="text-[10px] text-zinc-500 bg-white/85 px-2 py-1 rounded-full animate-pulse">
             {t.builder.updating}
           </span>
         </div>

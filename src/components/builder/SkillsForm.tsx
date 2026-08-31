@@ -30,14 +30,14 @@ export default function SkillsForm() {
       action={
         <button
           onClick={addSkillGroup}
-          className="text-xs font-semibold text-lime-400 hover:text-lime-300 transition-colors flex items-center gap-1"
+          className="text-xs font-semibold text-lime-700 hover:text-lime-600 transition-colors flex items-center gap-1"
         >
           <span className="text-base leading-none">+</span> {t.actions.addSkillGroup.replace('+ ', '')}
         </button>
       }
     >
       {groups.length === 0 && (
-        <p className="text-xs text-zinc-600 italic">{t.fields.skillsPlaceholder}</p>
+        <p className="text-xs text-zinc-400 italic">{t.fields.skillsPlaceholder}</p>
       )}
       <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={groups.map((g) => g.id)} strategy={verticalListSortingStrategy}>
@@ -45,7 +45,7 @@ export default function SkillsForm() {
             {groups.map((group) => (
               <SortableItem key={group.id} id={group.id}>
                 {(handle) => (
-                  <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-2">
+                  <div className="bg-white/60 border border-zinc-900/10 rounded-xl p-4 space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1 flex-1 min-w-0">
                         {handle}
@@ -58,7 +58,7 @@ export default function SkillsForm() {
                       </div>
                       <button
                         onClick={() => removeSkillGroup(group.id)}
-                        className="ml-2 text-xs text-zinc-600 hover:text-red-400 transition-colors shrink-0"
+                        className="ml-2 text-xs text-zinc-400 hover:text-red-500 transition-colors shrink-0"
                       >
                         {t.actions.removeSkillGroup}
                       </button>

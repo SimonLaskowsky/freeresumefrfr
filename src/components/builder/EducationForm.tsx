@@ -29,14 +29,14 @@ export default function EducationForm() {
       action={
         <button
           onClick={addEducation}
-          className="text-xs font-semibold text-lime-400 hover:text-lime-300 transition-colors flex items-center gap-1"
+          className="text-xs font-semibold text-lime-700 hover:text-lime-600 transition-colors flex items-center gap-1"
         >
           <span className="text-base leading-none">+</span> {t.actions.addEducation.replace('+ ', '')}
         </button>
       }
     >
       {data.education.length === 0 && (
-        <p className="text-xs text-zinc-600 italic">{t.fields.noneEducation}</p>
+        <p className="text-xs text-zinc-400 italic">{t.fields.noneEducation}</p>
       )}
       <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={data.education.map((e) => e.id)} strategy={verticalListSortingStrategy}>
@@ -44,7 +44,7 @@ export default function EducationForm() {
             {data.education.map((edu, i) => (
               <SortableItem key={edu.id} id={edu.id}>
                 {(handle) => (
-                  <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-3">
+                  <div className="bg-white/60 border border-zinc-900/10 rounded-xl p-4 space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1">
                         {handle}
@@ -52,7 +52,7 @@ export default function EducationForm() {
                       </div>
                       <button
                         onClick={() => removeEducation(edu.id)}
-                        className="text-xs text-zinc-600 hover:text-red-400 transition-colors"
+                        className="text-xs text-zinc-400 hover:text-red-500 transition-colors"
                       >
                         {t.actions.removeEducation}
                       </button>

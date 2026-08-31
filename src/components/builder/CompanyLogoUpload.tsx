@@ -76,7 +76,7 @@ export default function CompanyLogoUpload() {
       <button
         type="button"
         onClick={() => inputRef.current?.click()}
-        className="relative w-16 h-16 rounded-md border border-dashed border-zinc-700/60 bg-zinc-900 overflow-hidden flex items-center justify-center text-zinc-500 hover:border-lime-400/60 hover:text-lime-400 transition-colors shrink-0"
+        className="relative w-16 h-16 rounded-md border border-dashed border-zinc-900/10 bg-white/70 overflow-hidden flex items-center justify-center text-zinc-500 hover:border-lime-500/60 hover:text-lime-700 transition-colors shrink-0"
         aria-label={companyLogo ? t.companyLogo.change : t.companyLogo.upload}
       >
         {companyLogo ? (
@@ -97,7 +97,7 @@ export default function CompanyLogoUpload() {
             type="button"
             onClick={() => inputRef.current?.click()}
             disabled={busy}
-            className="px-3 py-1.5 rounded-md text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-white transition-colors disabled:opacity-50"
+            className="px-3 py-1.5 rounded-md text-xs font-medium bg-zinc-900/5 hover:bg-zinc-900/10 text-zinc-900 transition-colors disabled:opacity-50"
           >
             {busy ? t.companyLogo.processing : companyLogo ? t.companyLogo.change : t.companyLogo.upload}
           </button>
@@ -105,7 +105,7 @@ export default function CompanyLogoUpload() {
             <button
               type="button"
               onClick={onRemove}
-              className="px-3 py-1.5 rounded-md text-xs font-medium bg-zinc-900 border border-zinc-700/60 hover:border-red-400/60 hover:text-red-400 text-zinc-400 transition-colors"
+              className="px-3 py-1.5 rounded-md text-xs font-medium bg-white/70 border border-zinc-900/10 hover:border-red-500/50 hover:text-red-500 text-zinc-600 transition-colors"
             >
               {t.companyLogo.remove}
             </button>

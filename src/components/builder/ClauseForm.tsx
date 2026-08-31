@@ -17,7 +17,7 @@ export default function ClauseForm() {
         !data.rodoClause?.trim() ? (
           <button
             onClick={() => updateRodoClause(t.clause.defaultText)}
-            className="text-xs font-semibold text-lime-400 hover:text-lime-300 transition-colors flex items-center gap-1"
+            className="text-xs font-semibold text-lime-700 hover:text-lime-600 transition-colors flex items-center gap-1"
           >
             <span className="text-base leading-none">+</span> {t.clause.insertDefault}
           </button>
@@ -30,7 +30,7 @@ export default function ClauseForm() {
         value={data.rodoClause ?? ''}
         onChange={(e) => updateRodoClause(e.target.value)}
       />
-      <p className="text-[11px] text-zinc-600 mt-1.5">{t.clause.hint}</p>
+      <p className="text-[11px] text-zinc-400 mt-1.5">{t.clause.hint}</p>
     </SectionWrapper>
   );
 }

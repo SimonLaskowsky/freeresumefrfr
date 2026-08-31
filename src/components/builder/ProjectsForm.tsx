@@ -30,14 +30,14 @@ export default function ProjectsForm() {
       action={
         <button
           onClick={addProject}
-          className="text-xs font-semibold text-lime-400 hover:text-lime-300 transition-colors flex items-center gap-1"
+          className="text-xs font-semibold text-lime-700 hover:text-lime-600 transition-colors flex items-center gap-1"
         >
           <span className="text-base leading-none">+</span> {t.actions.addProject.replace('+ ', '')}
         </button>
       }
     >
       {data.projects.length === 0 && (
-        <p className="text-xs text-zinc-600 italic">{t.fields.noneProjects}</p>
+        <p className="text-xs text-zinc-400 italic">{t.fields.noneProjects}</p>
       )}
       <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={data.projects.map((p) => p.id)} strategy={verticalListSortingStrategy}>
@@ -45,7 +45,7 @@ export default function ProjectsForm() {
             {data.projects.map((proj, i) => (
               <SortableItem key={proj.id} id={proj.id}>
                 {(handle) => (
-                  <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-3">
+                  <div className="bg-white/60 border border-zinc-900/10 rounded-xl p-4 space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1">
                         {handle}
@@ -53,7 +53,7 @@ export default function ProjectsForm() {
                       </div>
                       <button
                         onClick={() => removeProject(proj.id)}
-                        className="text-xs text-zinc-600 hover:text-red-400 transition-colors"
+                        className="text-xs text-zinc-400 hover:text-red-500 transition-colors"
                       >
                         {t.actions.removeProject}
                       </button>
@@ -79,7 +79,7 @@ export default function ProjectsForm() {
                       onChange={(e) => updateProject(proj.id, { description: e.target.value })}
                     />
                     <div>
-                      <p className="text-[11px] text-zinc-600 mb-2">{t.fields.highlightsHint}</p>
+                      <p className="text-[11px] text-zinc-400 mb-2">{t.fields.highlightsHint}</p>
                       <BulletList
                         bullets={proj.bullets}
                         onChange={(bullets) => updateProject(proj.id, { bullets })}

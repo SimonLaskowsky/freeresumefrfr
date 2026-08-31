@@ -30,14 +30,14 @@ export default function LanguagesForm() {
       action={
         <button
           onClick={addLanguage}
-          className="text-xs font-semibold text-lime-400 hover:text-lime-300 transition-colors flex items-center gap-1"
+          className="text-xs font-semibold text-lime-700 hover:text-lime-600 transition-colors flex items-center gap-1"
         >
           <span className="text-base leading-none">+</span> {t.actions.addLanguage.replace('+ ', '')}
         </button>
       }
     >
       {languages.length === 0 && (
-        <p className="text-xs text-zinc-600 italic">{t.fields.noneLanguages}</p>
+        <p className="text-xs text-zinc-400 italic">{t.fields.noneLanguages}</p>
       )}
       <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={languages.map((l) => l.id)} strategy={verticalListSortingStrategy}>
@@ -45,7 +45,7 @@ export default function LanguagesForm() {
             {languages.map((lang, i) => (
               <SortableItem key={lang.id} id={lang.id}>
                 {(handle) => (
-                  <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-3">
+                  <div className="bg-white/60 border border-zinc-900/10 rounded-xl p-4 space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1">
                         {handle}
@@ -53,7 +53,7 @@ export default function LanguagesForm() {
                       </div>
                       <button
                         onClick={() => removeLanguage(lang.id)}
-                        className="text-xs text-zinc-600 hover:text-red-400 transition-colors"
+                        className="text-xs text-zinc-400 hover:text-red-500 transition-colors"
                       >
                         {t.actions.removeLanguage}
                       </button>

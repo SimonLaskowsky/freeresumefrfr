@@ -23,7 +23,7 @@ import ImportResume from '@/components/builder/ImportResume';
 const ResumePreviewPanel = dynamic(() => import('@/components/ResumePreviewPanel'), {
   ssr: false,
   loading: () => (
-    <div className="flex items-center justify-center h-full text-zinc-600 text-sm">
+    <div className="flex items-center justify-center h-full text-zinc-400 text-sm">
       Loading preview...
     </div>
   ),
@@ -32,13 +32,13 @@ const ResumePreviewPanel = dynamic(() => import('@/components/ResumePreviewPanel
 const DownloadButton = dynamic(() => import('@/components/DownloadButton'), {
   ssr: false,
   loading: () => (
-    <div className="w-full py-3 bg-zinc-700 text-zinc-500 font-bold rounded-lg text-sm text-center">
+    <div className="w-full py-3 bg-zinc-900/10 text-zinc-500 font-bold rounded-lg text-sm text-center">
       Loading...
     </div>
   ),
 });
 
-const DIVIDER = <div className="border-t border-zinc-800/60" />;
+const DIVIDER = <div className="border-t border-zinc-900/10" />;
 
 export default function BuilderPage() {
   const data = useResumeStore((state) => state.data);
@@ -95,18 +95,22 @@ export default function BuilderPage() {
   }
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-zinc-950 text-white">
+    <div className="flex flex-col md:flex-row h-screen bg-[#f5f7f5] text-zinc-900 relative">
+      <div className="fixed inset-0 pointer-events-none" aria-hidden>
+        <div className="absolute -top-32 -left-24 w-[480px] h-[480px] rounded-full bg-lime-300/20 blur-[110px]" />
+        <div className="absolute bottom-[-140px] right-[-120px] w-[520px] h-[520px] rounded-full bg-teal-200/25 blur-[120px]" />
+      </div>
 
       {/* ── Mobile tab bar ──────────────────────────────────── */}
-      <div className="md:hidden flex border-b border-zinc-800 flex-shrink-0">
+      <div className="md:hidden flex border-b border-zinc-900/10 flex-shrink-0">
         {(['form', 'preview'] as const).map((tab) => (
           <button
             key={tab}
             onClick={() => setMobileTab(tab)}
             className={`flex-1 py-2.5 text-xs font-bold uppercase tracking-widest transition-colors ${
               mobileTab === tab
-                ? 'text-lime-400 border-b-2 border-lime-400 -mb-px'
-                : 'text-zinc-600 hover:text-zinc-400'
+                ? 'text-lime-700 border-b-2 border-lime-500 -mb-px'
+                : 'text-zinc-400 hover:text-zinc-600'
             }`}
           >
             {tab === 'form' ? t.builder.editTab : t.builder.previewTab}
@@ -116,19 +120,19 @@ export default function BuilderPage() {
 
       {/* ── Left panel: form ─────────────────────────────── */}
       <div
-        className={`md:w-[48%] flex flex-col border-zinc-800 md:border-r min-w-0 ${
+        className={`md:w-[48%] flex flex-col border-zinc-900/10 md:border-r min-w-0 ${
           mobileTab === 'form' ? 'flex flex-1' : 'hidden md:flex'
         }`}
       >
         {/* Header */}
-        <div className="flex flex-col border-b border-zinc-800 flex-shrink-0">
+        <div className="flex flex-col border-b border-zinc-900/10 flex-shrink-0">
           {/* Row 1: nav */}
           <div className="flex items-center justify-between px-4 pt-2.5 pb-1.5 gap-3">
-            <Link href="/" className="text-sm font-bold text-lime-400 hover:text-lime-300 transition-colors flex-shrink-0">
+            <Link href="/" className="text-sm font-bold text-lime-700 hover:text-lime-600 transition-colors flex-shrink-0">
               frfr
             </Link>
             <CompletenessScore />
-            <Link href="/cover-letter" className="text-[11px] text-zinc-400 hover:text-lime-400 transition-colors font-medium flex-shrink-0 whitespace-nowrap">
+            <Link href="/cover-letter" className="text-[11px] text-zinc-600 hover:text-lime-700 transition-colors font-medium flex-shrink-0 whitespace-nowrap">
               {t.coverLetter.pageTitle}
             </Link>
           </div>
@@ -136,24 +140,24 @@ export default function BuilderPage() {
           <div className="flex items-center justify-end gap-2 px-4 pb-2">
             <button
               onClick={loadSampleData}
-              className="text-[11px] text-zinc-400 hover:text-lime-400 transition-colors font-medium whitespace-nowrap"
+              className="text-[11px] text-zinc-600 hover:text-lime-700 transition-colors font-medium whitespace-nowrap"
               title={t.builder.fillExample}
             >
               {t.builder.fillExample}
             </button>
-            <span className="text-zinc-600">·</span>
+            <span className="text-zinc-400">·</span>
             <button
               onClick={handleReset}
               className={`text-[11px] transition-colors font-medium whitespace-nowrap ${
                 resetState === 'confirm'
-                  ? 'text-red-400 hover:text-red-300'
-                  : 'text-zinc-500 hover:text-zinc-300'
+                  ? 'text-red-500 hover:text-red-600'
+                  : 'text-zinc-500 hover:text-zinc-700'
               }`}
               title={t.builder.reset}
             >
               {resetState === 'confirm' ? t.builder.resetConfirm : t.builder.reset}
             </button>
-            <span className="text-zinc-600">·</span>
+            <span className="text-zinc-400">·</span>
             <span className="text-[11px] text-zinc-500">{t.builder.saved}</span>
           </div>
         </div>
@@ -187,12 +191,12 @@ export default function BuilderPage() {
 
       {/* ── Right panel: template + preview + download ───── */}
       <div
-        className={`md:flex-1 flex flex-col bg-zinc-900 min-w-0 ${
+        className={`md:flex-1 flex flex-col bg-white/70 min-w-0 ${
           mobileTab === 'preview' ? 'flex flex-1' : 'hidden md:flex'
         }`}
       >
         {/* Template picker */}
-        <div className="px-4 py-3 border-b border-zinc-800 flex-shrink-0">
+        <div className="px-4 py-3 border-b border-zinc-900/10 flex-shrink-0">
           <TemplatePicker />
         </div>
 
@@ -201,8 +205,8 @@ export default function BuilderPage() {
           <ResumePreviewPanel key={reorderVersion} data={previewData} templateId={templateId} accentColor={accentColor} companyLogo={companyLogo} />
           {isExampleMode && (
             <div className="absolute top-3 inset-x-0 flex justify-center z-10 pointer-events-none">
-              <div className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900/90 border border-zinc-700/50 rounded-full text-[11px] text-zinc-500 backdrop-blur-sm whitespace-nowrap">
-                <span className="w-1.5 h-1.5 rounded-full bg-zinc-600 inline-block" />
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-white/85 border border-zinc-900/10 rounded-full text-[11px] text-zinc-500 backdrop-blur-sm whitespace-nowrap">
+                <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 inline-block" />
                 {t.builder.exampleBadge}
               </div>
             </div>
@@ -210,9 +214,9 @@ export default function BuilderPage() {
         </div>
 
         {/* Download */}
-        <div className="px-5 py-4 border-t border-zinc-800 flex-shrink-0">
+        <div className="px-5 py-4 border-t border-zinc-900/10 flex-shrink-0">
           <DownloadButton data={previewData} templateId={templateId} accentColor={accentColor} companyLogo={companyLogo} />
-          <p className="text-center text-[11px] text-zinc-700 mt-2">
+          <p className="text-center text-[11px] text-zinc-400 mt-2">
             {t.builder.noAccountWatermark}
           </p>
         </div>

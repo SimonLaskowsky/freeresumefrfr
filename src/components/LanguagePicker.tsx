@@ -48,11 +48,13 @@ export default function LanguagePicker() {
             bottom: 'calc(100% + 0.5rem)',
             right: 0,
             width: '15rem',
-            background: '#18181b',
-            border: '1px solid #3f3f46',
+            background: 'rgba(255,255,255,0.88)',
+            backdropFilter: 'blur(18px)',
+            WebkitBackdropFilter: 'blur(18px)',
+            border: '1px solid rgba(24,33,22,0.1)',
             borderRadius: '0.75rem',
             padding: '0.75rem',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.6)',
+            boxShadow: '0 12px 40px -10px rgba(24,33,22,0.2)',
           }}
         >
           <div
@@ -75,13 +77,13 @@ export default function LanguagePicker() {
                     gap: '0.125rem',
                     padding: '0.375rem 0.25rem',
                     borderRadius: '0.5rem',
-                    border: active ? '1px solid #a3e635' : '1px solid transparent',
+                    border: active ? '1px solid #65a30d' : '1px solid transparent',
                     background: active ? 'rgba(163,230,53,0.1)' : 'transparent',
                     cursor: 'pointer',
                     transition: 'all 0.15s',
                   }}
                   onMouseEnter={(e) => {
-                    if (!active) (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.05)';
+                    if (!active) (e.currentTarget as HTMLButtonElement).style.background = 'rgba(24,33,22,0.05)';
                   }}
                   onMouseLeave={(e) => {
                     if (!active) (e.currentTarget as HTMLButtonElement).style.background = 'transparent';
@@ -92,7 +94,7 @@ export default function LanguagePicker() {
                     style={{
                       fontSize: '0.6rem',
                       fontWeight: 600,
-                      color: active ? '#a3e635' : '#a1a1aa',
+                      color: active ? '#4d7c0f' : '#52525b',
                       textAlign: 'center',
                       lineHeight: 1.2,
                       maxWidth: '3.5rem',
@@ -118,23 +120,25 @@ export default function LanguagePicker() {
           width: '2.5rem',
           height: '2.5rem',
           borderRadius: '50%',
-          background: '#18181b',
-          border: '1px solid #3f3f46',
+          background: 'rgba(255,255,255,0.85)',
+          backdropFilter: 'blur(14px)',
+          WebkitBackdropFilter: 'blur(14px)',
+          border: '1px solid rgba(24,33,22,0.12)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          boxShadow: '0 2px 12px rgba(0,0,0,0.5)',
+          boxShadow: '0 6px 20px -6px rgba(24,33,22,0.25)',
           transition: 'border-color 0.15s',
-          color: open ? '#a3e635' : '#71717a',
+          color: open ? '#4d7c0f' : '#71717a',
         }}
         onMouseEnter={(e) => {
-          (e.currentTarget as HTMLButtonElement).style.borderColor = '#a3e635';
-          (e.currentTarget as HTMLButtonElement).style.color = '#a3e635';
+          (e.currentTarget as HTMLButtonElement).style.borderColor = '#65a30d';
+          (e.currentTarget as HTMLButtonElement).style.color = '#4d7c0f';
         }}
         onMouseLeave={(e) => {
-          (e.currentTarget as HTMLButtonElement).style.borderColor = '#3f3f46';
-          (e.currentTarget as HTMLButtonElement).style.color = open ? '#a3e635' : '#71717a';
+          (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(24,33,22,0.12)';
+          (e.currentTarget as HTMLButtonElement).style.color = open ? '#4d7c0f' : '#71717a';
         }}
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

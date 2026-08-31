@@ -46,7 +46,7 @@ export default function BulletList({ bullets, onChange, placeholder = 'Add a bul
           <span className="text-lime-500/60 text-xs w-3 flex-shrink-0 select-none">•</span>
           <input
             ref={(el) => { refs.current[i] = el; }}
-            className="form-input flex-1 bg-zinc-900 border border-zinc-700/60 rounded-lg px-3 py-1.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-lime-400/60 transition-colors"
+            className="form-input flex-1 bg-white/70 border border-zinc-900/10 rounded-lg px-3 py-1.5 text-sm text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-lime-500/60 transition-colors"
             value={bullet}
             onChange={(e) => update(i, e.target.value)}
             onKeyDown={(e) => onKeyDown(e, i)}
@@ -55,7 +55,7 @@ export default function BulletList({ bullets, onChange, placeholder = 'Add a bul
           <button
             type="button"
             onClick={() => remove(i)}
-            className="opacity-0 group-hover:opacity-100 text-zinc-700 hover:text-red-400 transition-all w-5 text-sm flex-shrink-0 text-center"
+            className="opacity-0 group-hover:opacity-100 text-zinc-400 hover:text-red-500 transition-all w-5 text-sm flex-shrink-0 text-center"
           >
             ×
           </button>
@@ -64,10 +64,10 @@ export default function BulletList({ bullets, onChange, placeholder = 'Add a bul
       <button
         type="button"
         onClick={() => addAfter(list.length - 1)}
-        className="flex items-center gap-1.5 text-xs text-zinc-600 hover:text-lime-400 transition-colors pl-5 mt-1"
+        className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-lime-700 transition-colors pl-5 mt-1"
       >
         <span className="text-sm leading-none">+</span> {t.fields.addBullet}
-        <span className="text-zinc-700 ml-1 hidden sm:inline">{t.fields.enterToAddFaster}</span>
+        <span className="text-zinc-400 ml-1 hidden sm:inline">{t.fields.enterToAddFaster}</span>
       </button>
     </div>
   );

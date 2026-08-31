@@ -26,7 +26,7 @@ export default function CoverLetterForm() {
             />
             <button
               onClick={() => syncFromResume(resumePersonal)}
-              className="flex-shrink-0 text-[11px] text-zinc-500 hover:text-lime-400 transition-colors font-medium whitespace-nowrap border border-zinc-700/60 rounded-lg px-3 py-2"
+              className="flex-shrink-0 text-[11px] text-zinc-500 hover:text-lime-700 transition-colors font-medium whitespace-nowrap border border-zinc-900/10 rounded-lg px-3 py-2"
               title={cl.syncFromResume}
             >
               {cl.syncFromResume}
@@ -57,7 +57,7 @@ export default function CoverLetterForm() {
         </div>
       </SectionWrapper>
 
-      <div className="border-t border-zinc-800/60" />
+      <div className="border-t border-zinc-900/10" />
 
       {/* Recipient */}
       <SectionWrapper title={cl.recipientSection}>
@@ -85,7 +85,7 @@ export default function CoverLetterForm() {
         </div>
       </SectionWrapper>
 
-      <div className="border-t border-zinc-800/60" />
+      <div className="border-t border-zinc-900/10" />
 
       {/* Letter details */}
       <SectionWrapper title={cl.letterSection}>
@@ -109,12 +109,12 @@ export default function CoverLetterForm() {
               value={data.salutation}
               onChange={(e) => updateField('salutation', e.target.value)}
             />
-            <p className="text-[11px] text-zinc-600 mt-1.5 px-0.5">{cl.salutationLabel}</p>
+            <p className="text-[11px] text-zinc-400 mt-1.5 px-0.5">{cl.salutationLabel}</p>
           </div>
         </div>
       </SectionWrapper>
 
-      <div className="border-t border-zinc-800/60" />
+      <div className="border-t border-zinc-900/10" />
 
       {/* Body */}
       <SectionWrapper title={cl.bodyLabel}>
@@ -143,7 +143,7 @@ export default function CoverLetterForm() {
         </div>
       </SectionWrapper>
 
-      <div className="border-t border-zinc-800/60" />
+      <div className="border-t border-zinc-900/10" />
 
       {/* Sign-off */}
       <SectionWrapper title={cl.signOffLabel}>

@@ -12,7 +12,7 @@ import CoverLetterForm from '@/components/cover-letter/CoverLetterForm';
 const CoverLetterPreviewPanel = dynamic(() => import('@/components/CoverLetterPreviewPanel'), {
   ssr: false,
   loading: () => (
-    <div className="flex items-center justify-center h-full text-zinc-600 text-sm">
+    <div className="flex items-center justify-center h-full text-zinc-400 text-sm">
       Loading preview...
     </div>
   ),
@@ -21,7 +21,7 @@ const CoverLetterPreviewPanel = dynamic(() => import('@/components/CoverLetterPr
 const DownloadCoverLetterButton = dynamic(() => import('@/components/DownloadCoverLetterButton'), {
   ssr: false,
   loading: () => (
-    <div className="w-full py-3 bg-zinc-700 text-zinc-500 font-bold rounded-lg text-sm text-center">
+    <div className="w-full py-3 bg-zinc-900/10 text-zinc-500 font-bold rounded-lg text-sm text-center">
       Loading...
     </div>
   ),
@@ -52,18 +52,22 @@ export default function CoverLetterPage() {
   }
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-zinc-950 text-white overflow-hidden">
+    <div className="flex flex-col md:flex-row h-screen bg-[#f5f7f5] text-zinc-900 overflow-hidden relative">
+      <div className="fixed inset-0 pointer-events-none" aria-hidden>
+        <div className="absolute -top-32 -left-24 w-[480px] h-[480px] rounded-full bg-lime-300/20 blur-[110px]" />
+        <div className="absolute bottom-[-140px] right-[-120px] w-[520px] h-[520px] rounded-full bg-teal-200/25 blur-[120px]" />
+      </div>
 
       {/* ── Mobile tab bar ──────────────────────────────────────── */}
-      <div className="md:hidden flex border-b border-zinc-800 flex-shrink-0">
+      <div className="md:hidden flex border-b border-zinc-900/10 flex-shrink-0">
         {(['form', 'preview'] as const).map((tab) => (
           <button
             key={tab}
             onClick={() => setMobileTab(tab)}
             className={`flex-1 py-2.5 text-xs font-bold uppercase tracking-widest transition-colors ${
               mobileTab === tab
-                ? 'text-lime-400 border-b-2 border-lime-400 -mb-px'
-                : 'text-zinc-600 hover:text-zinc-400'
+                ? 'text-lime-700 border-b-2 border-lime-500 -mb-px'
+                : 'text-zinc-400 hover:text-zinc-600'
             }`}
           >
             {tab === 'form' ? t.builder.editTab : t.builder.previewTab}
@@ -73,15 +77,15 @@ export default function CoverLetterPage() {
 
       {/* ── Left panel: form ─────────────────────────────────── */}
       <div
-        className={`md:w-[48%] flex flex-col border-zinc-800 md:border-r min-w-0 ${
+        className={`md:w-[48%] flex flex-col border-zinc-900/10 md:border-r min-w-0 ${
           mobileTab === 'form' ? 'flex flex-1' : 'hidden md:flex'
         }`}
       >
         {/* Header */}
-        <div className="flex flex-col border-b border-zinc-800 flex-shrink-0">
+        <div className="flex flex-col border-b border-zinc-900/10 flex-shrink-0">
           {/* Row 1: nav */}
           <div className="flex items-center justify-between px-4 pt-2.5 pb-1.5 gap-3">
-            <Link href="/" className="text-sm font-bold text-lime-400 hover:text-lime-300 transition-colors flex-shrink-0">
+            <Link href="/" className="text-sm font-bold text-lime-700 hover:text-lime-600 transition-colors flex-shrink-0">
               frfr
             </Link>
             <span className="text-xs font-bold uppercase tracking-widest text-zinc-500 truncate">
@@ -89,7 +93,7 @@ export default function CoverLetterPage() {
             </span>
             <Link
               href="/builder"
-              className="text-[11px] text-zinc-400 hover:text-lime-400 transition-colors font-medium flex-shrink-0 whitespace-nowrap"
+              className="text-[11px] text-zinc-600 hover:text-lime-700 transition-colors font-medium flex-shrink-0 whitespace-nowrap"
             >
               CV
             </Link>
@@ -98,23 +102,23 @@ export default function CoverLetterPage() {
           <div className="flex items-center justify-end gap-2 px-4 pb-2">
             <button
               onClick={loadSampleData}
-              className="text-[11px] text-zinc-400 hover:text-lime-400 transition-colors font-medium whitespace-nowrap"
+              className="text-[11px] text-zinc-600 hover:text-lime-700 transition-colors font-medium whitespace-nowrap"
               title={t.builder.fillExample}
             >
               {t.builder.fillExample}
             </button>
-            <span className="text-zinc-600">·</span>
+            <span className="text-zinc-400">·</span>
             <button
               onClick={handleReset}
               className={`text-[11px] transition-colors font-medium whitespace-nowrap ${
                 resetState === 'confirm'
-                  ? 'text-red-400 hover:text-red-300'
-                  : 'text-zinc-500 hover:text-zinc-300'
+                  ? 'text-red-500 hover:text-red-600'
+                  : 'text-zinc-500 hover:text-zinc-700'
               }`}
             >
               {resetState === 'confirm' ? t.builder.resetConfirm : t.builder.reset}
             </button>
-            <span className="text-zinc-600">·</span>
+            <span className="text-zinc-400">·</span>
             <span className="text-[11px] text-zinc-500">{t.builder.saved}</span>
           </div>
         </div>
@@ -128,12 +132,12 @@ export default function CoverLetterPage() {
 
       {/* ── Right panel: template + preview + download ───── */}
       <div
-        className={`md:flex-1 flex flex-col bg-zinc-900 min-w-0 ${
+        className={`md:flex-1 flex flex-col bg-white/70 min-w-0 ${
           mobileTab === 'preview' ? 'flex flex-1' : 'hidden md:flex'
         }`}
       >
         {/* Template picker + page size toggle */}
-        <div className="px-4 py-3 border-b border-zinc-800 flex-shrink-0 flex items-center justify-between gap-3">
+        <div className="px-4 py-3 border-b border-zinc-900/10 flex-shrink-0 flex items-center justify-between gap-3">
           <div className="flex flex-col gap-2 flex-1 min-w-0">
             <div className="flex gap-1.5 overflow-x-auto py-0.5">
               {COVER_LETTER_TEMPLATES.map((tmpl) => {
@@ -148,7 +152,7 @@ export default function CoverLetterPage() {
                     className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                       active
                         ? 'bg-lime-400 text-zinc-950'
-                        : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-700'
+                        : 'bg-zinc-900/5 text-zinc-600 hover:text-zinc-800 hover:bg-zinc-900/10'
                     }`}
                   >
                     {tmpl.name}
@@ -166,7 +170,7 @@ export default function CoverLetterPage() {
                     title={color}
                     style={{ backgroundColor: color }}
                     className={`w-[18px] h-[18px] rounded-full flex-shrink-0 transition-all ${
-                      isActive ? 'ring-2 ring-white ring-offset-1 ring-offset-zinc-900' : 'opacity-70 hover:opacity-100'
+                      isActive ? 'ring-2 ring-zinc-900/30 ring-offset-1 ring-offset-white' : 'opacity-70 hover:opacity-100'
                     }`}
                   />
                 );
@@ -181,9 +185,9 @@ export default function CoverLetterPage() {
         </div>
 
         {/* Download */}
-        <div className="px-5 py-4 border-t border-zinc-800 flex-shrink-0">
+        <div className="px-5 py-4 border-t border-zinc-900/10 flex-shrink-0">
           <DownloadCoverLetterButton data={debouncedData} templateId={templateId} accentColor={accentColor} />
-          <p className="text-center text-[11px] text-zinc-700 mt-2">
+          <p className="text-center text-[11px] text-zinc-400 mt-2">
             {t.builder.noAccountWatermark}
           </p>
         </div>

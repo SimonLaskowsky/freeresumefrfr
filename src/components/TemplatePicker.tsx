@@ -35,7 +35,7 @@ export default function TemplatePicker() {
               className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                 active
                   ? 'bg-lime-400 text-zinc-950'
-                  : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200 hover:bg-zinc-700'
+                  : 'bg-zinc-900/5 text-zinc-600 hover:text-zinc-800 hover:bg-zinc-900/10'
               }`}
             >
               <span
@@ -59,7 +59,7 @@ export default function TemplatePicker() {
               title={color}
               style={{ backgroundColor: color }}
               className={`w-[18px] h-[18px] rounded-full flex-shrink-0 transition-all ${
-                isActive ? 'ring-2 ring-white ring-offset-1 ring-offset-zinc-900' : 'opacity-70 hover:opacity-100'
+                isActive ? 'ring-2 ring-zinc-900/30 ring-offset-1 ring-offset-white' : 'opacity-70 hover:opacity-100'
               }`}
             />
           );

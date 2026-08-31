@@ -64,20 +64,20 @@ export default function PersonalInfoForm() {
 
       <div className="mt-4 space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wide">{t.fields.linkLabel}</span>
+          <span className="text-xs font-semibold text-zinc-600 uppercase tracking-wide">{t.fields.linkLabel}</span>
           <button
             onClick={addPersonalLink}
-            className="text-xs font-semibold text-lime-400 hover:text-lime-300 transition-colors"
+            className="text-xs font-semibold text-lime-700 hover:text-lime-600 transition-colors"
           >
             {t.actions.addLink}
           </button>
         </div>
         {links.length === 0 && (
-          <p className="text-xs text-zinc-600 italic">{t.fields.linkLabelPlaceholder}</p>
+          <p className="text-xs text-zinc-400 italic">{t.fields.linkLabelPlaceholder}</p>
         )}
         <div className="space-y-2">
           {links.map((link) => (
-            <div key={link.id} className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-3 space-y-2">
+            <div key={link.id} className="bg-white/60 border border-zinc-900/10 rounded-xl p-3 space-y-2">
               <div className="flex items-center gap-2">
                 <input
                   className={`${inputCls} flex-1 text-xs font-semibold`}
@@ -87,7 +87,7 @@ export default function PersonalInfoForm() {
                 />
                 <button
                   onClick={() => removePersonalLink(link.id)}
-                  className="text-xs text-zinc-600 hover:text-red-400 transition-colors shrink-0"
+                  className="text-xs text-zinc-400 hover:text-red-500 transition-colors shrink-0"
                 >
                   {t.actions.removeLink}
                 </button>

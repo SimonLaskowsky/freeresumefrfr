@@ -14,7 +14,7 @@ export function SortableItem({ id, children }: Props) {
   const handle = (
     <div
       {...listeners}
-      className="cursor-grab active:cursor-grabbing text-zinc-600 hover:text-zinc-400 transition-colors p-1 touch-none"
+      className="cursor-grab active:cursor-grabbing text-zinc-400 hover:text-zinc-600 transition-colors p-1 touch-none"
       title="Drag to reorder"
     >
       <svg width="12" height="16" viewBox="0 0 12 16" fill="currentColor">

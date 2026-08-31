@@ -63,8 +63,8 @@ export default function ImportResume() {
     }
   }
 
-  const tone = status?.kind === 'error' ? 'text-red-400'
-    : status?.kind === 'done' ? 'text-lime-400'
+  const tone = status?.kind === 'error' ? 'text-red-500'
+    : status?.kind === 'done' ? 'text-lime-700'
     : 'text-zinc-500';
 
   return (
@@ -83,10 +83,10 @@ export default function ImportResume() {
         onClick={() => inputRef.current?.click()}
         disabled={status?.kind === 'busy'}
         className={`w-full rounded-lg border border-dashed px-4 py-3 text-center transition-colors ${
-          over ? 'border-lime-400 bg-lime-400/5' : 'border-zinc-700/60 hover:border-lime-400/60'
+          over ? 'border-lime-500 bg-lime-400/5' : 'border-zinc-900/10 hover:border-lime-500/60'
         }`}
       >
-        <span className="block text-xs font-bold uppercase tracking-widest text-zinc-300">
+        <span className="block text-xs font-bold uppercase tracking-widest text-zinc-700">
           {status?.kind === 'busy' ? t.importCv.reading : t.importCv.title}
         </span>
         <span className={`mt-1 block text-[11px] leading-snug ${tone}`}>

@@ -30,14 +30,14 @@ export default function ExperienceForm() {
       action={
         <button
           onClick={addExperience}
-          className="text-xs font-semibold text-lime-400 hover:text-lime-300 transition-colors flex items-center gap-1"
+          className="text-xs font-semibold text-lime-700 hover:text-lime-600 transition-colors flex items-center gap-1"
         >
           <span className="text-base leading-none">+</span> {t.actions.addExperience.replace('+ ', '')}
         </button>
       }
     >
       {data.experience.length === 0 && (
-        <p className="text-xs text-zinc-600 italic">{t.fields.noneExperience}</p>
+        <p className="text-xs text-zinc-400 italic">{t.fields.noneExperience}</p>
       )}
       <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={data.experience.map((e) => e.id)} strategy={verticalListSortingStrategy}>
@@ -45,7 +45,7 @@ export default function ExperienceForm() {
             {data.experience.map((exp, i) => (
               <SortableItem key={exp.id} id={exp.id}>
                 {(handle) => (
-                  <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-3">
+                  <div className="bg-white/60 border border-zinc-900/10 rounded-xl p-4 space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1">
                         {handle}
@@ -53,7 +53,7 @@ export default function ExperienceForm() {
                       </div>
                       <button
                         onClick={() => removeExperience(exp.id)}
-                        className="text-xs text-zinc-600 hover:text-red-400 transition-colors"
+                        className="text-xs text-zinc-400 hover:text-red-500 transition-colors"
                       >
                         {t.actions.removeExperience}
                       </button>
@@ -92,12 +92,12 @@ export default function ExperienceForm() {
                             checked={exp.current}
                             onChange={(e) => updateExperience(exp.id, { current: e.target.checked })}
                           />
-                          <span className="text-xs text-zinc-400">{t.fields.currentRole}</span>
+                          <span className="text-xs text-zinc-600">{t.fields.currentRole}</span>
                         </label>
                       </div>
                     </div>
                     <div>
-                      <p className="text-[11px] text-zinc-600 mb-2">{t.fields.bulletPointsHint}</p>
+                      <p className="text-[11px] text-zinc-400 mb-2">{t.fields.bulletPointsHint}</p>
                       <BulletList
                         bullets={exp.bullets}
                         onChange={(bullets) => updateExperience(exp.id, { bullets })}

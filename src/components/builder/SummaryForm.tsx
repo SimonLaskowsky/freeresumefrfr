@@ -21,7 +21,7 @@ export default function SummaryForm() {
         value={data.summary}
         onChange={(e) => updateSummary(e.target.value)}
       />
-      <p className="text-[11px] text-zinc-600 mt-1.5">{t.fields.summaryOptional}</p>
+      <p className="text-[11px] text-zinc-400 mt-1.5">{t.fields.summaryOptional}</p>
     </SectionWrapper>
   );
 }

@@ -127,16 +127,16 @@ export default function CoverLetterPreviewPanel({ data, templateId, accentColor 
 
   if (instance.error) {
     return (
-      <div className="flex items-center justify-center h-full text-red-400 text-sm px-6 text-center">
+      <div className="flex items-center justify-center h-full text-red-500 text-sm px-6 text-center">
         Preview error: try switching templates or refreshing.
       </div>
     );
   }
 
   return (
-    <div ref={containerRef} className="relative w-full h-full bg-zinc-800">
+    <div ref={containerRef} className="relative w-full h-full bg-zinc-900/5">
       {!pdfUrl && (
-        <div className="flex items-center justify-center h-full text-zinc-600 text-sm">
+        <div className="flex items-center justify-center h-full text-zinc-400 text-sm">
           {t.builder.generatingPreview}
         </div>
       )}
@@ -146,7 +146,7 @@ export default function CoverLetterPreviewPanel({ data, templateId, accentColor 
 
       {instance.loading && pdfUrl && (
         <div className="absolute bottom-3 right-3 pointer-events-none z-20">
-          <span className="text-[10px] text-zinc-500 bg-zinc-900/90 px-2 py-1 rounded-full animate-pulse">
+          <span className="text-[10px] text-zinc-500 bg-white/85 px-2 py-1 rounded-full animate-pulse">
             {t.builder.updating}
           </span>
         </div>

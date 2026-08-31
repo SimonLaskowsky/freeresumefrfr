@@ -27,20 +27,20 @@ export default function CompletenessScore() {
 
   let text: string;
   let bar: string;
-  if (score < 35) { text = t.completeness.justStarted; bar = 'bg-zinc-600'; }
+  if (score < 35) { text = t.completeness.justStarted; bar = 'bg-zinc-400'; }
   else if (score < 60) { text = t.completeness.gettingThere; bar = 'bg-amber-500'; }
   else if (score < 85) { text = t.completeness.lookingGood; bar = 'bg-lime-500'; }
   else { text = t.completeness.strong; bar = 'bg-lime-400'; }
 
   return (
     <div className="flex items-center gap-2.5 min-w-0">
-      <div className="w-16 h-1 bg-zinc-800 rounded-full overflow-hidden flex-shrink-0">
+      <div className="w-16 h-1 bg-zinc-900/5 rounded-full overflow-hidden flex-shrink-0">
         <div
           className={`h-full rounded-full transition-all duration-500 ${bar}`}
           style={{ width: `${score}%` }}
         />
       </div>
-      <span className="text-[11px] text-zinc-600 whitespace-nowrap tabular-nums">
+      <span className="text-[11px] text-zinc-400 whitespace-nowrap tabular-nums">
         {score}% · {text}
       </span>
     </div>
