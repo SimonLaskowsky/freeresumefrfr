@@ -138,14 +138,17 @@ export default function Home() {
                       <rect x="2" y="13" width="12" height="1.5" rx="0.75" />
                     </svg>
                     <span className="text-xs font-bold text-zinc-500 line-through decoration-red-500/70 decoration-2">
-                      {item.badge}
+                      {t.download.button.split(':')[0].trim()}
                     </span>
-                    <span className="text-zinc-600 text-xs">🔒</span>
+                    <svg width="11" height="11" viewBox="0 0 16 16" fill="none" className="text-zinc-600 shrink-0">
+                      <rect x="3.5" y="7" width="9" height="6.5" rx="1.2" stroke="currentColor" strokeWidth="1.5" />
+                      <path d="M5.5 7V5a2.5 2.5 0 015 0v2" stroke="currentColor" strokeWidth="1.5" />
+                    </svg>
                     <div className="absolute inset-0 pointer-events-none" style={{
                       background: 'repeating-linear-gradient(-45deg, transparent, transparent 6px, rgba(239,68,68,0.06) 6px, rgba(239,68,68,0.06) 7px)',
                     }} />
                   </div>
-                  <p className="text-[10px] text-zinc-700 mt-3 text-center font-mono">
+                  <p className="text-[10px] text-zinc-600 mt-3 text-center">
                     {t.roast.cardNote}
                   </p>
                 </div>
@@ -165,7 +168,10 @@ export default function Home() {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div className="col-span-2 bg-zinc-900 border border-zinc-800 rounded-2xl p-6 flex items-start gap-4">
-              <span className="text-4xl leading-none text-lime-400 font-black mt-0.5">↓</span>
+              <svg width="32" height="32" viewBox="0 0 16 16" fill="currentColor" className="text-lime-400 mt-0.5 shrink-0">
+                <path d="M8 12L3 7h3V2h4v5h3L8 12z" />
+                <rect x="2" y="13" width="12" height="1.5" rx="0.75" />
+              </svg>
               <div>
                 <div className="font-black text-lg text-lime-400 mb-1.5">{t.features.items[0].title}</div>
                 <div className="text-sm text-zinc-500">{t.features.items[0].desc}</div>
@@ -173,25 +179,37 @@ export default function Home() {
             </div>
 
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
-              <div className="text-2xl mb-3">🙅</div>
+              <svg width="22" height="22" viewBox="0 0 16 16" fill="none" className="text-lime-400 mb-3">
+                <circle cx="8" cy="5" r="2.6" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M2.8 13.5c.9-2.3 2.9-3.5 5.2-3.5s4.3 1.2 5.2 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
               <div className="font-bold text-sm text-white mb-1">{t.features.items[3].title}</div>
               <div className="text-xs text-zinc-600">{t.features.items[3].desc}</div>
             </div>
 
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
-              <div className="text-2xl mb-3">🚫</div>
+              <svg width="22" height="22" viewBox="0 0 16 16" fill="none" className="text-lime-400 mb-3">
+                <path d="M1.5 8S3.9 3.8 8 3.8 14.5 8 14.5 8s-2.4 4.2-6.5 4.2S1.5 8 1.5 8z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                <circle cx="8" cy="8" r="1.8" stroke="currentColor" strokeWidth="1.5" />
+              </svg>
               <div className="font-bold text-sm text-white mb-1">{t.features.items[2].title}</div>
               <div className="text-xs text-zinc-600">{t.features.items[2].desc}</div>
             </div>
 
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
-              <div className="text-2xl mb-3">🔒</div>
+              <svg width="22" height="22" viewBox="0 0 16 16" fill="none" className="text-lime-400 mb-3">
+                <circle cx="8" cy="8" r="6.2" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M5.2 8.2l2 2 3.6-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
               <div className="font-bold text-sm text-white mb-1">{t.features.items[4].title}</div>
               <div className="text-xs text-zinc-600">{t.features.items[4].desc}</div>
             </div>
 
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
-              <div className="text-2xl mb-3">📭</div>
+              <svg width="22" height="22" viewBox="0 0 16 16" fill="none" className="text-lime-400 mb-3">
+                <rect x="3.5" y="2" width="9" height="12" rx="1.2" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M6 5.5h4M6 8h4M6 10.5h2.5" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
+              </svg>
               <div className="font-bold text-sm text-white mb-1">{t.features.items[5].title}</div>
               <div className="text-xs text-zinc-600">{t.features.items[5].desc}</div>
             </div>
@@ -216,7 +234,7 @@ export default function Home() {
 
         {/* ── Final CTA ───────────────────────────────────── */}
         <div className="py-24 text-center border-t border-zinc-800/40">
-          <p className="text-zinc-700 text-sm mb-4 font-mono tracking-wider">
+          <p className="text-zinc-600 text-sm mb-4 tracking-wide">
             {t.finalCta.note}
           </p>
           <h2 className="text-4xl sm:text-5xl font-black mb-10 leading-tight">
@@ -256,7 +274,7 @@ export default function Home() {
       {/* ── Support / feedback ──────────────────────────── */}
       <div className="border-t border-zinc-800/40 px-6 py-14 text-center">
         <div className="max-w-sm mx-auto">
-          <p className="text-[11px] font-mono text-zinc-700 mb-2">{t.support.builtBy}</p>
+          <p className="text-[11px] uppercase tracking-widest text-zinc-600 mb-2">{t.support.builtBy}</p>
           <p className="text-zinc-500 text-sm mb-6 leading-relaxed">
             {t.support.message}
           </p>
@@ -267,7 +285,12 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-600 rounded-xl text-sm font-medium text-zinc-400 hover:text-zinc-200 transition-all"
             >
-              ☕ {t.support.coffee}
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="shrink-0">
+                <path d="M3 6h8v4.5A2.5 2.5 0 018.5 13h-3A2.5 2.5 0 013 10.5V6z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+                <path d="M11 7h1a1.8 1.8 0 010 3.6h-1" stroke="currentColor" strokeWidth="1.4" />
+                <path d="M5.5 2.5V4M8.5 2.5V4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+              </svg>
+              {t.support.coffee}
             </a>
             <a
               href="https://github.com/SimonLaskowsky/freeresumefrfr/issues"
@@ -285,7 +308,7 @@ export default function Home() {
       <footer className="border-t border-zinc-800/40 px-6 py-8">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <span className="font-black text-sm text-zinc-700 tracking-tight">freeresumefrfr</span>
-          <p className="text-xs text-zinc-700 font-mono text-center">
+          <p className="text-xs text-zinc-600 text-center">
             {t.footer.tagline}
           </p>
           <div className="flex items-center gap-5">
@@ -301,7 +324,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="text-xs text-zinc-700 hover:text-zinc-400 transition-colors"
             >
-              {t.nav.github} →
+              {t.nav.github}
             </a>
           </div>
         </div>

@@ -16,12 +16,22 @@ export interface Translations {
   // Builder chrome
   builder: {
     fillExample: string; reset: string; resetConfirm: string;
+    exampleBadge: string; editTab: string; previewTab: string;
     saved: string; updating: string; generatingPreview: string;
     noAccountWatermark: string; letterLabel: string; a4Label: string;
   };
 
   // Download button
   download: { button: string; preparing: string };
+
+  // Import an existing CV (dropzone in the builder)
+  importCv: {
+    title: string; hint: string; reading: string;
+    tooBig: string; noText: string; replaceConfirm: string; done: string; cantOpen: string;
+  };
+
+  // RODO / GDPR consent clause (small print at the bottom of the resume)
+  clause: { title: string; hint: string; insertDefault: string; defaultText: string };
 
   // Section titles
   sections: {
@@ -123,7 +133,7 @@ export interface Translations {
 
 // ─── English ──────────────────────────────────────────────────────────────────
 const en: Translations = {
-  nav: { build: 'Build my resume →', github: 'GitHub', coverLetter: 'Cover letter →' },
+  nav: { build: 'Build my resume', github: 'GitHub', coverLetter: 'Cover letter' },
   hero: {
     badge: 'Free forever: no account, no watermark',
     headline1: 'Your resume',
@@ -137,15 +147,15 @@ const en: Translations = {
   roast: {
     eyebrow: 'what competitors actually do',
     heading: 'Other resume builders be like:',
-    cardNote: '🔒 your file is not your file',
+    cardNote: 'your file is not your file',
     items: [
-      { line1: 'Your resume is ready!', line2: 'Pay $29.99 to download 🙃', badge: 'lmao' },
-      { line1: 'Download your resume', line2: 'Subscribe for $19/mo to unlock PDF 💀', badge: 'dead' },
-      { line1: 'Looking good!', line2: 'Enter card details to export 🫠', badge: 'nah' },
+      { line1: 'Your resume is ready!', line2: 'Pay $29.99 to download', badge: 'lmao' },
+      { line1: 'Download your resume', line2: 'Subscribe for $19/mo to unlock PDF', badge: 'dead' },
+      { line1: 'Looking good!', line2: 'Enter card details to export', badge: 'nah' },
     ],
   },
   finalCta: {
-    note: '// no signup · no credit card · no catch',
+    note: 'no signup · no credit card · no catch',
     headline1: 'Ready to',
     headline2: 'not get scammed?',
   },
@@ -166,13 +176,16 @@ const en: Translations = {
     madeWith: 'Made with ❤️ and zero paywalls',
   },
   support: {
-    builtBy: '// built solo, kept free on purpose',
+    builtBy: 'built solo, kept free on purpose',
     message: 'if it helped you land something, a coffee would honestly make my day',
     coffee: 'buy me a coffee',
-    feedback: 'or leave feedback →',
+    feedback: 'or leave feedback',
   },
   builder: {
     fillExample: 'Fill example',
+    exampleBadge: 'Example preview. Start typing to replace it.',
+    editTab: 'Edit',
+    previewTab: 'Preview',
     reset: 'Reset',
     resetConfirm: 'Sure?',
     saved: 'Saved',
@@ -182,7 +195,23 @@ const en: Translations = {
     letterLabel: 'LETTER',
     a4Label: 'A4',
   },
+  importCv: {
+    title: 'Have a CV already? Drop it here',
+    hint: 'PDF or TXT. Nothing leaves your browser.',
+    reading: 'Reading your CV…',
+    tooBig: 'That file is over 15 MB.',
+    noText: 'No text found in that PDF. Scans need a text layer.',
+    replaceConfirm: 'Importing replaces everything you have here. Continue?',
+    done: 'Imported. Check every field, parsing is a guess.',
+    cantOpen: 'Could not open that file.',
+  },
   download: { button: 'Download PDF: Free', preparing: 'Preparing…' },
+  clause: {
+    title: 'GDPR Clause',
+    hint: 'Optional. Shown in small print at the very bottom of the resume.',
+    insertDefault: 'Insert standard clause',
+    defaultText: 'I hereby give consent for my personal data included in this document to be processed for the purposes of the recruitment process, in accordance with Regulation (EU) 2016/679 (GDPR).',
+  },
   sections: {
     summary: 'Summary',
     personal: 'Personal Info',
@@ -335,7 +364,7 @@ const en: Translations = {
 
 // ─── Spanish ──────────────────────────────────────────────────────────────────
 const es: Translations = {
-  nav: { build: 'Crear mi CV →', github: 'GitHub', coverLetter: 'Carta de presentación →' },
+  nav: { build: 'Crear mi CV', github: 'GitHub', coverLetter: 'Carta de presentación' },
   hero: {
     badge: 'Gratis para siempre: sin cuenta, sin marca de agua',
     headline1: 'Tu currículum',
@@ -349,15 +378,15 @@ const es: Translations = {
   roast: {
     eyebrow: 'lo que hacen los competidores',
     heading: 'Otros creadores de CV son así:',
-    cardNote: '🔒 tu archivo no es tuyo',
+    cardNote: 'tu archivo no es tuyo',
     items: [
-      { line1: '¡Tu CV está listo!', line2: 'Paga $29.99 para descargar 🙃', badge: 'jaja' },
-      { line1: 'Descarga tu CV', line2: 'Suscríbete por $19/mes para desbloquear PDF 💀', badge: 'muerto' },
-      { line1: '¡Qué bien queda!', line2: 'Ingresa datos de tarjeta para exportar 🫠', badge: 'no' },
+      { line1: '¡Tu CV está listo!', line2: 'Paga $29.99 para descargar', badge: 'jaja' },
+      { line1: 'Descarga tu CV', line2: 'Suscríbete por $19/mes para desbloquear PDF', badge: 'muerto' },
+      { line1: '¡Qué bien queda!', line2: 'Ingresa datos de tarjeta para exportar', badge: 'no' },
     ],
   },
   finalCta: {
-    note: '// sin registro · sin tarjeta · sin trampa',
+    note: 'sin registro · sin tarjeta · sin trampa',
     headline1: 'Listo para',
     headline2: '¿no ser estafado?',
   },
@@ -378,13 +407,16 @@ const es: Translations = {
     madeWith: 'Hecho con ❤️ y cero muros de pago',
   },
   support: {
-    builtBy: '// hecho en solitario, gratis a propósito',
+    builtBy: 'hecho en solitario, gratis a propósito',
     message: 'si te ayudó a conseguir algo, un café me haría el día',
     coffee: 'cómprame un café',
-    feedback: 'o deja un comentario →',
+    feedback: 'o deja un comentario',
   },
   builder: {
     fillExample: 'Rellenar ejemplo',
+    exampleBadge: 'Vista de ejemplo. Escribe para reemplazarla.',
+    editTab: 'Editar',
+    previewTab: 'Vista previa',
     reset: 'Restablecer',
     resetConfirm: '¿Seguro?',
     saved: 'Guardado',
@@ -394,7 +426,23 @@ const es: Translations = {
     letterLabel: 'CARTA',
     a4Label: 'A4',
   },
+  importCv: {
+    title: '¿Ya tienes un CV? Suéltalo aquí',
+    hint: 'PDF o TXT. Nada sale de tu navegador.',
+    reading: 'Leyendo tu CV…',
+    tooBig: 'El archivo supera los 15 MB.',
+    noText: 'No hay texto en ese PDF. Los escaneos necesitan capa de texto.',
+    replaceConfirm: 'Importar reemplaza todo lo que tienes aquí. ¿Continuar?',
+    done: 'Importado. Revisa cada campo, el análisis es aproximado.',
+    cantOpen: 'No se pudo abrir el archivo.',
+  },
   download: { button: 'Descargar PDF: Gratis', preparing: 'Preparando…' },
+  clause: {
+    title: 'Cláusula RGPD',
+    hint: 'Opcional. Aparece en letra pequeña al final del CV.',
+    insertDefault: 'Insertar cláusula estándar',
+    defaultText: 'Doy mi consentimiento para el tratamiento de mis datos personales incluidos en este documento para los fines del proceso de selección, de conformidad con el Reglamento (UE) 2016/679 (RGPD).',
+  },
   sections: {
     summary: 'Resumen',
     personal: 'Información Personal',
@@ -547,7 +595,7 @@ const es: Translations = {
 
 // ─── French ───────────────────────────────────────────────────────────────────
 const fr: Translations = {
-  nav: { build: 'Créer mon CV →', github: 'GitHub', coverLetter: 'Lettre de motivation →' },
+  nav: { build: 'Créer mon CV', github: 'GitHub', coverLetter: 'Lettre de motivation' },
   hero: {
     badge: 'Gratuit pour toujours: sans compte, sans filigrane',
     headline1: 'Votre CV',
@@ -561,15 +609,15 @@ const fr: Translations = {
   roast: {
     eyebrow: 'ce que font les concurrents',
     heading: 'Les autres créateurs de CV font ça :',
-    cardNote: "🔒 ton fichier ne t'appartient pas",
+    cardNote: " ton fichier ne t'appartient pas",
     items: [
-      { line1: 'Votre CV est prêt !', line2: 'Payez 29,99 $ pour télécharger 🙃', badge: 'lol' },
-      { line1: 'Téléchargez votre CV', line2: 'Abonnez-vous à 19 $/mois pour le PDF 💀', badge: 'mort' },
-      { line1: 'Ça a l\'air bien !', line2: 'Entrez vos coordonnées bancaires pour exporter 🫠', badge: 'non' },
+      { line1: 'Votre CV est prêt !', line2: 'Payez 29,99 $ pour télécharger', badge: 'lol' },
+      { line1: 'Téléchargez votre CV', line2: 'Abonnez-vous à 19 $/mois pour le PDF', badge: 'mort' },
+      { line1: 'Ça a l\'air bien !', line2: 'Entrez vos coordonnées bancaires pour exporter', badge: 'non' },
     ],
   },
   finalCta: {
-    note: '// sans inscription · sans carte · sans arnaque',
+    note: 'sans inscription · sans carte · sans arnaque',
     headline1: 'Prêt à',
     headline2: 'ne plus se faire arnaquer ?',
   },
@@ -590,13 +638,16 @@ const fr: Translations = {
     madeWith: 'Fait avec ❤️ et zéro paywall',
   },
   support: {
-    builtBy: '// fait seul, gratuit par choix',
+    builtBy: 'fait seul, gratuit par choix',
     message: "si ça t'a aidé à décrocher quelque chose, un café me ferait vraiment plaisir",
     coffee: "m'offrir un café",
-    feedback: 'ou laisser un avis →',
+    feedback: 'ou laisser un avis',
   },
   builder: {
     fillExample: 'Remplir un exemple',
+    exampleBadge: 'Aperçu d\'exemple. Commencez à écrire pour le remplacer.',
+    editTab: 'Modifier',
+    previewTab: 'Aperçu',
     reset: 'Réinitialiser',
     resetConfirm: 'Sûr ?',
     saved: 'Enregistré',
@@ -606,7 +657,23 @@ const fr: Translations = {
     letterLabel: 'LETTRE',
     a4Label: 'A4',
   },
+  importCv: {
+    title: 'Vous avez déjà un CV ? Déposez-le ici',
+    hint: 'PDF ou TXT. Rien ne quitte votre navigateur.',
+    reading: 'Lecture de votre CV…',
+    tooBig: 'Le fichier dépasse 15 Mo.',
+    noText: 'Aucun texte dans ce PDF. Les scans nécessitent une couche texte.',
+    replaceConfirm: 'L\'import remplace tout ce que vous avez ici. Continuer ?',
+    done: 'Importé. Vérifiez chaque champ, l\'analyse est approximative.',
+    cantOpen: 'Impossible d\'ouvrir ce fichier.',
+  },
   download: { button: 'Télécharger PDF: Gratuit', preparing: 'Préparation…' },
+  clause: {
+    title: 'Clause RGPD',
+    hint: 'Facultatif. Affichée en petits caractères tout en bas du CV.',
+    insertDefault: 'Insérer la clause standard',
+    defaultText: "J'autorise le traitement de mes données personnelles contenues dans ce document pour les besoins du processus de recrutement, conformément au Règlement (UE) 2016/679 (RGPD).",
+  },
   sections: {
     summary: 'Résumé',
     personal: 'Informations personnelles',
@@ -758,7 +825,7 @@ const fr: Translations = {
 
 // ─── German ───────────────────────────────────────────────────────────────────
 const de: Translations = {
-  nav: { build: 'Lebenslauf erstellen →', github: 'GitHub', coverLetter: 'Anschreiben →' },
+  nav: { build: 'Lebenslauf erstellen', github: 'GitHub', coverLetter: 'Anschreiben' },
   hero: {
     badge: 'Dauerhaft kostenlos: kein Konto, kein Wasserzeichen',
     headline1: 'Dein Lebenslauf',
@@ -772,15 +839,15 @@ const de: Translations = {
   roast: {
     eyebrow: 'was Konkurrenten wirklich machen',
     heading: 'Andere Lebenslauf-Builder machen das:',
-    cardNote: '🔒 deine Datei gehört dir nicht',
+    cardNote: 'deine Datei gehört dir nicht',
     items: [
-      { line1: 'Dein Lebenslauf ist fertig!', line2: '29,99 $ bezahlen zum Herunterladen 🙃', badge: 'lol' },
-      { line1: 'Lebenslauf herunterladen', line2: '19 $/Monat abonnieren für PDF-Zugang 💀', badge: 'tot' },
-      { line1: 'Sieht gut aus!', line2: 'Kartendaten eingeben zum Exportieren 🫠', badge: 'nein' },
+      { line1: 'Dein Lebenslauf ist fertig!', line2: '29,99 $ bezahlen zum Herunterladen', badge: 'lol' },
+      { line1: 'Lebenslauf herunterladen', line2: '19 $/Monat abonnieren für PDF-Zugang', badge: 'tot' },
+      { line1: 'Sieht gut aus!', line2: 'Kartendaten eingeben zum Exportieren', badge: 'nein' },
     ],
   },
   finalCta: {
-    note: '// kein Konto · keine Karte · kein Haken',
+    note: 'kein Konto · keine Karte · kein Haken',
     headline1: 'Bereit,',
     headline2: 'nicht abgezockt zu werden?',
   },
@@ -801,13 +868,16 @@ const de: Translations = {
     madeWith: 'Gemacht mit ❤️ und null Paywalls',
   },
   support: {
-    builtBy: '// solo gebaut, bewusst kostenlos',
+    builtBy: 'solo gebaut, bewusst kostenlos',
     message: 'wenn es dir geholfen hat, würde mich ein Kaffee wirklich freuen',
     coffee: 'kauf mir einen Kaffee',
-    feedback: 'oder Feedback hinterlassen →',
+    feedback: 'oder Feedback hinterlassen',
   },
   builder: {
     fillExample: 'Beispiel einfügen',
+    exampleBadge: 'Beispielvorschau. Tippen Sie, um sie zu ersetzen.',
+    editTab: 'Bearbeiten',
+    previewTab: 'Vorschau',
     reset: 'Zurücksetzen',
     resetConfirm: 'Sicher?',
     saved: 'Gespeichert',
@@ -817,7 +887,23 @@ const de: Translations = {
     letterLabel: 'LETTER',
     a4Label: 'A4',
   },
+  importCv: {
+    title: 'Schon einen Lebenslauf? Hier ablegen',
+    hint: 'PDF oder TXT. Nichts verlässt Ihren Browser.',
+    reading: 'Lebenslauf wird gelesen…',
+    tooBig: 'Die Datei ist größer als 15 MB.',
+    noText: 'Kein Text in dieser PDF. Scans brauchen eine Textebene.',
+    replaceConfirm: 'Der Import ersetzt alles hier. Fortfahren?',
+    done: 'Importiert. Prüfen Sie jedes Feld, das Parsen ist eine Schätzung.',
+    cantOpen: 'Datei konnte nicht geöffnet werden.',
+  },
   download: { button: 'PDF herunterladen: Kostenlos', preparing: 'Wird vorbereitet…' },
+  clause: {
+    title: 'DSGVO-Klausel',
+    hint: 'Optional. Erscheint im Kleindruck ganz unten im Lebenslauf.',
+    insertDefault: 'Standardklausel einfügen',
+    defaultText: 'Ich willige ein, dass meine in diesem Dokument enthaltenen personenbezogenen Daten für die Zwecke des Bewerbungsverfahrens gemäß der Verordnung (EU) 2016/679 (DSGVO) verarbeitet werden.',
+  },
   sections: {
     summary: 'Zusammenfassung',
     personal: 'Persönliche Daten',
@@ -970,7 +1056,7 @@ const de: Translations = {
 
 // ─── Portuguese ───────────────────────────────────────────────────────────────
 const pt: Translations = {
-  nav: { build: 'Criar meu currículo →', github: 'GitHub', coverLetter: 'Carta de apresentação →' },
+  nav: { build: 'Criar meu currículo', github: 'GitHub', coverLetter: 'Carta de apresentação' },
   hero: {
     badge: 'Grátis para sempre: sem conta, sem marca d\'água',
     headline1: 'Seu currículo',
@@ -984,15 +1070,15 @@ const pt: Translations = {
   roast: {
     eyebrow: 'o que os concorrentes fazem',
     heading: 'Outros criadores de currículo fazem assim:',
-    cardNote: '🔒 seu arquivo não é seu',
+    cardNote: 'seu arquivo não é seu',
     items: [
-      { line1: 'Seu currículo está pronto!', line2: 'Pague $29,99 para baixar 🙃', badge: 'kkkk' },
-      { line1: 'Baixe seu currículo', line2: 'Assine por $19/mês para desbloquear PDF 💀', badge: 'morto' },
-      { line1: 'Ficou ótimo!', line2: 'Insira dados do cartão para exportar 🫠', badge: 'não' },
+      { line1: 'Seu currículo está pronto!', line2: 'Pague $29,99 para baixar', badge: 'kkkk' },
+      { line1: 'Baixe seu currículo', line2: 'Assine por $19/mês para desbloquear PDF', badge: 'morto' },
+      { line1: 'Ficou ótimo!', line2: 'Insira dados do cartão para exportar', badge: 'não' },
     ],
   },
   finalCta: {
-    note: '// sem cadastro · sem cartão · sem pegadinha',
+    note: 'sem cadastro · sem cartão · sem pegadinha',
     headline1: 'Pronto para',
     headline2: 'não ser enganado?',
   },
@@ -1013,13 +1099,16 @@ const pt: Translations = {
     madeWith: 'Feito com ❤️ e zero paywalls',
   },
   support: {
-    builtBy: '// feito sozinho, gratuito de propósito',
+    builtBy: 'feito sozinho, gratuito de propósito',
     message: 'se te ajudou a conseguir algo, um café faria meu dia',
     coffee: 'me pagar um café',
-    feedback: 'ou deixar um feedback →',
+    feedback: 'ou deixar um feedback',
   },
   builder: {
     fillExample: 'Preencher exemplo',
+    exampleBadge: 'Pré-visualização de exemplo. Digite para substituí-la.',
+    editTab: 'Editar',
+    previewTab: 'Pré-visualizar',
     reset: 'Resetar',
     resetConfirm: 'Tem certeza?',
     saved: 'Salvo',
@@ -1029,7 +1118,23 @@ const pt: Translations = {
     letterLabel: 'CARTA',
     a4Label: 'A4',
   },
+  importCv: {
+    title: 'Já tem um currículo? Solte-o aqui',
+    hint: 'PDF ou TXT. Nada sai do seu navegador.',
+    reading: 'Lendo seu currículo…',
+    tooBig: 'O arquivo passa de 15 MB.',
+    noText: 'Sem texto nesse PDF. Digitalizações precisam de camada de texto.',
+    replaceConfirm: 'Importar substitui tudo o que você tem aqui. Continuar?',
+    done: 'Importado. Confira cada campo, a análise é aproximada.',
+    cantOpen: 'Não foi possível abrir o arquivo.',
+  },
   download: { button: 'Baixar PDF: Grátis', preparing: 'Preparando…' },
+  clause: {
+    title: 'Cláusula RGPD',
+    hint: 'Opcional. Aparece em letras pequenas no final do currículo.',
+    insertDefault: 'Inserir cláusula padrão',
+    defaultText: 'Autorizo o tratamento dos meus dados pessoais contidos neste documento para efeitos do processo de recrutamento, em conformidade com o Regulamento (UE) 2016/679 (RGPD).',
+  },
   sections: {
     summary: 'Resumo',
     personal: 'Informações Pessoais',
@@ -1182,7 +1287,7 @@ const pt: Translations = {
 
 // ─── Chinese ──────────────────────────────────────────────────────────────────
 const zh: Translations = {
-  nav: { build: '创建简历 →', github: 'GitHub', coverLetter: '求职信 →' },
+  nav: { build: '创建简历', github: 'GitHub', coverLetter: '求职信' },
   hero: {
     badge: '永久免费：无需账号，无水印',
     headline1: '您的简历',
@@ -1196,15 +1301,15 @@ const zh: Translations = {
   roast: {
     eyebrow: '竞争对手是怎么做的',
     heading: '其他简历平台是这样的：',
-    cardNote: '🔒 你的文件不属于你',
+    cardNote: '你的文件不属于你',
     items: [
-      { line1: '您的简历已准备好！', line2: '支付 $29.99 才能下载 🙃', badge: '哈哈' },
-      { line1: '下载您的简历', line2: '订阅 $19/月 解锁PDF 💀', badge: '无语' },
-      { line1: '看起来不错！', line2: '输入银行卡信息才能导出 🫠', badge: '不行' },
+      { line1: '您的简历已准备好！', line2: '支付 $29.99 才能下载', badge: '哈哈' },
+      { line1: '下载您的简历', line2: '订阅 $19/月 解锁PDF', badge: '无语' },
+      { line1: '看起来不错！', line2: '输入银行卡信息才能导出', badge: '不行' },
     ],
   },
   finalCta: {
-    note: '// 无需注册 · 无需信用卡 · 无任何陷阱',
+    note: '无需注册 · 无需信用卡 · 无任何陷阱',
     headline1: '准备好',
     headline2: '不被坑了吗？',
   },
@@ -1225,13 +1330,16 @@ const zh: Translations = {
     madeWith: '用 ❤️ 和零付费墙制作',
   },
   support: {
-    builtBy: '// 独立开发，免费不改变',
+    builtBy: '独立开发，免费不改变',
     message: '如果帮到你了，请我喝杯咖啡会让我开心一整天',
     coffee: '请我喝咖啡',
-    feedback: '或者留下反馈 →',
+    feedback: '或者留下反馈',
   },
   builder: {
     fillExample: '填充示例',
+    exampleBadge: '示例预览。开始输入即可替换。',
+    editTab: '编辑',
+    previewTab: '预览',
     reset: '重置',
     resetConfirm: '确定？',
     saved: '已保存',
@@ -1241,7 +1349,23 @@ const zh: Translations = {
     letterLabel: 'LETTER',
     a4Label: 'A4',
   },
+  importCv: {
+    title: '已有简历？拖放到这里',
+    hint: 'PDF 或 TXT。数据不会离开浏览器。',
+    reading: '正在读取简历…',
+    tooBig: '文件超过 15 MB。',
+    noText: '该 PDF 没有文本。扫描件需要文本层。',
+    replaceConfirm: '导入将替换这里的全部内容。继续？',
+    done: '已导入。请检查每个字段，解析仅供参考。',
+    cantOpen: '无法打开该文件。',
+  },
   download: { button: '下载PDF：免费', preparing: '准备中…' },
+  clause: {
+    title: '数据处理声明',
+    hint: '可选。以小字显示在简历最底部。',
+    insertDefault: '插入标准声明',
+    defaultText: '本人同意根据欧盟条例 2016/679 (GDPR)，为招聘流程之目的处理本文件中包含的个人数据。',
+  },
   sections: {
     summary: '个人简介',
     personal: '个人信息',
@@ -1394,7 +1518,7 @@ const zh: Translations = {
 
 // ─── Japanese ─────────────────────────────────────────────────────────────────
 const ja: Translations = {
-  nav: { build: '履歴書を作成 →', github: 'GitHub', coverLetter: 'カバーレター →' },
+  nav: { build: '履歴書を作成', github: 'GitHub', coverLetter: 'カバーレター' },
   hero: {
     badge: '永久無料：アカウント不要、透かしなし',
     headline1: 'あなたの履歴書は',
@@ -1408,15 +1532,15 @@ const ja: Translations = {
   roast: {
     eyebrow: '競合他社がやっていること',
     heading: '他の履歴書サービスはこんな感じ：',
-    cardNote: '🔒 あなたのファイルはあなたのものではない',
+    cardNote: 'あなたのファイルはあなたのものではない',
     items: [
-      { line1: '履歴書が完成しました！', line2: 'ダウンロードには$29.99が必要 🙃', badge: '草' },
-      { line1: '履歴書をダウンロード', line2: 'PDFには月額$19のサブスクが必要 💀', badge: '終わり' },
-      { line1: 'いい感じです！', line2: 'エクスポートにはカード情報が必要 🫠', badge: 'ムリ' },
+      { line1: '履歴書が完成しました！', line2: 'ダウンロードには$29.99が必要', badge: '草' },
+      { line1: '履歴書をダウンロード', line2: 'PDFには月額$19のサブスクが必要', badge: '終わり' },
+      { line1: 'いい感じです！', line2: 'エクスポートにはカード情報が必要', badge: 'ムリ' },
     ],
   },
   finalCta: {
-    note: '// 登録不要 · カード不要 · 落とし穴なし',
+    note: '登録不要 · カード不要 · 落とし穴なし',
     headline1: '準備はいいですか？',
     headline2: '騙されない選択を',
   },
@@ -1437,13 +1561,16 @@ const ja: Translations = {
     madeWith: '❤️とゼロのペイウォールで作られました',
   },
   support: {
-    builtBy: '// ひとりで作成、ずっと無料',
+    builtBy: 'ひとりで作成、ずっと無料',
     message: 'お役に立てたなら、コーヒー一杯で本当に嬉しくなります',
     coffee: 'コーヒーをおごる',
-    feedback: 'またはフィードバックを残す →',
+    feedback: 'またはフィードバックを残す',
   },
   builder: {
     fillExample: 'サンプルを入力',
+    exampleBadge: 'サンプルのプレビューです。入力すると置き換わります。',
+    editTab: '編集',
+    previewTab: 'プレビュー',
     reset: 'リセット',
     resetConfirm: '本当に？',
     saved: '保存済み',
@@ -1453,7 +1580,23 @@ const ja: Translations = {
     letterLabel: 'レター',
     a4Label: 'A4',
   },
+  importCv: {
+    title: '履歴書をお持ちですか？ここにドロップ',
+    hint: 'PDFまたはTXT。データはブラウザから出ません。',
+    reading: '履歴書を読み込み中…',
+    tooBig: 'ファイルが15MBを超えています。',
+    noText: 'このPDFにテキストがありません。スキャンにはテキストレイヤーが必要です。',
+    replaceConfirm: 'インポートすると現在の内容がすべて置き換わります。続行しますか？',
+    done: 'インポートしました。解析は推定のため、各項目をご確認ください。',
+    cantOpen: 'ファイルを開けませんでした。',
+  },
   download: { button: 'PDFをダウンロード：無料', preparing: '準備中…' },
+  clause: {
+    title: '個人情報の同意文',
+    hint: '任意。履歴書の最下部に小さな文字で表示されます。',
+    insertDefault: '標準の同意文を挿入',
+    defaultText: '本書類に含まれる個人情報を、採用選考の目的のために、EU規則2016/679（GDPR）に従って処理することに同意します。',
+  },
   sections: {
     summary: '概要',
     personal: '個人情報',
@@ -1606,7 +1749,7 @@ const ja: Translations = {
 
 // ─── Korean ───────────────────────────────────────────────────────────────────
 const ko: Translations = {
-  nav: { build: '이력서 만들기 →', github: 'GitHub', coverLetter: '자기소개서 →' },
+  nav: { build: '이력서 만들기', github: 'GitHub', coverLetter: '자기소개서' },
   hero: {
     badge: '영원히 무료: 계정 불필요, 워터마크 없음',
     headline1: '당신의 이력서는',
@@ -1620,15 +1763,15 @@ const ko: Translations = {
   roast: {
     eyebrow: '경쟁사들이 실제로 하는 것',
     heading: '다른 이력서 서비스들은 이렇습니다:',
-    cardNote: '🔒 당신의 파일은 당신 것이 아닙니다',
+    cardNote: '당신의 파일은 당신 것이 아닙니다',
     items: [
-      { line1: '이력서가 완성되었습니다!', line2: '$29.99를 내야 다운로드 가능 🙃', badge: '어이없음' },
-      { line1: '이력서 다운로드', line2: 'PDF는 월 $19 구독이 필요 💀', badge: '망함' },
-      { line1: '멋있네요!', line2: '내보내기는 카드 정보 입력 필요 🫠', badge: '싫어' },
+      { line1: '이력서가 완성되었습니다!', line2: '$29.99를 내야 다운로드 가능', badge: '어이없음' },
+      { line1: '이력서 다운로드', line2: 'PDF는 월 $19 구독이 필요', badge: '망함' },
+      { line1: '멋있네요!', line2: '내보내기는 카드 정보 입력 필요', badge: '싫어' },
     ],
   },
   finalCta: {
-    note: '// 가입 없음 · 카드 없음 · 함정 없음',
+    note: '가입 없음 · 카드 없음 · 함정 없음',
     headline1: '준비됐나요?',
     headline2: '사기당하지 마세요',
   },
@@ -1649,13 +1792,16 @@ const ko: Translations = {
     madeWith: '❤️와 제로 페이월로 만들어졌습니다',
   },
   support: {
-    builtBy: '// 혼자 만든, 의도적으로 무료',
+    builtBy: '혼자 만든, 의도적으로 무료',
     message: '도움이 됐다면, 커피 한 잔이 하루를 행복하게 만들어요',
     coffee: '커피 사주기',
-    feedback: '또는 피드백 남기기 →',
+    feedback: '또는 피드백 남기기',
   },
   builder: {
     fillExample: '예시 채우기',
+    exampleBadge: '예시 미리보기입니다. 입력하면 대체됩니다.',
+    editTab: '편집',
+    previewTab: '미리보기',
     reset: '초기화',
     resetConfirm: '확실합니까?',
     saved: '저장됨',
@@ -1665,7 +1811,23 @@ const ko: Translations = {
     letterLabel: 'LETTER',
     a4Label: 'A4',
   },
+  importCv: {
+    title: '이력서가 있나요? 여기에 놓으세요',
+    hint: 'PDF 또는 TXT. 데이터는 브라우저를 떠나지 않습니다.',
+    reading: '이력서를 읽는 중…',
+    tooBig: '파일이 15 MB를 초과합니다.',
+    noText: '이 PDF에는 텍스트가 없습니다. 스캔본에는 텍스트 레이어가 필요합니다.',
+    replaceConfirm: '가져오면 여기 있는 모든 내용이 대체됩니다. 계속할까요?',
+    done: '가져왔습니다. 구문 분석은 추정이므로 모든 필드를 확인하세요.',
+    cantOpen: '파일을 열 수 없습니다.',
+  },
   download: { button: 'PDF 다운로드: 무료', preparing: '준비 중…' },
+  clause: {
+    title: '개인정보 동의 문구',
+    hint: '선택 사항. 이력서 맨 아래에 작은 글씨로 표시됩니다.',
+    insertDefault: '표준 문구 삽입',
+    defaultText: '본 문서에 포함된 개인정보를 채용 절차의 목적을 위해 EU 규정 2016/679(GDPR)에 따라 처리하는 것에 동의합니다.',
+  },
   sections: {
     summary: '요약',
     personal: '개인 정보',
@@ -1818,7 +1980,7 @@ const ko: Translations = {
 
 // ─── Arabic ───────────────────────────────────────────────────────────────────
 const ar: Translations = {
-  nav: { build: 'إنشاء سيرتي الذاتية ←', github: 'GitHub', coverLetter: 'خطاب تقديم →' },
+  nav: { build: 'إنشاء سيرتي الذاتية', github: 'GitHub', coverLetter: 'خطاب تقديم' },
   hero: {
     badge: 'مجاني للأبد: بدون حساب، بدون علامة مائية',
     headline1: 'سيرتك الذاتية',
@@ -1832,15 +1994,15 @@ const ar: Translations = {
   roast: {
     eyebrow: 'ما يفعله المنافسون',
     heading: 'منشئو السير الذاتية الآخرون هكذا:',
-    cardNote: '🔒 ملفك ليس ملكك',
+    cardNote: 'ملفك ليس ملكك',
     items: [
-      { line1: 'سيرتك الذاتية جاهزة!', line2: 'ادفع $29.99 للتنزيل 🙃', badge: 'هههه' },
-      { line1: 'تنزيل سيرتك الذاتية', line2: 'اشترك بـ$19/شهر لفتح PDF 💀', badge: 'وداعاً' },
-      { line1: 'يبدو رائعاً!', line2: 'أدخل بيانات البطاقة للتصدير 🫠', badge: 'لا' },
+      { line1: 'سيرتك الذاتية جاهزة!', line2: 'ادفع $29.99 للتنزيل', badge: 'هههه' },
+      { line1: 'تنزيل سيرتك الذاتية', line2: 'اشترك بـ$19/شهر لفتح PDF', badge: 'وداعاً' },
+      { line1: 'يبدو رائعاً!', line2: 'أدخل بيانات البطاقة للتصدير', badge: 'لا' },
     ],
   },
   finalCta: {
-    note: '// بدون تسجيل · بدون بطاقة · بدون خدعة',
+    note: 'بدون تسجيل · بدون بطاقة · بدون خدعة',
     headline1: 'مستعد',
     headline2: 'لعدم الوقوع في الفخ؟',
   },
@@ -1861,13 +2023,16 @@ const ar: Translations = {
     madeWith: 'صُنع بـ ❤️ وصفر جدران دفع',
   },
   support: {
-    builtBy: '// بُني منفرداً، مجاني بقصد',
+    builtBy: 'بُني منفرداً، مجاني بقصد',
     message: 'إن ساعدك في الحصول على شيء، فنجان قهوة سيسعدني كثيراً',
     coffee: 'اشتر لي قهوة',
-    feedback: 'أو اترك ملاحظة →',
+    feedback: 'أو اترك ملاحظة',
   },
   builder: {
     fillExample: 'ملء مثال',
+    exampleBadge: 'معاينة نموذجية. ابدأ الكتابة لاستبدالها.',
+    editTab: 'تحرير',
+    previewTab: 'معاينة',
     reset: 'إعادة تعيين',
     resetConfirm: 'متأكد؟',
     saved: 'محفوظ',
@@ -1877,7 +2042,23 @@ const ar: Translations = {
     letterLabel: 'LETTER',
     a4Label: 'A4',
   },
+  importCv: {
+    title: 'لديك سيرة ذاتية بالفعل؟ أفلتها هنا',
+    hint: 'PDF أو TXT. لا شيء يغادر متصفحك.',
+    reading: 'جارٍ قراءة سيرتك الذاتية…',
+    tooBig: 'حجم الملف يتجاوز 15 ميغابايت.',
+    noText: 'لا يوجد نص في هذا الملف. الصور الممسوحة تحتاج طبقة نصية.',
+    replaceConfirm: 'الاستيراد سيستبدل كل ما لديك هنا. متابعة؟',
+    done: 'تم الاستيراد. راجع كل حقل، فالتحليل تقديري.',
+    cantOpen: 'تعذر فتح الملف.',
+  },
   download: { button: 'تنزيل PDF: مجاناً', preparing: 'جارٍ التحضير…' },
+  clause: {
+    title: 'بند الموافقة على البيانات',
+    hint: 'اختياري. يظهر بخط صغير في أسفل السيرة الذاتية.',
+    insertDefault: 'إدراج البند القياسي',
+    defaultText: 'أوافق على معالجة بياناتي الشخصية الواردة في هذا المستند لأغراض عملية التوظيف، وفقاً للائحة الاتحاد الأوروبي 2016/679 (GDPR).',
+  },
   sections: {
     summary: 'الملخص',
     personal: 'المعلومات الشخصية',
@@ -2029,7 +2210,7 @@ const ar: Translations = {
 
 // ─── Russian ──────────────────────────────────────────────────────────────────
 const ru: Translations = {
-  nav: { build: 'Создать резюме →', github: 'GitHub', coverLetter: 'Сопроводительное письмо →' },
+  nav: { build: 'Создать резюме', github: 'GitHub', coverLetter: 'Сопроводительное письмо' },
   hero: {
     badge: 'Бесплатно навсегда: без аккаунта, без водяного знака',
     headline1: 'Ваше резюме',
@@ -2043,15 +2224,15 @@ const ru: Translations = {
   roast: {
     eyebrow: 'что делают конкуренты',
     heading: 'Другие конструкторы резюме делают так:',
-    cardNote: '🔒 ваш файл вам не принадлежит',
+    cardNote: 'ваш файл вам не принадлежит',
     items: [
-      { line1: 'Ваше резюме готово!', line2: 'Заплатите $29.99 для скачивания 🙃', badge: 'лол' },
-      { line1: 'Скачайте ваше резюме', line2: 'Подпишитесь за $19/мес для PDF 💀', badge: 'жесть' },
-      { line1: 'Отлично выглядит!', line2: 'Введите данные карты для экспорта 🫠', badge: 'нет' },
+      { line1: 'Ваше резюме готово!', line2: 'Заплатите $29.99 для скачивания', badge: 'лол' },
+      { line1: 'Скачайте ваше резюме', line2: 'Подпишитесь за $19/мес для PDF', badge: 'жесть' },
+      { line1: 'Отлично выглядит!', line2: 'Введите данные карты для экспорта', badge: 'нет' },
     ],
   },
   finalCta: {
-    note: '// без регистрации · без карты · без подвоха',
+    note: 'без регистрации · без карты · без подвоха',
     headline1: 'Готовы',
     headline2: 'не быть обманутыми?',
   },
@@ -2072,13 +2253,16 @@ const ru: Translations = {
     madeWith: 'Сделано с ❤️ и нулём пейволлов',
   },
   support: {
-    builtBy: '// сделано в одиночку, бесплатно намеренно',
+    builtBy: 'сделано в одиночку, бесплатно намеренно',
     message: 'если помогло устроиться на работу, чашка кофе будет очень приятна',
     coffee: 'угостить кофе',
-    feedback: 'или оставить отзыв →',
+    feedback: 'или оставить отзыв',
   },
   builder: {
     fillExample: 'Заполнить пример',
+    exampleBadge: 'Предпросмотр примера. Начните печатать, чтобы заменить его.',
+    editTab: 'Редактор',
+    previewTab: 'Просмотр',
     reset: 'Сбросить',
     resetConfirm: 'Уверены?',
     saved: 'Сохранено',
@@ -2088,7 +2272,23 @@ const ru: Translations = {
     letterLabel: 'LETTER',
     a4Label: 'A4',
   },
+  importCv: {
+    title: 'Уже есть резюме? Перетащите его сюда',
+    hint: 'PDF или TXT. Данные не покидают ваш браузер.',
+    reading: 'Читаем ваше резюме…',
+    tooBig: 'Файл больше 15 МБ.',
+    noText: 'В этом PDF нет текста. Сканам нужен текстовый слой.',
+    replaceConfirm: 'Импорт заменит всё, что здесь есть. Продолжить?',
+    done: 'Импортировано. Проверьте каждое поле, разбор приблизительный.',
+    cantOpen: 'Не удалось открыть файл.',
+  },
   download: { button: 'Скачать PDF: Бесплатно', preparing: 'Подготовка…' },
+  clause: {
+    title: 'Согласие на обработку данных',
+    hint: 'Необязательно. Отображается мелким шрифтом в самом низу резюме.',
+    insertDefault: 'Вставить стандартный текст',
+    defaultText: 'Даю согласие на обработку моих персональных данных, содержащихся в этом документе, в целях проведения процесса найма в соответствии с Регламентом (ЕС) 2016/679 (GDPR).',
+  },
   sections: {
     summary: 'Резюме',
     personal: 'Личная информация',
@@ -2240,7 +2440,7 @@ const ru: Translations = {
 
 // ─── Italian ──────────────────────────────────────────────────────────────────
 const it: Translations = {
-  nav: { build: 'Crea il mio CV →', github: 'GitHub', coverLetter: 'Lettera di presentazione →' },
+  nav: { build: 'Crea il mio CV', github: 'GitHub', coverLetter: 'Lettera di presentazione' },
   hero: {
     badge: 'Gratis per sempre: nessun account, nessuna filigrana',
     headline1: 'Il tuo curriculum',
@@ -2254,15 +2454,15 @@ const it: Translations = {
   roast: {
     eyebrow: 'cosa fanno i concorrenti',
     heading: 'Gli altri costruttori di CV fanno così:',
-    cardNote: '🔒 il tuo file non è tuo',
+    cardNote: 'il tuo file non è tuo',
     items: [
-      { line1: 'Il tuo CV è pronto!', line2: 'Paga $29,99 per scaricare 🙃', badge: 'lmao' },
-      { line1: 'Scarica il tuo CV', line2: 'Abbonati a $19/mese per sbloccare il PDF 💀', badge: 'morto' },
-      { line1: 'Ottimo aspetto!', line2: 'Inserisci i dati della carta per esportare 🫠', badge: 'no' },
+      { line1: 'Il tuo CV è pronto!', line2: 'Paga $29,99 per scaricare', badge: 'lmao' },
+      { line1: 'Scarica il tuo CV', line2: 'Abbonati a $19/mese per sbloccare il PDF', badge: 'morto' },
+      { line1: 'Ottimo aspetto!', line2: 'Inserisci i dati della carta per esportare', badge: 'no' },
     ],
   },
   finalCta: {
-    note: '// nessuna registrazione · nessuna carta · nessuna fregatura',
+    note: 'nessuna registrazione · nessuna carta · nessuna fregatura',
     headline1: 'Pronto a',
     headline2: 'non farti fregare?',
   },
@@ -2283,13 +2483,16 @@ const it: Translations = {
     madeWith: 'Fatto con ❤️ e zero paywall',
   },
   support: {
-    builtBy: '// fatto da solo, gratuito di proposito',
+    builtBy: 'fatto da solo, gratuito di proposito',
     message: 'se ti ha aiutato a trovare qualcosa, un caffè mi farebbe davvero felice',
     coffee: 'offrimi un caffè',
-    feedback: 'o lascia un feedback →',
+    feedback: 'o lascia un feedback',
   },
   builder: {
     fillExample: 'Compila esempio',
+    exampleBadge: 'Anteprima di esempio. Inizia a scrivere per sostituirla.',
+    editTab: 'Modifica',
+    previewTab: 'Anteprima',
     reset: 'Azzera',
     resetConfirm: 'Sicuro?',
     saved: 'Salvato',
@@ -2299,7 +2502,23 @@ const it: Translations = {
     letterLabel: 'LETTER',
     a4Label: 'A4',
   },
+  importCv: {
+    title: 'Hai già un CV? Trascinalo qui',
+    hint: 'PDF o TXT. Nulla lascia il tuo browser.',
+    reading: 'Lettura del CV…',
+    tooBig: 'Il file supera i 15 MB.',
+    noText: 'Nessun testo in questo PDF. Le scansioni richiedono un livello di testo.',
+    replaceConfirm: 'L\'importazione sostituisce tutto ciò che hai qui. Continuare?',
+    done: 'Importato. Controlla ogni campo, l\'analisi è una stima.',
+    cantOpen: 'Impossibile aprire il file.',
+  },
   download: { button: 'Scarica PDF: Gratis', preparing: 'Preparazione…' },
+  clause: {
+    title: 'Clausola GDPR',
+    hint: 'Facoltativa. Appare in caratteri piccoli in fondo al CV.',
+    insertDefault: 'Inserisci clausola standard',
+    defaultText: 'Autorizzo il trattamento dei miei dati personali contenuti in questo documento ai fini del processo di selezione, ai sensi del Regolamento (UE) 2016/679 (GDPR).',
+  },
   sections: {
     summary: 'Profilo',
     personal: 'Dati Personali',
@@ -2451,7 +2670,7 @@ const it: Translations = {
 
 // ─── Hindi ────────────────────────────────────────────────────────────────────
 const hi: Translations = {
-  nav: { build: 'अपना रिज्यूमे बनाएं →', github: 'GitHub', coverLetter: 'कवर लेटर →' },
+  nav: { build: 'अपना रिज्यूमे बनाएं', github: 'GitHub', coverLetter: 'कवर लेटर' },
   hero: {
     badge: 'हमेशा के लिए मुफ़्त: कोई खाता नहीं, कोई वाटरमार्क नहीं',
     headline1: 'आपके रिज्यूमे की',
@@ -2465,15 +2684,15 @@ const hi: Translations = {
   roast: {
     eyebrow: 'प्रतिस्पर्धी क्या करते हैं',
     heading: 'दूसरे रिज्यूमे बिल्डर ऐसे करते हैं:',
-    cardNote: '🔒 आपकी फ़ाइल आपकी नहीं है',
+    cardNote: 'आपकी फ़ाइल आपकी नहीं है',
     items: [
-      { line1: 'आपका रिज्यूमे तैयार है!', line2: 'डाउनलोड के लिए $29.99 भुगतान करें 🙃', badge: 'हाहाहा' },
-      { line1: 'अपना रिज्यूमे डाउनलोड करें', line2: 'PDF के लिए $19/माह सदस्यता लें 💀', badge: 'बेकार' },
-      { line1: 'बहुत अच्छा दिख रहा है!', line2: 'एक्सपोर्ट के लिए कार्ड विवरण दर्ज करें 🫠', badge: 'नहीं' },
+      { line1: 'आपका रिज्यूमे तैयार है!', line2: 'डाउनलोड के लिए $29.99 भुगतान करें', badge: 'हाहाहा' },
+      { line1: 'अपना रिज्यूमे डाउनलोड करें', line2: 'PDF के लिए $19/माह सदस्यता लें', badge: 'बेकार' },
+      { line1: 'बहुत अच्छा दिख रहा है!', line2: 'एक्सपोर्ट के लिए कार्ड विवरण दर्ज करें', badge: 'नहीं' },
     ],
   },
   finalCta: {
-    note: '// कोई साइनअप नहीं · कोई कार्ड नहीं · कोई पकड़ नहीं',
+    note: 'कोई साइनअप नहीं · कोई कार्ड नहीं · कोई पकड़ नहीं',
     headline1: 'तैयार हैं',
     headline2: 'ठगे न जाने के लिए?',
   },
@@ -2494,13 +2713,16 @@ const hi: Translations = {
     madeWith: '❤️ और शून्य पेवॉल के साथ बनाया गया',
   },
   support: {
-    builtBy: '// अकेले बनाया, जानबूझकर मुफ्त',
+    builtBy: 'अकेले बनाया, जानबूझकर मुफ्त',
     message: 'अगर इससे नौकरी मिलने में मदद हुई, तो एक कॉफी मेरा दिन बना देगी',
     coffee: 'कॉफी खिलाएं',
-    feedback: 'या फीडबैक दें →',
+    feedback: 'या फीडबैक दें',
   },
   builder: {
     fillExample: 'उदाहरण भरें',
+    exampleBadge: 'उदाहरण पूर्वावलोकन। बदलने के लिए टाइप करना शुरू करें।',
+    editTab: 'संपादन',
+    previewTab: 'पूर्वावलोकन',
     reset: 'रीसेट करें',
     resetConfirm: 'पक्का?',
     saved: 'सहेजा गया',
@@ -2510,7 +2732,23 @@ const hi: Translations = {
     letterLabel: 'LETTER',
     a4Label: 'A4',
   },
+  importCv: {
+    title: 'पहले से CV है? यहाँ छोड़ें',
+    hint: 'PDF या TXT। कुछ भी आपके ब्राउज़र से बाहर नहीं जाता।',
+    reading: 'आपका CV पढ़ा जा रहा है…',
+    tooBig: 'फ़ाइल 15 MB से बड़ी है।',
+    noText: 'इस PDF में टेक्स्ट नहीं है। स्कैन को टेक्स्ट लेयर चाहिए।',
+    replaceConfirm: 'आयात करने से यहाँ का सब कुछ बदल जाएगा। जारी रखें?',
+    done: 'आयात हो गया। हर फ़ील्ड जाँचें, पार्सिंग एक अनुमान है।',
+    cantOpen: 'फ़ाइल नहीं खुल सकी।',
+  },
   download: { button: 'PDF डाउनलोड करें: मुफ़्त', preparing: 'तैयार हो रहा है…' },
+  clause: {
+    title: 'डेटा सहमति खंड',
+    hint: 'वैकल्पिक। रेज़्यूमे के सबसे नीचे छोटे अक्षरों में दिखता है।',
+    insertDefault: 'मानक खंड जोड़ें',
+    defaultText: 'मैं इस दस्तावेज़ में शामिल अपने व्यक्तिगत डेटा को भर्ती प्रक्रिया के प्रयोजनों के लिए, विनियम (EU) 2016/679 (GDPR) के अनुसार संसाधित करने की सहमति देता/देती हूँ।',
+  },
   sections: {
     summary: 'सारांश',
     personal: 'व्यक्तिगत जानकारी',
@@ -2662,7 +2900,7 @@ const hi: Translations = {
 
 // ─── Turkish ──────────────────────────────────────────────────────────────────
 const tr: Translations = {
-  nav: { build: 'Özgeçmişimi oluştur →', github: 'GitHub', coverLetter: 'Ön yazı →' },
+  nav: { build: 'Özgeçmişimi oluştur', github: 'GitHub', coverLetter: 'Ön yazı' },
   hero: {
     badge: 'Sonsuza kadar ücretsiz: hesap yok, filigran yok',
     headline1: 'Özgeçmişiniz',
@@ -2676,15 +2914,15 @@ const tr: Translations = {
   roast: {
     eyebrow: 'rakipler gerçekte ne yapıyor',
     heading: 'Diğer özgeçmiş oluşturucular böyle:',
-    cardNote: '🔒 dosyan sana ait değil',
+    cardNote: 'dosyan sana ait değil',
     items: [
-      { line1: 'Özgeçmişiniz hazır!', line2: 'İndirmek için $29,99 ödeyin 🙃', badge: 'lol' },
-      { line1: 'Özgeçmişinizi indirin', line2: 'PDF için aylık $19 aboneliği gerekli 💀', badge: 'bitti' },
-      { line1: 'Harika görünüyor!', line2: 'Dışa aktarmak için kart bilgilerini girin 🫠', badge: 'hayır' },
+      { line1: 'Özgeçmişiniz hazır!', line2: 'İndirmek için $29,99 ödeyin', badge: 'lol' },
+      { line1: 'Özgeçmişinizi indirin', line2: 'PDF için aylık $19 aboneliği gerekli', badge: 'bitti' },
+      { line1: 'Harika görünüyor!', line2: 'Dışa aktarmak için kart bilgilerini girin', badge: 'hayır' },
     ],
   },
   finalCta: {
-    note: '// kayıt yok · kart yok · tuzak yok',
+    note: 'kayıt yok · kart yok · tuzak yok',
     headline1: 'Hazır mısın?',
     headline2: 'Dolandırılmamak için',
   },
@@ -2705,13 +2943,16 @@ const tr: Translations = {
     madeWith: '❤️ ve sıfır ödeme duvarıyla yapıldı',
   },
   support: {
-    builtBy: '// tek başıma yaptım, bilerek ücretsiz',
+    builtBy: 'tek başıma yaptım, bilerek ücretsiz',
     message: 'iş bulmana yardım ettiyse, bir kahve günümü gerçekten güzelleştirir',
     coffee: 'bana kahve ısmarla',
-    feedback: 'veya geri bildirim bırak →',
+    feedback: 'veya geri bildirim bırak',
   },
   builder: {
     fillExample: 'Örnek doldur',
+    exampleBadge: 'Örnek önizleme. Değiştirmek için yazmaya başlayın.',
+    editTab: 'Düzenle',
+    previewTab: 'Önizleme',
     reset: 'Sıfırla',
     resetConfirm: 'Emin misiniz?',
     saved: 'Kaydedildi',
@@ -2721,7 +2962,23 @@ const tr: Translations = {
     letterLabel: 'LETTER',
     a4Label: 'A4',
   },
+  importCv: {
+    title: 'Zaten CV\'niz var mı? Buraya bırakın',
+    hint: 'PDF veya TXT. Hiçbir şey tarayıcınızdan çıkmaz.',
+    reading: 'CV\'niz okunuyor…',
+    tooBig: 'Dosya 15 MB\'ı aşıyor.',
+    noText: 'Bu PDF\'te metin yok. Taramalar için metin katmanı gerekir.',
+    replaceConfirm: 'İçe aktarma buradaki her şeyi değiştirir. Devam edilsin mi?',
+    done: 'İçe aktarıldı. Ayrıştırma tahminidir, her alanı kontrol edin.',
+    cantOpen: 'Dosya açılamadı.',
+  },
   download: { button: 'PDF İndir: Ücretsiz', preparing: 'Hazırlanıyor…' },
+  clause: {
+    title: 'KVKK / GDPR Metni',
+    hint: 'İsteğe bağlı. Özgeçmişin en altında küçük puntoyla görünür.',
+    insertDefault: 'Standart metni ekle',
+    defaultText: 'Bu belgede yer alan kişisel verilerimin, işe alım süreci amacıyla ve (AB) 2016/679 sayılı Tüzük (GDPR) uyarınca işlenmesine onay veriyorum.',
+  },
   sections: {
     summary: 'Özet',
     personal: 'Kişisel Bilgiler',
@@ -2873,7 +3130,7 @@ const tr: Translations = {
 
 // ─── Dutch ────────────────────────────────────────────────────────────────────
 const nl: Translations = {
-  nav: { build: 'Maak mijn cv →', github: 'GitHub', coverLetter: 'Motivatiebrief →' },
+  nav: { build: 'Maak mijn cv', github: 'GitHub', coverLetter: 'Motivatiebrief' },
   hero: {
     badge: 'Voor altijd gratis: geen account, geen watermerk',
     headline1: 'Jouw cv',
@@ -2887,15 +3144,15 @@ const nl: Translations = {
   roast: {
     eyebrow: 'wat concurrenten echt doen',
     heading: 'Andere cv-bouwers doen dit:',
-    cardNote: '🔒 jouw bestand is niet van jou',
+    cardNote: 'jouw bestand is niet van jou',
     items: [
-      { line1: 'Jouw cv is klaar!', line2: 'Betaal $29,99 om te downloaden 🙃', badge: 'lol' },
-      { line1: 'Download je cv', line2: 'Abonneer voor $19/mnd om PDF te ontgrendelen 💀', badge: 'dood' },
-      { line1: 'Ziet er goed uit!', line2: 'Voer kaartgegevens in om te exporteren 🫠', badge: 'nee' },
+      { line1: 'Jouw cv is klaar!', line2: 'Betaal $29,99 om te downloaden', badge: 'lol' },
+      { line1: 'Download je cv', line2: 'Abonneer voor $19/mnd om PDF te ontgrendelen', badge: 'dood' },
+      { line1: 'Ziet er goed uit!', line2: 'Voer kaartgegevens in om te exporteren', badge: 'nee' },
     ],
   },
   finalCta: {
-    note: '// geen account · geen kaart · geen addertje',
+    note: 'geen account · geen kaart · geen addertje',
     headline1: 'Klaar om',
     headline2: 'niet opgelicht te worden?',
   },
@@ -2916,13 +3173,16 @@ const nl: Translations = {
     madeWith: 'Gemaakt met ❤️ en nul betaalmuren',
   },
   support: {
-    builtBy: '// solo gebouwd, bewust gratis',
+    builtBy: 'solo gebouwd, bewust gratis',
     message: 'als het je heeft geholpen iets te landen, zou een koffie mijn dag echt maken',
     coffee: 'trakteer me op koffie',
-    feedback: 'of laat feedback achter →',
+    feedback: 'of laat feedback achter',
   },
   builder: {
     fillExample: 'Voorbeeld invullen',
+    exampleBadge: 'Voorbeeldweergave. Begin te typen om te vervangen.',
+    editTab: 'Bewerken',
+    previewTab: 'Voorbeeld',
     reset: 'Resetten',
     resetConfirm: 'Zeker weten?',
     saved: 'Opgeslagen',
@@ -2932,7 +3192,23 @@ const nl: Translations = {
     letterLabel: 'LETTER',
     a4Label: 'A4',
   },
+  importCv: {
+    title: 'Al een cv? Sleep het hierheen',
+    hint: 'PDF of TXT. Niets verlaat je browser.',
+    reading: 'Je cv wordt gelezen…',
+    tooBig: 'Het bestand is groter dan 15 MB.',
+    noText: 'Geen tekst in deze PDF. Scans hebben een tekstlaag nodig.',
+    replaceConfirm: 'Importeren vervangt alles wat je hier hebt. Doorgaan?',
+    done: 'Geïmporteerd. Controleer elk veld, het parsen is een schatting.',
+    cantOpen: 'Kon het bestand niet openen.',
+  },
   download: { button: 'PDF downloaden: Gratis', preparing: 'Voorbereiden…' },
+  clause: {
+    title: 'AVG-clausule',
+    hint: 'Optioneel. Verschijnt in kleine letters helemaal onderaan het cv.',
+    insertDefault: 'Standaardclausule invoegen',
+    defaultText: 'Ik geef toestemming voor de verwerking van mijn persoonsgegevens in dit document ten behoeve van de sollicitatieprocedure, in overeenstemming met Verordening (EU) 2016/679 (AVG).',
+  },
   sections: {
     summary: 'Samenvatting',
     personal: 'Persoonlijke gegevens',
@@ -3084,7 +3360,7 @@ const nl: Translations = {
 
 // ─── Polish ───────────────────────────────────────────────────────────────────
 const pl: Translations = {
-  nav: { build: 'Stwórz moje CV →', github: 'GitHub', coverLetter: 'List motywacyjny →' },
+  nav: { build: 'Stwórz moje CV', github: 'GitHub', coverLetter: 'List motywacyjny' },
   hero: {
     badge: 'Za darmo na zawsze: bez konta, bez znaku wodnego',
     headline1: 'Twoje CV',
@@ -3098,15 +3374,15 @@ const pl: Translations = {
   roast: {
     eyebrow: 'co robią konkurenci',
     heading: 'Inne kreatory CV robią tak:',
-    cardNote: '🔒 twój plik nie jest twój',
+    cardNote: 'twój plik nie jest twój',
     items: [
-      { line1: 'Twoje CV jest gotowe!', line2: 'Zapłać $29,99, żeby pobrać 🙃', badge: 'haha' },
-      { line1: 'Pobierz swoje CV', line2: 'Subskrybuj za $19/mies. dla PDF 💀', badge: 'dramat' },
-      { line1: 'Świetnie wygląda!', line2: 'Podaj dane karty, żeby wyeksportować 🫠', badge: 'nie' },
+      { line1: 'Twoje CV jest gotowe!', line2: 'Zapłać $29,99, żeby pobrać', badge: 'haha' },
+      { line1: 'Pobierz swoje CV', line2: 'Subskrybuj za $19/mies. dla PDF', badge: 'dramat' },
+      { line1: 'Świetnie wygląda!', line2: 'Podaj dane karty, żeby wyeksportować', badge: 'nie' },
     ],
   },
   finalCta: {
-    note: '// bez rejestracji · bez karty · bez haczyka',
+    note: 'bez rejestracji · bez karty · bez haczyka',
     headline1: 'Gotowy,',
     headline2: 'żeby nie dać się oszukać?',
   },
@@ -3127,13 +3403,16 @@ const pl: Translations = {
     madeWith: 'Zrobione z ❤️ i zerowym paywallem',
   },
   support: {
-    builtBy: '// zbudowane solo, celowo darmowe',
+    builtBy: 'zbudowane solo, celowo darmowe',
     message: 'jeśli pomogłem ci zdobyć pracę, kawa naprawdę by mnie uszczęśliwiła',
     coffee: 'postaw mi kawę',
-    feedback: 'lub zostaw opinię →',
+    feedback: 'lub zostaw opinię',
   },
   builder: {
     fillExample: 'Wypełnij przykładem',
+    exampleBadge: 'Podgląd przykładu. Zacznij pisać, aby go zastąpić.',
+    editTab: 'Edycja',
+    previewTab: 'Podgląd',
     reset: 'Resetuj',
     resetConfirm: 'Na pewno?',
     saved: 'Zapisano',
@@ -3143,7 +3422,23 @@ const pl: Translations = {
     letterLabel: 'LETTER',
     a4Label: 'A4',
   },
+  importCv: {
+    title: 'Masz już CV? Upuść je tutaj',
+    hint: 'PDF lub TXT. Nic nie opuszcza Twojej przeglądarki.',
+    reading: 'Czytam Twoje CV…',
+    tooBig: 'Plik przekracza 15 MB.',
+    noText: 'Brak tekstu w tym PDF. Skany potrzebują warstwy tekstowej.',
+    replaceConfirm: 'Import zastąpi wszystko, co tu masz. Kontynuować?',
+    done: 'Zaimportowano. Sprawdź każde pole, parsowanie to szacunek.',
+    cantOpen: 'Nie udało się otworzyć pliku.',
+  },
   download: { button: 'Pobierz PDF: Za darmo', preparing: 'Przygotowywanie…' },
+  clause: {
+    title: 'Klauzula RODO',
+    hint: 'Opcjonalna. Pojawia się drobnym drukiem na samym dole CV.',
+    insertDefault: 'Wstaw standardową klauzulę',
+    defaultText: 'Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w niniejszym dokumencie dla potrzeb niezbędnych do realizacji procesu rekrutacji zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. (RODO).',
+  },
   sections: {
     summary: 'Podsumowanie',
     personal: 'Dane osobowe',

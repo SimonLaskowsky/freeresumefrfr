@@ -1,5 +1,7 @@
 import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SANS } from './fonts';
+import { Clause } from './Clause';
+import { SectionHead } from './SectionHead';
 import type { ResumeData } from '@/store/resumeStore';
 
 interface Labels {
@@ -87,9 +89,9 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Summary */}
         {data.summary && (
           <View>
-            <View minPresenceAhead={120}>
+            <SectionHead>
               <Text style={[s.sectionTitle, { marginTop: 0, color: accentColor }]}>{labels.summary}</Text>
-            </View>
+            </SectionHead>
             <View style={s.divider} />
             <Text style={{ fontSize: 9.5, color: '#475569', lineHeight: 1.5 }}>{data.summary}</Text>
           </View>
@@ -97,9 +99,9 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {experience.length > 0 && (
           <View>
-            <View minPresenceAhead={120}>
+            <SectionHead>
               <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.experience}</Text>
-            </View>
+            </SectionHead>
             <View style={s.divider} />
             {experience.map((exp) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
@@ -136,10 +138,10 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
-          <View wrap={false}>
-            <View minPresenceAhead={120}>
+          <View>
+            <SectionHead>
               <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.projects}</Text>
-            </View>
+            </SectionHead>
             <View style={s.divider} />
             {data.projects.map((proj) => {
               const bullets = (proj.bullets || []).filter((b) => b.trim());
@@ -173,9 +175,9 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {education.length > 0 && (
           <View>
-            <View minPresenceAhead={120}>
+            <SectionHead>
               <Text style={[s.sectionTitle, { marginTop: experience.length > 0 ? 18 : 20, color: accentColor }]}>{labels.education}</Text>
-            </View>
+            </SectionHead>
             <View style={s.divider} />
             {education.map((edu) => {
               const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' - ');
@@ -195,10 +197,10 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
-          <View wrap={false}>
-            <View minPresenceAhead={120}>
+          <View>
+            <SectionHead>
               <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.certifications}</Text>
-            </View>
+            </SectionHead>
             <View style={s.divider} />
             {data.certifications.map((cert, idx) => (
               <View
@@ -217,10 +219,10 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
         )}
 
         {data.languages && data.languages.length > 0 && (
-          <View wrap={false}>
-            <View minPresenceAhead={120}>
+          <View>
+            <SectionHead>
               <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.languages}</Text>
-            </View>
+            </SectionHead>
             <View style={s.divider} />
             {(data.languages ?? []).map((lang, idx) => (
               <View key={lang.id} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: idx === (data.languages ?? []).length - 1 ? 0 : 3 }}>
@@ -232,15 +234,15 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
         )}
 
         {(skills || (data.skillGroups?.length ?? 0) > 0) && (
-          <View wrap={false}>
-            <View minPresenceAhead={120}>
+          <View>
+            <SectionHead>
               <Text style={[s.sectionTitle, { marginTop: 18, color: accentColor }]}>{labels.skills}</Text>
-            </View>
+            </SectionHead>
             <View style={s.divider} />
             {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>
                 {data.skillGroups.map((group, idx) => (
-                  <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
+                  <View wrap={false} key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
                     {group.category ? <Text style={{ fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: accentColor, marginBottom: 2 }}>{group.category}</Text> : null}
                     <Text style={s.skills}>{group.items}</Text>
                   </View>
@@ -251,6 +253,7 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
             )}
           </View>
         )}
+        <Clause text={data.rodoClause} />
       </Page>
     </Document>
   );

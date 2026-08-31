@@ -93,6 +93,9 @@ JĘZYKI: angielski (C1), niemiecki (A2)
 
 UMIEJĘTNOŚCI
 Negocjacje, CRM, Excel
+
+Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w niniejszym CV
+dla potrzeb niezbędnych do realizacji procesu rekrutacji (RODO).
 `);
 assert.equal(pl.personal.name, 'Jan Kowalski');
 assert.equal(pl.personal.phone.trim(), '+48 601 234 567');
@@ -103,7 +106,8 @@ assert.equal(pl.experience[0].bullets.length, 2);
 assert.equal(pl.education[0].school, 'Uniwersytet Warszawski');
 assert.equal(pl.languages.length, 2);
 assert.equal(pl.languages[0].name, 'angielski');
-assert.equal(pl.skills, 'Negocjacje, CRM, Excel');
+assert.equal(pl.skills, 'Negocjacje, CRM, Excel', 'clause paragraph does not leak into skills');
+assert.match(pl.rodoClause ?? '', /^Wyrażam zgodę .* \(RODO\)\.$/, 'wrapped clause lines are joined');
 
 // --- real two column CV, as the extractor emits it (sidebar first) -----
 // Letter spaced headings, dates glued to the role, tech rows with no label,

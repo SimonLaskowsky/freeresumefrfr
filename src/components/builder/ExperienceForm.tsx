@@ -24,7 +24,7 @@ export default function ExperienceForm() {
   return (
     <SectionWrapper
       title={t.sections.experience}
-      icon="💼"
+
       count={data.experience.length}
       tip={t.tips.experience}
       action={

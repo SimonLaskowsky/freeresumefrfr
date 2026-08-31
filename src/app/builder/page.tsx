@@ -14,6 +14,7 @@ import ProjectsForm from '@/components/builder/ProjectsForm';
 import CertificationsForm from '@/components/builder/CertificationsForm';
 import LanguagesForm from '@/components/builder/LanguagesForm';
 import SkillsForm from '@/components/builder/SkillsForm';
+import ClauseForm from '@/components/builder/ClauseForm';
 import TemplatePicker from '@/components/TemplatePicker';
 import CompletenessScore from '@/components/CompletenessScore';
 import CompanyLogoUpload from '@/components/builder/CompanyLogoUpload';
@@ -51,6 +52,7 @@ export default function BuilderPage() {
   const isExampleMode =
     !debouncedData.personal.name.trim() &&
     !debouncedData.summary.trim() &&
+    !debouncedData.rodoClause?.trim() &&
     debouncedData.experience.length === 0 &&
     debouncedData.education.length === 0;
 
@@ -107,7 +109,7 @@ export default function BuilderPage() {
                 : 'text-zinc-600 hover:text-zinc-400'
             }`}
           >
-            {tab === 'form' ? '✏ Edit' : '👁 Preview'}
+            {tab === 'form' ? t.builder.editTab : t.builder.previewTab}
           </button>
         ))}
       </div>
@@ -123,11 +125,11 @@ export default function BuilderPage() {
           {/* Row 1: nav */}
           <div className="flex items-center justify-between px-4 pt-2.5 pb-1.5 gap-3">
             <Link href="/" className="text-sm font-bold text-lime-400 hover:text-lime-300 transition-colors flex-shrink-0">
-              ← frfr
+              frfr
             </Link>
             <CompletenessScore />
             <Link href="/cover-letter" className="text-[11px] text-zinc-400 hover:text-lime-400 transition-colors font-medium flex-shrink-0 whitespace-nowrap">
-              Cover Letter →
+              {t.coverLetter.pageTitle}
             </Link>
           </div>
           {/* Row 2: actions */}
@@ -135,7 +137,7 @@ export default function BuilderPage() {
             <button
               onClick={loadSampleData}
               className="text-[11px] text-zinc-400 hover:text-lime-400 transition-colors font-medium whitespace-nowrap"
-              title="Fill with example data"
+              title={t.builder.fillExample}
             >
               {t.builder.fillExample}
             </button>
@@ -147,7 +149,7 @@ export default function BuilderPage() {
                   ? 'text-red-400 hover:text-red-300'
                   : 'text-zinc-500 hover:text-zinc-300'
               }`}
-              title="Clear all data"
+              title={t.builder.reset}
             >
               {resetState === 'confirm' ? t.builder.resetConfirm : t.builder.reset}
             </button>
@@ -177,6 +179,8 @@ export default function BuilderPage() {
           <LanguagesForm />
           {DIVIDER}
           <SkillsForm />
+          {DIVIDER}
+          <ClauseForm />
           <div className="h-8" />
         </div>
       </div>
@@ -197,9 +201,9 @@ export default function BuilderPage() {
           <ResumePreviewPanel key={reorderVersion} data={previewData} templateId={templateId} accentColor={accentColor} companyLogo={companyLogo} />
           {isExampleMode && (
             <div className="absolute top-3 inset-x-0 flex justify-center z-10 pointer-events-none">
-              <div className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900/90 border border-zinc-700/50 rounded-full text-[11px] text-zinc-500 font-mono backdrop-blur-sm whitespace-nowrap">
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900/90 border border-zinc-700/50 rounded-full text-[11px] text-zinc-500 backdrop-blur-sm whitespace-nowrap">
                 <span className="w-1.5 h-1.5 rounded-full bg-zinc-600 inline-block" />
-                example · start typing to replace
+                {t.builder.exampleBadge}
               </div>
             </div>
           )}

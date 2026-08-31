@@ -1,5 +1,7 @@
 import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SERIF } from './fonts';
+import { Clause } from './Clause';
+import { SectionHead } from './SectionHead';
 import type { ResumeData } from '@/store/resumeStore';
 
 interface Labels {
@@ -94,9 +96,9 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Summary */}
         {data.summary && (
           <View>
-            <View minPresenceAhead={120}>
+            <SectionHead>
               <Text style={s.sectionTitle}>{labels.summary}</Text>
-            </View>
+            </SectionHead>
             <View style={s.thinRule} />
             <Text style={{ fontSize: 9.5, color: '#333333', lineHeight: 1.6, textAlign: 'center' }}>{data.summary}</Text>
           </View>
@@ -104,9 +106,9 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {experience.length > 0 && (
           <View>
-            <View minPresenceAhead={120}>
+            <SectionHead>
               <Text style={s.sectionTitle}>{labels.experience}</Text>
-            </View>
+            </SectionHead>
             <View style={s.thinRule} />
             {experience.map((exp) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
@@ -143,10 +145,10 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
-          <View wrap={false}>
-            <View minPresenceAhead={120}>
+          <View>
+            <SectionHead>
               <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.projects}</Text>
-            </View>
+            </SectionHead>
             <View style={s.thinRule} />
             {data.projects.map((proj) => {
               const bullets = (proj.bullets || []).filter((b) => b.trim());
@@ -180,9 +182,9 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {education.length > 0 && (
           <View>
-            <View minPresenceAhead={120}>
+            <SectionHead>
               <Text style={[s.sectionTitle, { marginTop: experience.length > 0 ? 12 : 14 }]}>{labels.education}</Text>
-            </View>
+            </SectionHead>
             <View style={s.thinRule} />
             {education.map((edu) => {
               const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' - ');
@@ -200,10 +202,10 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
-          <View wrap={false}>
-            <View minPresenceAhead={120}>
+          <View>
+            <SectionHead>
               <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.certifications}</Text>
-            </View>
+            </SectionHead>
             <View style={s.thinRule} />
             {data.certifications.map((cert, idx) => (
               <View
@@ -221,10 +223,10 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
         )}
 
         {data.languages && data.languages.length > 0 && (
-          <View wrap={false}>
-            <View minPresenceAhead={120}>
+          <View>
+            <SectionHead>
               <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.languages}</Text>
-            </View>
+            </SectionHead>
             <View style={s.thinRule} />
             {(data.languages ?? []).map((lang, idx) => (
               <View key={lang.id} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: idx === (data.languages ?? []).length - 1 ? 0 : 3 }}>
@@ -236,15 +238,15 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
         )}
 
         {(skills || (data.skillGroups?.length ?? 0) > 0) && (
-          <View wrap={false}>
-            <View minPresenceAhead={120}>
+          <View>
+            <SectionHead>
               <Text style={[s.sectionTitle, { marginTop: 12 }]}>{labels.skills}</Text>
-            </View>
+            </SectionHead>
             <View style={s.thinRule} />
             {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>
                 {data.skillGroups.map((group, idx) => (
-                  <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
+                  <View wrap={false} key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
                     {group.category ? <Text style={{ fontSize: 7.5, fontFamily: SERIF, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: accentColor, marginBottom: 2 }}>{group.category}</Text> : null}
                     <Text style={s.skills}>{group.items}</Text>
                   </View>
@@ -255,6 +257,7 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
             )}
           </View>
         )}
+        <Clause text={data.rodoClause} />
       </Page>
     </Document>
   );

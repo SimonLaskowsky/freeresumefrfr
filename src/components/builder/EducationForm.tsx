@@ -23,7 +23,7 @@ export default function EducationForm() {
   return (
     <SectionWrapper
       title={t.sections.education}
-      icon="🎓"
+
       count={data.education.length}
       tip={t.tips.education}
       action={

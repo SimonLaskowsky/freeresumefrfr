@@ -24,7 +24,7 @@ export default function LanguagesForm() {
   return (
     <SectionWrapper
       title={t.sections.languages}
-      icon="🌐"
+
       count={languages.length}
       tip={t.tips.languages}
       action={

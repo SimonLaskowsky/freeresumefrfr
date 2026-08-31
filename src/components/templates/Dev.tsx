@@ -1,5 +1,7 @@
 import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SANS } from './fonts';
+import { Clause } from './Clause';
+import { SectionHead } from './SectionHead';
 import type { ResumeData } from '@/store/resumeStore';
 
 interface Props {
@@ -50,11 +52,13 @@ export function DevTemplate({ data, labels, accentColor, companyLogo }: Props) {
 
   function CommentSection({ label, children }: { label: string; children: React.ReactNode }) {
     return (
-      <View minPresenceAhead={120} wrap={false}>
-        <Text style={[s.sectionComment, { color: accentColor }]}>{`// ${label}`}</Text>
-        <View style={s.sectionRule} />
+      <>
+        <SectionHead>
+          <Text style={[s.sectionComment, { color: accentColor }]}>{`// ${label}`}</Text>
+          <View style={s.sectionRule} />
+        </SectionHead>
         {children}
-      </View>
+      </>
     );
   }
 
@@ -208,7 +212,7 @@ export function DevTemplate({ data, labels, accentColor, companyLogo }: Props) {
             {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>
                 {data.skillGroups.map((group, idx) => (
-                  <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 8 : 0 }}>
+                  <View wrap={false} key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 8 : 0 }}>
                     {group.category ? <Text style={{ fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: accentColor, marginBottom: 4 }}>{group.category}</Text> : null}
                     <View style={s.skillsRow}>
                       {group.items.split(',').filter((t: string) => t.trim()).map((skill: string, i: number) => (
@@ -231,6 +235,7 @@ export function DevTemplate({ data, labels, accentColor, companyLogo }: Props) {
             )}
           </CommentSection>
         )}
+        <Clause text={data.rodoClause} />
       </Page>
     </Document>
   );

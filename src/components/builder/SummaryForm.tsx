@@ -12,7 +12,7 @@ export default function SummaryForm() {
   return (
     <SectionWrapper
       title={t.sections.summary}
-      icon="✦"
+
       tip={t.tips.summary}
     >
       <textarea

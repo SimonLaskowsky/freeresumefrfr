@@ -66,7 +66,7 @@ export default function CoverLetterPage() {
                 : 'text-zinc-600 hover:text-zinc-400'
             }`}
           >
-            {tab === 'form' ? '✏ Edit' : '👁 Preview'}
+            {tab === 'form' ? t.builder.editTab : t.builder.previewTab}
           </button>
         ))}
       </div>
@@ -82,7 +82,7 @@ export default function CoverLetterPage() {
           {/* Row 1: nav */}
           <div className="flex items-center justify-between px-4 pt-2.5 pb-1.5 gap-3">
             <Link href="/" className="text-sm font-bold text-lime-400 hover:text-lime-300 transition-colors flex-shrink-0">
-              ← frfr
+              frfr
             </Link>
             <span className="text-xs font-bold uppercase tracking-widest text-zinc-500 truncate">
               {t.coverLetter.pageTitle}
@@ -91,7 +91,7 @@ export default function CoverLetterPage() {
               href="/builder"
               className="text-[11px] text-zinc-400 hover:text-lime-400 transition-colors font-medium flex-shrink-0 whitespace-nowrap"
             >
-              Resume →
+              CV
             </Link>
           </div>
           {/* Row 2: actions */}
@@ -99,7 +99,7 @@ export default function CoverLetterPage() {
             <button
               onClick={loadSampleData}
               className="text-[11px] text-zinc-400 hover:text-lime-400 transition-colors font-medium whitespace-nowrap"
-              title="Fill with example data"
+              title={t.builder.fillExample}
             >
               {t.builder.fillExample}
             </button>

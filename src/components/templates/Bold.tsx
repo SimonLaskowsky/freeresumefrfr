@@ -1,5 +1,7 @@
 import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SANS } from './fonts';
+import { Clause } from './Clause';
+import { SectionHead } from './SectionHead';
 import type { ResumeData } from '@/store/resumeStore';
 
 interface Labels {
@@ -16,9 +18,12 @@ interface Labels {
 const HEADER_BG = '#0f172a';
 
 const s = StyleSheet.create({
-  page: { fontFamily: SANS, fontSize: 10, color: '#1a1a1a', paddingBottom: 40 },
+  // paddingTop keeps continuation pages off the page edge; the header pulls
+  // itself back up with a negative margin so its dark block still bleeds to
+  // the top of page 1.
+  page: { fontFamily: SANS, fontSize: 10, color: '#1a1a1a', paddingTop: 24, paddingBottom: 40 },
 
-  header: { backgroundColor: HEADER_BG, paddingTop: 30, paddingBottom: 26, paddingHorizontal: 48 },
+  header: { backgroundColor: HEADER_BG, marginTop: -24, paddingTop: 30, paddingBottom: 26, paddingHorizontal: 48 },
   name: { fontSize: 26, fontFamily: SANS, fontWeight: 700, color: '#ffffff', marginBottom: 4, letterSpacing: 0.2 },
   titleLine: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
   accentBar: { width: 3, height: 14, marginRight: 8 },
@@ -106,18 +111,18 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
           {/* Summary */}
           {data.summary && (
             <View>
-              <View minPresenceAhead={120}>
+              <SectionHead>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.summary}</Text>
-              </View>
+              </SectionHead>
               <Text style={{ fontSize: 9.5, color: '#374151', lineHeight: 1.5 }}>{data.summary}</Text>
             </View>
           )}
 
           {experience.length > 0 && (
             <View>
-              <View minPresenceAhead={120}>
+              <SectionHead>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.experience}</Text>
-              </View>
+              </SectionHead>
               {experience.map((exp) => {
                 const bullets = (exp.bullets || []).filter((b) => b.trim());
                 const dateRange = exp.current
@@ -152,10 +157,10 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
 
           {/* Projects */}
           {data.projects && data.projects.length > 0 && (
-            <View wrap={false}>
-              <View minPresenceAhead={120}>
+            <View>
+              <SectionHead>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.projects}</Text>
-              </View>
+              </SectionHead>
               {data.projects.map((proj) => {
                 const bullets = (proj.bullets || []).filter((b) => b.trim());
                 return (
@@ -188,9 +193,9 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
 
           {education.length > 0 && (
             <View>
-              <View minPresenceAhead={120}>
+              <SectionHead>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.education}</Text>
-              </View>
+              </SectionHead>
               {education.map((edu) => {
                 const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' - ');
                 return (
@@ -208,10 +213,10 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
 
           {/* Certifications */}
           {data.certifications && data.certifications.length > 0 && (
-            <View wrap={false}>
-              <View minPresenceAhead={120}>
+            <View>
+              <SectionHead>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.certifications}</Text>
-              </View>
+              </SectionHead>
               {data.certifications.map((cert, idx) => (
                 <View
                   key={cert.id}
@@ -229,10 +234,10 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
           )}
 
           {data.languages && data.languages.length > 0 && (
-            <View wrap={false}>
-              <View minPresenceAhead={120}>
+            <View>
+              <SectionHead>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.languages}</Text>
-              </View>
+              </SectionHead>
               {(data.languages ?? []).map((lang, idx) => (
                 <View key={lang.id} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: idx === (data.languages ?? []).length - 1 ? 0 : 4 }}>
                   <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{lang.name}</Text>
@@ -243,14 +248,14 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
           )}
 
           {(skills || (data.skillGroups?.length ?? 0) > 0) && (
-            <View wrap={false}>
-              <View minPresenceAhead={120}>
+            <View>
+              <SectionHead>
                 <Text style={[s.sectionTitle, { borderBottomColor: accentColor }]}>{labels.skills}</Text>
-              </View>
+              </SectionHead>
               {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>
                 {data.skillGroups.map((group, idx) => (
-                  <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
+                  <View wrap={false} key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
                     {group.category ? <Text style={{ fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: accentColor, marginBottom: 2 }}>{group.category}</Text> : null}
                     <Text style={s.skills}>{group.items}</Text>
                   </View>
@@ -262,6 +267,7 @@ export function BoldTemplate({ data, labels, accentColor, companyLogo }: { data:
             </View>
           )}
         </View>
+        <Clause text={data.rodoClause} style={{ paddingHorizontal: 48 }} />
       </Page>
     </Document>
   );

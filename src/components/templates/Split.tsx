@@ -1,5 +1,7 @@
 import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SANS } from './fonts';
+import { Clause } from './Clause';
+import { SectionHead } from './SectionHead';
 import type { ResumeData } from '@/store/resumeStore';
 
 interface Props {
@@ -101,12 +103,12 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
               </View>
             )}
             {(skills || (data.skillGroups?.length ?? 0) > 0) && (
-              <View wrap={false}>
+              <View>
                 <Pill label={labels.skills} />
                 {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>
                 {data.skillGroups.map((group, idx) => (
-                  <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
+                  <View wrap={false} key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
                     {group.category ? <Text style={{ fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: accentColor, marginBottom: 2 }}>{group.category}</Text> : null}
                     <Text style={s.skills}>{group.items}</Text>
                   </View>
@@ -118,7 +120,7 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
               </View>
             )}
             {education.length > 0 && (
-              <View wrap={false}>
+              <View>
                 <Pill label={labels.education} />
                 {education.map((edu) => {
                   const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' - ');
@@ -136,7 +138,7 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
               </View>
             )}
             {data.certifications && data.certifications.length > 0 && (
-              <View wrap={false}>
+              <View>
                 <Pill label={labels.certifications} />
                 {data.certifications.map((cert, idx) => (
                   <View
@@ -151,7 +153,7 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
             )}
 
             {data.languages && data.languages.length > 0 && (
-              <View wrap={false}>
+              <View>
                 <Pill label={labels.languages} />
                 {(data.languages ?? []).map((lang, idx) => (
                   <View key={lang.id} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: idx === (data.languages ?? []).length - 1 ? 0 : 3 }}>
@@ -201,7 +203,7 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
               </View>
             )}
             {data.projects && data.projects.length > 0 && (
-              <View wrap={false}>
+              <View>
                 <Pill label={labels.projects} />
                 {data.projects.map((proj) => {
                   const bullets = (proj.bullets || []).filter((b) => b.trim());
@@ -234,6 +236,7 @@ export function SplitTemplate({ data, labels, accentColor, companyLogo }: Props)
             )}
           </View>
         </View>
+        <Clause text={data.rodoClause} />
       </Page>
     </Document>
   );

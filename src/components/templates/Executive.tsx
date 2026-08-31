@@ -1,5 +1,6 @@
 import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SANS } from './fonts';
+import { Clause } from './Clause';
 import type { ResumeData } from '@/store/resumeStore';
 
 interface Labels {
@@ -58,7 +59,7 @@ const s = StyleSheet.create({
 
 function LabeledSection({ label, children, accentColor }: { label: string; children: React.ReactNode; accentColor: string }) {
   return (
-    <View style={s.sectionRow} minPresenceAhead={120} wrap={false}>
+    <View style={s.sectionRow} minPresenceAhead={120}>
       <View style={s.sectionLabelCol}>
         <Text style={[s.sectionLabel, { color: accentColor }]}>{label}</Text>
       </View>
@@ -232,7 +233,7 @@ export function ExecutiveTemplate({ data, labels, accentColor, companyLogo }: { 
             {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>
                 {data.skillGroups.map((group, idx) => (
-                  <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
+                  <View wrap={false} key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
                     {group.category ? <Text style={{ fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: accentColor, marginBottom: 2 }}>{group.category}</Text> : null}
                     <Text style={s.skills}>{group.items}</Text>
                   </View>
@@ -243,6 +244,7 @@ export function ExecutiveTemplate({ data, labels, accentColor, companyLogo }: { 
             )}
           </LabeledSection>
         )}
+        <Clause text={data.rodoClause} />
       </Page>
     </Document>
   );

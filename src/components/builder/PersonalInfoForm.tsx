@@ -15,7 +15,7 @@ export default function PersonalInfoForm() {
   return (
     <SectionWrapper
       title={t.sections.personal}
-      icon="👤"
+
       tip={t.tips.personal}
     >
       <div className="grid grid-cols-2 gap-3">

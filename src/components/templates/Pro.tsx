@@ -1,5 +1,7 @@
 import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SANS } from './fonts';
+import { Clause } from './Clause';
+import { SectionHead } from './SectionHead';
 import type { ResumeData } from '@/store/resumeStore';
 
 interface Labels {
@@ -59,10 +61,12 @@ const s = StyleSheet.create({
 
 function Section({ title, children, accentColor }: { title: string; children: React.ReactNode; accentColor: string }) {
   return (
-    <View style={s.sectionBlock} minPresenceAhead={120} wrap={false}>
+    <View style={s.sectionBlock} minPresenceAhead={120}>
       <View style={[s.sectionBorder, { backgroundColor: accentColor }]} />
       <View style={s.sectionContent}>
-        <Text style={[s.sectionTitle, { color: accentColor }]}>{title}</Text>
+        <SectionHead>
+          <Text style={[s.sectionTitle, { color: accentColor }]}>{title}</Text>
+        </SectionHead>
         {children}
       </View>
     </View>
@@ -238,7 +242,7 @@ export function ProTemplate({ data, labels, accentColor, companyLogo }: { data: 
             {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>
                 {data.skillGroups.map((group, idx) => (
-                  <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
+                  <View wrap={false} key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
                     {group.category ? <Text style={{ fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: accentColor, marginBottom: 2 }}>{group.category}</Text> : null}
                     <Text style={s.skills}>{group.items}</Text>
                   </View>
@@ -249,6 +253,7 @@ export function ProTemplate({ data, labels, accentColor, companyLogo }: { data: 
             )}
           </Section>
         )}
+        <Clause text={data.rodoClause} />
       </Page>
     </Document>
   );

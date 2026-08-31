@@ -22,7 +22,7 @@ export default function PrivacyPage() {
             freeresumefrfr
           </Link>
           <Link href="/builder" className="text-xs font-semibold text-zinc-400 hover:text-white transition-colors">
-            Build my resume →
+            Build my resume
           </Link>
         </nav>
       </div>
@@ -136,7 +136,7 @@ export default function PrivacyPage() {
             freeresumefrfr
           </Link>
           <Link href="/" className="text-xs text-zinc-700 hover:text-zinc-400 transition-colors">
-            ← Back to home
+            Back to home
           </Link>
         </div>
       </footer>

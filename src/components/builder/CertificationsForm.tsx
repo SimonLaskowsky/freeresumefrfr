@@ -23,7 +23,7 @@ export default function CertificationsForm() {
   return (
     <SectionWrapper
       title={t.sections.certifications}
-      icon="✪"
+
       count={data.certifications.length}
       tip={t.tips.certifications}
       action={

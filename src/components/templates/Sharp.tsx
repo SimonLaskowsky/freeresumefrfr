@@ -1,5 +1,7 @@
 import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SANS } from './fonts';
+import { Clause } from './Clause';
+import { SectionHead } from './SectionHead';
 import type { ResumeData } from '@/store/resumeStore';
 
 interface Props {
@@ -10,8 +12,11 @@ interface Props {
 }
 
 const s = StyleSheet.create({
-  page: { fontFamily: SANS, fontSize: 10, color: '#1a1a1a', paddingBottom: 40 },
-  header: { paddingTop: 28, paddingBottom: 24, paddingHorizontal: 48 },
+  // paddingTop keeps continuation pages off the page edge; the header pulls
+  // itself back up with a negative margin so its accent block still bleeds to
+  // the top of page 1.
+  page: { fontFamily: SANS, fontSize: 10, color: '#1a1a1a', paddingTop: 24, paddingBottom: 40 },
+  header: { marginTop: -24, paddingTop: 28, paddingBottom: 24, paddingHorizontal: 48 },
   name: { fontSize: 26, fontFamily: SANS, fontWeight: 700, color: '#ffffff', marginBottom: 4, letterSpacing: 0.2 },
   titleLine: { fontSize: 11, color: '#ffffff', opacity: 0.85, marginBottom: 10 },
   contactRow: { flexDirection: 'row', flexWrap: 'wrap', fontSize: 8.5, color: '#ffffff', opacity: 0.75 },
@@ -54,10 +59,12 @@ export function SharpTemplate({ data, labels, accentColor, companyLogo }: Props)
 
   function Section({ title, children }: { title: string; children: React.ReactNode }) {
     return (
-      <View style={s.sectionBlock} minPresenceAhead={120} wrap={false}>
+      <View style={s.sectionBlock} minPresenceAhead={120}>
         <View style={[s.sectionBar, { backgroundColor: accentColor }]} />
         <View style={s.sectionContent}>
-          <Text style={[s.sectionTitle, { color: accentColor }]}>{title.toUpperCase()}</Text>
+          <SectionHead>
+            <Text style={[s.sectionTitle, { color: accentColor }]}>{title.toUpperCase()}</Text>
+          </SectionHead>
           {children}
         </View>
       </View>
@@ -219,7 +226,7 @@ export function SharpTemplate({ data, labels, accentColor, companyLogo }: Props)
               {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>
                 {data.skillGroups.map((group, idx) => (
-                  <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
+                  <View wrap={false} key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
                     {group.category ? <Text style={{ fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: accentColor, marginBottom: 2 }}>{group.category}</Text> : null}
                     <Text style={s.skills}>{group.items}</Text>
                   </View>
@@ -231,6 +238,7 @@ export function SharpTemplate({ data, labels, accentColor, companyLogo }: Props)
             </Section>
           )}
         </View>
+        <Clause text={data.rodoClause} style={{ paddingHorizontal: 48 }} />
       </Page>
     </Document>
   );

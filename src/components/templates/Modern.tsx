@@ -1,5 +1,7 @@
 import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SANS } from './fonts';
+import { Clause } from './Clause';
+import { SectionHead } from './SectionHead';
 import type { ResumeData } from '@/store/resumeStore';
 
 interface Labels {
@@ -16,9 +18,13 @@ interface Labels {
 const ACCENT = '#60a5fa';
 
 const s = StyleSheet.create({
-  page: { flexDirection: 'row', fontFamily: SANS, fontSize: 9.5 },
-  sidebar: { width: 178, padding: '36 16 36 18' },
-  main: { flex: 1, padding: '36 26 36 22' },
+  // paddingTop keeps continuation pages off the page edge; both columns pull
+  // themselves back up on page 1 with a negative margin, and the sidebar color
+  // comes from a fixed full-height stripe so it covers every page edge to edge.
+  page: { flexDirection: 'row', fontFamily: SANS, fontSize: 9.5, paddingTop: 24 },
+  sidebarBg: { position: 'absolute', top: 0, bottom: 0, left: 0, width: 178 },
+  sidebar: { width: 178, marginTop: -24, padding: '36 16 36 18' },
+  main: { flex: 1, marginTop: -24, padding: '36 26 36 22' },
 
   sName: { fontSize: 17, fontFamily: SANS, fontWeight: 700, color: '#ffffff', marginBottom: 3, lineHeight: 1.2 },
   sTitle: { fontSize: 9.5, color: '#93c5fd', marginBottom: 18, fontFamily: SANS, fontStyle: 'italic' },
@@ -74,12 +80,13 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
           </View>
         )}
         {/* Sidebar */}
-        <View style={[s.sidebar, { backgroundColor: accentColor }]}>
+        <View fixed style={[s.sidebarBg, { backgroundColor: accentColor }]} />
+        <View style={s.sidebar}>
           {personal.photo && <Image src={personal.photo} style={s.photo} />}
           {personal.name && <Text style={s.sName}>{personal.name}</Text>}
           {personal.title && <Text style={s.sTitle}>{personal.title}</Text>}
           {contact.length > 0 && (
-            <View wrap={false}>
+            <View>
               <Text style={s.sSectionTitle}>{labels.contact}</Text>
               {contact.map((item, i) => item.url
                 ? <Link key={i} src={item.url} style={{ color: '#cbd5e1', textDecoration: 'underline' }}><Text style={s.sItem}>{item.text}</Text></Link>
@@ -88,12 +95,12 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
             </View>
           )}
           {(data.skillGroups && data.skillGroups.length > 0 ? true : skillList.length > 0) && (
-            <View wrap={false}>
+            <View>
               <Text style={s.sSectionTitle}>{labels.skills}</Text>
               {data.skillGroups && data.skillGroups.length > 0 ? (
                 <View>
                   {data.skillGroups.map((group, idx) => (
-                    <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 6 : 0 }}>
+                    <View wrap={false} key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 6 : 0 }}>
                       {group.category ? <Text style={{ fontSize: 7, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, color: '#e2e8f0', textTransform: 'uppercase', marginBottom: 3 }}>{group.category}</Text> : null}
                       {group.items.split(',').filter((t: string) => t.trim()).map((skill: string, i: number) => (
                         <Text key={i} style={s.sItem}>{skill.trim()}</Text>
@@ -107,7 +114,7 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
             </View>
           )}
           {data.languages && data.languages.length > 0 && (
-            <View wrap={false}>
+            <View>
               <Text style={s.sSectionTitle}>{labels.languages}</Text>
               {(data.languages ?? []).map((lang) => (
                 <Text key={lang.id} style={s.sItem}>{lang.name}{lang.level ? `: ${lang.level}` : ''}</Text>
@@ -120,9 +127,9 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
         <View style={s.main}>
           {data.summary && (
             <View>
-              <View minPresenceAhead={120}>
+              <SectionHead>
                 <Text style={[s.mSectionTitle, { color: accentColor }]}>{labels.summary}</Text>
-              </View>
+              </SectionHead>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
               <Text style={{ fontSize: 9, color: '#374151', lineHeight: 1.5, marginBottom: 8 }}>{data.summary}</Text>
             </View>
@@ -130,9 +137,9 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
 
           {experience.length > 0 && (
             <View>
-              <View minPresenceAhead={120}>
+              <SectionHead>
                 <Text style={[s.mSectionTitle, { color: accentColor }]}>{labels.experience}</Text>
-              </View>
+              </SectionHead>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
               {experience.map((exp) => {
                 const bullets = (exp.bullets || []).filter((b) => b.trim());
@@ -169,10 +176,10 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
 
           {/* Projects */}
           {data.projects && data.projects.length > 0 && (
-            <View wrap={false}>
-              <View minPresenceAhead={120}>
+            <View>
+              <SectionHead>
                 <Text style={[s.mSectionTitle, { marginTop: 14, color: accentColor }]}>{labels.projects}</Text>
-              </View>
+              </SectionHead>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
               {data.projects.map((proj) => {
                 const bullets = (proj.bullets || []).filter((b) => b.trim());
@@ -206,9 +213,9 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
 
           {education.length > 0 && (
             <View>
-              <View minPresenceAhead={120}>
+              <SectionHead>
                 <Text style={[s.mSectionTitle, { marginTop: experience.length > 0 ? 14 : 0, color: accentColor }]}>{labels.education}</Text>
-              </View>
+              </SectionHead>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
               {education.map((edu) => {
                 const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' - ');
@@ -227,10 +234,10 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
 
           {/* Certifications */}
           {data.certifications && data.certifications.length > 0 && (
-            <View wrap={false}>
-              <View minPresenceAhead={120}>
+            <View>
+              <SectionHead>
                 <Text style={[s.mSectionTitle, { marginTop: 14, color: accentColor }]}>{labels.certifications}</Text>
-              </View>
+              </SectionHead>
               <View style={[s.mDivider, { borderBottomColor: accentColor }]} />
               {data.certifications.map((cert, idx) => (
                 <View
@@ -247,6 +254,7 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
               ))}
             </View>
           )}
+          <Clause text={data.rodoClause} />
         </View>
       </Page>
     </Document>

@@ -43,6 +43,11 @@ const DEGREE = /bachelor|master|\bb\.?\s?(sc|eng|s|a)\b|\bm\.?\s?(sc|eng|s|a)\b|
 const ORG = /\b(sp\.?\s*z\s*o\.?\s*o\.?|s\.\s?a\.|inc\b|llc\b|ltd\b|gmbh|corp\b|co\.|company|group|university|universit|uniwersytet|politechnika|akademia|szkoła|college|school|institute|instytut)\b/i;
 const TECH_LINE = /^(tech(nolog\w+)?|stack|tools|skills|narzędzia|technologie)\s*[:\-–]\s*/i;
 
+// The RODO/GDPR consent clause has no heading: it is a paragraph at the bottom
+// that opens with a recognizable consent phrase. Once seen, the following
+// wrapped lines belong to it too.
+const CLAUSE = /wyrażam zgodę na przetwarzanie|zgod[ęy] na przetwarzanie|i hereby (?:give|grant) consent|consent (?:to|for) the processing of my personal data|autorizo el tratamiento|j'autorise le traitement|ich willige ein|autorizzo il trattamento|autorizo o tratamento/i;
+
 const uid = () => (typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2));
 const strip = (s: string) => s.replace(BULLET, '').trim();
 const SPLIT = /\s*[|·•‖]\s*|\s+[-–—]\s+|\s*,\s*|\s+@\s+|\s+\bat\b\s+|\s+\bw\b\s+/i;
@@ -88,6 +93,7 @@ function splitSections(lines: string[]) {
       if (hit[1]) out[cur].push(hit[1]);
       continue;
     }
+    if (cur !== 'clause' && CLAUSE.test(line)) cur = 'clause';
     (out[cur] ??= []).push(line);
   }
   return out;
@@ -453,6 +459,7 @@ export function parseResumeText(text: string): ResumeData {
     languages,
     skillGroups,
     skills,
+    rodoClause: get('clause').map(strip).join(' '),
   };
 }
 

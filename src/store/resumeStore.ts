@@ -77,6 +77,7 @@ export interface ResumeData {
   languages: Language[];
   skillGroups: SkillGroup[];
   skills: string;
+  rodoClause?: string;
 }
 
 interface ResumeStore {
@@ -104,6 +105,7 @@ interface ResumeStore {
   updateSkillGroup: (id: string, updates: Partial<Omit<SkillGroup, 'id'>>) => void;
   removeSkillGroup: (id: string) => void;
   updateSkills: (skills: string) => void;
+  updateRodoClause: (rodoClause: string) => void;
   addPersonalLink: () => void;
   updatePersonalLink: (id: string, updates: Partial<Omit<PersonalLink, 'id'>>) => void;
   removePersonalLink: (id: string) => void;
@@ -369,6 +371,9 @@ export const useResumeStore = create<ResumeStore>()(
 
       updateSkills: (skills) =>
         set((s) => ({ data: { ...s.data, skills } })),
+
+      updateRodoClause: (rodoClause) =>
+        set((s) => ({ data: { ...s.data, rodoClause } })),
 
       addPersonalLink: () =>
         set((s) => ({

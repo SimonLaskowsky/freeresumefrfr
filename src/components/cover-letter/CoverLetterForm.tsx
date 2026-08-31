@@ -15,7 +15,7 @@ export default function CoverLetterForm() {
   return (
     <div className="space-y-5">
       {/* Sender Info */}
-      <SectionWrapper title={cl.senderSection} icon="✍️">
+      <SectionWrapper title={cl.senderSection}>
         <div className="grid grid-cols-2 gap-3">
           <div className="col-span-2 flex gap-2">
             <input
@@ -60,7 +60,7 @@ export default function CoverLetterForm() {
       <div className="border-t border-zinc-800/60" />
 
       {/* Recipient */}
-      <SectionWrapper title={cl.recipientSection} icon="🏢">
+      <SectionWrapper title={cl.recipientSection}>
         <div className="grid grid-cols-2 gap-3">
           <div className="col-span-2">
             <input
@@ -88,7 +88,7 @@ export default function CoverLetterForm() {
       <div className="border-t border-zinc-800/60" />
 
       {/* Letter details */}
-      <SectionWrapper title={cl.letterSection} icon="📋">
+      <SectionWrapper title={cl.letterSection}>
         <div className="grid grid-cols-2 gap-3">
           <input
             className={inputCls}
@@ -117,7 +117,7 @@ export default function CoverLetterForm() {
       <div className="border-t border-zinc-800/60" />
 
       {/* Body */}
-      <SectionWrapper title={cl.bodyLabel} icon="📝">
+      <SectionWrapper title={cl.bodyLabel}>
         <div className="space-y-3">
           <textarea
             className={`${textareaCls} min-h-[90px]`}
@@ -146,7 +146,7 @@ export default function CoverLetterForm() {
       <div className="border-t border-zinc-800/60" />
 
       {/* Sign-off */}
-      <SectionWrapper title={cl.signOffLabel} icon="✒️">
+      <SectionWrapper title={cl.signOffLabel}>
         <input
           className={inputCls}
           placeholder={cl.signOffLabel}

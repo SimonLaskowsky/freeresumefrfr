@@ -1,5 +1,7 @@
 import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SANS } from './fonts';
+import { Clause } from './Clause';
+import { SectionHead } from './SectionHead';
 import type { ResumeData } from '@/store/resumeStore';
 
 interface Props {
@@ -54,11 +56,15 @@ export function SleekTemplate({ data, labels, accentColor, companyLogo }: Props)
 
   function Section({ title, children }: { title: string; children: React.ReactNode }) {
     return (
-      <View style={s.sectionBlock} minPresenceAhead={120} wrap={false}>
-        <Text style={[s.sectionTitle, { color: accentColor }]}>{title.toUpperCase()}</Text>
-        <View style={s.sectionRule} />
+      <>
+        <SectionHead>
+          <View style={s.sectionBlock}>
+            <Text style={[s.sectionTitle, { color: accentColor }]}>{title.toUpperCase()}</Text>
+            <View style={s.sectionRule} />
+          </View>
+        </SectionHead>
         {children}
-      </View>
+      </>
     );
   }
 
@@ -217,7 +223,7 @@ export function SleekTemplate({ data, labels, accentColor, companyLogo }: Props)
             {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>
                 {data.skillGroups.map((group, idx) => (
-                  <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
+                  <View wrap={false} key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
                     {group.category ? <Text style={{ fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: accentColor, marginBottom: 2 }}>{group.category}</Text> : null}
                     <Text style={s.skills}>{group.items}</Text>
                   </View>
@@ -228,6 +234,7 @@ export function SleekTemplate({ data, labels, accentColor, companyLogo }: Props)
             )}
           </Section>
         )}
+        <Clause text={data.rodoClause} />
       </Page>
     </Document>
   );

@@ -1,5 +1,7 @@
 import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SANS } from './fonts';
+import { Clause } from './Clause';
+import { SectionHead } from './SectionHead';
 import type { ResumeData } from '@/store/resumeStore';
 
 interface Props {
@@ -53,15 +55,15 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
     })),
   ].filter((c) => Boolean(c.text));
 
-  function SectionHead({ label }: { label: string }) {
+  function Heading({ label }: { label: string }) {
     return (
-      <View minPresenceAhead={120}>
+      <SectionHead>
         <View style={s.sectionHeader}>
           <View style={[s.sectionDot, { backgroundColor: accentColor }]} />
           <Text style={[s.sectionTitle, { color: accentColor }]}>{label.toUpperCase()}</Text>
         </View>
         <View style={s.sectionRule} />
-      </View>
+      </SectionHead>
     );
   }
 
@@ -91,14 +93,14 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
 
         {data.summary && (
           <View>
-            <SectionHead label={labels.summary} />
+            <Heading label={labels.summary} />
             <Text style={{ fontSize: 9.5, color: '#374151', lineHeight: 1.5, marginBottom: 6 }}>{data.summary}</Text>
           </View>
         )}
 
         {experience.length > 0 && (
           <View>
-            <SectionHead label={labels.experience} />
+            <Heading label={labels.experience} />
             {experience.map((exp, idx) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
               const dateRange = exp.current
@@ -144,8 +146,8 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
         )}
 
         {data.projects && data.projects.length > 0 && (
-          <View wrap={false}>
-            <SectionHead label={labels.projects} />
+          <View>
+            <Heading label={labels.projects} />
             {data.projects.map((proj) => {
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
@@ -177,8 +179,8 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
         )}
 
         {education.length > 0 && (
-          <View wrap={false}>
-            <SectionHead label={labels.education} />
+          <View>
+            <Heading label={labels.education} />
             {education.map((edu) => {
               const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' - ');
               return (
@@ -195,8 +197,8 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
         )}
 
         {data.certifications && data.certifications.length > 0 && (
-          <View wrap={false}>
-            <SectionHead label={labels.certifications} />
+          <View>
+            <Heading label={labels.certifications} />
             {data.certifications.map((cert, idx) => (
               <View
                 key={cert.id}
@@ -214,8 +216,8 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
         )}
 
         {data.languages && data.languages.length > 0 && (
-          <View wrap={false}>
-            <SectionHead label={labels.languages} />
+          <View>
+            <Heading label={labels.languages} />
             {(data.languages ?? []).map((lang, idx) => (
               <View key={lang.id} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: idx === (data.languages ?? []).length - 1 ? 0 : 3 }}>
                 <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{lang.name}</Text>
@@ -226,12 +228,12 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
         )}
 
         {(skills || (data.skillGroups?.length ?? 0) > 0) && (
-          <View wrap={false}>
-            <SectionHead label={labels.skills} />
+          <View>
+            <Heading label={labels.skills} />
             {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>
                 {data.skillGroups.map((group, idx) => (
-                  <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
+                  <View wrap={false} key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
                     {group.category ? <Text style={{ fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: accentColor, marginBottom: 2 }}>{group.category}</Text> : null}
                     <Text style={s.skills}>{group.items}</Text>
                   </View>
@@ -242,6 +244,7 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
             )}
           </View>
         )}
+        <Clause text={data.rodoClause} />
       </Page>
     </Document>
   );

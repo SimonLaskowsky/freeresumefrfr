@@ -24,7 +24,7 @@ export default function SkillsForm() {
   return (
     <SectionWrapper
       title={t.sections.skills}
-      icon="⚡"
+
       tip={t.tips.skills}
       count={groups.length}
       action={

@@ -1,5 +1,7 @@
 import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SANS } from './fonts';
+import { Clause } from './Clause';
+import { SectionHead } from './SectionHead';
 import type { ResumeData } from '@/store/resumeStore';
 
 interface Props {
@@ -10,9 +12,13 @@ interface Props {
 }
 
 const s = StyleSheet.create({
-  page: { flexDirection: 'row', fontFamily: SANS, fontSize: 9.5, color: '#1a1a1a' },
-  left: { width: '38%', paddingTop: 36, paddingBottom: 36, paddingHorizontal: 18 },
-  right: { flex: 1, paddingTop: 36, paddingBottom: 36, paddingHorizontal: 22, backgroundColor: '#ffffff' },
+  // paddingTop keeps continuation pages off the page edge; both columns pull
+  // themselves back up on page 1 with a negative margin, and the panel color
+  // comes from a fixed full-height stripe so it covers every page edge to edge.
+  page: { flexDirection: 'row', fontFamily: SANS, fontSize: 9.5, color: '#1a1a1a', paddingTop: 24 },
+  leftBg: { position: 'absolute', top: 0, bottom: 0, left: 0, width: '38%' },
+  left: { width: '38%', marginTop: -24, paddingTop: 36, paddingBottom: 36, paddingHorizontal: 18 },
+  right: { flex: 1, marginTop: -24, paddingTop: 36, paddingBottom: 36, paddingHorizontal: 22, backgroundColor: '#ffffff' },
 
   lName: { fontSize: 20, fontFamily: SANS, fontWeight: 700, color: '#ffffff', marginBottom: 4, lineHeight: 1.2 },
   lTitle: { fontSize: 9.5, color: '#ffffff', opacity: 0.8, marginBottom: 18, fontFamily: SANS, fontStyle: 'italic' },
@@ -63,12 +69,13 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
           </View>
         )}
         {/* Left accent panel */}
-        <View style={[s.left, { backgroundColor: accentColor }]}>
+        <View fixed style={[s.leftBg, { backgroundColor: accentColor }]} />
+        <View style={s.left}>
           {personal.photo && <Image src={personal.photo} style={s.photo} />}
           {personal.name && <Text style={s.lName}>{personal.name}</Text>}
           {personal.title && <Text style={s.lTitle}>{personal.title}</Text>}
           {contact.length > 0 && (
-            <View wrap={false}>
+            <View>
               <Text style={s.lSectionTitle}>{labels.contact}</Text>
               <View style={s.lRule} />
               {contact.map((item, i) => item.url
@@ -78,13 +85,13 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
             </View>
           )}
           {(data.skillGroups && data.skillGroups.length > 0 ? true : skillList.length > 0) && (
-            <View wrap={false}>
+            <View>
               <Text style={s.lSectionTitle}>{labels.skills}</Text>
               <View style={s.lRule} />
               {data.skillGroups && data.skillGroups.length > 0 ? (
                 <View>
                   {data.skillGroups.map((group, idx) => (
-                    <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 6 : 0 }}>
+                    <View wrap={false} key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 6 : 0 }}>
                       {group.category ? <Text style={{ fontSize: 7, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, color: '#ffffff', textTransform: 'uppercase', marginBottom: 3 }}>{group.category}</Text> : null}
                       {group.items.split(',').filter((t: string) => t.trim()).map((skill: string, i: number) => (
                         <View key={i} style={{ marginBottom: 3 }}>
@@ -104,7 +111,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
             </View>
           )}
           {data.languages && data.languages.length > 0 && (
-            <View wrap={false}>
+            <View>
               <Text style={s.lSectionTitle}>{labels.languages}</Text>
               <View style={s.lRule} />
               {(data.languages ?? []).map((lang) => (
@@ -118,9 +125,9 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
         <View style={s.right}>
           {data.summary && (
             <View>
-              <View minPresenceAhead={120}>
+              <SectionHead>
                 <Text style={[s.rSectionTitle, { color: accentColor, marginTop: 0 }]}>{labels.summary}</Text>
-              </View>
+              </SectionHead>
               <View style={[s.rDivider, { borderBottomColor: accentColor }]} />
               <Text style={{ fontSize: 9, color: '#374151', lineHeight: 1.5, marginBottom: 8 }}>{data.summary}</Text>
             </View>
@@ -128,9 +135,9 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
 
           {experience.length > 0 && (
             <View>
-              <View minPresenceAhead={120}>
+              <SectionHead>
                 <Text style={[s.rSectionTitle, { color: accentColor }]}>{labels.experience}</Text>
-              </View>
+              </SectionHead>
               <View style={[s.rDivider, { borderBottomColor: accentColor }]} />
               {experience.map((exp) => {
                 const bullets = (exp.bullets || []).filter((b) => b.trim());
@@ -166,10 +173,10 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
           )}
 
           {data.projects && data.projects.length > 0 && (
-            <View wrap={false}>
-              <View minPresenceAhead={120}>
+            <View>
+              <SectionHead>
                 <Text style={[s.rSectionTitle, { color: accentColor }]}>{labels.projects}</Text>
-              </View>
+              </SectionHead>
               <View style={[s.rDivider, { borderBottomColor: accentColor }]} />
               {data.projects.map((proj) => {
                 const bullets = (proj.bullets || []).filter((b) => b.trim());
@@ -202,10 +209,10 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
           )}
 
           {education.length > 0 && (
-            <View wrap={false}>
-              <View minPresenceAhead={120}>
+            <View>
+              <SectionHead>
                 <Text style={[s.rSectionTitle, { color: accentColor }]}>{labels.education}</Text>
-              </View>
+              </SectionHead>
               <View style={[s.rDivider, { borderBottomColor: accentColor }]} />
               {education.map((edu) => {
                 const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' - ');
@@ -223,10 +230,10 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
           )}
 
           {data.certifications && data.certifications.length > 0 && (
-            <View wrap={false}>
-              <View minPresenceAhead={120}>
+            <View>
+              <SectionHead>
                 <Text style={[s.rSectionTitle, { color: accentColor }]}>{labels.certifications}</Text>
-              </View>
+              </SectionHead>
               <View style={[s.rDivider, { borderBottomColor: accentColor }]} />
               {data.certifications.map((cert, idx) => (
                 <View
@@ -243,6 +250,7 @@ export function CreativeTemplate({ data, labels, accentColor, companyLogo }: Pro
               ))}
             </View>
           )}
+          <Clause text={data.rodoClause} />
         </View>
       </Page>
     </Document>

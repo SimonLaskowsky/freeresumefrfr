@@ -1,5 +1,7 @@
 import { Document, Page, Text, View, Image, StyleSheet, Link } from '@react-pdf/renderer';
 import { SANS } from './fonts';
+import { Clause } from './Clause';
+import { SectionHead } from './SectionHead';
 import type { ResumeData } from '@/store/resumeStore';
 
 interface Labels {
@@ -91,20 +93,20 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
         {/* Summary */}
         {data.summary && (
           <View>
-            <View minPresenceAhead={120}>
+            <SectionHead>
               <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.summary}</Text>
-            </View>
+            </SectionHead>
             <Text style={{ fontSize: 8.5, color: '#374151', lineHeight: 1.4 }}>{data.summary}</Text>
           </View>
         )}
 
         {experience.length > 0 && (
           <View>
-            <View minPresenceAhead={120}>
+            <SectionHead>
               <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.experience}</Text>
-            </View>
+            </SectionHead>
             {experience.map((exp) => {
               const bullets = (exp.bullets || []).filter((b) => b.trim());
               const dateRange = exp.current
@@ -141,11 +143,11 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {/* Projects */}
         {data.projects && data.projects.length > 0 && (
-          <View wrap={false}>
-            <View minPresenceAhead={120}>
+          <View>
+            <SectionHead>
               <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.projects}</Text>
-            </View>
+            </SectionHead>
             {data.projects.map((proj) => {
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
@@ -178,10 +180,10 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {education.length > 0 && (
           <View>
-            <View minPresenceAhead={120}>
+            <SectionHead>
               <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.education}</Text>
-            </View>
+            </SectionHead>
             {education.map((edu) => {
               const dateRange = [edu.startDate, edu.endDate].filter(Boolean).join(' - ');
               return (
@@ -199,11 +201,11 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
 
         {/* Certifications */}
         {data.certifications && data.certifications.length > 0 && (
-          <View wrap={false}>
-            <View minPresenceAhead={120}>
+          <View>
+            <SectionHead>
               <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.certifications}</Text>
-            </View>
+            </SectionHead>
             {data.certifications.map((cert, idx) => (
               <View
                 key={cert.id}
@@ -221,11 +223,11 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
         )}
 
         {data.languages && data.languages.length > 0 && (
-          <View wrap={false}>
-            <View minPresenceAhead={120}>
+          <View>
+            <SectionHead>
               <View style={[s.divider, { borderBottomColor: accentColor }]} />
               <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.languages}</Text>
-            </View>
+            </SectionHead>
             {(data.languages ?? []).map((lang, idx) => (
               <View key={lang.id} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: idx === (data.languages ?? []).length - 1 ? 0 : 3 }}>
                 <Text style={{ fontSize: 8.5, fontFamily: SANS, fontWeight: 700 }}>{lang.name}</Text>
@@ -236,15 +238,15 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
         )}
 
         {(skills || (data.skillGroups?.length ?? 0) > 0) && (
-          <View wrap={false}>
-            <View minPresenceAhead={120}>
+          <View>
+            <SectionHead>
               <View style={[s.divider, { borderBottomColor: accentColor }]} />
             <Text style={[s.sectionTitle, { color: accentColor }]}>{labels.skills}</Text>
-            </View>
+            </SectionHead>
             {data.skillGroups && data.skillGroups.length > 0 ? (
               <View>
                 {data.skillGroups.map((group, idx) => (
-                  <View key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
+                  <View wrap={false} key={group.id} style={{ marginBottom: idx < data.skillGroups!.length - 1 ? 5 : 0 }}>
                     {group.category ? <Text style={{ fontSize: 7.5, fontFamily: SANS, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase', color: accentColor, marginBottom: 2 }}>{group.category}</Text> : null}
                     <Text style={s.skills}>{group.items}</Text>
                   </View>
@@ -255,6 +257,7 @@ export function CompactTemplate({ data, labels, accentColor, companyLogo }: { da
             )}
           </View>
         )}
+        <Clause text={data.rodoClause} />
       </Page>
     </Document>
   );

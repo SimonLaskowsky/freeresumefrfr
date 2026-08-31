@@ -24,7 +24,7 @@ export default function ProjectsForm() {
   return (
     <SectionWrapper
       title={t.sections.projects}
-      icon="⬡"
+
       count={data.projects.length}
       tip={t.tips.projects}
       action={

@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { useResumeStore } from '@/store/resumeStore';
+import { useI18n } from '@/i18n/I18nContext';
 import { parseResumeText, isEmptyParse, textFromPages, type Box } from '@/lib/parseResume';
 
 const MAX_BYTES = 15 * 1024 * 1024;
@@ -36,6 +37,7 @@ async function pdfToText(file: File): Promise<string> {
 export default function ImportResume() {
   const data = useResumeStore((s) => s.data);
   const setData = useResumeStore((s) => s.setData);
+  const { t } = useI18n();
   const inputRef = useRef<HTMLInputElement>(null);
   const [status, setStatus] = useState<{ kind: 'busy' | 'done' | 'error'; text: string } | null>(null);
   const [over, setOver] = useState(false);
@@ -43,21 +45,21 @@ export default function ImportResume() {
   const hasData = !!(data.personal.name.trim() || data.summary.trim() || data.experience.length || data.education.length);
 
   async function handleFile(file: File) {
-    if (file.size > MAX_BYTES) return setStatus({ kind: 'error', text: 'That file is over 15MB' });
-    setStatus({ kind: 'busy', text: 'Reading your CV…' });
+    if (file.size > MAX_BYTES) return setStatus({ kind: 'error', text: t.importCv.tooBig });
+    setStatus({ kind: 'busy', text: t.importCv.reading });
     try {
       const text = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')
         ? await pdfToText(file)
         : await file.text();
       const parsed = parseResumeText(text);
       if (isEmptyParse(parsed)) {
-        return setStatus({ kind: 'error', text: 'No text in that PDF. Scans and photos need a text layer.' });
+        return setStatus({ kind: 'error', text: t.importCv.noText });
       }
-      if (hasData && !confirm('Importing replaces everything you have here. Continue?')) return setStatus(null);
+      if (hasData && !confirm(t.importCv.replaceConfirm)) return setStatus(null);
       setData(parsed);
-      setStatus({ kind: 'done', text: 'Imported. Now check every field, parsing is a guess.' });
+      setStatus({ kind: 'done', text: t.importCv.done });
     } catch {
-      setStatus({ kind: 'error', text: 'Could not open that file' });
+      setStatus({ kind: 'error', text: t.importCv.cantOpen });
     }
   }
 
@@ -85,10 +87,10 @@ export default function ImportResume() {
         }`}
       >
         <span className="block text-xs font-bold uppercase tracking-widest text-zinc-300">
-          {status?.kind === 'busy' ? 'Reading…' : 'Have a CV already? Drop it here'}
+          {status?.kind === 'busy' ? t.importCv.reading : t.importCv.title}
         </span>
         <span className={`mt-1 block text-[11px] leading-snug ${tone}`}>
-          {status?.text ?? 'PDF or TXT. Nothing leaves your browser.'}
+          {status?.text ?? t.importCv.hint}
         </span>
       </button>
       <input

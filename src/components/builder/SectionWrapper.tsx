@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 interface Props {
   title: string;
-  icon: string;
   children: React.ReactNode;
   count?: number;
   tip?: string;
@@ -13,7 +12,7 @@ interface Props {
 }
 
 export default function SectionWrapper({
-  title, icon, children, count, tip, action, defaultOpen = true,
+  title, children, count, tip, action, defaultOpen = true,
 }: Props) {
   const [open, setOpen] = useState(defaultOpen);
   const [tipOpen, setTipOpen] = useState(false);
@@ -25,7 +24,7 @@ export default function SectionWrapper({
           onClick={() => setOpen((o) => !o)}
           className="flex items-center gap-2 group flex-1 text-left min-w-0"
         >
-          <span className="text-sm leading-none flex-shrink-0">{icon}</span>
+          <span className="w-1 h-3.5 rounded-full bg-lime-400/70 flex-shrink-0" />
           <span className="text-xs font-bold uppercase tracking-widest text-zinc-400 group-hover:text-zinc-200 transition-colors truncate">
             {title}
           </span>
