@@ -168,4 +168,19 @@ assert.equal(twoCol.certifications[0].date, 'Wrz 2024');
 assert.deepEqual(twoCol.languages.map((l) => l.name), ['Polski', 'Angielski'], 'JavaScript is not a language');
 assert.match(twoCol.skills, /JavaScript \(ES6\+\)/);
 
+// --- org line above the dated role line, name sharing the contact row ------
+const gh = parseResumeText(`Jane Smith Email: jane@smith.io
+EXPERIENCE
+Google Inc.
+Software Engineer Oct 2016 - Present
+• Did things at scale
+LANGUAGES
+Python, C++, SQL
+`);
+assert.equal(gh.personal.name, 'Jane Smith', 'name recovered from the contact row');
+assert.equal(gh.experience[0].company, 'Google Inc.', 'org line above dates joins the entry');
+assert.equal(gh.experience[0].title, 'Software Engineer');
+assert.equal(gh.languages.length, 0, 'programming languages are not languages');
+assert.match(gh.skills, /Python/);
+
 console.log('parseResume: all assertions passed');

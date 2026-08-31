@@ -14,7 +14,7 @@ import type { ResumeData } from '../store/resumeStore';
  * grow a grammar.
  */
 
-type Section = 'header' | 'summary' | 'experience' | 'education' | 'projects' | 'certifications' | 'languages' | 'skills';
+type Section = 'header' | 'summary' | 'experience' | 'education' | 'projects' | 'certifications' | 'languages' | 'skills' | 'other';
 
 const HEADINGS: Array<[Section, RegExp]> = [
   ['header', /^(contact|contact\s*details|personal\s*(info\w*|details)|kontakt|dane\s*(osobowe|kontaktowe)|contacto|contatti|kontakte?)\b/i],
@@ -25,14 +25,22 @@ const HEADINGS: Array<[Section, RegExp]> = [
   ['certifications', /^(certifications?|certificates?|licen[sc]es?|courses?|training|awards?|certyfikaty|kursy|szkolenia|uprawnienia|nagrody|certificaciones|cursos|zertifikate|kurse|certificazioni|certificats)\b/i],
   ['languages', /^(languages?(\s*skills)?|języki(\s*obce)?|znajomość\s*języków|idiomas|langues|sprachen|lingue|idiomas)\b/i],
   ['skills', /^(technical\s+|core\s+|key\s+|hard\s+|soft\s+)?(skills|technologies|competenc\w+|expertise|tech\s*stack|toolbox|umiejętności|kompetencje|technologie|narzędzia|habilidades|competencias|compétences|kenntnisse|fähigkeiten|kompetenzen|competenze|conhecimentos|frameworks?i?|biblioteki|libraries|style|styles|cms|bazy\s*danych|databases|metodyki|methodologies)\b/i],
+  // Sections the data model has no place for: better dropped than leaking into
+  // whatever bucket happened to come before them.
+  ['other', /^(publications?|publikacje|patents?|patenty|invited\s+talks?|talks?|referees?|references?|referencje|interests?|hobby|hobbies|zainteresowania|volunteer\w*|wolontariat|extracurricular\w*)\b/i],
 ];
 
-const BULLET = /^[•‣▪●○·⁃■∙»>*+\-–—]\s+/;
+// '¸' and '’' are how some fonts' '▸' and '→' glyphs come back out of the text layer
+const BULLET = /^[•‣▪▸▹►▻◦●○·⁃■∙»>*+\-–—✓→¸’]\s+/;
 const PRESENT = /present|currently|current|to\s*date|now|today|ongoing|obecnie|aktualnie|nadal|teraz|dziś|actualidad|actual|présent|aujourd'hui|heute|jetzt|laufend|attuale|atual/i;
-const MONTH = '(?:[A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]{3,12}\\.?\\s*)?';
+// A word before a year is a month only if it starts like one, otherwise
+// "Warszawski 2014" would parse as a date.
+const MONTH = "(?:(?:sty|lut|mar|kwi|maj|cze|lip|sie|wrz|pa[źz]|lis|gru|jan|feb|apr|may|jun|jul|aug|sep|oct|nov|dec|ene|abr|ago|dic|f[ée]v|avr|mai|jui|d[ée]c|m[äa]r|okt|out|set|gen|mag|giu|lug|ott)[\\p{L}]{0,9}\\.?\\s*)?";
 const YMD = `(?:\\d{1,2}[./]\\s*)?${MONTH}(?:19|20)\\d{2}`;
-const RANGE = new RegExp(`(${YMD})\\s*(?:[-–—]|to\\b|do\\b|bis\\b|until\\b|au\\b|a\\b|–)\\s*(${YMD}|${PRESENT.source})`, 'i');
-const SINGLE_DATE = new RegExp(YMD, 'i');
+// The separator may also be plain whitespace: fancy dash glyphs vanish in
+// extraction ("Sep. 2023  Mar. 2024"). Both sides must still be date shaped.
+const RANGE = new RegExp(`(${YMD})\\s*(?:[-–—]|to\\b|do\\b|bis\\b|until\\b|au\\b|a\\b|–|\\s)\\s*(${YMD}|${PRESENT.source})`, 'iu');
+const SINGLE_DATE = new RegExp(YMD, 'iu');
 const EMAIL = /[\w.+-]+@[\w-]+\.[\w.-]+\w/;
 const URL_SRC = '\\b((?:https?:\\/\\/|www\\.)[^\\s,;()<>]+|(?:[\\w-]+\\.)+(?:com|org|net|io|dev|me|co|pl|eu|app|xyz|ai|de|fr|es|it|uk)(?:\\/[^\\s,;()<>]*)?)';
 const URL = new RegExp(URL_SRC, 'i');
@@ -54,24 +62,34 @@ const SPLIT = /\s*[|·•‖]\s*|\s+[-–—]\s+|\s*,\s*|\s+@\s+|\s+\bat\b\s+|\s
 
 const ENTRY_SECTIONS = new Set(['experience', 'projects', 'education']);
 
-/** "D O Ś W I A D C Z E N I E" is a heading with letter spacing, not 13 words. */
+/** "D O Ś W I A D C Z E N I E" is letter-spaced text, not 13 words. Collapses
+ *  every such run inside the line, so a label-column row like
+ *  "P O D S U M O W A N I E Specjalistka..." also comes out readable. Word
+ *  gaps survive as runs of 2+ spaces ("A N N A  K O W A L S K A"). */
 function unspace(line: string): string {
-  const tokens = line.split(/\s+/).filter(Boolean);
-  if (tokens.length < 4) return line;
-  const singles = tokens.filter((t) => t.length === 1).length;
-  return singles / tokens.length >= 0.6 ? tokens.join('') : line;
+  return line.replace(/(^|\s)(\S{1,2}(?: \S{1,2}){2,})(?=\s|$)/g, (m, pre: string, run: string) => {
+    const tokens = run.split(' ');
+    const singles = tokens.filter((t) => t.length === 1).length;
+    return singles / tokens.length >= 0.6 ? pre + tokens.join('') : m;
+  });
 }
 
 function detectHeading(raw: string, cur: string): [Section, string] | null {
-  const line = unspace(raw.trim().replace(/[:：]\s*$/, ''));
-  if (!line || line.length > 60 || BULLET.test(raw.trim())) return null;
+  // "// Experience" comment-style headings (the Dev template look)
+  const line = unspace(raw.trim().replace(/[:：]\s*$/, '')).replace(/^\/{2,}\s*/, '');
+  if (!line || BULLET.test(raw.trim())) return null;
   for (const [section, re] of HEADINGS) {
     const m = line.match(re);
     if (!m || m.index !== 0) continue;
     const rest = line.slice(m[0].length).replace(/^[\s:–—-]+/, '');
+    // A label-column layout merges "DOŚWIADCZENIE" with the first content line
+    // of the section: an upper-case heading followed by mixed-case content is
+    // still a heading, however long the line.
+    const capsHead = m[0] === m[0].toUpperCase() && !!rest && rest !== rest.toUpperCase();
+    if (line.length > 60 && !capsHead) return null;
     // A heading is a heading, not a sentence: allow a short trailing remainder
     // ("Languages: English, Polish") but reject prose that merely starts with one.
-    if (rest.split(/\s+/).filter(Boolean).length > 8) return null;
+    if (rest.split(/\s+/).filter(Boolean).length > 8 && !capsHead) return null;
     // "Technologies: Go, Kafka" inside a job entry is that job's tech list, not
     // the start of a skills section. A real skills heading stands alone.
     if (rest && section === 'skills' && ENTRY_SECTIONS.has(cur)) return null;
@@ -86,14 +104,28 @@ function splitSections(lines: string[]) {
   for (const raw of lines) {
     const line = raw.trim();
     if (!line) continue;
+    // page footers: "February 10, 2026  Jane Doe · Résumé 2", "Page 2 of 3"
+    if (/r[ée]sum[ée]\s*\d+$/i.test(line) || /^page\s+\d+(\s+(of|\/|z)\s+\d+)?$/i.test(line)) continue;
     const hit = detectHeading(line, cur);
     if (hit) {
+      // "NARZĘDZIA" inside the skills section is a group label that happens to
+      // share vocabulary with the heading table: keep it as content.
+      if (hit[0] === 'skills' && cur === 'skills' && !hit[1]) {
+        out.skills.push(line);
+        continue;
+      }
       cur = hit[0];
       out[cur] ??= [];
       if (hit[1]) out[cur].push(hit[1]);
       continue;
     }
     if (cur !== 'clause' && CLAUSE.test(line)) cur = 'clause';
+    // The clause is one paragraph: once a clause line closed a sentence,
+    // anything that does not continue lowercase is other content (in a two
+    // column layout the second column can be emitted right after it).
+    else if (cur === 'clause' && out.clause?.length && /[.!]$/.test(out.clause[out.clause.length - 1]) && !/^\p{Ll}/u.test(line)) {
+      cur = 'header';
+    }
     (out[cur] ??= []).push(line);
   }
   return out;
@@ -112,7 +144,7 @@ function takeDates(line: string): { start: string; end: string; current: boolean
   }
   const one = line.match(SINGLE_DATE);
   if (one) {
-    const openEnded = new RegExp(`${YMD}\\s*[-–—]\\s*$`, 'i').test(line.trim()) || PRESENT.test(line);
+    const openEnded = new RegExp(`${YMD}\\s*[-–—]\\s*$`, 'iu').test(line.trim()) || PRESENT.test(line);
     return { start: one[0].trim(), end: '', current: openEnded, rest: line.replace(one[0], ' ').replace(/[-–—]\s*$/, '').trim() };
   }
   return { start: '', end: '', current: false, rest: line };
@@ -154,9 +186,24 @@ function toEntries(lines: string[]): RawEntry[] {
     const isBullet = BULLET.test(raw);
     const startsEntry = !isBullet && hasDate(raw) && strip(raw).length < 120;
     const last = entries[entries.length - 1];
-    // "Role, Company" on one line and the dates on the next: same entry.
-    if (startsEntry && last && !last.lines.length && !hasDate(last.head)) last.head += ' | ' + raw;
-    else if (startsEntry || entries.length === 0) entries.push({ head: raw, lines: [] });
+    // A line that is nothing but a date belongs to the undated entry above it,
+    // however far down the layout pushed it ("Magister / Uniwersytet / 2014-2019").
+    const pureDate = startsEntry && !takeDates(strip(raw)).rest;
+    if (startsEntry && last && !hasDate(last.head) && (pureDate || !last.lines.length)) last.head += ' | ' + raw;
+    else if (startsEntry || entries.length === 0) {
+      // "Google Inc." on one line, "Software Engineer  Oct 2016 - Present" on
+      // the next: the org line above a dated line belongs to the new entry.
+      let head = raw;
+      const prev = last?.lines[last.lines.length - 1];
+      const prevText = prev ? strip(prev) : '';
+      if (startsEntry && prevText && prevText.length < 70 && !hasDate(prevText)
+        && (ORG.test(prevText) || ROLE.test(prevText) || /\|/.test(prevText))
+        && (ORG.test(prevText) || !/[.!?]$/.test(prevText))) {
+        last.lines.pop();
+        head = prevText + ' | ' + raw;
+      }
+      entries.push({ head, lines: [] });
+    }
     else entries[entries.length - 1].lines.push(raw);
   }
   return entries;
@@ -247,7 +294,7 @@ function parseProjects(lines: string[]): ResumeData['projects'] {
     // back to: a short line after a project that already has content.
     const starts = !BULLET.test(raw) && (anyUrl
       ? URL.test(raw)
-      : !!last && last.lines.length > 0 && raw.trim().length < 60 && !/^[a-ząćęłńóśźż]/.test(raw.trim()));
+      : !!last && last.lines.length > 0 && raw.trim().length < 60 && !isTechRow(raw) && !/^[a-ząćęłńóśźż]/.test(raw.trim()));
     if (starts || !last) entries.push({ head: raw, lines: [] });
     else last.lines.push(raw);
   }
@@ -264,21 +311,41 @@ function parseProjects(lines: string[]): ResumeData['projects'] {
       bullets: bullets.length ? bullets : plain.slice(1),
       technologies,
     };
-  }).filter((p) => p.name);
+  }).filter((p) => p.name.length > 2);
 }
 
 function parseCertifications(lines: string[]): ResumeData['certifications'] {
-  return lines.map((raw) => {
+  const out: ResumeData['certifications'] = [];
+  for (const raw of lines) {
     const line = strip(raw);
     const { start, rest } = takeDates(line);
+    // A bare date line is the date of the cert above it.
+    if (start && !rest.trim() && out.length && !out[out.length - 1].date) {
+      out[out.length - 1].date = start;
+      continue;
+    }
     const chunks = parts(rest);
-    return { id: uid(), name: chunks[0] ?? '', issuer: chunks.slice(1).join(', '), date: start };
-  }).filter((c) => c.name);
+    // "Google · 2023" under a cert name is its issuer and date, not a new cert.
+    const prev = out[out.length - 1];
+    if (start && chunks.length === 1 && prev && !prev.issuer && !prev.date) {
+      prev.issuer = chunks[0];
+      prev.date = start;
+      continue;
+    }
+    // "st"/"nd" superscript fragments and similar debris are not certificates
+    if (chunks[0] && chunks[0].length > 2) out.push({ id: uid(), name: chunks[0], issuer: chunks.slice(1).join(', '), date: start });
+  }
+  return out;
 }
 
 // "JĘZYKI" in a sidebar means programming languages just as often as it means
 // human ones. Anything under that heading that is not on this list is a skill.
 const LANG_NAME = /^(polski|angielski|niemiecki|hiszpański|francuski|włoski|rosyjski|ukraiński|czeski|słowacki|chiński|japoński|koreański|arabski|portugalski|niderlandzki|holenderski|szwedzki|norweski|duński|fiński|węgierski|rumuński|turecki|grecki|hebrajski|hindi|english|polish|german|spanish|french|italian|russian|ukrainian|czech|slovak|chinese|mandarin|japanese|korean|arabic|portuguese|dutch|swedish|norwegian|danish|finnish|hungarian|romanian|turkish|greek|hebrew|deutsch|englisch|español|inglés|français|anglais|italiano|inglese)\b/i;
+
+// Words that are a proficiency level, not a language: a row like "Polski
+// Ojczysty" carries the level after a single space, and some layouts put the
+// level on its own line under the language.
+const LEVEL = /^(?:[abc][12][+]?|native|fluent|conversational|basic|intermediate|advanced|beginner|professional|ojczysty|biegły|biegle|zaawansowany|komunikatywny|podstawowy|średniozaawansowany|muttersprache|fließend|grundkenntnisse|nativo|fluido|básico|avanzado|natif|courant|intermédiaire|madrelingua|fluente|intermedio)$/i;
 
 function parseLanguages(lines: string[]): { languages: ResumeData['languages']; rejected: string[] } {
   const all: Array<{ entry: ResumeData['languages'][number]; src: string }> = [];
@@ -287,14 +354,37 @@ function parseLanguages(lines: string[]): { languages: ResumeData['languages']; 
     // "English (C1), Polish (native)" on one line, or one language per line.
     const items = /,/.test(line) && !/[-–—:]/.test(line) ? line.split(',') : [line];
     for (const item of items) {
-      const m = item.trim().match(/^(.+?)\s*(?:[-–—:(]|\s{2,})\s*(.+?)\)?$/);
-      const name = (m ? m[1] : item).trim().replace(/[,;]$/, '');
+      // drop proficiency rating glyphs ("English ○ ○ ○ ● ●")
+      const clean = item.trim().replace(/[○●◔◑◕★☆▮▯|]+/g, ' ').replace(/\s+/g, ' ').trim().replace(/[,;]$/, '');
+      if (!clean) continue;
+      // A bare level line belongs to the language above it.
+      if (LEVEL.test(clean) && all.length && !all[all.length - 1].entry.level) {
+        all[all.length - 1].entry.level = clean;
+        continue;
+      }
+      const m = clean.match(/^(.+?)\s*(?:[-–—:(]|\s{2,})\s*(.+?)\)?$/);
+      let name = (m ? m[1] : clean).trim();
+      let level = m ? m[2].trim() : '';
+      if (!level) {
+        const sp = name.match(/^(.+)\s+(\S+)$/);
+        if (sp && LEVEL.test(sp[2])) { name = sp[1].trim(); level = sp[2]; }
+      }
+      if (!level) {
+        // italic rendering can split the level: "Polski O jczysty"
+        const sp = name.match(/^(.+)\s+(\S+)\s+(\S+)$/);
+        if (sp && LEVEL.test(sp[2] + sp[3])) { name = sp[1].trim(); level = sp[2] + sp[3]; }
+      }
       if (!name) continue;
-      all.push({ entry: { id: uid(), name, level: m ? m[2].trim() : '' }, src: item.trim() });
+      all.push({ entry: { id: uid(), name, level }, src: item.trim() });
     }
   }
   const known = all.filter((a) => LANG_NAME.test(a.entry.name));
-  if (!known.length) return { languages: all.map((a) => a.entry), rejected: [] };
+  if (!known.length) {
+    // "Languages: Python, C++" is a skills row wearing a languages heading.
+    const techy = /python|java|c\+\+|c#|sql|html|css|typescript|javascript|php|ruby|rust|kotlin|swift|golang|\bgo\b|kubernetes|docker|aws|react|node/i;
+    if (all.some((a) => techy.test(a.src))) return { languages: [], rejected: all.map((a) => a.src) };
+    return { languages: all.map((a) => a.entry), rejected: [] };
+  }
   return {
     languages: known.map((a) => a.entry),
     rejected: all.filter((a) => !LANG_NAME.test(a.entry.name)).map((a) => a.src),
@@ -304,14 +394,26 @@ function parseLanguages(lines: string[]): { languages: ResumeData['languages']; 
 function parseSkills(lines: string[]): { skillGroups: ResumeData['skillGroups']; skills: string } {
   const skillGroups: ResumeData['skillGroups'] = [];
   const loose: string[] = [];
+  // an ALL-CAPS line is a group header; it collects every line until the next one
+  let group: ResumeData['skillGroups'][number] | null = null;
   for (const raw of lines) {
     const line = strip(raw);
     const m = line.match(/^([^:]{2,40}):\s*(.+)$/);
-    if (m) skillGroups.push({ id: uid(), category: m[1].trim(), items: m[2].trim() });
-    else loose.push(line);
+    if (m) {
+      skillGroups.push({ id: uid(), category: m[1].trim(), items: m[2].trim() });
+      group = null;
+    } else if (line.length >= 4 && line.length <= 30 && !/[,;]/.test(line) && line === line.toUpperCase() && /\p{L}/u.test(line)) {
+      group = { id: uid(), category: line, items: '' };
+      skillGroups.push(group);
+    } else if (group) {
+      group.items = group.items ? `${group.items}, ${line}` : line;
+    } else {
+      loose.push(line);
+    }
   }
+  const groups = skillGroups.filter((g) => g.items);
   const skills = loose.join(', ').replace(/\s*,\s*,+/g, ', ').trim();
-  return { skillGroups, skills: skills || skillGroups.map((g) => g.items).join(', ') };
+  return { skillGroups: groups, skills: skills || skillGroups.map((g) => g.items).join(', ') };
 }
 
 const NOT_A_PLACE = /portfolio|linked\s?in|github|gitlab|behance|dribbble|website|strona|www|e-?mail|telefon|phone|resume|kontakt|contact|developer|engineer|manager|specjalist|junior|senior|mid\b/i;
@@ -337,7 +439,8 @@ function parsePersonal(headerLines: string[], fullText: string): ResumeData['per
   }
 
   const isContact = (l: string) => EMAIL.test(l) || URL.test(l) || (l.match(/\d/g)?.length ?? 0) >= 7;
-  const text = headerLines.filter((l) => !isContact(l));
+  // unspace: display names come letter-spaced out of some layouts
+  const text = headerLines.map(unspace).filter((l) => !isContact(l));
   let name = text.find((l) => l.split(/\s+/).length <= 5 && !/\d/.test(l)) ?? '';
   let after = text.slice(text.indexOf(name) + 1);
   // Big display names get broken across two lines by the PDF text layer.
@@ -345,10 +448,33 @@ function parsePersonal(headerLines: string[], fullText: string): ResumeData['per
     name = `${name} ${after[0]}`;
     after = after.slice(1);
   }
-  const titleLine = after.find((l) => l.length < 70 && !/[.]\s/.test(l)) ?? '';
+  // "Sourabh Bajaj  Email: sourabh@..." : the name can share its line with the
+  // contact details.
+  if (!name) {
+    for (const l of headerLines.slice(0, 5)) {
+      const bare = unspace(l)
+        .replace(new RegExp(EMAIL.source, 'g'), ' ')
+        .replace(URL_G, ' ')
+        .replace(new RegExp(PHONE.source, 'g'), ' ')
+        .replace(/\b(e-?mail|mobile|phone|tel(efon)?|kontakt|adres|address)\b\s*:?/gi, ' ')
+        .replace(/[|·•:,]+/g, ' ')
+        .replace(/\s+/g, ' ').trim();
+      const words = bare.split(' ').filter(Boolean);
+      if (words.length >= 2 && words.length <= 5 && !/\d/.test(bare)
+        && words.every((w) => /^\p{Lu}/u.test(w))) { name = bare; break; }
+    }
+  }
+  // Prefer a line that names a role: "Specjalistka ds. marketingu" contains
+  // ". " yet is a title, not prose.
+  const titleLine = after.find((l) => l.length < 70 && ROLE.test(l))
+    ?? after.find((l) => l.length < 70 && !/[.]\s/.test(l)) ?? '';
   // A wrong location is worse than none: only take something that reads like a place.
-  const location = after.find((l) => l !== titleLine && l.length <= 40 && l.split(/\s+/).length <= 4
-    && /^\p{Lu}/u.test(l) && !/[|·/]/.test(l) && !NOT_A_PLACE.test(l)) ?? '';
+  const isPlace = (l: string) => l.length <= 40 && l.split(/\s+/).length <= 4
+    && /^\p{Lu}/u.test(l) && !/[|·/@\d]/.test(l) && !NOT_A_PLACE.test(l);
+  const location = after.find((l) => l !== titleLine && isPlace(l))
+    // "email · phone · Warszawa · LinkedIn": the city usually rides the contact row
+    ?? headerLines.filter(isContact).flatMap((l) => l.split(/\s*[|·•&]\s*/)).map((c) => c.trim()).find(isPlace)
+    ?? '';
 
   const title = titleLine.replace(/[\s|·,-]+$/, '');
   return { name, title, email, phone, location, linkedin: '', website: '', links: links.slice(0, 6) };
@@ -388,8 +514,18 @@ function findGutter(boxes: Box[]): number | null {
     }
   }
   if (!best) return null;
-  const share = boxes.filter((b) => b.x < best!.at).length / boxes.length;
-  return share > 0.08 && share < 0.92 ? best.at : null;
+  const lhs = boxes.filter((b) => b.x < best!.at);
+  const share = lhs.length / boxes.length;
+  if (share <= 0.08 || share >= 0.92) return null;
+  // Right-aligned metadata (dates, language levels) is not a second column: it
+  // sits on the same baselines as the text to its left, while a real column
+  // has rows of its own. Reject the gutter when the smaller side mostly shares
+  // baselines with the bigger one.
+  const rhs = boxes.filter((b) => b.x >= best!.at);
+  const [small, big] = lhs.length <= rhs.length ? [lhs, rhs] : [rhs, lhs];
+  const ys = new Set(big.map((b) => b.y));
+  const aligned = small.filter((b) => [-2, -1, 0, 1, 2].some((d) => ys.has(b.y + d))).length;
+  return aligned / small.length > 0.6 ? null : best.at;
 }
 
 /** Boxes of one column into lines: grouped by y, ordered by x, top down. */
@@ -406,7 +542,9 @@ function toLines(boxes: Box[]): string[] {
     let line = '';
     let end = -Infinity;
     for (const it of items) {
-      if (line && it.x - end > 1) line += ' ';
+      // a clearly larger jump is a word gap: keep it as a double space so
+      // letter-spaced words ("A N N A  K O W A L S K A") stay separable
+      if (line && it.x - end > 1) line += it.x - end > 6 ? '  ' : ' ';
       line += it.s;
       end = it.x + it.w;
     }
