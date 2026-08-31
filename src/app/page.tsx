@@ -202,11 +202,11 @@ export default function Home() {
               {t.nav.coverLetter}
             </Link>
             <a
-              href="https://github.com/SimonLaskowsky/freeresumefrfr"
+              href="https://szymonlaskowski.pl"
               target="_blank" rel="noopener noreferrer"
-              className="text-[13px] font-medium text-zinc-500 hover:text-zinc-800 transition-colors"
+              className="text-[13px] font-medium text-zinc-500 hover:text-zinc-800 transition-colors whitespace-nowrap"
             >
-              {t.nav.github}
+              Szymon Laskowski
             </a>
           </div>
           <Link
