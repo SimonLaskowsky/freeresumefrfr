@@ -580,6 +580,13 @@ export default function Home() {
             >
               {t.nav.github}
             </a>
+            <a
+              href="https://szymonlaskowski.pl"
+              target="_blank" rel="noopener noreferrer"
+              className="text-xs font-medium text-zinc-500 hover:text-lime-700 transition-colors whitespace-nowrap"
+            >
+              Szymon Laskowski
+            </a>
           </div>
         </div>
       </footer>
