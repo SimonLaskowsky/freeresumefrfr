@@ -240,8 +240,8 @@ export function HeroPreview() {
     <div className="flex flex-col items-center gap-5">
       {/* Floating resume card */}
       <div
-        className="animate-float relative"
-        style={{ filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.6)) drop-shadow(0 0 40px rgba(163,230,53,0.06))' }}
+        className="relative"
+        style={{ filter: 'drop-shadow(0 18px 40px rgba(24,33,22,0.14))' }}
       >
         <div style={{ width: OW, height: OH, overflow: 'hidden', borderRadius: 3, position: 'relative' }}>
           <div style={{ width: W, height: H, transform: `scale(${SCALE})`, transformOrigin: 'top left', position: 'absolute', top: 0, left: 0 }}>
@@ -251,7 +251,7 @@ export function HeroPreview() {
         {/* Fade out at bottom */}
         <div
           className="absolute bottom-0 left-0 right-0 pointer-events-none"
-          style={{ height: 100, background: 'linear-gradient(to bottom, transparent, rgb(9,9,11))' }}
+          style={{ height: 90, background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.95))' }}
         />
       </div>
 
@@ -266,7 +266,7 @@ export function HeroPreview() {
               style={{ backgroundColor: t.accent }}
               className={`w-5 h-5 rounded-full transition-all duration-150 cursor-pointer ${
                 active === t.id
-                  ? 'scale-125 ring-2 ring-offset-2 ring-offset-zinc-950 ring-white/40'
+                  ? 'scale-125 ring-2 ring-offset-2 ring-offset-white ring-zinc-900/25'
                   : 'opacity-40 hover:opacity-75 hover:scale-110'
               }`}
             />

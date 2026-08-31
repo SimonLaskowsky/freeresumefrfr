@@ -33,6 +33,104 @@ body {
   animation: float 5s ease-in-out infinite;
 }
 
+/* ── Landing (light glassmorphism) ─────────────────────────────────────── */
+
+.glass {
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 1px 2px rgba(24, 33, 22, 0.04),
+    0 12px 40px -12px rgba(24, 33, 22, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.glass-strong {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 1px 2px rgba(24, 33, 22, 0.05),
+    0 18px 50px -16px rgba(24, 33, 22, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+.glass-accent {
+  background: rgba(236, 252, 203, 0.5);
+  border-color: rgba(132, 204, 22, 0.35);
+}
+.glass-card {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 1px 2px rgba(24, 33, 22, 0.04),
+    0 24px 60px -16px rgba(24, 33, 22, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Icon tiles wiggle on card hover; individual glyphs get their own moves. */
+.bento-icon {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.35s ease;
+}
+.group:hover .bento-icon { transform: rotate(-6deg) scale(1.1); }
+.icon-anim { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.group:hover .icon-arrow-down { transform: translateY(2px); }
+.group:hover .icon-rotate { transform: rotate(180deg); }
+.group:hover .icon-pop { transform: scale(1.18); }
+.group:hover .icon-tilt { transform: rotate(12deg); }
+.group:hover .icon-slide { transform: translateX(3px); }
+
+/* Marquee ticker */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 36s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+/* CTA sheen sweep */
+.cta-sheen { position: relative; overflow: hidden; }
+.cta-sheen::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: -60%;
+  width: 40%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-12deg);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+.cta-sheen:hover::after { transform: translateX(400%) skewX(-12deg); }
+
+/* Soft drifting background blobs */
+@keyframes blob-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(30px, -24px) scale(1.06); }
+  66%      { transform: translate(-20px, 18px) scale(0.97); }
+}
+.blob { animation: blob-drift 18s ease-in-out infinite; }
+.blob-slow { animation: blob-drift 26s ease-in-out infinite reverse; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track, .blob, .blob-slow, .animate-float { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .glass-card, .bento-icon, .icon-anim, .cta-sheen::after { transition: none; }
+}
+
 /* Form input focus glow */
 .form-input:focus {
   box-shadow: 0 0 0 3px rgba(163, 230, 53, 0.12);
