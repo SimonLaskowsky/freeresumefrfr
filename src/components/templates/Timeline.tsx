@@ -28,17 +28,19 @@ const s = StyleSheet.create({
   timelineLine: { width: 2, flex: 1 },
   expContent: { flex: 1, paddingLeft: 8, paddingBottom: 10 },
   expRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
-  expTitle: { fontFamily: SANS, fontWeight: 700, fontSize: 10 },
+  expTitle: { fontFamily: SANS, fontWeight: 700, fontSize: 10, flex: 1 },
+  projectName: { fontFamily: SANS, fontWeight: 700, fontSize: 10, flexGrow: 1, flexShrink: 1 },
   expCompany: { fontSize: 9, color: '#4b5563', marginBottom: 3 },
-  expDates: { fontSize: 8.5, color: '#9ca3af' },
+  expDates: { fontSize: 8.5, color: '#9ca3af', flexShrink: 0, marginLeft: 10 },
   bullet: { flexDirection: 'row', marginTop: 1.5, paddingLeft: 4 },
   bulletDot: { width: 10, color: '#9ca3af' },
   bulletText: { flex: 1, fontSize: 9.5, color: '#374151', lineHeight: 1.4 },
   normalItem: { marginBottom: 8 },
   itemRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
-  itemTitle: { fontFamily: SANS, fontWeight: 700, fontSize: 10 },
+  projectRow: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginBottom: 1 },
+  itemTitle: { fontFamily: SANS, fontWeight: 700, fontSize: 10, flex: 1 },
   itemSub: { fontSize: 9, color: '#4b5563', marginTop: 1 },
-  itemDates: { fontSize: 8.5, color: '#9ca3af' },
+  itemDates: { fontSize: 8.5, color: '#9ca3af', flexShrink: 0, marginLeft: 10 },
   itemNotes: { fontSize: 9, color: '#94a3b8', marginTop: 1 },
   skills: { fontSize: 9.5, color: '#374151', lineHeight: 1.5 },
   photo: { width: 84, height: 104, borderRadius: 3, marginBottom: 12, objectFit: 'cover' },
@@ -152,9 +154,9 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
                 <View key={proj.id} style={s.normalItem} wrap={false}>
-                  <View style={s.itemRow}>
-                    <Text style={s.itemTitle}>{proj.name}</Text>
-                    {proj.url && <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text>}
+                  <View style={s.projectRow}>
+                    <Text style={s.projectName}>{proj.name}</Text>
+                    {proj.url && <Text style={{ fontSize: 8.5, color: accentColor, marginLeft: 'auto', paddingLeft: 10 }}>{proj.url}</Text>}
                   </View>
                   {proj.description && <Text style={s.itemSub}>{proj.description}</Text>}
                   {bullets.map((b, i) => (
@@ -208,8 +210,8 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
                   justifyContent: 'space-between',
                 }}
               >
-                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
-                {cert.date && <Text style={{ fontSize: 9, color: '#9ca3af' }}>{cert.date}</Text>}
+                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700, flex: 1 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
+                {cert.date && <Text style={{ fontSize: 9, color: '#9ca3af', flexShrink: 0, marginLeft: 10 }}>{cert.date}</Text>}
               </View>
             ))}
           </View>
@@ -220,8 +222,8 @@ export function TimelineTemplate({ data, labels, accentColor, companyLogo }: Pro
             <Heading label={labels.languages} />
             {(data.languages ?? []).map((lang, idx) => (
               <View key={lang.id} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: idx === (data.languages ?? []).length - 1 ? 0 : 3 }}>
-                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{lang.name}</Text>
-                {lang.level ? <Text style={{ fontSize: 9, color: '#6b7280' }}>{lang.level}</Text> : null}
+                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700, flex: 1 }}>{lang.name}</Text>
+                {lang.level ? <Text style={{ fontSize: 9, color: '#6b7280', flexShrink: 0, marginLeft: 10 }}>{lang.level}</Text> : null}
               </View>
             ))}
           </View>

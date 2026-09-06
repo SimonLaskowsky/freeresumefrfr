@@ -43,8 +43,10 @@ const s = StyleSheet.create({
 
   expItem: { marginBottom: 8 },
   expRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
-  expTitle: { fontFamily: SANS, fontWeight: 700, fontSize: 10 },
-  expDates: { fontSize: 8.5, color: '#6b7280' },
+  projectRow: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginBottom: 1 },
+  expTitle: { fontFamily: SANS, fontWeight: 700, fontSize: 10, flex: 1 },
+  projectName: { fontFamily: SANS, fontWeight: 700, fontSize: 10, flexGrow: 1, flexShrink: 1 },
+  expDates: { fontSize: 8.5, color: '#6b7280', flexShrink: 0, marginLeft: 10 },
   expCompany: { fontSize: 9, color: '#4b5563', marginBottom: 2 },
   bullet: { flexDirection: 'row', marginTop: 1.5, paddingLeft: 4 },
   bulletDot: { width: 10, color: '#9ca3af' },
@@ -52,8 +54,8 @@ const s = StyleSheet.create({
 
   eduItem: { marginBottom: 6 },
   eduRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
-  eduDegree: { fontFamily: SANS, fontWeight: 700, fontSize: 10 },
-  eduDates: { fontSize: 8.5, color: '#6b7280' },
+  eduDegree: { fontFamily: SANS, fontWeight: 700, fontSize: 10, flex: 1 },
+  eduDates: { fontSize: 8.5, color: '#6b7280', flexShrink: 0, marginLeft: 10 },
   eduSchool: { fontSize: 9, color: '#4b5563' },
   eduNotes: { fontSize: 8.5, color: '#6b7280', marginTop: 1 },
   photo: { width: 144, height: 180, marginBottom: 16, objectFit: 'cover' },
@@ -185,9 +187,9 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
                 const bullets = (proj.bullets || []).filter((b) => b.trim());
                 return (
                   <View key={proj.id} style={s.expItem} wrap={false}>
-                    <View style={s.expRow}>
-                      <Text style={s.expTitle}>{proj.name}</Text>
-                      {proj.url ? <Text style={{ fontSize: 8, color: '#60a5fa' }}>{proj.url}</Text> : null}
+                    <View style={s.projectRow}>
+                      <Text style={s.projectName}>{proj.name}</Text>
+                      {proj.url ? <Text style={{ fontSize: 8, color: '#60a5fa', marginLeft: 'auto', paddingLeft: 10 }}>{proj.url}</Text> : null}
                     </View>
                     {proj.description ? <Text style={s.expCompany}>{proj.description}</Text> : null}
                     {bullets.map((b, i) => (
@@ -248,8 +250,8 @@ export function ModernTemplate({ data, labels, accentColor, companyLogo }: { dat
                     justifyContent: 'space-between',
                   }}
                 >
-                  <Text style={{ fontSize: 9, fontFamily: SANS, fontWeight: 700, color: accentColor }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
-                  {cert.date ? <Text style={{ fontSize: 8.5, color: '#6b7280' }}>{cert.date}</Text> : null}
+                  <Text style={{ fontSize: 9, fontFamily: SANS, fontWeight: 700, color: accentColor, flex: 1 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
+                  {cert.date ? <Text style={{ fontSize: 8.5, color: '#6b7280', flexShrink: 0, marginLeft: 10 }}>{cert.date}</Text> : null}
                 </View>
               ))}
             </View>

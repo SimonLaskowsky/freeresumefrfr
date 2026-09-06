@@ -25,16 +25,18 @@ const s = StyleSheet.create({
   sectionRule: { borderBottomWidth: 0.5, borderBottomColor: '#e5e7eb', marginBottom: 8 },
   expItem: { marginBottom: 9 },
   expRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
-  expTitle: { fontFamily: SANS, fontWeight: 700, fontSize: 10 },
-  expDates: { fontSize: 8.5, color: '#9ca3af' },
+  projectRow: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginBottom: 1 },
+  expTitle: { fontFamily: SANS, fontWeight: 700, fontSize: 10, flex: 1 },
+  projectName: { fontFamily: SANS, fontWeight: 700, fontSize: 10, flexGrow: 1, flexShrink: 1 },
+  expDates: { fontSize: 8.5, color: '#9ca3af', flexShrink: 0, marginLeft: 10 },
   expCompany: { fontSize: 9.5, color: '#4b5563', marginBottom: 3, fontFamily: SANS, fontStyle: 'italic' },
   bullet: { flexDirection: 'row', marginTop: 1.5, paddingLeft: 6 },
   bulletDash: { width: 10, color: '#d1d5db' },
   bulletText: { flex: 1, fontSize: 9.5, color: '#374151', lineHeight: 1.45 },
   eduItem: { marginBottom: 7 },
   eduRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
-  eduDegree: { fontFamily: SANS, fontWeight: 700, fontSize: 10 },
-  eduDates: { fontSize: 8.5, color: '#9ca3af' },
+  eduDegree: { fontFamily: SANS, fontWeight: 700, fontSize: 10, flex: 1 },
+  eduDates: { fontSize: 8.5, color: '#9ca3af', flexShrink: 0, marginLeft: 10 },
   eduSchool: { fontSize: 9.5, color: '#4b5563', fontFamily: SANS, fontStyle: 'italic' },
   eduNotes: { fontSize: 8.5, color: '#9ca3af', marginTop: 1 },
   skills: { fontSize: 9.5, color: '#374151', lineHeight: 1.6 },
@@ -145,9 +147,9 @@ export function SleekTemplate({ data, labels, accentColor, companyLogo }: Props)
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
                 <View key={proj.id} style={s.expItem} wrap={false}>
-                  <View style={s.expRow}>
-                    <Text style={s.expTitle}>{proj.name}</Text>
-                    {proj.url && <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text>}
+                  <View style={s.projectRow}>
+                    <Text style={s.projectName}>{proj.name}</Text>
+                    {proj.url && <Text style={{ fontSize: 8.5, color: accentColor, marginLeft: 'auto', paddingLeft: 10 }}>{proj.url}</Text>}
                   </View>
                   {proj.description && <Text style={s.expCompany}>{proj.description}</Text>}
                   {bullets.map((b, i) => (
@@ -200,8 +202,8 @@ export function SleekTemplate({ data, labels, accentColor, companyLogo }: Props)
                   justifyContent: 'space-between',
                 }}
               >
-                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
-                {cert.date && <Text style={{ fontSize: 8.5, color: '#9ca3af' }}>{cert.date}</Text>}
+                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700, flex: 1 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
+                {cert.date && <Text style={{ fontSize: 8.5, color: '#9ca3af', flexShrink: 0, marginLeft: 10 }}>{cert.date}</Text>}
               </View>
             ))}
           </Section>
@@ -211,8 +213,8 @@ export function SleekTemplate({ data, labels, accentColor, companyLogo }: Props)
           <Section title={labels.languages}>
             {(data.languages ?? []).map((lang, idx) => (
               <View key={lang.id} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: idx === (data.languages ?? []).length - 1 ? 0 : 3 }}>
-                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{lang.name}</Text>
-                {lang.level ? <Text style={{ fontSize: 9, color: '#6b7280' }}>{lang.level}</Text> : null}
+                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700, flex: 1 }}>{lang.name}</Text>
+                {lang.level ? <Text style={{ fontSize: 9, color: '#6b7280', flexShrink: 0, marginLeft: 10 }}>{lang.level}</Text> : null}
               </View>
             ))}
           </Section>

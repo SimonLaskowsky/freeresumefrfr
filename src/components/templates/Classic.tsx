@@ -68,14 +68,30 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 2,
   },
+  projectRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginBottom: 2,
+  },
   expTitleCompany: {
     fontFamily: SANS,
     fontWeight: 700,
     fontSize: 10,
+    flex: 1,
+  },
+  projectName: {
+    fontFamily: SANS,
+    fontWeight: 700,
+    fontSize: 10,
+    flexGrow: 1,
+    flexShrink: 1,
   },
   expDates: {
     fontSize: 9,
     color: '#666666',
+    flexShrink: 0,
+    marginLeft: 10,
   },
   bullet: {
     flexDirection: 'row',
@@ -104,10 +120,13 @@ const styles = StyleSheet.create({
     fontFamily: SANS,
     fontWeight: 700,
     fontSize: 10,
+    flex: 1,
   },
   eduDates: {
     fontSize: 9,
     color: '#666666',
+    flexShrink: 0,
+    marginLeft: 10,
   },
   eduNotes: {
     fontSize: 9.5,
@@ -222,9 +241,9 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
                 <View key={proj.id} style={styles.expItem} wrap={false}>
-                  <View style={styles.expTopRow}>
-                    <Text style={styles.expTitleCompany}>{proj.name}</Text>
-                    {proj.url ? <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text> : null}
+                  <View style={styles.projectRow}>
+                    <Text style={styles.projectName}>{proj.name}</Text>
+                    {proj.url ? <Text style={{ fontSize: 8.5, color: accentColor, marginLeft: 'auto', paddingLeft: 10 }}>{proj.url}</Text> : null}
                   </View>
                   {proj.description ? <Text style={{ fontSize: 9.5, color: '#444444', marginBottom: 2 }}>{proj.description}</Text> : null}
                   {bullets.map((b, i) => (
@@ -288,8 +307,8 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
                   justifyContent: 'space-between',
                 }}
               >
-                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
-                {cert.date ? <Text style={{ fontSize: 9, color: '#666666' }}>{cert.date}</Text> : null}
+                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700, flex: 1 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
+                {cert.date ? <Text style={{ fontSize: 9, color: '#666666', flexShrink: 0, marginLeft: 10 }}>{cert.date}</Text> : null}
               </View>
             ))}
           </View>
@@ -304,8 +323,8 @@ export function ClassicTemplate({ data, labels, accentColor, companyLogo }: { da
             </SectionHead>
             {(data.languages ?? []).map((lang, idx) => (
               <View key={lang.id} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: idx === (data.languages ?? []).length - 1 ? 0 : 4 }}>
-                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{lang.name}</Text>
-                {lang.level ? <Text style={{ fontSize: 9, color: '#6b7280' }}>{lang.level}</Text> : null}
+                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700, flex: 1 }}>{lang.name}</Text>
+                {lang.level ? <Text style={{ fontSize: 9, color: '#6b7280', flexShrink: 0, marginLeft: 10 }}>{lang.level}</Text> : null}
               </View>
             ))}
           </View>

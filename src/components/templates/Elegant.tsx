@@ -37,8 +37,10 @@ const s = StyleSheet.create({
 
   expItem: { marginBottom: 8 },
   expRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
-  expTitle: { fontFamily: SERIF, fontWeight: 700, fontSize: 10.5 },
-  expDates: { fontSize: 9, color: '#777777', fontFamily: SERIF, fontStyle: 'italic' },
+  projectRow: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginBottom: 1 },
+  expTitle: { fontFamily: SERIF, fontWeight: 700, fontSize: 10.5, flex: 1 },
+  projectName: { fontFamily: SERIF, fontWeight: 700, fontSize: 10.5, flexGrow: 1, flexShrink: 1 },
+  expDates: { fontSize: 9, color: '#777777', fontFamily: SERIF, fontStyle: 'italic', flexShrink: 0, marginLeft: 10 },
   expCompany: { fontSize: 10, fontFamily: SERIF, fontStyle: 'italic', color: '#555555', marginBottom: 3 },
   bullet: { flexDirection: 'row', marginTop: 2, paddingLeft: 8 },
   bulletDot: { width: 10, color: '#999999' },
@@ -154,9 +156,9 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
                 <View key={proj.id} style={s.expItem} wrap={false}>
-                  <View style={s.expRow}>
-                    <Text style={s.expTitle}>{proj.name}</Text>
-                    {proj.url ? <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text> : null}
+                  <View style={s.projectRow}>
+                    <Text style={s.projectName}>{proj.name}</Text>
+                    {proj.url ? <Text style={{ fontSize: 8.5, color: accentColor, marginLeft: 'auto', paddingLeft: 10 }}>{proj.url}</Text> : null}
                   </View>
                   {proj.description ? <Text style={s.expCompany}>{proj.description}</Text> : null}
                   {bullets.map((b, i) => (
@@ -230,8 +232,8 @@ export function ElegantTemplate({ data, labels, accentColor, companyLogo }: { da
             <View style={s.thinRule} />
             {(data.languages ?? []).map((lang, idx) => (
               <View key={lang.id} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: idx === (data.languages ?? []).length - 1 ? 0 : 3 }}>
-                <Text style={{ fontSize: 9.5, fontFamily: SERIF, fontWeight: 700 }}>{lang.name}</Text>
-                {lang.level ? <Text style={{ fontSize: 9, color: '#6b7280' }}>{lang.level}</Text> : null}
+                <Text style={{ fontSize: 9.5, fontFamily: SERIF, fontWeight: 700, flex: 1 }}>{lang.name}</Text>
+                {lang.level ? <Text style={{ fontSize: 9, color: '#6b7280', flexShrink: 0, marginLeft: 10 }}>{lang.level}</Text> : null}
               </View>
             ))}
           </View>

@@ -33,8 +33,10 @@ const s = StyleSheet.create({
 
   expItem: { marginBottom: 10 },
   expRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
-  expTitle: { fontFamily: SANS, fontWeight: 700, fontSize: 10 },
-  expDates: { fontSize: 8.5, color: '#9ca3af' },
+  projectRow: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', marginBottom: 1 },
+  expTitle: { fontFamily: SANS, fontWeight: 700, fontSize: 10, flex: 1 },
+  projectName: { fontFamily: SANS, fontWeight: 700, fontSize: 10, flexGrow: 1, flexShrink: 1 },
+  expDates: { fontSize: 8.5, color: '#9ca3af', flexShrink: 0, marginLeft: 10 },
   expCompany: { fontSize: 9.5, color: '#64748b', fontFamily: SANS, fontStyle: 'italic', marginBottom: 3 },
   bullet: { flexDirection: 'row', marginTop: 2, paddingLeft: 6 },
   bulletDash: { width: 10, color: '#d1d5db' },
@@ -42,8 +44,8 @@ const s = StyleSheet.create({
 
   eduItem: { marginBottom: 8 },
   eduRow: { flexDirection: 'row', justifyContent: 'space-between' },
-  eduDegree: { fontFamily: SANS, fontWeight: 700, fontSize: 10 },
-  eduDates: { fontSize: 8.5, color: '#9ca3af' },
+  eduDegree: { fontFamily: SANS, fontWeight: 700, fontSize: 10, flex: 1 },
+  eduDates: { fontSize: 8.5, color: '#9ca3af', flexShrink: 0, marginLeft: 10 },
   eduSchool: { fontSize: 9.5, color: '#64748b', fontFamily: SANS, fontStyle: 'italic', marginTop: 1 },
   eduNotes: { fontSize: 9, color: '#94a3b8', marginTop: 2 },
 
@@ -147,9 +149,9 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
               const bullets = (proj.bullets || []).filter((b) => b.trim());
               return (
                 <View key={proj.id} style={s.expItem} wrap={false}>
-                  <View style={s.expRow}>
-                    <Text style={s.expTitle}>{proj.name}</Text>
-                    {proj.url ? <Text style={{ fontSize: 8.5, color: accentColor }}>{proj.url}</Text> : null}
+                  <View style={s.projectRow}>
+                    <Text style={s.projectName}>{proj.name}</Text>
+                    {proj.url ? <Text style={{ fontSize: 8.5, color: accentColor, marginLeft: 'auto', paddingLeft: 10 }}>{proj.url}</Text> : null}
                   </View>
                   {proj.description ? <Text style={s.expCompany}>{proj.description}</Text> : null}
                   {bullets.map((b, i) => (
@@ -211,8 +213,8 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
                   justifyContent: 'space-between',
                 }}
               >
-                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700, color: '#0f172a' }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
-                {cert.date ? <Text style={{ fontSize: 8.5, color: '#9ca3af' }}>{cert.date}</Text> : null}
+                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700, color: '#0f172a', flex: 1 }}>{cert.name}{cert.issuer ? ` · ${cert.issuer}` : ''}</Text>
+                {cert.date ? <Text style={{ fontSize: 8.5, color: '#9ca3af', flexShrink: 0, marginLeft: 10 }}>{cert.date}</Text> : null}
               </View>
             ))}
           </View>
@@ -226,8 +228,8 @@ export function MinimalTemplate({ data, labels, accentColor, companyLogo }: { da
             <View style={s.divider} />
             {(data.languages ?? []).map((lang, idx) => (
               <View key={lang.id} style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: idx === (data.languages ?? []).length - 1 ? 0 : 3 }}>
-                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700 }}>{lang.name}</Text>
-                {lang.level ? <Text style={{ fontSize: 9, color: '#6b7280' }}>{lang.level}</Text> : null}
+                <Text style={{ fontSize: 9.5, fontFamily: SANS, fontWeight: 700, flex: 1 }}>{lang.name}</Text>
+                {lang.level ? <Text style={{ fontSize: 9, color: '#6b7280', flexShrink: 0, marginLeft: 10 }}>{lang.level}</Text> : null}
               </View>
             ))}
           </View>
